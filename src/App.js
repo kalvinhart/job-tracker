@@ -1,8 +1,14 @@
 import React from "react";
+import GlobalStyles from "./GlobalStyles";
 import Table from "./components/Table/Table";
 
 function App() {
-  return <Table />;
+  return (
+    <>
+      <GlobalStyles />
+      <Table />
+    </>
+  );
 }
 
 export default App;
