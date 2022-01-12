@@ -5,14 +5,13 @@ import {
   useFilters,
   useSortBy,
   usePagination,
-  useRowState,
 } from "react-table";
 import { useNavigate } from "react-router-dom";
 
 import GlobalFilter from "./GlobalFilter";
 import DefaultColumnFilter from "./DefaultColumnFilter";
 import Pagination from "./Pagination";
-import { columnData, jobData } from "./tableConfig";
+import { columnData, jobData, statusOptions, centeredColumns } from "./tableConfig";
 
 import {
   TableWrapper,
@@ -21,6 +20,7 @@ import {
   StyledTH,
   StyledTR,
   StyledTD,
+  StatusSpan,
 } from "./Table.styled";
 
 const Table = () => {
@@ -111,8 +111,20 @@ const Table = () => {
                 >
                   {row.cells.map((cell) => {
                     console.log("Cell:", cell);
+                    console.log("Cell props: ", cell.getCellProps());
+                    const center = centeredColumns.includes(cell.column.Header);
+                    const cellValue = cell.render("Cell").props.value;
+                    const status = statusOptions.includes(cellValue)
+                      ? cellValue
+                      : undefined;
                     return (
-                      <StyledTD {...cell.getCellProps()}>{cell.render("Cell")}</StyledTD>
+                      <StyledTD center={center} {...cell.getCellProps()}>
+                        {status ? (
+                          <StatusSpan status={status}>{status}</StatusSpan>
+                        ) : (
+                          cell.render("Cell")
+                        )}
+                      </StyledTD>
                     );
                   })}
                 </StyledTR>
