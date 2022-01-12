@@ -27,11 +27,14 @@ export const StyledTable = styled.table`
 export const StyledTH = styled.th`
   padding: 5px 10px;
   background-color: var(--clr-light);
+
+  ${(props) => props.hideFirst && "&:first-of-type { display: none; }"}
 `;
 
 export const StyledTR = styled.tr`
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
+  cursor: pointer;
 
   &:nth-of-type(even) {
     background-color: var(--clr-light);
@@ -48,6 +51,10 @@ export const StyledTR = styled.tr`
   &:hover {
     border-left: 6px solid var(--clr-primary);
     background-color: var(--clr-outline);
+  }
+
+  & td:first-of-type {
+    display: none;
   }
 `;
 

@@ -2,6 +2,11 @@ import SelectColumnFilter from "./SelectColumnFilter";
 
 export const columnData = [
   {
+    Header: "ID",
+    accessor: "id",
+    disableFilters: true,
+  },
+  {
     Header: "Job Title",
     accessor: "title",
     Filter: SelectColumnFilter,
@@ -61,6 +66,7 @@ export const columnData = [
 
 export const jobData = [
   {
+    id: "1",
     title: "Junior Dev",
     location: "Remote",
     salary: "25000",
@@ -73,6 +79,7 @@ export const jobData = [
     interview: "",
   },
   {
+    id: "2",
     title: "Junior React Dev",
     location: "Bracknell",
     salary: "30000",
@@ -85,6 +92,7 @@ export const jobData = [
     interview: "",
   },
   {
+    id: "3",
     title: "Front End Dev",
     location: "Bristol",
     salary: "22000",
@@ -97,6 +105,7 @@ export const jobData = [
     interview: "",
   },
   {
+    id: "4",
     title: "Junior Dev",
     location: "Remote",
     salary: "25000",
@@ -109,6 +118,7 @@ export const jobData = [
     interview: "",
   },
   {
+    id: "5",
     title: "Junior React Dev",
     location: "Bracknell",
     salary: "30000",
@@ -121,6 +131,7 @@ export const jobData = [
     interview: "",
   },
   {
+    id: "6",
     title: "Front End Dev",
     location: "Bristol",
     salary: "22000",
@@ -133,6 +144,7 @@ export const jobData = [
     interview: "",
   },
   {
+    id: "7",
     title: "Junior Dev",
     location: "Remote",
     salary: "25000",
@@ -145,6 +157,7 @@ export const jobData = [
     interview: "",
   },
   {
+    id: "8",
     title: "Junior React Dev",
     location: "Bracknell",
     salary: "30000",
@@ -157,6 +170,7 @@ export const jobData = [
     interview: "",
   },
   {
+    id: "9",
     title: "Front End Dev",
     location: "Bristol",
     salary: "22000",
@@ -169,6 +183,7 @@ export const jobData = [
     interview: "",
   },
   {
+    id: "10",
     title: "Junior Dev",
     location: "Remote",
     salary: "25000",
@@ -181,6 +196,7 @@ export const jobData = [
     interview: "",
   },
   {
+    id: "11",
     title: "Junior React Dev",
     location: "Bracknell",
     salary: "30000",
@@ -193,6 +209,7 @@ export const jobData = [
     interview: "",
   },
   {
+    id: "12",
     title: "Front End Dev",
     location: "Bristol",
     salary: "22000",

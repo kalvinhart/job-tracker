@@ -7,6 +7,7 @@ import {
   usePagination,
   useRowState,
 } from "react-table";
+import { useNavigate } from "react-router-dom";
 
 import GlobalFilter from "./GlobalFilter";
 import DefaultColumnFilter from "./DefaultColumnFilter";
@@ -23,6 +24,7 @@ import {
 } from "./Table.styled";
 
 const Table = () => {
+  const navigate = useNavigate();
   const defaultColumn = useMemo(
     () => ({
       Filter: DefaultColumnFilter,
@@ -32,6 +34,10 @@ const Table = () => {
 
   const columns = useMemo(() => columnData, []);
   const data = useMemo(() => jobData, []);
+
+  const goToJobView = (id) => {
+    navigate(`/job/${id}`);
+  };
 
   const {
     getTableProps,
@@ -60,8 +66,7 @@ const Table = () => {
     useGlobalFilter,
     useFilters,
     useSortBy,
-    usePagination,
-    useRowState
+    usePagination
   );
   return (
     <TableWrapper>
@@ -71,7 +76,7 @@ const Table = () => {
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <StyledTH {...column.getHeaderProps()}>
+                  <StyledTH hideFirst={true} {...column.getHeaderProps()}>
                     <div {...column.getSortByToggleProps()}>
                       {column.render("Header")}
                       <span>
@@ -98,10 +103,14 @@ const Table = () => {
           <tbody {...getTableBodyProps()}>
             {page.map((row) => {
               prepareRow(row);
+              console.log("Row:", row);
               return (
-                <StyledTR {...row.getRowProps()}>
+                <StyledTR
+                  {...row.getRowProps()}
+                  onClick={() => goToJobView(row.original.id)}
+                >
                   {row.cells.map((cell) => {
-                    console.log(cell);
+                    console.log("Cell:", cell);
                     return (
                       <StyledTD {...cell.getCellProps()}>{cell.render("Cell")}</StyledTD>
                     );
