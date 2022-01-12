@@ -1,5 +1,7 @@
 import { useMemo } from "react";
 
+import { StyledSelect } from "../../styles/formStyles";
+
 const SelectColumnFilter = ({
   column: { filterValue, setFilter, preFilteredRows, id },
 }) => {
@@ -12,7 +14,7 @@ const SelectColumnFilter = ({
   }, [id, preFilteredRows]);
 
   return (
-    <select
+    <StyledSelect
       value={filterValue}
       onChange={(e) => {
         setFilter(e.target.value || undefined);
@@ -24,7 +26,7 @@ const SelectColumnFilter = ({
           {option}
         </option>
       ))}
-    </select>
+    </StyledSelect>
   );
 };
 

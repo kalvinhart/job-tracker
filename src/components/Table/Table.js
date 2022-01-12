@@ -5,11 +5,22 @@ import {
   useFilters,
   useSortBy,
   usePagination,
+  useRowState,
 } from "react-table";
+
 import GlobalFilter from "./GlobalFilter";
 import DefaultColumnFilter from "./DefaultColumnFilter";
 import Pagination from "./Pagination";
 import { columnData, jobData } from "./tableConfig";
+
+import {
+  TableWrapper,
+  StyledTableBorder,
+  StyledTable,
+  StyledTH,
+  StyledTR,
+  StyledTD,
+} from "./Table.styled";
 
 const Table = () => {
   const defaultColumn = useMemo(
@@ -44,56 +55,63 @@ const Table = () => {
       columns,
       data,
       defaultColumn,
-      initialState: { pageSize: 1 },
+      initialState: { pageSize: 20 },
     },
     useGlobalFilter,
     useFilters,
     useSortBy,
-    usePagination
+    usePagination,
+    useRowState
   );
   return (
-    <>
-      <table {...getTableProps()}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>
-                  <div {...column.getSortByToggleProps()}>
-                    {column.render("Header")}
-                    <span>
-                      {column.isSorted ? (column.isSortedDesc ? " desc" : " asc") : ""}
-                    </span>
-                  </div>
-                  <div>{column.canFilter ? column.render("Filter") : null}</div>
-                </th>
-              ))}
-            </tr>
-          ))}
-          <tr>
-            <th>
-              <GlobalFilter
-                preGlobalFilteredRows={preGlobalFilteredRows}
-                globalFilter={globalFilter}
-                setGlobalFilter={setGlobalFilter}
-              />
-            </th>
-          </tr>
-        </thead>
-
-        <tbody {...getTableBodyProps()}>
-          {page.map((row) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
-                })}
+    <TableWrapper>
+      <StyledTableBorder>
+        <StyledTable {...getTableProps()}>
+          <thead>
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <StyledTH {...column.getHeaderProps()}>
+                    <div {...column.getSortByToggleProps()}>
+                      {column.render("Header")}
+                      <span>
+                        {column.isSorted ? (column.isSortedDesc ? " desc" : " asc") : ""}
+                      </span>
+                    </div>
+                    <div>{column.canFilter ? column.render("Filter") : null}</div>
+                  </StyledTH>
+                ))}
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
+            ))}
+
+            <tr>
+              <StyledTH colSpan={columns.length}>
+                <GlobalFilter
+                  preGlobalFilteredRows={preGlobalFilteredRows}
+                  globalFilter={globalFilter}
+                  setGlobalFilter={setGlobalFilter}
+                />
+              </StyledTH>
+            </tr>
+          </thead>
+
+          <tbody {...getTableBodyProps()}>
+            {page.map((row) => {
+              prepareRow(row);
+              return (
+                <StyledTR {...row.getRowProps()}>
+                  {row.cells.map((cell) => {
+                    console.log(cell);
+                    return (
+                      <StyledTD {...cell.getCellProps()}>{cell.render("Cell")}</StyledTD>
+                    );
+                  })}
+                </StyledTR>
+              );
+            })}
+          </tbody>
+        </StyledTable>
+      </StyledTableBorder>
 
       <Pagination
         options={{
@@ -109,7 +127,7 @@ const Table = () => {
           pageSize,
         }}
       />
-    </>
+    </TableWrapper>
   );
 };
 

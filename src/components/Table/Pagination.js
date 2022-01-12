@@ -1,3 +1,6 @@
+import { InputText, StyledSelect } from "../../styles/formStyles";
+import { PaginationButton } from "./Table.styled";
+
 const Pagination = ({
   options: {
     canPreviousPage,
@@ -14,18 +17,18 @@ const Pagination = ({
 }) => {
   return (
     <div>
-      <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+      <PaginationButton onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
         {"<<"}
-      </button>{" "}
-      <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+      </PaginationButton>{" "}
+      <PaginationButton onClick={() => previousPage()} disabled={!canPreviousPage}>
         {"<"}
-      </button>{" "}
-      <button onClick={() => nextPage()} disabled={!canNextPage}>
+      </PaginationButton>{" "}
+      <PaginationButton onClick={() => nextPage()} disabled={!canNextPage}>
         {">"}
-      </button>{" "}
-      <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+      </PaginationButton>{" "}
+      <PaginationButton onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
         {">>"}
-      </button>{" "}
+      </PaginationButton>{" "}
       <span>
         Page{" "}
         <strong>
@@ -34,17 +37,17 @@ const Pagination = ({
       </span>
       <span>
         | Go to page:{" "}
-        <input
+        <InputText
           type="number"
           defaultValue={pageIndex + 1}
           onChange={(e) => {
             const page = e.target.value ? Number(e.target.value) - 1 : 0;
             gotoPage(page);
           }}
-          style={{ width: "100px" }}
+          style={{ width: "30px", paddingRight: 0 }}
         />
       </span>{" "}
-      <select
+      <StyledSelect
         value={pageSize}
         onChange={(e) => {
           setPageSize(Number(e.target.value));
@@ -55,7 +58,7 @@ const Pagination = ({
             Show {pageSize}
           </option>
         ))}
-      </select>
+      </StyledSelect>
     </div>
   );
 };

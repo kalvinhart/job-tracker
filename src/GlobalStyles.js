@@ -12,8 +12,12 @@ const GlobalStyle = createGlobalStyle`
         --clr-primary: #f25b86;
         --clr-secondary: #2a2a2a;
         --clr-bg: #f1f1f2;
+        --clr-light: #fafafa;
         --clr-outline: #eae9eb;
-        --clr-shadow: #e1dfe3;
+        --clr-dark: #e1dfe3;
+        
+        --border-radius: 5px;
+        --box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.1);
     }
 
     html {
