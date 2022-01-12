@@ -28,6 +28,7 @@ export const StyledTH = styled.th`
   padding: 5px 10px;
   background-color: var(--clr-light);
 
+  /* hide the ID column */
   ${(props) => props.hideFirst && "&:first-of-type { display: none; }"}
 `;
 
@@ -53,6 +54,7 @@ export const StyledTR = styled.tr`
     background-color: var(--clr-outline);
   }
 
+  /* hide the ID column */
   & td:first-of-type {
     display: none;
   }
