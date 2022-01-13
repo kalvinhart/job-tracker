@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
     *::after {
         margin: 0;
         padding: 0;
+        box-sizing: inherit;
     }
 
     :root {
@@ -18,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
         --clr-outline: #eae9eb;
         --clr-dark: #e1dfe3;
         
+        --side-panel-width: 50px;
         --border-radius: 5px;
         --box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.1);
     }
@@ -33,6 +35,11 @@ const GlobalStyle = createGlobalStyle`
 
     a {
         text-decoration: none;
+    }
+
+    .plus-icon {
+        color: var(--clr-primary);
+        margin-bottom: 10px;
     }
 `;
 

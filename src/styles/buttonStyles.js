@@ -10,7 +10,12 @@ export const Button = styled.button`
   cursor: pointer;
   transition: border 0.2s ease-in-out;
 
-  ${(props) => props.primary && "background-color: var(--clr-primary); color: black;"}
+  ${(props) =>
+    props.vertical &&
+    "background-color: transparent; font-size: 14px; font-weight: normal; color: white; white-space: pre-line; text-transform: uppercase;"}
+  ${(props) => props.vertical && "& span { display: block; margin-bottom: 10px; }"}
+
+  ${(props) => props.primary && "background-color: var(--clr-primary); color: white;"}
   ${(props) =>
     props.secondary &&
     "background-color: var(--clr-secondary); color: var(--clr-primary);"}
@@ -20,7 +25,7 @@ export const Button = styled.button`
 
   &:hover,
   &:focus {
-    ${(props) => props.primary && "border: 2px solid black;"}
+    ${(props) => props.primary && "border: 2px solid white;"}
     ${(props) => props.secondary && "border: 2px solid var(--clr-primary);"}
     ${(props) => props.tertiary && "border: 2px solid var(--clr-tertiary-text);"}
   }
