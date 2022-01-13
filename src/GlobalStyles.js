@@ -11,6 +11,8 @@ const GlobalStyle = createGlobalStyle`
     :root {
         --clr-primary: #f25b86;
         --clr-secondary: #2a2a2a;
+        --clr-tertiary: #636e72;
+        --clr-tertiary-text: #00a8ff;
         --clr-bg: #f1f1f2;
         --clr-light: #fafafa;
         --clr-outline: #eae9eb;
