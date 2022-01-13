@@ -30,6 +30,10 @@ const GlobalStyle = createGlobalStyle`
         font-family: Nunito, sans-serif;
         background-color: var(--clr-bg);
     }
+
+    a {
+        text-decoration: none;
+    }
 `;
 
 export default GlobalStyle;
