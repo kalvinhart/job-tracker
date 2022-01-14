@@ -1,4 +1,4 @@
-import { InputText, StyledSelect } from "../../styles/formStyles";
+import { StyledInput, StyledSelect } from "../../styles/formStyles";
 import { PaginationButton } from "./Table.styled";
 
 const Pagination = ({
@@ -37,7 +37,7 @@ const Pagination = ({
       </span>
       <span>
         | Go to page:{" "}
-        <InputText
+        <StyledInput
           type="number"
           defaultValue={pageIndex + 1}
           onChange={(e) => {

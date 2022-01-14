@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAsyncDebounce } from "react-table";
 
 import { StyledGlobalFilter } from "./Table.styled";
-import { InputText } from "../../styles/formStyles";
+import { StyledInput } from "../../styles/formStyles";
 
 const GlobalFilter = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }) => {
   const count = preGlobalFilteredRows.length;
@@ -15,7 +15,7 @@ const GlobalFilter = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }) 
     <StyledGlobalFilter>
       <span>
         Search:
-        <InputText
+        <StyledInput
           type="text"
           value={value || ""}
           onChange={(e) => {

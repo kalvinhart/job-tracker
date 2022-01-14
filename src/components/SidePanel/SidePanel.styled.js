@@ -1,4 +1,12 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { fadeInAnimation } from "../../styles/animations";
+
+const fadeInAnimationDiv = css`
+  animation-name: ${fadeInAnimation};
+  animation-duration: 0.5s;
+  animation-delay: var(--side-panel-animation-delay);
+  animation-fill-mode: forwards;
+`;
 
 export const SidePanelContainer = styled.div`
   position: fixed;
@@ -16,9 +24,22 @@ export const SidePanelContainer = styled.div`
   background-color: var(--clr-secondary);
   box-shadow: var(--box-shadow);
 
-  transition: width 0.2s ease-in-out;
+  transition: width var(--side-panel-animation-speed) ease-in-out;
 
-  ${(props) => props.show && "width: 500px;"}
+  ${(props) => props.show && "width: 800px; padding: 20px;"}
 `;
 
-export const SidePanelGroup = styled.div``;
+export const SidePanelGroup = styled.div`
+  ${(props) => (props.show ? "display: block;" : "display: none;")}
+
+  ${(props) => props.animated && "visibility: hidden;"}
+  ${(props) => props.animated && fadeInAnimationDiv}
+`;
+
+export const SidePanelButtonGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 180px;
+  margin-top: 20px;
+  margin-left: auto;
+`;

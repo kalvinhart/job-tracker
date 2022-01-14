@@ -19,9 +19,12 @@ const GlobalStyle = createGlobalStyle`
         --clr-outline: #eae9eb;
         --clr-dark: #e1dfe3;
         
-        --side-panel-width: 50px;
         --border-radius: 5px;
         --box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.1);
+        
+        --side-panel-width: 50px;
+        --side-panel-animation-speed: 0.2s;
+        --side-panel-animation-delay: 0.4s;
     }
 
     html {
@@ -37,9 +40,17 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
     }
 
-    .plus-icon {
+    .plus-icon,
+    .cross-icon {
         color: var(--clr-primary);
+    }
+
+    .plus-icon {
         margin-bottom: 10px;
+    }
+
+    .cross-icon {
+        margin-left: 10px;
     }
 `;
 
