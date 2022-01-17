@@ -52,7 +52,9 @@ const JobProvider = ({ children }) => {
   };
 
   return (
-    <JobContext.Provider value={{ jobs, show, setShow, editing, enableEditing, cancel }}>
+    <JobContext.Provider
+      value={{ jobs, filteredJobs, show, setShow, editing, enableEditing, cancel }}
+    >
       {children}
     </JobContext.Provider>
   );

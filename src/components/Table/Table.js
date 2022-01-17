@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useContext } from "react";
 import {
   useTable,
   useGlobalFilter,
@@ -7,11 +7,12 @@ import {
   usePagination,
 } from "react-table";
 import { useNavigate } from "react-router-dom";
+import { JobContext } from "../../context/jobContext";
 
 import GlobalFilter from "./GlobalFilter";
 import DefaultColumnFilter from "./DefaultColumnFilter";
 import Pagination from "./Pagination";
-import { columnData, jobData, statusOptions, centeredColumns } from "./tableConfig";
+import { columnData, statusOptions, centeredColumns } from "./tableConfig";
 
 import {
   TableWrapper,
@@ -25,6 +26,8 @@ import {
 
 const Table = () => {
   const navigate = useNavigate();
+  const { filteredJobs } = useContext(JobContext);
+
   const defaultColumn = useMemo(
     () => ({
       Filter: DefaultColumnFilter,
@@ -33,7 +36,7 @@ const Table = () => {
   );
 
   const columns = useMemo(() => columnData, []);
-  const data = useMemo(() => jobData, []);
+  const data = useMemo(() => filteredJobs, []);
 
   const goToJobView = (id) => {
     navigate(`/job/${id}`);
