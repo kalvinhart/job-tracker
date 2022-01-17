@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect, useRef, useCallback } from "react";
-import { collection, getDocs, orderBy } from "firebase/firestore";
-import { db } from "../firebase.config";
+import { fetchJobs } from "../utilities/firebase";
 
 export const JobContext = createContext({
   show: false,
@@ -17,26 +16,20 @@ const JobProvider = ({ children }) => {
 
   const loadedRef = useRef(false);
 
-  const fetchJobs = useCallback(async () => {
-    try {
-      let originalJobs = [];
+  useEffect(() => {
+    if (loadedRef.current) return;
 
-      const jobsRef = collection(db, "jobs");
-      const querySnapshot = await getDocs(jobsRef);
-      querySnapshot.forEach((doc) => {
-        const newData = { id: doc.id, ...doc.data() };
-        originalJobs.push(newData);
-        console.log(doc.id, " => ", doc.data());
-      });
-
-      setJobs(originalJobs);
+    const retrieveJobs = async () => {
+      const originalJobs = await fetchJobs();
       const newJobs = filterJobs(originalJobs);
+      setJobs(originalJobs);
       setFilteredJobs(newJobs);
-      loadedRef.current = true;
-    } catch (e) {
-      console.log(e.message);
-    }
-  });
+    };
+
+    retrieveJobs();
+
+    loadedRef.current = true;
+  }, [fetchJobs]);
 
   const filterJobs = (jobs) => {
     return jobs.map((job) => {
@@ -47,11 +40,6 @@ const JobProvider = ({ children }) => {
       };
     });
   };
-
-  useEffect(() => {
-    if (loadedRef.current) return;
-    fetchJobs();
-  }, [fetchJobs]);
 
   const enableEditing = () => {
     setEditing(true);
