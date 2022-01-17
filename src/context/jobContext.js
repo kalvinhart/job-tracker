@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useRef } from "react";
+import { createContext, useState, useEffect, useRef, useCallback } from "react";
 import { collection, getDocs, orderBy } from "firebase/firestore";
 import { db } from "../firebase.config";
 
@@ -11,34 +11,47 @@ export const JobContext = createContext({
 
 const JobProvider = ({ children }) => {
   const [jobs, setJobs] = useState([]);
+  const [filteredJobs, setFilteredJobs] = useState([]);
   const [show, setShow] = useState(false);
   const [editing, setEditing] = useState(false);
 
   const loadedRef = useRef(false);
-  console.log(loadedRef);
+
+  const fetchJobs = useCallback(async () => {
+    try {
+      let originalJobs = [];
+
+      const jobsRef = collection(db, "jobs");
+      const querySnapshot = await getDocs(jobsRef);
+      querySnapshot.forEach((doc) => {
+        const newData = { id: doc.id, ...doc.data() };
+        originalJobs.push(newData);
+        console.log(doc.id, " => ", doc.data());
+      });
+
+      setJobs(originalJobs);
+      const newJobs = filterJobs(originalJobs);
+      setFilteredJobs(newJobs);
+      loadedRef.current = true;
+    } catch (e) {
+      console.log(e.message);
+    }
+  });
+
+  const filterJobs = (jobs) => {
+    return jobs.map((job) => {
+      return {
+        ...job,
+        date: new Date(job.date.seconds).toDateString(),
+        salary: job.salary.toString(),
+      };
+    });
+  };
 
   useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        let data = [];
-        const jobsRef = collection(db, "jobs");
-        const querySnapshot = await getDocs(jobsRef);
-        querySnapshot.forEach((doc) => {
-          const newData = { id: doc.id, ...doc.data() };
-          data.push(newData);
-          console.log(doc.id, " => ", doc.data());
-        });
-        setJobs(data);
-        loadedRef.current = true;
-        console.log(loadedRef);
-      } catch (e) {
-        console.log(e.message);
-      }
-    };
-
     if (loadedRef.current) return;
     fetchJobs();
-  }, []);
+  }, [fetchJobs]);
 
   const enableEditing = () => {
     setEditing(true);
