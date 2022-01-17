@@ -20,14 +20,12 @@ const JobView = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const { jobs, enableEditing } = useContext(JobContext);
+  const { jobs, selectedJob, enableEditing } = useContext(JobContext);
 
   useEffect(() => {
     if (jobs.length === 0) navigate("/");
     setLoading(false);
   }, [jobs]);
-
-  const jobToDisplay = jobs.filter((job) => job.id === id)[0];
 
   let content;
 
@@ -51,7 +49,7 @@ const JobView = () => {
       salary,
       status,
       title,
-    } = jobToDisplay;
+    } = selectedJob;
 
     content = (
       <JobViewContainer>

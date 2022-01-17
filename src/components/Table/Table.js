@@ -29,7 +29,8 @@ import {
 const Table = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const { setJobs, filteredJobs, setFilteredJobs } = useContext(JobContext);
+  const { jobs, setJobs, filteredJobs, setFilteredJobs, setSelectedJob } =
+    useContext(JobContext);
 
   const loadedRef = useRef(false);
 
@@ -70,6 +71,7 @@ const Table = () => {
   const data = useMemo(() => filteredJobs, [filteredJobs]);
 
   const goToJobView = (id) => {
+    setSelectedJob(jobs.filter((job) => job.id === id)[0]);
     navigate(`/job/${id}`);
   };
 

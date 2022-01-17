@@ -10,46 +10,19 @@ export const JobContext = createContext({
 const JobProvider = ({ children }) => {
   const [jobs, setJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
-  const [selectedJob, setSelectedJob] = useState(null);
+  const [selectedJob, setSelectedJob] = useState("");
   const [show, setShow] = useState(false);
   const [editing, setEditing] = useState(false);
-
-  //   const loadedRef = useRef(false);
-
-  //   useEffect(() => {
-  //     if (loadedRef.current) return;
-
-  //     const retrieveJobs = async () => {
-  //       const originalJobs = await fetchJobs();
-  //       const newJobs = filterJobs(originalJobs);
-  //       setJobs(originalJobs);
-  //       setFilteredJobs(newJobs);
-  //     };
-
-  //     retrieveJobs();
-
-  //     loadedRef.current = true;
-  //     setLoading(false);
-  //   }, [fetchJobs]);
-
-  //   const filterJobs = (jobs) => {
-  //     return jobs.map((job) => {
-  //       return {
-  //         ...job,
-  //         date: new Date(job.date.seconds).toDateString(),
-  //         salary: job.salary.toString(),
-  //       };
-  //     });
-  //   };
 
   const enableEditing = () => {
     setEditing(true);
     setShow(true);
   };
 
-  const cancel = () => {
-    setShow(false);
+  const cancel = (e) => {
+    e.preventDefault();
     setEditing(false);
+    setShow(false);
   };
 
   return (
