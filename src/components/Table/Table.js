@@ -1,4 +1,4 @@
-import { useMemo, useContext } from "react";
+import { useMemo, useRef, useEffect, useState, useContext } from "react";
 import {
   useTable,
   useGlobalFilter,
@@ -8,6 +8,8 @@ import {
 } from "react-table";
 import { useNavigate } from "react-router-dom";
 import { JobContext } from "../../context/jobContext";
+
+import { fetchJobs } from "../../utilities/firebase";
 
 import GlobalFilter from "./GlobalFilter";
 import DefaultColumnFilter from "./DefaultColumnFilter";
@@ -26,7 +28,36 @@ import {
 
 const Table = () => {
   const navigate = useNavigate();
-  const { filteredJobs } = useContext(JobContext);
+  const [loading, setLoading] = useState(true);
+  const { setJobs, filteredJobs, setFilteredJobs } = useContext(JobContext);
+
+  const loadedRef = useRef(false);
+
+  useEffect(() => {
+    if (loadedRef.current) return;
+
+    const retrieveJobs = async () => {
+      const originalJobs = await fetchJobs();
+      const newJobs = filterJobs(originalJobs);
+      setJobs(originalJobs);
+      setFilteredJobs(newJobs);
+    };
+
+    retrieveJobs();
+
+    loadedRef.current = true;
+    setLoading(false);
+  }, [fetchJobs]);
+
+  const filterJobs = (jobs) => {
+    return jobs.map((job) => {
+      return {
+        ...job,
+        date: new Date(job.date.seconds).toDateString(),
+        salary: job.salary.toString(),
+      };
+    });
+  };
 
   const defaultColumn = useMemo(
     () => ({
@@ -36,7 +67,7 @@ const Table = () => {
   );
 
   const columns = useMemo(() => columnData, []);
-  const data = useMemo(() => filteredJobs, []);
+  const data = useMemo(() => filteredJobs, [filteredJobs]);
 
   const goToJobView = (id) => {
     navigate(`/job/${id}`);
@@ -106,15 +137,12 @@ const Table = () => {
           <tbody {...getTableBodyProps()}>
             {page.map((row) => {
               prepareRow(row);
-              console.log("Row:", row);
               return (
                 <StyledTR
                   {...row.getRowProps()}
                   onClick={() => goToJobView(row.original.id)}
                 >
                   {row.cells.map((cell) => {
-                    console.log("Cell:", cell);
-                    console.log("Cell props: ", cell.getCellProps());
                     const center = centeredColumns.includes(cell.column.Header);
                     const cellValue = cell.render("Cell").props.value;
                     const status = statusOptions.includes(cellValue)
