@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
+import { JobContext } from "../../context/jobContext";
 
 import {
   StyledJobViewHeadingDiv,
@@ -15,7 +16,7 @@ import { Button } from "../../styles/buttonStyles";
 
 const JobView = () => {
   const { id } = useParams();
-  const [editing, setEditing] = useState(false);
+  const { enableEditing } = useContext(JobContext);
 
   return (
     <JobViewContainer>
@@ -26,7 +27,9 @@ const JobView = () => {
         </StyledJobViewHeadingGroup>
 
         <StyledJobViewHeadingGroup>
-          <Button tertiary>Edit</Button>
+          <Button tertiary onClick={() => enableEditing(true)}>
+            Edit
+          </Button>
           <Button secondary>Delete</Button>
         </StyledJobViewHeadingGroup>
       </StyledJobViewHeadingDiv>

@@ -6,16 +6,19 @@ import Routes from "./Routes";
 import Container from "./components/Container/Container";
 import Header from "./components/Header/Header";
 import SidePanel from "./components/SidePanel/SidePanel";
+import JobProvider from "./context/jobContext";
 
 function App() {
   return (
     <BrowserRouter>
-      <GlobalStyles />
-      <SidePanel />
-      <Container>
-        <Header />
-        <Routes />
-      </Container>
+      <JobProvider>
+        <GlobalStyles />
+        <SidePanel />
+        <Container>
+          <Header />
+          <Routes />
+        </Container>
+      </JobProvider>
     </BrowserRouter>
   );
 }

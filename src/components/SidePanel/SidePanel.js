@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { JobContext } from "../../context/jobContext";
 
 import { Button } from "../../styles/buttonStyles";
 import { SidePanelContainer, SidePanelGroup } from "./SidePanel.styled";
@@ -9,7 +10,7 @@ import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Form from "../Form/Form";
 
 const SidePanel = () => {
-  const [show, setShow] = useState(false);
+  const { show, setShow } = useContext(JobContext);
 
   return (
     <SidePanelContainer show={show}>
