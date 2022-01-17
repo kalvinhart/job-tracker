@@ -64,3 +64,11 @@ export const StyledTextArea = styled.textarea`
     border: 2px solid var(--clr-primary);
   }
 `;
+
+export const StyledButtonGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 180px;
+  margin-top: 20px;
+  margin-left: auto;
+`;

@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
+
 import {
   StyledJobViewHeadingDiv,
   StyledJobViewHeadingGroup,
@@ -13,6 +15,7 @@ import { Button } from "../../styles/buttonStyles";
 
 const JobView = () => {
   const { id } = useParams();
+  const [editing, setEditing] = useState(false);
 
   return (
     <JobViewContainer>

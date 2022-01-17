@@ -35,11 +35,3 @@ export const SidePanelGroup = styled.div`
   ${(props) => props.animated && "visibility: hidden;"}
   ${(props) => props.animated && fadeInAnimationDiv}
 `;
-
-export const SidePanelButtonGroup = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 180px;
-  margin-top: 20px;
-  margin-left: auto;
-`;
