@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { JobContext } from "../../context/jobContext";
+
 import {
   StyledInput,
   StyledForm,
@@ -10,6 +13,8 @@ import {
 import { Button } from "../../styles/buttonStyles";
 
 const Form = () => {
+  const { editing, cancel } = useContext(JobContext);
+
   return (
     <StyledForm>
       <StyledFormGroup>
@@ -67,7 +72,9 @@ const Form = () => {
         <Button type="submit" primary>
           Save
         </Button>
-        <Button tertiary>Cancel</Button>
+        <Button tertiary onClick={cancel}>
+          Cancel
+        </Button>
       </StyledButtonGroup>
     </StyledForm>
   );

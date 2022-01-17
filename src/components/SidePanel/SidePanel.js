@@ -10,7 +10,7 @@ import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Form from "../Form/Form";
 
 const SidePanel = () => {
-  const { show, setShow } = useContext(JobContext);
+  const { show, setShow, editing } = useContext(JobContext);
 
   return (
     <SidePanelContainer show={show}>
@@ -27,7 +27,7 @@ const SidePanel = () => {
       </SidePanelGroup>
 
       <SidePanelGroup animated show={show}>
-        <H2>Add A New Job</H2>
+        {editing ? <H2>Edit Job</H2> : <H2>Add A New Job</H2>}
         <Form />
       </SidePanelGroup>
     </SidePanelContainer>

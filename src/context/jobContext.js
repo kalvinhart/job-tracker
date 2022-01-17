@@ -15,8 +15,14 @@ const JobProvider = ({ children }) => {
     setEditing(true);
     setShow(true);
   };
+
+  const cancel = () => {
+    setShow(false);
+    setEditing(false);
+  };
+
   return (
-    <JobContext.Provider value={{ show, setShow, editing, enableEditing }}>
+    <JobContext.Provider value={{ show, setShow, editing, enableEditing, cancel }}>
       {children}
     </JobContext.Provider>
   );
