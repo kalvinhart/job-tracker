@@ -34,4 +34,8 @@ export const SidePanelGroup = styled.div`
 
   ${(props) => props.animated && "visibility: hidden;"}
   ${(props) => props.animated && fadeInAnimationDiv}
+
+  &:not(:first-of-type) {
+    margin-top: 100px;
+  }
 `;

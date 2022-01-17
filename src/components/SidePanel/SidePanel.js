@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Button } from "../../styles/buttonStyles";
 import { SidePanelContainer, SidePanelGroup } from "./SidePanel.styled";
-import { Span } from "../../styles/fontStyles";
+import { H2, Span } from "../../styles/fontStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
@@ -26,6 +26,7 @@ const SidePanel = () => {
       </SidePanelGroup>
 
       <SidePanelGroup animated show={show}>
+        <H2>Add A New Job</H2>
         <Form />
       </SidePanelGroup>
     </SidePanelContainer>

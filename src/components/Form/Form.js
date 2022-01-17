@@ -51,6 +51,11 @@ const Form = () => {
           <StyledLabel htmlFor="contactNumber">Contact Number:</StyledLabel>
           <StyledInput type="number" id="contactNumber" placeholder="Contact number..." />
         </StyledInputGroup>
+
+        <StyledInputGroup>
+          <StyledLabel htmlFor="date">Date Applied:</StyledLabel>
+          <StyledInput type="date" id="date" placeholder="Date applied..." />
+        </StyledInputGroup>
       </StyledFormGroup>
 
       <StyledInputGroup>
