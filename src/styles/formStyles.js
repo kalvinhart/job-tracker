@@ -32,6 +32,7 @@ export const StyledInput = styled.input`
   border: 2px solid var(--clr-dark);
   font-family: inherit;
   outline: none;
+  transition: border 0.2s ease-in-out;
   ${(props) => props.long && "width: 290px;"}
 
   &:focus {
@@ -45,6 +46,7 @@ export const StyledSelect = styled.select`
   border-radius: var(--border-radius);
   font-family: inherit;
   outline: none;
+  transition: border 0.2s ease-in-out;
 
   &:focus {
     border: 2px solid var(--clr-primary);
@@ -60,6 +62,8 @@ export const StyledTextArea = styled.textarea`
   font-family: inherit;
   outline: none;
   resize: vertical;
+
+  transition: border 0.2s ease-in-out;
 
   &:focus {
     border: 2px solid var(--clr-primary);
