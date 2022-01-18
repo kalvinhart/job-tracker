@@ -12,6 +12,7 @@ export const StyledFormGroup = styled.div`
 `;
 
 export const StyledInputGroup = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,7 +32,7 @@ export const StyledInput = styled.input`
   border: 2px solid var(--clr-dark);
   font-family: inherit;
   outline: none;
-  ${(props) => props.long && "width: 300px;"}
+  ${(props) => props.long && "width: 290px;"}
 
   &:focus {
     border: 2px solid var(--clr-primary);

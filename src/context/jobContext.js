@@ -19,8 +19,7 @@ const JobProvider = ({ children }) => {
     setShow(true);
   };
 
-  const cancel = (e) => {
-    e.preventDefault();
+  const cancel = () => {
     setEditing(false);
     setShow(false);
   };

@@ -14,10 +14,12 @@ const SidePanel = () => {
 
   return (
     <SidePanelContainer show={show}>
-      <Button horizontal visible={show} onClick={() => setShow(false)}>
-        <Span>C l o s e</Span>
-        <FontAwesomeIcon icon={faTimes} className="cross-icon" size="lg" />
-      </Button>
+      {show && (
+        <Button horizontal visible={show} onClick={() => setShow(false)}>
+          <Span>C l o s e</Span>
+          <FontAwesomeIcon icon={faTimes} className="cross-icon" size="lg" />
+        </Button>
+      )}
       <SidePanelGroup show={!show}>
         <Button vertical visible={!show} onClick={() => setShow(true)}>
           <FontAwesomeIcon icon={faPlus} className="plus-icon" size="lg" />
@@ -26,10 +28,12 @@ const SidePanel = () => {
         </Button>
       </SidePanelGroup>
 
-      <SidePanelGroup animated show={show}>
-        {editing ? <H2>Edit Job</H2> : <H2>Add A New Job</H2>}
-        <Form />
-      </SidePanelGroup>
+      {show && (
+        <SidePanelGroup animated show={show}>
+          {editing ? <H2>Edit Job</H2> : <H2>Add A New Job</H2>}
+          <Form />
+        </SidePanelGroup>
+      )}
     </SidePanelContainer>
   );
 };

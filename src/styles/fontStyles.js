@@ -21,3 +21,11 @@ export const H3 = styled.h3`
 export const Span = styled.span`
   font-size: 16px;
 `;
+
+export const ErrorSpan = styled.span`
+  position: absolute;
+  top: 110%;
+  left: 0;
+  font-size: 12px;
+  color: var(--clr-primary);
+`;

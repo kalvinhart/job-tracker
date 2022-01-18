@@ -1,4 +1,11 @@
-import { collection, getDocs, orderBy } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  addDoc,
+  updateDoc,
+  Timestamp,
+} from "firebase/firestore";
 import { db } from "../firebase.config";
 
 export const fetchJobs = async () => {
@@ -14,6 +21,34 @@ export const fetchJobs = async () => {
     });
 
     return jobsArray;
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+export const saveJob = async (data) => {
+  const newData = {
+    ...data,
+    date: Timestamp.fromDate(new Date(data.date)),
+    status: "Pending",
+  };
+
+  try {
+    const docRef = await addDoc(collection(db, "jobs"), newData);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+
+export const saveUpdate = async (data) => {
+  const newData = {
+    ...data,
+    date: Timestamp.fromDate(new Date(data.date)),
+  };
+  const docRef = doc(db, "jobs", newData.id);
+
+  try {
+    const update = await updateDoc(docRef, newData);
   } catch (e) {
     console.log(e.message);
   }
