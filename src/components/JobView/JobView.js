@@ -24,7 +24,7 @@ const JobView = () => {
 
   useEffect(() => {
     if (jobs === null) navigate("/");
-    setLoading(false);
+    loading && setLoading(false);
   }, [jobs]);
 
   let content;
