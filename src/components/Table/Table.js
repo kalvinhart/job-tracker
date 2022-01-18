@@ -1,4 +1,4 @@
-import { useMemo, useRef, useEffect, useState, useContext } from "react";
+import { useMemo, useEffect, useState, useContext } from "react";
 import {
   useTable,
   useGlobalFilter,
@@ -32,10 +32,8 @@ const Table = () => {
   const { jobs, setJobs, filteredJobs, setFilteredJobs, setSelectedJob } =
     useContext(JobContext);
 
-  const loadedRef = useRef(false);
-
   useEffect(() => {
-    if (loadedRef.current) return;
+    if (jobs !== null) return;
 
     const retrieveJobs = async () => {
       const originalJobs = await fetchJobs();
@@ -45,8 +43,6 @@ const Table = () => {
     };
 
     retrieveJobs();
-
-    loadedRef.current = true;
     setLoading(false);
   }, [fetchJobs]);
 
@@ -54,7 +50,7 @@ const Table = () => {
     return jobs.map((job) => {
       return {
         ...job,
-        date: new Date(job.date.seconds).toDateString(),
+        date: job.date.toDate().toDateString(),
         salary: job.salary.toString(),
       };
     });

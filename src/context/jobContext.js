@@ -8,7 +8,7 @@ export const JobContext = createContext({
 });
 
 const JobProvider = ({ children }) => {
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState(null);
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState("");
   const [show, setShow] = useState(false);

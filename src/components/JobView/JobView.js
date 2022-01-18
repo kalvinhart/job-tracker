@@ -23,7 +23,7 @@ const JobView = () => {
   const { jobs, selectedJob, enableEditing } = useContext(JobContext);
 
   useEffect(() => {
-    if (jobs.length === 0) navigate("/");
+    if (jobs === null) navigate("/");
     setLoading(false);
   }, [jobs]);
 
@@ -98,7 +98,7 @@ const JobView = () => {
 
             <StyledJobViewItem>
               <H3>Date Applied:</H3>
-              <Span>{new Date(date.seconds).toDateString()}</Span>
+              <Span>{date.toDate().toDateString()}</Span>
             </StyledJobViewItem>
           </StyledJobViewGroup>
 
