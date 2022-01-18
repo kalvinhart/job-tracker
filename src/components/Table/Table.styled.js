@@ -77,28 +77,6 @@ export const StyledGlobalFilter = styled.div`
   }
 `;
 
-export const StatusSpan = styled.span`
-  padding: 2px 10px;
-  border-radius: var(--border-radius);
-  font-size: 12px;
-  font-weight: bold;
-
-  ${(props) => {
-    switch (props.status) {
-      case "Pending":
-        return "background-color: rgba(223, 230, 233,0.5); color: #636e72;";
-      case "Interview":
-        return "background-color: rgba(255, 234, 167,0.5); color: #fdcb6e;";
-      case "Rejected":
-        return "background-color: rgba(255, 118, 117,0.5); color: #d63031;";
-      case "Expired":
-        return "background-color: rgba(99, 110, 114,0.5); color: #2d3436;";
-      default:
-        return;
-    }
-  }}
-`;
-
 export const PaginationButton = styled.button`
   padding: 5px 10px;
   background-color: var(--clr-secondary);

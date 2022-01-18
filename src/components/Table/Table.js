@@ -23,8 +23,8 @@ import {
   StyledTH,
   StyledTR,
   StyledTD,
-  StatusSpan,
 } from "./Table.styled";
+import { StatusSpan } from "../../styles/fontStyles";
 
 const Table = () => {
   const navigate = useNavigate();

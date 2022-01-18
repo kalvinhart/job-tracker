@@ -12,7 +12,7 @@ import {
   StyledJobViewGroup,
   StyledJobViewItem,
 } from "./JobView.styled";
-import { StatusSpan } from "../Table/Table.styled";
+import { StatusSpan } from "../../styles/fontStyles";
 import { H2, H3, Span } from "../../styles/fontStyles";
 import { Button } from "../../styles/buttonStyles";
 
