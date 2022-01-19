@@ -23,7 +23,7 @@ const Form = () => {
     console.log("rendered");
   }, []);
 
-  const { editing, selectedJob, cancel } = useContext(JobContext);
+  const { editing, jobs, selectedJob, setJobs, cancel } = useContext(JobContext);
 
   const {
     benefits,
@@ -64,16 +64,21 @@ const Form = () => {
   const onSubmit = (data, e) => {
     console.log(data);
 
+    let newJobs = [];
+
     if (editing) {
       const updatedData = {
         ...data,
         id,
       };
       saveUpdate(updatedData);
+      newJobs = jobs.map((job) => (job.id === id ? updatedData : job));
     } else {
       saveJob(data);
+      newJobs = [...jobs, data];
     }
 
+    setJobs(newJobs);
     e.target.reset();
   };
 
