@@ -8,6 +8,8 @@ import {
 } from "react-table";
 import { useNavigate } from "react-router-dom";
 import { JobContext } from "../../context/jobContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSort, faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
 
 import GlobalFilter from "./GlobalFilter";
 import DefaultColumnFilter from "./DefaultColumnFilter";
@@ -85,7 +87,15 @@ const Table = () => {
                     <div {...column.getSortByToggleProps()}>
                       {column.render("Header")}
                       <span>
-                        {column.isSorted ? (column.isSortedDesc ? " desc" : " asc") : ""}
+                        {column.isSorted ? (
+                          column.isSortedDesc ? (
+                            <FontAwesomeIcon icon={faSortDown} />
+                          ) : (
+                            <FontAwesomeIcon icon={faSortUp} />
+                          )
+                        ) : (
+                          <FontAwesomeIcon icon={faSort} />
+                        )}
                       </span>
                     </div>
                     <div>{column.canFilter ? column.render("Filter") : null}</div>

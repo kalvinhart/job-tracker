@@ -30,6 +30,10 @@ export const StyledTH = styled.th`
 
   /* hide the ID column */
   ${(props) => props.hideFirst && "&:first-of-type { display: none; }"}
+
+  & svg {
+    margin-left: 5px;
+  }
 `;
 
 export const StyledTR = styled.tr`

@@ -22,7 +22,7 @@ const JobProvider = ({ children }) => {
 
     const retrieveJobs = async () => {
       const originalJobs = await fetchJobs();
-      const newJobs = convertDateForTable(originalJobs);
+      const newJobs = sanitiseDataForTable(originalJobs);
       setJobs(originalJobs);
       setFilteredJobs(newJobs);
     };
@@ -31,18 +31,19 @@ const JobProvider = ({ children }) => {
     setLoading(false);
   }, [fetchJobs]);
 
-  const convertDateForTable = (jobs) => {
+  const sanitiseDataForTable = (jobs) => {
     console.log(jobs);
     return jobs.map((job) => {
       return {
         ...job,
         date: job.date.toDate().toDateString(),
+        salary: `£${job.salary}`,
       };
     });
   };
 
   const updateFilteredJobs = (data) => {
-    const newJobs = convertDateForTable(data);
+    const newJobs = sanitiseDataForTable(data);
     setFilteredJobs(newJobs);
   };
 
