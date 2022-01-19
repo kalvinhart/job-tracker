@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useState } from "react";
 import { JobContext } from "../../context/jobContext";
 import { saveJob, saveUpdate } from "../../utilities/firebase";
 import { useForm, Controller } from "react-hook-form";
@@ -16,14 +16,26 @@ import {
 import { ErrorSpan } from "../../styles/fontStyles";
 import { Button } from "../../styles/buttonStyles";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
+
 import { statusOptions } from "../Table/tableConfig";
 
 const Form = () => {
-  useEffect(() => {
-    console.log("rendered");
-  }, []);
+  const {
+    editing,
+    setEditing,
+    jobs,
+    selectedJob,
+    setSelectedJob,
+    updateFilteredJobs,
+    setJobs,
+    cancel,
+    toastSuccess,
+    toastError,
+  } = useContext(JobContext);
 
-  const { editing, jobs, selectedJob, setJobs, cancel } = useContext(JobContext);
+  const [loading, setLoading] = useState(false);
 
   const {
     benefits,
@@ -61,25 +73,41 @@ const Form = () => {
     },
   });
 
-  const onSubmit = (data, e) => {
-    console.log(data);
-
+  const onSubmit = async (data, e) => {
     let newJobs = [];
 
     if (editing) {
+      setLoading(true);
       const updatedData = {
         ...data,
         id,
       };
-      saveUpdate(updatedData);
-      newJobs = jobs.map((job) => (job.id === id ? updatedData : job));
+      try {
+        const newData = await saveUpdate(updatedData);
+        setSelectedJob(newData);
+        newJobs = jobs.map((job) => (job.id === id ? newData : job));
+        toastSuccess("Job successfully updated!");
+      } catch (e) {
+        console.log(e);
+        toastError("Something went wrong.");
+      }
     } else {
-      saveJob(data);
-      newJobs = [...jobs, data];
+      setLoading(true);
+      try {
+        const newData = await saveJob(data);
+        newJobs = [...jobs, newData];
+        toastSuccess("Job successfully saved!");
+      } catch (e) {
+        console.log(e);
+        toastError("Something went wrong.");
+      }
     }
 
     setJobs(newJobs);
+    updateFilteredJobs(newJobs);
     e.target.reset();
+    setLoading(false);
+    cancel();
   };
 
   const cancelForm = () => {
@@ -100,10 +128,16 @@ const Form = () => {
             {...register("title", { required: true, maxLength: 20 })}
           />
           {errors.title?.type === "required" && (
-            <ErrorSpan>Job title is required.</ErrorSpan>
+            <ErrorSpan>
+              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Job title is
+              required.
+            </ErrorSpan>
           )}
           {errors.title?.type === "maxLength" && (
-            <ErrorSpan>Maximum length exceeded.</ErrorSpan>
+            <ErrorSpan>
+              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
+              exceeded.
+            </ErrorSpan>
           )}
         </StyledInputGroup>
 
@@ -117,10 +151,16 @@ const Form = () => {
             {...register("company", { required: true, maxLength: 20 })}
           />
           {errors.company?.type === "required" && (
-            <ErrorSpan>Company name is required.</ErrorSpan>
+            <ErrorSpan>
+              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Company name is
+              required.
+            </ErrorSpan>
           )}
           {errors.company?.type === "maxLength" && (
-            <ErrorSpan>Maximum length exceeded.</ErrorSpan>
+            <ErrorSpan>
+              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
+              exceeded.
+            </ErrorSpan>
           )}
         </StyledInputGroup>
       </StyledFormGroup>
@@ -136,10 +176,16 @@ const Form = () => {
             {...register("location", { required: true, maxLength: 20 })}
           />
           {errors.location?.type === "required" && (
-            <ErrorSpan>Job location is required.</ErrorSpan>
+            <ErrorSpan>
+              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Job location is
+              required.
+            </ErrorSpan>
           )}
           {errors.location?.type === "maxLength" && (
-            <ErrorSpan>Maximum length exceeded.</ErrorSpan>
+            <ErrorSpan>
+              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
+              exceeded.
+            </ErrorSpan>
           )}
         </StyledInputGroup>
 
@@ -152,10 +198,16 @@ const Form = () => {
             {...register("salary", { required: true, maxLength: 5 })}
           />
           {errors.salary?.type === "required" && (
-            <ErrorSpan>Job salary is required.</ErrorSpan>
+            <ErrorSpan>
+              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Job salary is
+              required.
+            </ErrorSpan>
           )}
           {errors.salary?.type === "maxLength" && (
-            <ErrorSpan>Maximum length exceeded.</ErrorSpan>
+            <ErrorSpan>
+              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
+              exceeded.
+            </ErrorSpan>
           )}
         </StyledInputGroup>
       </StyledFormGroup>
@@ -202,7 +254,10 @@ const Form = () => {
             {...register("contactName", { maxLength: 20 })}
           />
           {errors.contactName?.type === "maxLength" && (
-            <ErrorSpan>Maximum length exceeded.</ErrorSpan>
+            <ErrorSpan>
+              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
+              exceeded.
+            </ErrorSpan>
           )}
         </StyledInputGroup>
 
@@ -215,7 +270,10 @@ const Form = () => {
             {...register("contactNumber", { maxLength: 11 })}
           />
           {errors.contactNumber?.type === "maxLength" && (
-            <ErrorSpan>Maximum length exceeded.</ErrorSpan>
+            <ErrorSpan>
+              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
+              exceeded.
+            </ErrorSpan>
           )}
         </StyledInputGroup>
 
@@ -228,7 +286,10 @@ const Form = () => {
             {...register("date", { required: true })}
           />
           {errors.date?.type === "required" && (
-            <ErrorSpan>Date applied is required.</ErrorSpan>
+            <ErrorSpan>
+              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Date applied is
+              required.
+            </ErrorSpan>
           )}
         </StyledInputGroup>
       </StyledFormGroup>
@@ -239,10 +300,10 @@ const Form = () => {
       </StyledInputGroup>
 
       <StyledButtonGroup>
-        <Button type="submit" primary>
-          Save
+        <Button type="submit" primary disabled={loading}>
+          {loading ? <FontAwesomeIcon icon={faSpinner} size="lg" spin /> : "Save"}
         </Button>
-        <Button type="reset" tertiary onClick={cancelForm}>
+        <Button type="button" tertiary onClick={cancelForm}>
           Cancel
         </Button>
       </StyledButtonGroup>

@@ -10,18 +10,23 @@ import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Form from "../Form/Form";
 
 const SidePanel = () => {
-  const { show, setShow, editing } = useContext(JobContext);
+  const { show, setShow, setEditing, editing, cancel } = useContext(JobContext);
+
+  const enableAddNew = () => {
+    setEditing(false);
+    setShow(true);
+  };
 
   return (
     <SidePanelContainer show={show}>
       {show && (
-        <Button horizontal visible={show} onClick={() => setShow(false)}>
+        <Button horizontal visible={show} onClick={cancel}>
           <Span>C l o s e</Span>
           <FontAwesomeIcon icon={faTimes} className="cross-icon" size="lg" />
         </Button>
       )}
       <SidePanelGroup show={!show}>
-        <Button vertical visible={!show} onClick={() => setShow(true)}>
+        <Button vertical visible={!show} onClick={enableAddNew}>
           <FontAwesomeIcon icon={faPlus} className="plus-icon" size="lg" />
           <Span>A d d</Span>
           <Span> N e w</Span>

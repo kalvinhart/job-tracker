@@ -38,6 +38,8 @@ export const saveJob = async (data) => {
   } catch (e) {
     console.log(e.message);
   }
+
+  return newData;
 };
 
 export const saveUpdate = async (data) => {
@@ -52,4 +54,6 @@ export const saveUpdate = async (data) => {
   } catch (e) {
     console.log(e.message);
   }
+
+  return newData;
 };

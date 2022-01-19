@@ -50,4 +50,8 @@ export const ErrorSpan = styled.span`
   left: 0;
   font-size: 12px;
   color: var(--clr-primary);
+
+  & svg {
+    margin-right: 4px;
+  }
 `;

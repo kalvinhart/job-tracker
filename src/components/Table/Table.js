@@ -9,8 +9,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { JobContext } from "../../context/jobContext";
 
-import { fetchJobs } from "../../utilities/firebase";
-
 import GlobalFilter from "./GlobalFilter";
 import DefaultColumnFilter from "./DefaultColumnFilter";
 import Pagination from "./Pagination";
@@ -28,33 +26,7 @@ import { StatusSpan } from "../../styles/fontStyles";
 
 const Table = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
-  const { jobs, setJobs, filteredJobs, setFilteredJobs, setSelectedJob } =
-    useContext(JobContext);
-
-  useEffect(() => {
-    if (jobs !== null) return;
-
-    const retrieveJobs = async () => {
-      const originalJobs = await fetchJobs();
-      const newJobs = filterJobs(originalJobs);
-      setJobs(originalJobs);
-      setFilteredJobs(newJobs);
-    };
-
-    retrieveJobs();
-    setLoading(false);
-  }, [fetchJobs]);
-
-  const filterJobs = (jobs) => {
-    return jobs.map((job) => {
-      return {
-        ...job,
-        date: job.date.toDate().toDateString(),
-        salary: job.salary.toString(),
-      };
-    });
-  };
+  const { jobs, loading, filteredJobs, setSelectedJob } = useContext(JobContext);
 
   const defaultColumn = useMemo(
     () => ({
@@ -100,6 +72,7 @@ const Table = () => {
     useSortBy,
     usePagination
   );
+
   return (
     <TableWrapper>
       <StyledTableBorder>

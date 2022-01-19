@@ -1,4 +1,6 @@
-import { createContext, useState, useEffect, useRef, useCallback } from "react";
+import { createContext, useState, useEffect } from "react";
+import { fetchJobs } from "../utilities/firebase";
+import toast, { Toaster } from "react-hot-toast";
 
 export const JobContext = createContext({
   show: false,
@@ -12,16 +14,54 @@ const JobProvider = ({ children }) => {
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState("");
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
 
-  const enableEditing = () => {
-    setEditing(true);
-    setShow(true);
+  useEffect(() => {
+    if (jobs !== null) return;
+
+    const retrieveJobs = async () => {
+      const originalJobs = await fetchJobs();
+      const newJobs = convertDateForTable(originalJobs);
+      setJobs(originalJobs);
+      setFilteredJobs(newJobs);
+    };
+
+    retrieveJobs();
+    setLoading(false);
+  }, [fetchJobs]);
+
+  const convertDateForTable = (jobs) => {
+    console.log(jobs);
+    return jobs.map((job) => {
+      return {
+        ...job,
+        date: job.date.toDate().toDateString(),
+      };
+    });
+  };
+
+  const updateFilteredJobs = (data) => {
+    const newJobs = convertDateForTable(data);
+    setFilteredJobs(newJobs);
+  };
+
+  const toggleEditing = (value) => {
+    setEditing(value);
+    setShow(value);
   };
 
   const cancel = () => {
     setEditing(false);
     setShow(false);
+  };
+
+  const toastSuccess = (message) => {
+    toast.success(message);
+  };
+
+  const toastError = (message) => {
+    toast.error(message);
   };
 
   return (
@@ -33,13 +73,19 @@ const JobProvider = ({ children }) => {
         setFilteredJobs,
         selectedJob,
         setSelectedJob,
+        updateFilteredJobs,
         show,
         setShow,
+        loading,
         editing,
-        enableEditing,
+        setEditing,
+        toggleEditing,
         cancel,
+        toastSuccess,
+        toastError,
       }}
     >
+      <Toaster position="bottom-right" />
       {children}
     </JobContext.Provider>
   );
