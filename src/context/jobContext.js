@@ -46,9 +46,9 @@ const JobProvider = ({ children }) => {
     setFilteredJobs(newJobs);
   };
 
-  const toggleEditing = (value) => {
-    setEditing(value);
-    setShow(value);
+  const enableEditing = () => {
+    setEditing(true);
+    setShow(true);
   };
 
   const cancel = () => {
@@ -79,7 +79,7 @@ const JobProvider = ({ children }) => {
         loading,
         editing,
         setEditing,
-        toggleEditing,
+        enableEditing,
         cancel,
         toastSuccess,
         toastError,

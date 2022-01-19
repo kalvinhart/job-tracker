@@ -20,7 +20,7 @@ const JobView = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const { jobs, selectedJob, toggleEditing } = useContext(JobContext);
+  const { jobs, selectedJob, enableEditing } = useContext(JobContext);
 
   useEffect(() => {
     if (jobs === null) navigate("/");
@@ -60,7 +60,7 @@ const JobView = () => {
           </StyledJobViewHeadingGroup>
 
           <StyledJobViewHeadingGroup>
-            <Button tertiary onClick={() => toggleEditing(true)}>
+            <Button tertiary onClick={enableEditing}>
               Edit
             </Button>
             <Button secondary>Delete</Button>
