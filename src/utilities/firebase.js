@@ -4,6 +4,7 @@ import {
   getDocs,
   addDoc,
   updateDoc,
+  deleteDoc,
   Timestamp,
 } from "firebase/firestore";
 import { db } from "../firebase.config";
@@ -56,4 +57,12 @@ export const saveUpdate = async (data) => {
   }
 
   return newData;
+};
+
+export const deleteJob = async (id) => {
+  try {
+    await deleteDoc(doc(db, "jobs", id));
+  } catch (e) {
+    console.log(e.message);
+  }
 };

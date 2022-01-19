@@ -20,7 +20,7 @@ const JobView = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const { jobs, selectedJob, enableEditing } = useContext(JobContext);
+  const { jobs, selectedJob, enableEditing, removeJob } = useContext(JobContext);
 
   useEffect(() => {
     if (jobs === null) navigate("/");
@@ -28,6 +28,11 @@ const JobView = () => {
   }, [jobs]);
 
   let content;
+
+  const handleDelete = async (id) => {
+    await removeJob(id);
+    navigate("/");
+  };
 
   if (loading) {
     content = (
@@ -63,7 +68,9 @@ const JobView = () => {
             <Button tertiary onClick={enableEditing}>
               Edit
             </Button>
-            <Button secondary>Delete</Button>
+            <Button secondary onClick={() => handleDelete(id)}>
+              Delete
+            </Button>
           </StyledJobViewHeadingGroup>
         </StyledJobViewHeadingDiv>
 

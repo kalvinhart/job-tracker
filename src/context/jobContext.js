@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { fetchJobs } from "../utilities/firebase";
+import { fetchJobs, deleteJob } from "../utilities/firebase";
 import toast, { Toaster } from "react-hot-toast";
 
 export const JobContext = createContext({
@@ -32,7 +32,6 @@ const JobProvider = ({ children }) => {
   }, [fetchJobs]);
 
   const sanitiseDataForTable = (jobs) => {
-    console.log(jobs);
     return jobs.map((job) => {
       return {
         ...job,
@@ -45,6 +44,19 @@ const JobProvider = ({ children }) => {
   const updateFilteredJobs = (data) => {
     const newJobs = sanitiseDataForTable(data);
     setFilteredJobs(newJobs);
+  };
+
+  const removeJob = async (id) => {
+    try {
+      await deleteJob(id);
+      const newJobs = jobs.filter((job) => job.id !== id);
+      setJobs(newJobs);
+      updateFilteredJobs(newJobs);
+      toastSuccess("Job successfully deleted!");
+    } catch (e) {
+      console.log(e.message);
+      toastError("Something went wrong!");
+    }
   };
 
   const enableEditing = () => {
@@ -75,6 +87,7 @@ const JobProvider = ({ children }) => {
         selectedJob,
         setSelectedJob,
         updateFilteredJobs,
+        removeJob,
         show,
         setShow,
         loading,
