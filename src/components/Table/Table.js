@@ -21,6 +21,7 @@ import {
   StyledTableBorder,
   StyledTable,
   StyledTH,
+  StyledTHWrapper,
   StyledTR,
   StyledTD,
 } from "./Table.styled";
@@ -84,21 +85,25 @@ const Table = () => {
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <StyledTH hideFirst={true} {...column.getHeaderProps()}>
-                    <div {...column.getSortByToggleProps()}>
-                      {column.render("Header")}
-                      <span>
-                        {column.isSorted ? (
-                          column.isSortedDesc ? (
-                            <FontAwesomeIcon icon={faSortDown} />
+                    <StyledTHWrapper>
+                      <div {...column.getSortByToggleProps()}>
+                        {column.render("Header")}
+                        <span>
+                          {column.isSorted ? (
+                            column.isSortedDesc ? (
+                              <FontAwesomeIcon icon={faSortDown} />
+                            ) : (
+                              <FontAwesomeIcon icon={faSortUp} />
+                            )
                           ) : (
-                            <FontAwesomeIcon icon={faSortUp} />
-                          )
-                        ) : (
-                          <FontAwesomeIcon icon={faSort} />
-                        )}
-                      </span>
-                    </div>
-                    <div>{column.canFilter ? column.render("Filter") : null}</div>
+                            <FontAwesomeIcon icon={faSort} />
+                          )}
+                        </span>
+                      </div>
+                      <div style={{ position: "relative" }}>
+                        {column.canFilter ? column.render("Filter") : null}
+                      </div>
+                    </StyledTHWrapper>
                   </StyledTH>
                 ))}
               </tr>

@@ -10,6 +10,7 @@ const fadeInAnimationDiv = css`
 
 export const SidePanelContainer = styled.div`
   position: fixed;
+  z-index: 1000;
   height: 100vh;
   width: var(--side-panel-width);
   padding: 20px 5px;

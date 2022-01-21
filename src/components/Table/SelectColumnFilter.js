@@ -1,32 +1,35 @@
-import { useMemo } from "react";
+import { useState, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
 
-import { StyledSelect } from "../../styles/formStyles";
+import { Button } from "../../styles/buttonStyles";
+import FilterOptions from "./FilterOptions";
 
-const SelectColumnFilter = ({
-  column: { filterValue, setFilter, preFilteredRows, id },
-}) => {
-  const options = useMemo(() => {
-    const options = new Set();
-    preFilteredRows.forEach((row) => {
-      options.add(row.values[id]);
-    });
-    return [...options.values()];
-  }, [id, preFilteredRows]);
+const SelectColumnFilter = (props) => {
+  const [showFilter, setShowFilter] = useState(false);
+  const [coords, setCoords] = useState({ top: 0, left: 0 });
+  const filterButtonRef = useRef();
+
+  const toggleShowFilter = () => {
+    setShowFilter(!showFilter);
+  };
+
+  const handleFilterClick = () => {
+    const { top, left } = filterButtonRef.current.getBoundingClientRect();
+    setCoords({ top, left });
+    toggleShowFilter();
+  };
 
   return (
-    <StyledSelect
-      value={filterValue}
-      onChange={(e) => {
-        setFilter(e.target.value || undefined);
-      }}
-    >
-      <option value="">All</option>
-      {options.map((option, i) => (
-        <option key={i} value={option}>
-          {option}
-        </option>
-      ))}
-    </StyledSelect>
+    <>
+      <Button transparent ref={filterButtonRef} onClick={handleFilterClick}>
+        <FontAwesomeIcon icon={faFilter} />
+      </Button>
+
+      {showFilter && (
+        <FilterOptions {...props} coords={coords} hide={() => setShowFilter(false)} />
+      )}
+    </>
   );
 };
 

@@ -24,6 +24,11 @@ export const StyledTable = styled.table`
   border-collapse: collapse;
 `;
 
+export const StyledTHWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const StyledTH = styled.th`
   padding: 5px 10px;
   background-color: var(--clr-light);
@@ -93,4 +98,24 @@ export const PaginationButton = styled.button`
   &:disabled {
     color: grey;
   }
+`;
+
+export const FilterOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+`;
+
+export const FilterWrapper = styled.div`
+  position: absolute;
+  ${({ top, left }) => `top: ${top}px; left: ${left}px;`}
+  padding: 10px;
+  background-color: var(--clr-light);
+  border: 2px solid var(--clr-outline);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+
+  transform: translate(-50%, 30px);
 `;

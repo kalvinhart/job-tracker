@@ -48,6 +48,9 @@ export const Button = styled.button`
       : props.vertical || props.horizontal
       ? "display: none;"
       : ""}
+
+    /* styles for transparent buttons */
+    ${(props) => props.transparent && "padding: 2px; background-color: transparent;"}
   
   &:hover,
   &:focus {
