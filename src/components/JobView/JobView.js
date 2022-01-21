@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { JobContext } from "../../context/jobContext";
 
 import Spinner from "../Spinner/Spinner";
+import Modal from "../Modal/Modal";
+import DeleteConfirm from "../DeleteConfirm/DeleteConfirm";
 
 import {
   StyledJobViewHeadingDiv,
@@ -20,7 +22,8 @@ const JobView = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const { jobs, selectedJob, enableEditing, removeJob } = useContext(JobContext);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const { jobs, selectedJob, enableEditing } = useContext(JobContext);
 
   useEffect(() => {
     if (jobs === null) navigate("/");
@@ -28,11 +31,6 @@ const JobView = () => {
   }, [jobs]);
 
   let content;
-
-  const handleDelete = async (id) => {
-    await removeJob(id);
-    navigate("/");
-  };
 
   if (loading) {
     content = (
@@ -68,10 +66,13 @@ const JobView = () => {
             <Button tertiary onClick={enableEditing}>
               Edit
             </Button>
-            <Button secondary onClick={() => handleDelete(id)}>
+            <Button secondary onClick={() => setShowDeleteModal(true)}>
               Delete
             </Button>
           </StyledJobViewHeadingGroup>
+          <Modal show={showDeleteModal} hide={() => setShowDeleteModal(false)}>
+            <DeleteConfirm id={id} setShowDeleteModal={setShowDeleteModal} />
+          </Modal>
         </StyledJobViewHeadingDiv>
 
         <StyledJobViewDiv>

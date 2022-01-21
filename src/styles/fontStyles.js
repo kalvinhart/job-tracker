@@ -55,3 +55,7 @@ export const ErrorSpan = styled.span`
     margin-right: 4px;
   }
 `;
+
+export const StyledParagraph = styled.p`
+  margin-bottom: 20px;
+`;
