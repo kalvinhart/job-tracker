@@ -25,7 +25,7 @@ const SidePanel = () => {
           <FontAwesomeIcon icon={faTimes} className="cross-icon" size="lg" />
         </Button>
       )}
-      <SidePanelGroup show={!show}>
+      <SidePanelGroup animated show={!show}>
         <Button vertical visible={!show} onClick={enableAddNew}>
           <FontAwesomeIcon icon={faPlus} className="plus-icon" size="lg" />
           <Span>A d d</Span>

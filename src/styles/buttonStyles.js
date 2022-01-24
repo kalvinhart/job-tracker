@@ -51,7 +51,8 @@ export const Button = styled.button`
       : ""}
 
     /* styles for transparent buttons */
-    ${(props) => props.transparent && "padding: 2px; background-color: transparent;"}
+    ${(props) =>
+    props.transparent && "min-width: unset; padding: 2px; background-color: transparent;"}
   
   &:hover,
   &:focus {
