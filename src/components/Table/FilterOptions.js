@@ -3,6 +3,9 @@ import { createPortal } from "react-dom";
 
 import { FilterWrapper, FilterOverlay } from "./Table.styled";
 import { StyledSelect } from "../../styles/formStyles";
+import { Button } from "../../styles/buttonStyles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const FilterOptions = ({
   hide,
@@ -27,6 +30,10 @@ const FilterOptions = ({
   return createPortal(
     <FilterOverlay onClick={handleOverlayClose}>
       <FilterWrapper ref={filterRef} top={top} left={left} data-name="filter">
+        <Button transparent onClick={hide}>
+          Close
+          <FontAwesomeIcon icon={faTimes} className="cross-icon" />
+        </Button>
         <StyledSelect
           value={filterValue}
           onChange={(e) => {

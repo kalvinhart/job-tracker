@@ -112,12 +112,18 @@ export const FilterWrapper = styled.div`
   position: absolute;
   ${({ top, left }) => `top: ${top}px; left: ${left}px;`}
   padding: 10px;
+  display: flex;
+  flex-direction: column;
   background-color: var(--clr-light);
   border: 2px solid var(--clr-outline);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 
   transform: translate(-50%, 30px);
+
+  & button {
+    margin-bottom: 10px;
+  }
 `;
 
 export const StyledNoDataDiv = styled.div`
