@@ -40,6 +40,16 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
     }
 
+    a svg {
+        margin-right: 5px;
+        color: var(--clr-primary);
+    }
+    
+    a:hover,
+    a:focus {
+        text-decoration: underline;
+    }
+
     .plus-icon,
     .cross-icon {
         color: var(--clr-primary);

@@ -1,7 +1,9 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { JobContext } from "../../context/jobContext";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Spinner from "../Spinner/Spinner";
 import Modal from "../Modal/Modal";
 import DeleteConfirm from "../DeleteConfirm/DeleteConfirm";
@@ -50,10 +52,12 @@ const JobView = () => {
       title,
     } = selectedJob;
 
-    console.log("Job View ID: ", id);
-
     content = (
       <JobViewContainer>
+        <Link to="/">
+          <FontAwesomeIcon icon={faArrowLeft} />
+          Back
+        </Link>
         <StyledJobViewHeadingDiv>
           <StyledJobViewHeadingGroup>
             <H2>{title}</H2>

@@ -8,6 +8,7 @@ export const StyledJobViewHeadingDiv = styled.div`
 
 export const StyledJobViewHeadingGroup = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 
   & *:not(:last-child) {
@@ -16,8 +17,15 @@ export const StyledJobViewHeadingGroup = styled.div`
 `;
 
 export const JobViewContainer = styled.div`
+  position: relative;
   width: 900px;
   margin: 0 auto;
+
+  & a {
+    position: absolute;
+    top: -60px;
+    left: 20px;
+  }
 
   & h2 {
     margin-left: 20px;
