@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useState, useContext } from "react";
+import { useMemo, useContext } from "react";
 import {
   useTable,
   useGlobalFilter,
@@ -11,6 +11,7 @@ import { JobContext } from "../../context/jobContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSort, faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
 
+import Spinner from "../Spinner/Spinner";
 import GlobalFilter from "./GlobalFilter";
 import DefaultColumnFilter from "./DefaultColumnFilter";
 import Pagination from "./Pagination";
@@ -26,6 +27,7 @@ import {
   StyledTD,
 } from "./Table.styled";
 import { StatusSpan } from "../../styles/fontStyles";
+import NoData from "./NoData";
 
 const Table = () => {
   const navigate = useNavigate();
@@ -75,6 +77,10 @@ const Table = () => {
     useSortBy,
     usePagination
   );
+
+  if (loading) return <Spinner />;
+
+  if (!loading && jobs.length === 0) return <NoData />;
 
   return (
     <TableWrapper>

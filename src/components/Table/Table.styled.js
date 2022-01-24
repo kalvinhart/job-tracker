@@ -119,3 +119,17 @@ export const FilterWrapper = styled.div`
 
   transform: translate(-50%, 30px);
 `;
+
+export const StyledNoDataDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  & h2,
+  & p {
+    margin-bottom: 20px;
+  }
+
+  & button {
+    align-self: flex-end;
+  }
+`;

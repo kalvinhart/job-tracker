@@ -14,8 +14,8 @@ const loading3Animation = css`
 `;
 
 export const SpinnerWrapper = styled.div`
-  width: 600px;
-  height: 400px;
+  width: 200px;
+  height: 80px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -38,7 +38,7 @@ export const SpinnerMain = styled.div`
     width: 13px;
     height: 13px;
     border-radius: 50%;
-    background: #fff;
+    background: var(--clr-dark);
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
   }
 

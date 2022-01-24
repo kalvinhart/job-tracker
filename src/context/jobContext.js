@@ -18,17 +18,20 @@ const JobProvider = ({ children }) => {
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
-    if (jobs !== null) return;
+    if (jobs !== null) {
+      setLoading(false);
+      return;
+    }
 
     const retrieveJobs = async () => {
       const originalJobs = await fetchJobs();
       const newJobs = sanitiseDataForTable(originalJobs);
       setJobs(originalJobs);
       setFilteredJobs(newJobs);
+      setLoading(false);
     };
 
     retrieveJobs();
-    setLoading(false);
   }, [fetchJobs]);
 
   const sanitiseDataForTable = (jobs) => {
