@@ -10,7 +10,7 @@ const fadeInAnimationCloseButton = css`
 
 export const Button = styled.button`
   padding: 10px 20px;
-  min-width: 40px;
+  min-width: 95px;
   border: 2px solid transparent;
   border-radius: var(--border-radius);
   font-family: inherit;
@@ -32,7 +32,7 @@ export const Button = styled.button`
     /* styles for side-panel main button */
   ${(props) =>
     props.vertical &&
-    "background-color: transparent; font-size: 14px; font-weight: normal; color: white; white-space: pre-line; text-transform: uppercase;"}
+    "min-width: 30px; padding: 10px; background-color: transparent; font-size: 14px; font-weight: normal; color: white; white-space: pre-line; text-transform: uppercase;"}
   
   ${(props) => props.vertical && "& span { display: block; margin-bottom: 10px; }"}
 

@@ -73,7 +73,7 @@ export const StyledTextArea = styled.textarea`
 export const StyledButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 180px;
+  width: 200px;
   margin-top: 20px;
   margin-left: auto;
 `;
