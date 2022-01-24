@@ -1,11 +1,15 @@
+import { SpinnerWrapper, SpinnerMain } from "./Spinner.styled";
+
 const Spinner = () => {
   return (
-    <div className="lds-ellipsis">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+    <SpinnerWrapper>
+      <SpinnerMain>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </SpinnerMain>
+    </SpinnerWrapper>
   );
 };
 
