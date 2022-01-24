@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledBg = styled.div`
   min-width: 600px;
+  max-width: 900px;
   padding: 20px;
   margin: 0 auto;
   background-color: white;
