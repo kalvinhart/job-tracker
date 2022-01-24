@@ -10,10 +10,10 @@ import {
   StyledJobViewHeadingDiv,
   StyledJobViewHeadingGroup,
   JobViewContainer,
-  StyledJobViewDiv,
   StyledJobViewGroup,
   StyledJobViewItem,
 } from "./JobView.styled";
+import { StyledBg } from "../../styles/bgStyles";
 import { StatusSpan } from "../../styles/fontStyles";
 import { H2, H3, Span } from "../../styles/fontStyles";
 import { Button } from "../../styles/buttonStyles";
@@ -33,11 +33,7 @@ const JobView = () => {
   let content;
 
   if (loading) {
-    content = (
-      <JobViewContainer>
-        <Spinner />
-      </JobViewContainer>
-    );
+    content = <Spinner />;
   } else {
     const {
       benefits,
@@ -53,6 +49,8 @@ const JobView = () => {
       status,
       title,
     } = selectedJob;
+
+    console.log("Job View ID: ", id);
 
     content = (
       <JobViewContainer>
@@ -75,7 +73,7 @@ const JobView = () => {
           </Modal>
         </StyledJobViewHeadingDiv>
 
-        <StyledJobViewDiv>
+        <StyledBg>
           <StyledJobViewGroup>
             <StyledJobViewItem>
               <H3>Company:</H3>
@@ -119,7 +117,7 @@ const JobView = () => {
 
           <H3>Job Description:</H3>
           <Span>{description}</Span>
-        </StyledJobViewDiv>
+        </StyledBg>
       </JobViewContainer>
     );
   }

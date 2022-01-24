@@ -10,6 +10,7 @@ const fadeInAnimationCloseButton = css`
 
 export const Button = styled.button`
   padding: 10px 20px;
+  min-width: 40px;
   border: 2px solid transparent;
   border-radius: var(--border-radius);
   font-family: inherit;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledBg = styled.div`
-  width: 600px;
+  min-width: 600px;
   padding: 20px;
   margin: 0 auto;
   background-color: white;

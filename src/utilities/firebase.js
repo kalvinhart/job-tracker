@@ -8,6 +8,7 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import { db } from "../firebase.config";
+import { v4 as uuid } from "uuid";
 
 export const fetchJobs = async () => {
   try {
@@ -30,6 +31,7 @@ export const fetchJobs = async () => {
 export const saveJob = async (data) => {
   const newData = {
     ...data,
+    id: uuid(),
     date: Timestamp.fromDate(new Date(data.date)),
     status: "Pending",
   };

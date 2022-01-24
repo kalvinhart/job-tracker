@@ -28,14 +28,6 @@ export const JobViewContainer = styled.div`
   }
 `;
 
-export const StyledJobViewDiv = styled.div`
-  padding: 20px;
-  background-color: white;
-  border: 2px solid var(--clr-dark);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-`;
-
 export const StyledJobViewGroup = styled.div`
   display: flex;
   margin-bottom: 30px;
