@@ -2,7 +2,7 @@ import {
   collection,
   doc,
   getDocs,
-  addDoc,
+  setDoc,
   updateDoc,
   deleteDoc,
   Timestamp,
@@ -29,15 +29,16 @@ export const fetchJobs = async () => {
 };
 
 export const saveJob = async (data) => {
+  const id = uuid();
   const newData = {
     ...data,
-    id: uuid(),
+    id,
     date: Timestamp.fromDate(new Date(data.date)),
     status: "Pending",
   };
 
   try {
-    const docRef = await addDoc(collection(db, "jobs"), newData);
+    const docRef = await setDoc(doc(db, "jobs", id), newData);
   } catch (e) {
     console.log(e.message);
   }
