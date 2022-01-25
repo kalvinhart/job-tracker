@@ -137,6 +137,12 @@ export const FilterWrapper = styled.div`
   }
 `;
 
+export const StyledFilterIconDiv = styled.div`
+  & svg {
+    ${({ isFiltered }) => isFiltered && "color: var(--clr-primary);"}
+  }
+`;
+
 export const StyledNoDataDiv = styled.div`
   display: flex;
   flex-direction: column;

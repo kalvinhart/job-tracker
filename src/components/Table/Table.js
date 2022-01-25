@@ -25,6 +25,7 @@ import {
   StyledTHWrapper,
   StyledTR,
   StyledTD,
+  StyledFilterIconDiv,
 } from "./Table.styled";
 import { StatusSpan } from "../../styles/fontStyles";
 import NoData from "./NoData";
@@ -106,9 +107,12 @@ const Table = () => {
                           )}
                         </span>
                       </div>
-                      <div style={{ position: "relative" }}>
+                      <StyledFilterIconDiv
+                        isFiltered={column.filterValue ? true : false}
+                        style={{ position: "relative" }}
+                      >
                         {column.canFilter ? column.render("Filter") : null}
-                      </div>
+                      </StyledFilterIconDiv>
                     </StyledTHWrapper>
                   </StyledTH>
                 ))}
