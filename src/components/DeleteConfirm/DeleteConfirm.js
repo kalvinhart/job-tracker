@@ -24,11 +24,10 @@ const DeleteConfirm = ({ id, setShowDeleteModal }) => {
   const cancel = () => {
     setShowDeleteModal(false);
   };
-  console.log("Delete Confirm ID: ", id);
   return (
     <>
       <H2>Are you sure?</H2>
-      <StyledParagraph>Are you sure you wish to delete this job?</StyledParagraph>
+      <StyledParagraph>Are you sure you wish to delete this item?</StyledParagraph>
       <StyledButtonGroup>
         <Button primary disabled={loading} onClick={() => actionDelete(id)}>
           {loading ? <FontAwesomeIcon icon={faSpinner} size="lg" spin /> : "Confirm"}
