@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { fadeInAnimation } from "../../styles/animations";
 
 export const TableWrapper = styled.div`
   width: 1750px;
@@ -100,12 +101,21 @@ export const PaginationButton = styled.button`
   }
 `;
 
+const fadeInOverlay = css`
+  animation-name: ${fadeInAnimation};
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+`;
+
 export const FilterOverlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  ${fadeInOverlay}
 `;
 
 export const FilterWrapper = styled.div`
