@@ -27,6 +27,7 @@ export const StyledTable = styled.table`
 
 export const StyledTHWrapper = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
 `;
 
