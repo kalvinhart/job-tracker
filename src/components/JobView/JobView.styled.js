@@ -36,6 +36,10 @@ export const JobViewContainer = styled.div`
   }
 `;
 
+export const JobViewContentWrapper = styled.div`
+  position: relative;
+`;
+
 export const StyledJobViewGroup = styled.div`
   display: flex;
   margin-bottom: 30px;
