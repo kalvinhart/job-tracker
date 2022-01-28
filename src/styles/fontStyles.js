@@ -56,8 +56,9 @@ export const ErrorSpan = styled.span`
   }
 `;
 
-export const BoldSpan = styled.span`
+export const BoldSpanLarge = styled.span`
   font-weight: bold;
+  font-size: 22px;
 `;
 
 export const StyledParagraph = styled.p`

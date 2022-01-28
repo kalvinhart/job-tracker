@@ -53,11 +53,17 @@ export const Button = styled.button`
     /* styles for transparent buttons */
     ${(props) =>
     props.transparent && "min-width: unset; padding: 2px; background-color: transparent;"}
-  
+
+    & svg {
+    ${(props) => props.transparent && "margin-right: 4px;"}
+  }
+
   &:hover,
   &:focus {
     ${(props) => props.primary && "border: 2px solid white;"}
     ${(props) => props.secondary && "border: 2px solid var(--clr-primary);"}
     ${(props) => props.tertiary && "border: 2px solid var(--clr-tertiary-text);"}
+
+    ${(props) => props.transparent && "color: var(--clr-tertiary);"}
   }
 `;

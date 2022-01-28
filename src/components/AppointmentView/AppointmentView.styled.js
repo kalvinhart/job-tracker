@@ -13,8 +13,9 @@ export const AppointmentViewWrapper = styled.div`
     flex-direction: column;
     align-items: center;
 
-    & h2 {
+    & h3 {
       margin-bottom: 20px;
+      align-self: flex-start;
     }
   }
 `;

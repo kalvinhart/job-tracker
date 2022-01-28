@@ -1,10 +1,12 @@
 import { useState, useContext } from "react";
 import { JobContext } from "../../context/jobContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 
 import { AppointmentViewWrapper } from "./AppointmentView.styled";
 import { StyledBg } from "../../styles/bgStyles";
 import { Button } from "../../styles/buttonStyles";
-import { H2, StyledParagraph, BoldSpan } from "../../styles/fontStyles";
+import { H3, StyledParagraph, BoldSpanLarge } from "../../styles/fontStyles";
 import AddAppointment from "../AddAppointment/AddAppointment";
 import { StyledButtonGroup } from "../../styles/formStyles";
 import DeleteConfirm from "../DeleteConfirm/DeleteConfirm";
@@ -18,15 +20,18 @@ const AppointmentView = ({ id, interview }) => {
   return (
     <AppointmentViewWrapper>
       <StyledBg>
-        <H2>Interview Appointment</H2>
+        <H3>Interview Appointment</H3>
         {interview ? (
           <>
-            <StyledParagraph>
-              You have an interview for this position on: <BoldSpan>{interview}</BoldSpan>
-            </StyledParagraph>
-            <StyledButtonGroup>
-              <Button tertiary>Edit</Button>
-              <Button secondary onClick={() => setShowDeleteModal(true)}>
+            <StyledParagraph>You have an interview for this position on:</StyledParagraph>
+            <BoldSpanLarge>{interview}</BoldSpanLarge>
+            <StyledButtonGroup small>
+              <Button transparent>
+                <FontAwesomeIcon icon={faEdit} />
+                Edit
+              </Button>
+              <Button transparent onClick={() => setShowDeleteModal(true)}>
+                <FontAwesomeIcon icon={faTrash} />
                 Delete
               </Button>
             </StyledButtonGroup>

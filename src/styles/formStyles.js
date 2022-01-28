@@ -76,4 +76,6 @@ export const StyledButtonGroup = styled.div`
   width: 200px;
   margin-top: 20px;
   margin-left: auto;
+
+  ${({ small }) => small && "width: 150px;"}
 `;

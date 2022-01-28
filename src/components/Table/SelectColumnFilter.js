@@ -22,7 +22,12 @@ const SelectColumnFilter = (props) => {
 
   return (
     <>
-      <Button transparent ref={filterButtonRef} onClick={handleFilterClick}>
+      <Button
+        transparent
+        ref={filterButtonRef}
+        onClick={handleFilterClick}
+        aria-label="Filter"
+      >
         <FontAwesomeIcon icon={faFilter} />
       </Button>
 
