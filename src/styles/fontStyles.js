@@ -56,6 +56,10 @@ export const ErrorSpan = styled.span`
   }
 `;
 
+export const BoldSpan = styled.span`
+  font-weight: bold;
+`;
+
 export const StyledParagraph = styled.p`
   margin-bottom: 20px;
 `;

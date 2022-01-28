@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { JobContext } from "../../context/jobContext";
 
 import AppointmentView from "../AppointmentView/AppointmentView";
@@ -23,7 +23,6 @@ import { H2, H3, Span } from "../../styles/fontStyles";
 import { Button } from "../../styles/buttonStyles";
 
 const JobView = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -46,6 +45,7 @@ const JobView = () => {
       contactNumber,
       date,
       description,
+      id,
       interview,
       location,
       notes,
@@ -125,7 +125,10 @@ const JobView = () => {
             <H3>Job Description:</H3>
             <Span>{description}</Span>
           </StyledBg>
-          <AppointmentView interview={interview} />
+          <AppointmentView
+            id={id}
+            interview={interview ? interview.toDate().toDateString() : ""}
+          />
         </JobViewContentWrapper>
       </JobViewContainer>
     );

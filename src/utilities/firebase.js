@@ -50,6 +50,10 @@ export const saveUpdate = async (data) => {
   const newData = {
     ...data,
     date: Timestamp.fromDate(new Date(data.date)),
+    interview:
+      typeof data.interview !== "object"
+        ? Timestamp.fromDate(new Date(data.interview))
+        : data.interview,
   };
   const docRef = doc(db, "jobs", newData.id);
 
@@ -68,4 +72,15 @@ export const deleteJob = async (id) => {
   } catch (e) {
     console.log(e.message);
   }
+};
+
+export const updateInterview = async (id, data) => {
+  const interviewDate = Timestamp.fromDate(new Date(data));
+  const jobRef = doc(db, "jobs", id);
+  try {
+    await updateDoc(jobRef, { interview: interviewDate });
+  } catch (e) {
+    console.log(e.message);
+  }
+  return interviewDate;
 };

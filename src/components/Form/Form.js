@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { JobContext } from "../../context/jobContext";
-import { saveJob, saveUpdate } from "../../utilities/firebase";
 import { useForm, Controller } from "react-hook-form";
 
 import {
@@ -22,18 +21,7 @@ import { faSpinner, faExclamationCircle } from "@fortawesome/free-solid-svg-icon
 import { statusOptions } from "../Table/tableConfig";
 
 const Form = () => {
-  const {
-    editing,
-    setEditing,
-    jobs,
-    selectedJob,
-    setSelectedJob,
-    updateFilteredJobs,
-    setJobs,
-    cancel,
-    toastSuccess,
-    toastError,
-  } = useContext(JobContext);
+  const { editing, selectedJob, saveNewJob, saveEdit, cancel } = useContext(JobContext);
 
   const [loading, setLoading] = useState(false);
 
@@ -52,6 +40,8 @@ const Form = () => {
     title,
   } = selectedJob;
 
+  console.log("Form: ", date);
+
   const {
     register,
     handleSubmit,
@@ -66,45 +56,26 @@ const Form = () => {
       contactNumber: editing ? contactNumber : "",
       date: editing ? date.toDate().toISOString().slice(0, 10) : "",
       description: editing ? description : "",
+      interview:
+        interview && editing ? interview.toDate().toISOString().slice(0, 10) : "",
       location: editing ? location : "",
       salary: editing ? salary : "",
-      status: status,
+      status,
       title: editing ? title : "",
     },
   });
 
-  const onSubmit = async (data, e) => {
-    let newJobs = [];
+  const onSubmit = (data, e) => {
+    console.log("Form Data: ", data);
 
     if (editing) {
       setLoading(true);
-      const updatedData = {
-        ...data,
-        id,
-      };
-      try {
-        const newData = await saveUpdate(updatedData);
-        setSelectedJob(newData);
-        newJobs = jobs.map((job) => (job.id === id ? newData : job));
-        toastSuccess("Job successfully updated!");
-      } catch (e) {
-        console.log(e);
-        toastError("Something went wrong.");
-      }
+      saveEdit(id, data);
     } else {
       setLoading(true);
-      try {
-        const newData = await saveJob(data);
-        newJobs = [...jobs, newData];
-        toastSuccess("Job successfully saved!");
-      } catch (e) {
-        console.log(e);
-        toastError("Something went wrong.");
-      }
+      saveNewJob(data);
     }
 
-    setJobs(newJobs);
-    updateFilteredJobs(newJobs);
     e.target.reset();
     setLoading(false);
     cancel();
@@ -298,6 +269,8 @@ const Form = () => {
         <StyledLabel htmlFor="description">Job Description:</StyledLabel>
         <StyledTextArea id="description" {...register("description")} />
       </StyledInputGroup>
+
+      <StyledInput type="hidden" {...register("interview")} />
 
       <StyledButtonGroup>
         <Button type="submit" primary disabled={loading}>

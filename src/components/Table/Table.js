@@ -32,7 +32,7 @@ import NoData from "./NoData";
 
 const Table = () => {
   const navigate = useNavigate();
-  const { jobs, loading, filteredJobs, setSelectedJob } = useContext(JobContext);
+  const { jobs, loading, jobsForTable, setSelectedJob } = useContext(JobContext);
 
   const defaultColumn = useMemo(
     () => ({
@@ -42,7 +42,7 @@ const Table = () => {
   );
 
   const columns = useMemo(() => columnData, []);
-  const data = useMemo(() => filteredJobs, [filteredJobs]);
+  const data = useMemo(() => jobsForTable, [jobsForTable]);
 
   const goToJobView = (id) => {
     setSelectedJob(jobs.filter((job) => job.id === id)[0]);
