@@ -5,6 +5,7 @@ import {
   deleteJob,
   saveUpdate,
   updateInterview,
+  deleteInterview,
 } from "../utilities/firebase";
 import { sanitiseData, sanitiseDataForTable } from "../utilities/sanitise";
 import toast, { Toaster } from "react-hot-toast";
@@ -101,14 +102,32 @@ const JobProvider = ({ children }) => {
       const newJobs = jobs.map((job) =>
         job.id === id ? { ...job, interview: interviewDate } : job
       );
-      setJobs(newJobs);
-      updateTableJobs(newJobs);
-      updateSelectedJob(id, newJobs);
+      updateAllJobStates(id, newJobs);
       toastSuccess("Interview successfully updated!");
     } catch (e) {
       console.log(e.message);
       toastError("Something went wrong!");
     }
+  };
+
+  const removeInterview = async (id) => {
+    try {
+      const interviewDate = await deleteInterview(id);
+      const newJobs = jobs.map((job) =>
+        job.id === id ? { ...job, interview: interviewDate } : job
+      );
+      updateAllJobStates(id, newJobs);
+      toastSuccess("Interview successfully deleted!");
+    } catch (e) {
+      console.log(e.message);
+      toastError("Something went wrong!");
+    }
+  };
+
+  const updateAllJobStates = (id, newJobs) => {
+    setJobs(newJobs);
+    updateTableJobs(newJobs);
+    updateSelectedJob(id, newJobs);
   };
 
   const enableEditing = () => {
@@ -143,6 +162,7 @@ const JobProvider = ({ children }) => {
         removeJob,
         saveEdit,
         updateInterviewDate,
+        removeInterview,
         updateSelectedJob,
         show,
         setShow,

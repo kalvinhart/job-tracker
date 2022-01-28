@@ -26,7 +26,7 @@ const JobView = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const { jobs, selectedJob, enableEditing } = useContext(JobContext);
+  const { jobs, selectedJob, enableEditing, removeJob } = useContext(JobContext);
 
   useEffect(() => {
     if (jobs === null) navigate("/");
@@ -74,9 +74,15 @@ const JobView = () => {
               Delete
             </Button>
           </StyledJobViewHeadingGroup>
-          <Modal show={showDeleteModal} hide={() => setShowDeleteModal(false)}>
-            <DeleteConfirm id={id} setShowDeleteModal={setShowDeleteModal} />
-          </Modal>
+
+          <DeleteConfirm
+            redirect={true}
+            show={showDeleteModal}
+            hide={() => setShowDeleteModal(false)}
+            id={id}
+            actionDelete={removeJob}
+            setShowDeleteModal={setShowDeleteModal}
+          />
         </StyledJobViewHeadingDiv>
 
         <JobViewContentWrapper>

@@ -5,6 +5,7 @@ import {
   setDoc,
   updateDoc,
   deleteDoc,
+  deleteField,
   Timestamp,
 } from "firebase/firestore";
 import { db } from "../firebase.config";
@@ -83,4 +84,10 @@ export const updateInterview = async (id, data) => {
     console.log(e.message);
   }
   return interviewDate;
+};
+
+export const deleteInterview = async (id) => {
+  const jobRef = doc(db, "jobs", id);
+  await updateDoc(jobRef, { interview: deleteField() });
+  return "";
 };
