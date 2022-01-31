@@ -17,33 +17,52 @@ const AppointmentView = ({ id, interview }) => {
   const [editing, setEditing] = useState(false);
   const { removeInterview } = useContext(JobContext);
 
+  const enableEditing = () => {
+    setEditing(true);
+    setShowAddModal(true);
+  };
+
+  const cancelEditing = () => {
+    setEditing(false);
+    setShowAddModal(false);
+  };
+
   return (
     <AppointmentViewWrapper>
       <StyledBg>
         <H3>Interview Appointment</H3>
         {interview ? (
-          <>
-            <StyledParagraph>You have an interview for this position on:</StyledParagraph>
-            <BoldSpanLarge>{interview}</BoldSpanLarge>
-            <StyledButtonGroup small>
-              <Button transparent>
-                <FontAwesomeIcon icon={faEdit} />
-                Edit
-              </Button>
-              <Button transparent onClick={() => setShowDeleteModal(true)}>
-                <FontAwesomeIcon icon={faTrash} />
-                Delete
-              </Button>
-            </StyledButtonGroup>
-            <DeleteConfirm
-              redirect={false}
-              show={showDeleteModal}
-              hide={() => setShowDeleteModal(false)}
-              id={id}
-              actionDelete={removeInterview}
-              setShowDeleteModal={setShowDeleteModal}
-            />
-          </>
+          editing ? (
+            <>
+              <StyledParagraph>Choose a new interview date.</StyledParagraph>
+              <AddAppointment id={id} show={showAddModal} hide={cancelEditing} />
+            </>
+          ) : (
+            <>
+              <StyledParagraph>
+                You have an interview for this position on:
+              </StyledParagraph>
+              <BoldSpanLarge>{interview}</BoldSpanLarge>
+              <StyledButtonGroup small>
+                <Button transparent onClick={enableEditing}>
+                  <FontAwesomeIcon icon={faEdit} />
+                  Edit
+                </Button>
+                <Button transparent onClick={() => setShowDeleteModal(true)}>
+                  <FontAwesomeIcon icon={faTrash} />
+                  Delete
+                </Button>
+              </StyledButtonGroup>
+              <DeleteConfirm
+                redirect={false}
+                show={showDeleteModal}
+                hide={() => setShowDeleteModal(false)}
+                id={id}
+                actionDelete={removeInterview}
+                setShowDeleteModal={setShowDeleteModal}
+              />
+            </>
+          )
         ) : (
           <>
             <StyledParagraph>
