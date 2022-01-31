@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-import { JobContext } from "../../context/jobContext";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -17,13 +16,16 @@ const DeleteConfirm = ({
   setShowDeleteModal,
   redirect,
 }) => {
-  const [loading, setLoading] = useState(false);
+  const loading = useRef();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    return (loading.current = false);
+  }, []);
+
   const handleDelete = async (id) => {
-    setLoading(true);
+    loading.current = true;
     await actionDelete(id);
-    setLoading(false);
     setShowDeleteModal(false);
     redirect && navigate("/");
   };
@@ -36,8 +38,12 @@ const DeleteConfirm = ({
       <H2>Are you sure?</H2>
       <StyledParagraph>Are you sure you wish to delete this item?</StyledParagraph>
       <StyledButtonGroup>
-        <Button primary disabled={loading} onClick={() => handleDelete(id)}>
-          {loading ? <FontAwesomeIcon icon={faSpinner} size="lg" spin /> : "Confirm"}
+        <Button primary disabled={loading.current} onClick={() => handleDelete(id)}>
+          {loading.current ? (
+            <FontAwesomeIcon icon={faSpinner} size="lg" spin />
+          ) : (
+            "Confirm"
+          )}
         </Button>
         <Button secondary onClick={cancel}>
           Cancel
