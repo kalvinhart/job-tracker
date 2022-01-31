@@ -19,7 +19,7 @@ export const StyledJobViewHeadingGroup = styled.div`
 export const JobViewContainer = styled.div`
   position: relative;
   width: 900px;
-  margin: 0 auto;
+  margin: 0 auto 60px;
 
   & a {
     position: absolute;
