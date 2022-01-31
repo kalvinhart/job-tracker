@@ -129,7 +129,7 @@ const JobView = () => {
             </StyledJobViewGroup>
 
             <H3>Job Description:</H3>
-            <Span>{description}</Span>
+            <Span multiline>{description}</Span>
           </StyledBg>
           <AppointmentView
             id={id}

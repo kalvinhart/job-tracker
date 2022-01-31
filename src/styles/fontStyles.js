@@ -20,6 +20,8 @@ export const H3 = styled.h3`
 
 export const Span = styled.span`
   font-size: 16px;
+
+  ${({ multiline }) => multiline && "white-space: pre-wrap;"}
 `;
 
 export const StatusSpan = styled.span`
