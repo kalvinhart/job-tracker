@@ -96,7 +96,7 @@ const Form = () => {
             type="text"
             id="title"
             placeholder="Job title..."
-            {...register("title", { required: true, maxLength: 20 })}
+            {...register("title", { required: true, maxLength: 30 })}
           />
           {errors.title?.type === "required" && (
             <ErrorSpan>
@@ -119,7 +119,7 @@ const Form = () => {
             type="text"
             id="company"
             placeholder="Company..."
-            {...register("company", { required: true, maxLength: 20 })}
+            {...register("company", { required: true, maxLength: 30 })}
           />
           {errors.company?.type === "required" && (
             <ErrorSpan>
