@@ -79,7 +79,7 @@ export const updateInterview = async (id, data) => {
   const interviewDate = Timestamp.fromDate(new Date(data));
   const jobRef = doc(db, "jobs", id);
   try {
-    await updateDoc(jobRef, { interview: interviewDate });
+    await updateDoc(jobRef, { interview: interviewDate, status: "Interview" });
   } catch (e) {
     console.log(e.message);
   }
@@ -88,6 +88,6 @@ export const updateInterview = async (id, data) => {
 
 export const deleteInterview = async (id) => {
   const jobRef = doc(db, "jobs", id);
-  await updateDoc(jobRef, { interview: deleteField() });
+  await updateDoc(jobRef, { interview: deleteField(), status: "Pending" });
   return "";
 };

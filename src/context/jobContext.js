@@ -100,7 +100,7 @@ const JobProvider = ({ children }) => {
     try {
       const interviewDate = await updateInterview(id, data);
       const newJobs = jobs.map((job) =>
-        job.id === id ? { ...job, interview: interviewDate } : job
+        job.id === id ? { ...job, interview: interviewDate, status: "Interview" } : job
       );
       updateAllJobStates(id, newJobs);
       toastSuccess("Interview successfully updated!");
@@ -114,7 +114,7 @@ const JobProvider = ({ children }) => {
     try {
       const interviewDate = await deleteInterview(id);
       const newJobs = jobs.map((job) =>
-        job.id === id ? { ...job, interview: interviewDate } : job
+        job.id === id ? { ...job, interview: interviewDate, status: "Pending" } : job
       );
       updateAllJobStates(id, newJobs);
       toastSuccess("Interview successfully deleted!");
