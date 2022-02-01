@@ -12,21 +12,17 @@ import { db } from "../firebase.config";
 import { v4 as uuid } from "uuid";
 
 export const fetchJobs = async () => {
-  try {
-    let jobsArray = [];
+  let jobsArray = [];
 
-    const jobsRef = collection(db, "jobs");
-    const querySnapshot = await getDocs(jobsRef);
-    querySnapshot.forEach((doc) => {
-      const newData = { id: doc.id, ...doc.data() };
-      jobsArray.push(newData);
-      console.log(doc.id, " => ", doc.data());
-    });
+  const jobsRef = collection(db, "jobs");
+  const querySnapshot = await getDocs(jobsRef);
+  querySnapshot.forEach((doc) => {
+    const newData = { id: doc.id, ...doc.data() };
+    jobsArray.push(newData);
+    console.log(doc.id, " => ", doc.data());
+  });
 
-    return jobsArray;
-  } catch (e) {
-    console.log(e.message);
-  }
+  return jobsArray;
 };
 
 export const saveJob = async (data) => {
@@ -38,11 +34,7 @@ export const saveJob = async (data) => {
     status: "Pending",
   };
 
-  try {
-    const docRef = await setDoc(doc(db, "jobs", id), newData);
-  } catch (e) {
-    console.log(e.message);
-  }
+  const docRef = await setDoc(doc(db, "jobs", id), newData);
 
   return newData;
 };
@@ -58,31 +50,21 @@ export const saveUpdate = async (data) => {
   };
   const docRef = doc(db, "jobs", newData.id);
 
-  try {
-    const update = await updateDoc(docRef, newData);
-  } catch (e) {
-    console.log(e.message);
-  }
+  await updateDoc(docRef, newData);
 
   return newData;
 };
 
 export const deleteJob = async (id) => {
-  try {
-    await deleteDoc(doc(db, "jobs", id));
-  } catch (e) {
-    console.log(e.message);
-  }
+  await deleteDoc(doc(db, "jobs", id));
 };
 
 export const updateInterview = async (id, data) => {
   const interviewDate = Timestamp.fromDate(new Date(data));
   const jobRef = doc(db, "jobs", id);
-  try {
-    await updateDoc(jobRef, { interview: interviewDate, status: "Interview" });
-  } catch (e) {
-    console.log(e.message);
-  }
+
+  await updateDoc(jobRef, { interview: interviewDate, status: "Interview" });
+
   return interviewDate;
 };
 
