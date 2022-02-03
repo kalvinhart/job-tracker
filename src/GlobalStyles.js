@@ -50,6 +50,10 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: underline;
     }
 
+    a:visited {
+        color: black;
+    }
+
     .plus-icon,
     .cross-icon {
         color: var(--clr-primary);
