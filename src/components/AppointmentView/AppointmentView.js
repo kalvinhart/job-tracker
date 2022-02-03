@@ -27,6 +27,10 @@ const AppointmentView = ({ id, interview }) => {
     setShowAddModal(false);
   };
 
+  console.log(interview);
+  const interviewDate = interview.toDate().toDateString();
+  const interviewTime = interview.toDate().toLocaleTimeString();
+
   return (
     <AppointmentViewWrapper>
       <StyledBg>
@@ -42,7 +46,9 @@ const AppointmentView = ({ id, interview }) => {
               <StyledParagraph>
                 You have an interview for this position on:
               </StyledParagraph>
-              <BoldSpanLarge>{interview}</BoldSpanLarge>
+              <BoldSpanLarge>{interviewDate}</BoldSpanLarge>
+              <StyledParagraph>at:</StyledParagraph>
+              <BoldSpanLarge>{interviewTime}</BoldSpanLarge>
               <StyledButtonGroup small>
                 <Button transparent onClick={enableEditing}>
                   <FontAwesomeIcon icon={faEdit} />

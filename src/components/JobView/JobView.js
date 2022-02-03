@@ -131,10 +131,7 @@ const JobView = () => {
             <H3>Job Description:</H3>
             <Span multiline>{description}</Span>
           </StyledBg>
-          <AppointmentView
-            id={id}
-            interview={interview ? interview.toDate().toDateString() : ""}
-          />
+          <AppointmentView id={id} interview={interview ? interview : ""} />
         </JobViewContentWrapper>
       </JobViewContainer>
     );

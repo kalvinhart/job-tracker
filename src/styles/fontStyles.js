@@ -64,5 +64,5 @@ export const BoldSpanLarge = styled.span`
 `;
 
 export const StyledParagraph = styled.p`
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 `;
