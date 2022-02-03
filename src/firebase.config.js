@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCSfzkUaa3RKj1WcLxUlumng9KDb60w_Tk",
-  authDomain: "job-tracker-4bd08.firebaseapp.com",
-  projectId: "job-tracker-4bd08",
-  storageBucket: "job-tracker-4bd08.appspot.com",
-  messagingSenderId: "154944314868",
-  appId: "1:154944314868:web:d2e89b56a77da9ee302da1",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
