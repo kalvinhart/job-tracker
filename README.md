@@ -1,46 +1,35 @@
-# Getting Started with Create React App
+# Job Application Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About This App
 
-## Available Scripts
+This app was created to allow me to keep a track of the jobs that I have applied to.
 
-In the project directory, you can run:
+Jobs can be added and then displayed in a table which is sortable, filterable and searchable.
 
-### `npm start`
+Individual jobs can be viewed and updated or deleted. The user can also add the date and time of an appointment interview and edit/delete this as applicable.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+All data is stored using Firebase Firestore.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Development
 
-### `npm test`
+During development of this app I used the following technologies/dependencies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- react
+- react-router-dom
+- react-table
+- react-hook-form
+- react-hot-toast
+- firebase
+- styled-components
+- fontawesome
+- uuid
 
-### `npm run build`
+The main feature of the application is the table displaying a list of jobs. For this I chose to use `react-table` as I wanted something with all the functionality of a table, but without any styling, allowing myself to easily add table styles to my liking.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The main functionality involves the use of a form to add jobs to the table. For this I chose to use `react-hook-form` in order to easily manage the state and error handling of this feature.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+For storing data, I chose to use `firebase` as this was the simplest solution to compliment a front end as I currently do not have much back end knowledge.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For styling I have again used `styled-components` as I enjoy the flexibility it gives with it's dynamic styles based on props. The design of the app is my own.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Finally, I chose to use `react-hot-toast` in order to give visual feedback to the user that an action has completed, or that an error has occurred. This library is very easy to set up and allows for a lot of customisation.
