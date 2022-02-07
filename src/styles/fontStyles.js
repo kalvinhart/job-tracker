@@ -53,6 +53,8 @@ export const ErrorSpan = styled.span`
   font-size: 12px;
   color: var(--clr-primary);
 
+  ${({ inline }) => inline && "position: static;"}
+
   & svg {
     margin-right: 4px;
   }

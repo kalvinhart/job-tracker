@@ -4,13 +4,16 @@ import GlobalStyles from "./GlobalStyles";
 import Routes from "./Routes";
 
 import JobProvider from "./context/jobContext";
+import AuthProvider from "./context/authContext";
 
 function App() {
   return (
     <BrowserRouter>
       <JobProvider>
-        <GlobalStyles />
-        <Routes />
+        <AuthProvider>
+          <GlobalStyles />
+          <Routes />
+        </AuthProvider>
       </JobProvider>
     </BrowserRouter>
   );

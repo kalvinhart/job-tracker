@@ -18,3 +18,10 @@ export const signInWithEmail = async (email, password) => {
   const { user } = await signInWithEmailAndPassword(auth, email, password);
   return user;
 };
+
+export const authStateChange = (updateUser) => {
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    updateUser(user);
+  });
+};
