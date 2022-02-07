@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { fadeInAnimation } from "../../styles/animations";
+import { fadeInAnimation } from "../../../styles/animations";
 
 export const TableWrapper = styled.div`
   width: 1750px;

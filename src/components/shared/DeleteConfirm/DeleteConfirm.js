@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 import { StyledButtonGroup } from "./DeleteConfirm.styled";
-import { H2, StyledParagraph } from "../../styles/fontStyles";
-import { Button } from "../../styles/buttonStyles";
+import { H2, StyledParagraph } from "../../../styles/fontStyles";
+import { Button } from "../../../styles/buttonStyles";
 import Modal from "../Modal/Modal";
 
 const DeleteConfirm = ({

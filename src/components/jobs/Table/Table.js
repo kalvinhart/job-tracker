@@ -1,4 +1,4 @@
-import { useMemo, useContext } from "react";
+import { useMemo } from "react";
 import {
   useTable,
   useGlobalFilter,
@@ -6,16 +6,14 @@ import {
   useSortBy,
   usePagination,
 } from "react-table";
-import { useNavigate } from "react-router-dom";
-import { JobContext } from "../../context/jobContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSort, faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
 
-import Spinner from "../Spinner/Spinner";
 import GlobalFilter from "./GlobalFilter";
 import DefaultColumnFilter from "./DefaultColumnFilter";
 import Pagination from "./Pagination";
-import { columnData, statusOptions, centeredColumns } from "./tableConfig";
+
+import { statusOptions, centeredColumns } from "../../../tableConfig";
 
 import {
   TableWrapper,
@@ -27,27 +25,15 @@ import {
   StyledTD,
   StyledFilterIconDiv,
 } from "./Table.styled";
-import { StatusSpan } from "../../styles/fontStyles";
-import NoData from "./NoData";
+import { StatusSpan } from "../../../styles/fontStyles";
 
-const Table = () => {
-  const navigate = useNavigate();
-  const { jobs, loading, jobsForTable, setSelectedJob } = useContext(JobContext);
-
+const Table = ({ columns, data, viewJob }) => {
   const defaultColumn = useMemo(
     () => ({
       Filter: DefaultColumnFilter,
     }),
     []
   );
-
-  const columns = useMemo(() => columnData, []);
-  const data = useMemo(() => jobsForTable, [jobsForTable]);
-
-  const goToJobView = (id) => {
-    setSelectedJob(jobs.filter((job) => job.id === id)[0]);
-    navigate(`/job/${id}`);
-  };
 
   const {
     getTableProps,
@@ -78,10 +64,6 @@ const Table = () => {
     useSortBy,
     usePagination
   );
-
-  if (loading) return <Spinner />;
-
-  if (!loading && jobs.length === 0) return <NoData />;
 
   return (
     <TableWrapper>
@@ -134,10 +116,7 @@ const Table = () => {
             {page.map((row) => {
               prepareRow(row);
               return (
-                <StyledTR
-                  {...row.getRowProps()}
-                  onClick={() => goToJobView(row.original.id)}
-                >
+                <StyledTR {...row.getRowProps()} onClick={() => viewJob(row.original.id)}>
                   {row.cells.map((cell) => {
                     const center = centeredColumns.includes(cell.column.Header);
                     const cellValue = cell.render("Cell").props.value;

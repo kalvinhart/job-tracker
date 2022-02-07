@@ -2,8 +2,8 @@ import { useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 
 import { FilterWrapper, FilterOverlay } from "./Table.styled";
-import { StyledSelect } from "../../styles/formStyles";
-import { Button } from "../../styles/buttonStyles";
+import { StyledSelect } from "../../../styles/formStyles";
+import { Button } from "../../../styles/buttonStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 

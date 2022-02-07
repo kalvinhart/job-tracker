@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { JobContext } from "../../context/jobContext";
+import { JobContext } from "../../../context/jobContext";
 import { useForm, Controller } from "react-hook-form";
 
 import {
@@ -11,14 +11,14 @@ import {
   StyledFormGroup,
   StyledButtonGroup,
   StyledSelect,
-} from "../../styles/formStyles";
-import { ErrorSpan } from "../../styles/fontStyles";
-import { Button } from "../../styles/buttonStyles";
+} from "../../../styles/formStyles";
+import { ErrorSpan } from "../../../styles/fontStyles";
+import { Button } from "../../../styles/buttonStyles";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
-import { statusOptions } from "../Table/tableConfig";
+import { statusOptions } from "../../../tableConfig";
 
 const Form = () => {
   const { editing, selectedJob, saveNewJob, saveEdit, cancel } = useContext(JobContext);
