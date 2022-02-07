@@ -74,7 +74,7 @@ const JobProvider = ({ children }) => {
     try {
       const newData = await saveUpdate(updatedData);
       const newJobs = jobs.map((job) => (job.id === id ? newData : job));
-      updateSelectedJob(id, newJobs);
+      updateAllJobStates(id, newJobs);
       toastSuccess("Job successfully updated!");
     } catch (e) {
       console.log(e);
