@@ -3,9 +3,6 @@ import { BrowserRouter } from "react-router-dom";
 import GlobalStyles from "./GlobalStyles";
 import Routes from "./Routes";
 
-import Container from "./components/shared/Container/Container";
-import Header from "./components/shared/Header/Header";
-import SidePanel from "./components/shared/SidePanel/SidePanel";
 import JobProvider from "./context/jobContext";
 
 function App() {
@@ -13,11 +10,7 @@ function App() {
     <BrowserRouter>
       <JobProvider>
         <GlobalStyles />
-        <SidePanel />
-        <Container>
-          <Header />
-          <Routes />
-        </Container>
+        <Routes />
       </JobProvider>
     </BrowserRouter>
   );
