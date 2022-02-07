@@ -27,9 +27,8 @@ const AppointmentView = ({ id, interview }) => {
     setShowAddModal(false);
   };
 
-  console.log(interview);
-  const interviewDate = interview.toDate().toDateString();
-  const interviewTime = interview.toDate().toLocaleTimeString();
+  const interviewDate = interview?.toDate().toDateString();
+  const interviewTime = interview?.toDate().toLocaleTimeString();
 
   return (
     <AppointmentViewWrapper>

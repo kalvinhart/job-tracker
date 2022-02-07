@@ -1,12 +1,12 @@
 import { Routes as RoutesList, Route } from "react-router-dom";
-import JobView from "./components/job/JobView/JobView";
+import JobPage from "./components/job/JobPage";
 import JobsPage from "./components/jobs/JobsPage";
 
 const Routes = () => {
   return (
     <RoutesList>
       <Route path="/" element={<JobsPage />} />
-      <Route path="/job/:id" element={<JobView />} />
+      <Route path="/job/:id" element={<JobPage />} />
     </RoutesList>
   );
 };
