@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../../../context/authContext";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,8 +10,7 @@ import { Button } from "../../../styles/buttonStyles";
 import { H2, StyledParagraph, ErrorSpan } from "../../../styles/fontStyles";
 import { Link } from "react-router-dom";
 
-const AuthForm = ({ type }) => {
-  const { signUp, signIn } = useContext(AuthContext);
+const AuthForm = ({ type, signUp, signIn }) => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
