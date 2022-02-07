@@ -1,15 +1,15 @@
 import { useState, useContext } from "react";
-import { JobContext } from "../../context/jobContext";
+import { JobContext } from "../../../context/jobContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 
 import { AppointmentViewWrapper } from "./AppointmentView.styled";
-import { StyledBg } from "../../styles/bgStyles";
-import { Button } from "../../styles/buttonStyles";
-import { H3, StyledParagraph, BoldSpanLarge } from "../../styles/fontStyles";
+import { StyledBg } from "../../../styles/bgStyles";
+import { Button } from "../../../styles/buttonStyles";
+import { H3, StyledParagraph, BoldSpanLarge } from "../../../styles/fontStyles";
 import AddAppointment from "../AddAppointment/AddAppointment";
-import { StyledButtonGroup } from "../../styles/formStyles";
-import DeleteConfirm from "../DeleteConfirm/DeleteConfirm";
+import { StyledButtonGroup } from "../../../styles/formStyles";
+import DeleteConfirm from "../../shared/DeleteConfirm/DeleteConfirm";
 
 const AppointmentView = ({ id, interview }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);

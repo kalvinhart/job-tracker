@@ -1,13 +1,13 @@
 import { useContext } from "react";
-import { JobContext } from "../../context/jobContext";
+import { JobContext } from "../../../context/jobContext";
 
-import { Button } from "../../styles/buttonStyles";
+import { Button } from "../../../styles/buttonStyles";
 import { SidePanelContainer, SidePanelGroup } from "./SidePanel.styled";
-import { H2, Span } from "../../styles/fontStyles";
+import { H2, Span } from "../../../styles/fontStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import Form from "../Form/Form";
+import Form from "../../shared/Form/Form";
 
 const SidePanel = () => {
   const { show, setShow, setEditing, editing, cancel } = useContext(JobContext);

@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 
-import { Button } from "../../styles/buttonStyles";
+import { Button } from "../../../styles/buttonStyles";
 import FilterOptions from "./FilterOptions";
 
 const SelectColumnFilter = (props) => {

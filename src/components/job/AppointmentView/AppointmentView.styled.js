@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { StyledBg } from "../../styles/bgStyles";
-import { BoldSpanLarge } from "../../styles/fontStyles";
+import { StyledBg } from "../../../styles/bgStyles";
+import { BoldSpanLarge } from "../../../styles/fontStyles";
 
 export const AppointmentViewWrapper = styled.div`
   width: 350px;

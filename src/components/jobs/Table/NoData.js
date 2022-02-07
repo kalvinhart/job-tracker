@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { JobContext } from "../../context/jobContext";
+import { JobContext } from "../../../context/jobContext";
 
-import { StyledBg } from "../../styles/bgStyles";
+import { StyledBg } from "../../../styles/bgStyles";
 import { StyledNoDataDiv } from "./Table.styled";
-import { Button } from "../../styles/buttonStyles";
-import { H2, StyledParagraph } from "../../styles/fontStyles";
+import { Button } from "../../../styles/buttonStyles";
+import { H2, StyledParagraph } from "../../../styles/fontStyles";
 
 const NoData = () => {
   const { setShow } = useContext(JobContext);

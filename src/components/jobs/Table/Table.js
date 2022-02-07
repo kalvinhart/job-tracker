@@ -7,15 +7,15 @@ import {
   usePagination,
 } from "react-table";
 import { useNavigate } from "react-router-dom";
-import { JobContext } from "../../context/jobContext";
+import { JobContext } from "../../../context/jobContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSort, faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
 
-import Spinner from "../Spinner/Spinner";
+import Spinner from "../../shared/Spinner/Spinner";
 import GlobalFilter from "./GlobalFilter";
 import DefaultColumnFilter from "./DefaultColumnFilter";
 import Pagination from "./Pagination";
-import { columnData, statusOptions, centeredColumns } from "./tableConfig";
+import { columnData, statusOptions, centeredColumns } from "../../../tableConfig";
 
 import {
   TableWrapper,
@@ -27,7 +27,7 @@ import {
   StyledTD,
   StyledFilterIconDiv,
 } from "./Table.styled";
-import { StatusSpan } from "../../styles/fontStyles";
+import { StatusSpan } from "../../../styles/fontStyles";
 import NoData from "./NoData";
 
 const Table = () => {

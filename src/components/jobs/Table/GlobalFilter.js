@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAsyncDebounce } from "react-table";
 
 import { StyledGlobalFilter } from "./Table.styled";
-import { StyledInput } from "../../styles/formStyles";
+import { StyledInput } from "../../../styles/formStyles";
 
 const GlobalFilter = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }) => {
   const count = preGlobalFilteredRows.length;

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import { StyledHeader } from "./Header.styled";
-import { H1 } from "../../styles/fontStyles";
+import { H1 } from "../../../styles/fontStyles";
 
 const Header = () => {
   return (

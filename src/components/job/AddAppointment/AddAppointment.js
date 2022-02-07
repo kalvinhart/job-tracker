@@ -1,18 +1,18 @@
 import { useContext, useState } from "react";
-import { JobContext } from "../../context/jobContext";
+import { JobContext } from "../../../context/jobContext";
 import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-import Modal from "../Modal/Modal";
-import { ErrorSpan, H2, StyledParagraph } from "../../styles/fontStyles";
+import Modal from "../../shared/Modal/Modal";
+import { ErrorSpan, H2, StyledParagraph } from "../../../styles/fontStyles";
 import {
   StyledButtonGroup,
   StyledForm,
   StyledInput,
   StyledInputGroup,
-} from "../../styles/formStyles";
-import { Button } from "../../styles/buttonStyles";
+} from "../../../styles/formStyles";
+import { Button } from "../../../styles/buttonStyles";
 
 const AddAppointment = ({ id, show, hide }) => {
   const [loading, setLoading] = useState(false);

@@ -1,13 +1,13 @@
 import { useEffect, useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { JobContext } from "../../context/jobContext";
+import { JobContext } from "../../../context/jobContext";
 
 import AppointmentView from "../AppointmentView/AppointmentView";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import Spinner from "../Spinner/Spinner";
-import Modal from "../Modal/Modal";
-import DeleteConfirm from "../DeleteConfirm/DeleteConfirm";
+import Spinner from "../../shared/Spinner/Spinner";
+import Modal from "../../shared/Modal/Modal";
+import DeleteConfirm from "../../shared/DeleteConfirm/DeleteConfirm";
 
 import {
   StyledJobViewHeadingDiv,
@@ -17,10 +17,10 @@ import {
   StyledJobViewGroup,
   StyledJobViewItem,
 } from "./JobView.styled";
-import { StyledBg } from "../../styles/bgStyles";
-import { StatusSpan } from "../../styles/fontStyles";
-import { H2, H3, Span } from "../../styles/fontStyles";
-import { Button } from "../../styles/buttonStyles";
+import { StyledBg } from "../../../styles/bgStyles";
+import { StatusSpan } from "../../../styles/fontStyles";
+import { H2, H3, Span } from "../../../styles/fontStyles";
+import { Button } from "../../../styles/buttonStyles";
 
 const JobView = () => {
   const navigate = useNavigate();
