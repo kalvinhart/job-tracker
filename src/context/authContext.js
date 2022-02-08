@@ -15,9 +15,16 @@ const AuthProvider = ({ children }) => {
     try {
       const newUser = await createNewUserWithEmail(email, password);
       toast.success("Account created successfully!");
-    } catch (e) {
-      console.log(e.message);
-      toast.error("Something went wrong, please try again.");
+      return { user: newUser, error: null };
+    } catch ({ message }) {
+      console.log(message);
+
+      if (message.includes("auth/email-already-exists")) {
+        return { user: null, error: "A user with the email address already exists." };
+      } else {
+        toast.error("Something went wrong, please try again.");
+        return { user: null, error: "An unknown error has occurred. Please try again." };
+      }
     }
   };
 

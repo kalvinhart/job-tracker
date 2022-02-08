@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle, faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -20,6 +21,8 @@ const AuthForm = ({ type, signUp, signIn }) => {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
   const onSubmit = async (data, e) => {
     e.preventDefault();
     setLoading(true);
@@ -27,9 +30,11 @@ const AuthForm = ({ type, signUp, signIn }) => {
     if (type === "LOGIN") {
       const { user, error } = await signIn(data.email, data.password);
       setLoading(false);
-      setErrorMessage(null);
       if (error) {
         setErrorMessage(error);
+      } else {
+        setErrorMessage(null);
+        navigate("/");
       }
     }
 
@@ -38,16 +43,22 @@ const AuthForm = ({ type, signUp, signIn }) => {
         setErrorMessage("Passwords do not match.");
       }
 
-      await signUp(data.email, data.password);
+      const { user, error } = await signUp(data.email, data.password);
       setLoading(false);
-      setErrorMessage(null);
+      console.log(user);
+      if (error) {
+        setErrorMessage(error);
+      } else {
+        setErrorMessage(null);
+        navigate("/");
+      }
     }
   };
 
   return (
     <StyledBackgroundDiv>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <H2>Sign In</H2>
+        <H2>{type === "LOGIN" ? "Log in to Your Account" : "Register an Account"}</H2>
 
         <StyledInputGroup>
           <StyledLabel htmlFor="email">Email Address:</StyledLabel>
@@ -92,7 +103,7 @@ const AuthForm = ({ type, signUp, signIn }) => {
             <StyledLabel htmlFor="confirmPassword">Confirm Password:</StyledLabel>
             <StyledInput
               long
-              type="confirmPassword"
+              type="password"
               id="confirmPassword"
               {...register("confirmPassword", { required: true, minLength: 6 })}
             />

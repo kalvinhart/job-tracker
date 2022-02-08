@@ -1,15 +1,14 @@
 import SidePanel from "../SidePanel/SidePanel";
 import Container from "../Container/Container";
 import Header from "../Header/Header";
-import { Outlet } from "react-router-dom";
 
-const Layout = () => {
+const Layout = ({ children }) => {
   return (
     <>
       <SidePanel />
       <Container>
         <Header />
-        <Outlet />
+        {children}
       </Container>
     </>
   );
