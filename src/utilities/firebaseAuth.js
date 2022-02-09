@@ -9,21 +9,26 @@ import {
 
 export const createNewUserWithEmail = async (email, password) => {
   const auth = getAuth();
-  const { user } = await createUserWithEmailAndPassword(auth, email, password);
-  return user;
+  const { user: uid } = await createUserWithEmailAndPassword(auth, email, password);
+  return uid;
 };
 
 export const signInWithEmail = async (email, password) => {
   const auth = getAuth();
-  const { user } = await signInWithEmailAndPassword(auth, email, password);
-  return user;
+  const { user: uid } = await signInWithEmailAndPassword(auth, email, password);
+  return uid;
 };
 
 export const authStateChange = (updateUser) => {
   const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    updateUser(user);
+  const unsubscribe = onAuthStateChanged(auth, (user) => {
+    if (user) {
+      updateUser(user.uid);
+    } else {
+      updateUser(null);
+    }
   });
+  return unsubscribe;
 };
 
 export const signUserOut = () => {

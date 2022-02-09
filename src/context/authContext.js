@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import {
   createNewUserWithEmail,
   signInWithEmail,
@@ -11,6 +11,11 @@ export const AuthContext = createContext("");
 
 const AuthProvider = ({ children }) => {
   const [userDetails, setUserDetails] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = authStateChange(updateUser);
+    return unsubscribe;
+  }, []);
 
   const signUp = async (email, password) => {
     try {
@@ -53,15 +58,9 @@ const AuthProvider = ({ children }) => {
     signUserOut();
   };
 
-  const updateUser = (user) => {
-    if (user) {
-      setUserDetails(user);
-    } else {
-      setUserDetails(null);
-    }
+  const updateUser = (userID) => {
+    setUserDetails(userID);
   };
-
-  authStateChange(updateUser);
 
   return (
     <AuthContext.Provider value={{ userDetails, signUp, signIn, signOut }}>
