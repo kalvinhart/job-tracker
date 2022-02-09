@@ -8,14 +8,7 @@ import { H2, StyledParagraph } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
 import Modal from "../Modal/Modal";
 
-const DeleteConfirm = ({
-  id,
-  show,
-  hide,
-  actionDelete,
-  setShowDeleteModal,
-  redirect,
-}) => {
+const DeleteConfirm = ({ id, show, hide, actionDelete, redirect }) => {
   const loading = useRef();
   const navigate = useNavigate();
 
@@ -26,13 +19,14 @@ const DeleteConfirm = ({
   const handleDelete = async (id) => {
     loading.current = true;
     await actionDelete(id);
-    setShowDeleteModal(false);
+    hide();
     redirect && navigate("/");
   };
 
   const cancel = () => {
-    setShowDeleteModal(false);
+    hide();
   };
+
   return (
     <Modal show={show} hide={hide}>
       <H2>Are you sure?</H2>

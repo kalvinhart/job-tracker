@@ -64,7 +64,6 @@ const AppointmentView = ({ id, interview }) => {
                 hide={() => setShowDeleteModal(false)}
                 id={id}
                 actionDelete={removeInterview}
-                setShowDeleteModal={setShowDeleteModal}
               />
             </>
           )

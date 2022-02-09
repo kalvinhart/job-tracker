@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 import {
   fetchJobs,
   saveJob,
@@ -7,7 +7,7 @@ import {
   updateInterview,
   deleteInterview,
 } from "../utilities/firebase";
-import { sanitiseData, sanitiseDataForTable } from "../utilities/sanitise";
+import { sanitiseDataForTable } from "../utilities/sanitise";
 import { Toaster } from "react-hot-toast";
 import { toastSuccess, toastError } from "../utilities/toast";
 
@@ -94,9 +94,11 @@ const JobProvider = ({ children }) => {
       );
       updateAllJobStates(id, newJobs);
       toastSuccess("Interview successfully updated!");
+      return { error: false };
     } catch (e) {
       console.log(e.message);
       toastError("Something went wrong!");
+      return { error: true };
     }
   };
 

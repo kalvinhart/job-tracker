@@ -27,15 +27,14 @@ const AddAppointment = ({ id, show, hide }) => {
 
   const onSubmit = async (data, e) => {
     setLoading(true);
-
-    try {
-      await updateInterviewDate(id, data.interviewDate);
-    } catch (e) {
-      console.log(e.message);
+    const { error } = await updateInterviewDate(id, data.interviewDate);
+    if (!error) {
+      e.target.reset();
+      setLoading(false);
+      hide();
+    } else {
+      setLoading(false);
     }
-    e.target.reset();
-    setLoading(false);
-    hide();
   };
 
   const cancelForm = () => {
