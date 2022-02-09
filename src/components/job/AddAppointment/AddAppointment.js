@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { JobContext } from "../../../context/jobContext";
 import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,14 +17,6 @@ import { Button } from "../../../styles/buttonStyles";
 const AddAppointment = ({ id, show, hide }) => {
   const [loading, setLoading] = useState(false);
   const { updateInterviewDate } = useContext(JobContext);
-
-  let isMounted;
-
-  useEffect(() => {
-    isMounted = true;
-
-    return () => (isMounted = false);
-  });
 
   const {
     register,
