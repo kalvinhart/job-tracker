@@ -10,7 +10,7 @@ import { toast } from "react-hot-toast";
 export const AuthContext = createContext("");
 
 const AuthProvider = ({ children }) => {
-  const [userDetails, setUserDetails] = useState(null);
+  const [userID, setUserID] = useState(null);
 
   useEffect(() => {
     const unsubscribe = authStateChange(updateUser);
@@ -58,12 +58,12 @@ const AuthProvider = ({ children }) => {
     signUserOut();
   };
 
-  const updateUser = (userID) => {
-    setUserDetails(userID);
+  const updateUser = (newUserID) => {
+    setUserID(newUserID);
   };
 
   return (
-    <AuthContext.Provider value={{ userDetails, signUp, signIn, signOut }}>
+    <AuthContext.Provider value={{ userID, signUp, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
