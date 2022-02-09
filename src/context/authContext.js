@@ -5,7 +5,7 @@ import {
   authStateChange,
   signUserOut,
 } from "../utilities/firebaseAuth";
-import { toast } from "react-hot-toast";
+import { toastSuccess, toastError } from "../utilities/toast";
 
 export const AuthContext = createContext("");
 
@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
   const signUp = async (email, password) => {
     try {
       const newUser = await createNewUserWithEmail(email, password);
-      toast.success("Account created successfully!");
+      toastSuccess("Account created successfully!");
       return { user: newUser, error: null };
     } catch ({ message }) {
       console.log(message);
@@ -28,7 +28,7 @@ const AuthProvider = ({ children }) => {
       if (message.includes("auth/email-already-exists")) {
         return { user: null, error: "A user with the email address already exists." };
       } else {
-        toast.error("Something went wrong, please try again.");
+        toastError("Something went wrong, please try again.");
         return { user: null, error: "An unknown error has occurred. Please try again." };
       }
     }
@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
   const signIn = async (email, password) => {
     try {
       const user = await signInWithEmail(email, password);
-      toast.success("Signed in successfully!");
+      toastSuccess("Signed in successfully!");
       return { user, error: null };
     } catch ({ message }) {
       console.log(message);
@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
       ) {
         return { user: null, error: "Invalid username/password" };
       } else {
-        toast.error("Something went wrong, please try again.");
+        toastError("Something went wrong, please try again.");
         return { user: null, error: "An unknown error has occurred. Please try again." };
       }
     }

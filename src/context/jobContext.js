@@ -8,7 +8,8 @@ import {
   deleteInterview,
 } from "../utilities/firebase";
 import { sanitiseData, sanitiseDataForTable } from "../utilities/sanitise";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { toastSuccess, toastError } from "../utilities/toast";
 
 export const JobContext = createContext({
   show: false,
@@ -135,14 +136,6 @@ const JobProvider = ({ children }) => {
     setShow(false);
   };
 
-  const toastSuccess = (message) => {
-    toast.success(message);
-  };
-
-  const toastError = (message) => {
-    toast.error(message);
-  };
-
   return (
     <JobContext.Provider
       value={{
@@ -164,8 +157,6 @@ const JobProvider = ({ children }) => {
         show,
         removeJob,
         removeInterview,
-        toastError,
-        toastSuccess,
         updateInterviewDate,
         updateSelectedJob,
         updateTableJobs,
