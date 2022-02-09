@@ -25,3 +25,8 @@ export const authStateChange = (updateUser) => {
     updateUser(user);
   });
 };
+
+export const signUserOut = () => {
+  const auth = getAuth();
+  auth.signOut();
+};

@@ -3,6 +3,7 @@ import {
   createNewUserWithEmail,
   signInWithEmail,
   authStateChange,
+  signUserOut,
 } from "../utilities/firebaseAuth";
 import { toast } from "react-hot-toast";
 
@@ -48,6 +49,10 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const signOut = () => {
+    signUserOut();
+  };
+
   const updateUser = (user) => {
     if (user) {
       setUserDetails(user);
@@ -59,7 +64,7 @@ const AuthProvider = ({ children }) => {
   authStateChange(updateUser);
 
   return (
-    <AuthContext.Provider value={{ userDetails, signUp, signIn }}>
+    <AuthContext.Provider value={{ userDetails, signUp, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
