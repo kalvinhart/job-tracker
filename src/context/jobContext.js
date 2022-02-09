@@ -39,7 +39,6 @@ const JobProvider = ({ children }) => {
 
   const updateSelectedJob = (id, jobs) => {
     const newSelectedJob = jobs.filter((job) => job.id === id)[0];
-    console.log("newSelectedJob: ", newSelectedJob);
     setSelectedJob(newSelectedJob);
   };
 
@@ -51,7 +50,6 @@ const JobProvider = ({ children }) => {
       setJobs(newJobs);
       updateTableJobs(newJobs);
     } catch (e) {
-      console.log(e);
       toastError("Something went wrong.");
     }
   };
@@ -67,7 +65,7 @@ const JobProvider = ({ children }) => {
       updateAllJobStates(id, newJobs);
       toastSuccess("Job successfully updated!");
     } catch (e) {
-      console.log(e);
+      console.log(e.message);
       toastError("Something went wrong.");
     }
   };
@@ -80,13 +78,11 @@ const JobProvider = ({ children }) => {
       updateTableJobs(newJobs);
       toastSuccess("Job successfully deleted!");
     } catch (e) {
-      console.log(e.message);
       toastError("Something went wrong!");
     }
   };
 
   const updateInterviewDate = async (id, data) => {
-    console.log(id, data);
     try {
       const interviewDate = await updateInterview(id, data);
       const newJobs = jobs.map((job) =>
@@ -96,7 +92,6 @@ const JobProvider = ({ children }) => {
       toastSuccess("Interview successfully updated!");
       return { error: false };
     } catch (e) {
-      console.log(e.message);
       toastError("Something went wrong!");
       return { error: true };
     }
@@ -111,7 +106,6 @@ const JobProvider = ({ children }) => {
       updateAllJobStates(id, newJobs);
       toastSuccess("Interview successfully deleted!");
     } catch (e) {
-      console.log(e.message);
       toastError("Something went wrong!");
     }
   };

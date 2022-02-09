@@ -42,8 +42,6 @@ const Form = () => {
     title,
   } = selectedJob;
 
-  console.log("Form: ", date);
-
   const {
     register,
     handleSubmit,
@@ -68,8 +66,8 @@ const Form = () => {
   });
 
   const onSubmit = (data, e) => {
+    console.log(data);
     const newData = { ...data, userID };
-    console.log("Form Data: ", newData);
 
     if (editing) {
       setLoading(true);

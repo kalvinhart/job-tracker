@@ -23,7 +23,6 @@ export const fetchJobs = async (uid) => {
   querySnapshot.forEach((doc) => {
     const newData = { id: doc.id, ...doc.data() };
     jobsArray.push(newData);
-    console.log(doc.id, " => ", doc.data());
   });
 
   return jobsArray;
@@ -52,6 +51,7 @@ export const saveUpdate = async (data) => {
         ? Timestamp.fromDate(new Date(data.interview))
         : data.interview,
   };
+  console.log(newData);
   const docRef = doc(db, "jobs", newData.id);
 
   await updateDoc(docRef, newData);

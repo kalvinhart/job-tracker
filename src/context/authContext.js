@@ -23,8 +23,6 @@ const AuthProvider = ({ children }) => {
       toastSuccess("Account created successfully!");
       return { user: newUser, error: null };
     } catch ({ message }) {
-      console.log(message);
-
       if (message.includes("auth/email-already-exists")) {
         return { user: null, error: "A user with the email address already exists." };
       } else {
@@ -40,8 +38,6 @@ const AuthProvider = ({ children }) => {
       toastSuccess("Signed in successfully!");
       return { user, error: null };
     } catch ({ message }) {
-      console.log(message);
-
       if (
         message.includes("auth/user-not-found") ||
         message.includes("auth/wrong-password")

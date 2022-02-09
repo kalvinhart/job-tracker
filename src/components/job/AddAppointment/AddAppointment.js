@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { JobContext } from "../../../context/jobContext";
 import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,6 +18,15 @@ const AddAppointment = ({ id, show, hide }) => {
   const [loading, setLoading] = useState(false);
   const { updateInterviewDate } = useContext(JobContext);
 
+  let isMounted;
+
+  useEffect(() => {
+    isMounted = true;
+    console.log("useEffect: ", isMounted);
+
+    return () => (isMounted = false);
+  });
+
   const {
     register,
     handleSubmit,
@@ -28,9 +37,9 @@ const AddAppointment = ({ id, show, hide }) => {
   const onSubmit = async (data, e) => {
     setLoading(true);
     const { error } = await updateInterviewDate(id, data.interviewDate);
+
     if (!error) {
       e.target.reset();
-      setLoading(false);
       hide();
     } else {
       setLoading(false);
@@ -63,7 +72,7 @@ const AddAppointment = ({ id, show, hide }) => {
         </StyledInputGroup>
         <StyledButtonGroup>
           <Button primary type="submit" disabled={loading}>
-            {loading ? <FontAwesomeIcon icon={faSpinner} spin /> : "Save"}
+            {loading ? <FontAwesomeIcon icon={faSpinner} size="lg" spin /> : "Save"}
           </Button>
           <Button type="reset" secondary onClick={cancelForm}>
             Cancel
