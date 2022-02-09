@@ -22,7 +22,6 @@ const AddAppointment = ({ id, show, hide }) => {
 
   useEffect(() => {
     isMounted = true;
-    console.log("useEffect: ", isMounted);
 
     return () => (isMounted = false);
   });
