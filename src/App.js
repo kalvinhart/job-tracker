@@ -3,21 +3,17 @@ import { BrowserRouter } from "react-router-dom";
 import GlobalStyles from "./GlobalStyles";
 import Routes from "./Routes";
 
-import Container from "./components/shared/Container/Container";
-import Header from "./components/shared/Header/Header";
-import SidePanel from "./components/shared/SidePanel/SidePanel";
 import JobProvider from "./context/jobContext";
+import AuthProvider from "./context/authContext";
 
 function App() {
   return (
     <BrowserRouter>
       <JobProvider>
-        <GlobalStyles />
-        <SidePanel />
-        <Container>
-          <Header />
+        <AuthProvider>
+          <GlobalStyles />
           <Routes />
-        </Container>
+        </AuthProvider>
       </JobProvider>
     </BrowserRouter>
   );

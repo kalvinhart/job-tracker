@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { JobContext } from "../../../context/jobContext";
+import { AuthContext } from "../../../context/authContext";
 import { useForm, Controller } from "react-hook-form";
 
 import {
@@ -22,6 +23,7 @@ import { statusOptions } from "../../../tableConfig";
 
 const Form = () => {
   const { editing, selectedJob, saveNewJob, saveEdit, cancel } = useContext(JobContext);
+  const { userID } = useContext(AuthContext);
 
   const [loading, setLoading] = useState(false);
 
@@ -66,14 +68,15 @@ const Form = () => {
   });
 
   const onSubmit = (data, e) => {
-    console.log("Form Data: ", data);
+    const newData = { ...data, userID };
+    console.log("Form Data: ", newData);
 
     if (editing) {
       setLoading(true);
-      saveEdit(id, data);
+      saveEdit(id, newData);
     } else {
       setLoading(true);
-      saveNewJob(data);
+      saveNewJob(newData);
     }
 
     e.target.reset();

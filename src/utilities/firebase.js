@@ -1,21 +1,25 @@
 import {
   collection,
-  doc,
-  getDocs,
-  setDoc,
-  updateDoc,
   deleteDoc,
   deleteField,
+  doc,
+  getDocs,
+  query,
+  setDoc,
   Timestamp,
+  updateDoc,
+  where,
 } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { v4 as uuid } from "uuid";
 
-export const fetchJobs = async () => {
+export const fetchJobs = async (uid) => {
   let jobsArray = [];
 
-  const jobsRef = collection(db, "jobs");
-  const querySnapshot = await getDocs(jobsRef);
+  const q = query(collection(db, "jobs"), where("userID", "==", uid));
+
+  const querySnapshot = await getDocs(q);
+
   querySnapshot.forEach((doc) => {
     const newData = { id: doc.id, ...doc.data() };
     jobsArray.push(newData);

@@ -22,25 +22,14 @@ const JobProvider = ({ children }) => {
   const [jobsForTable, setJobsForTable] = useState([]);
   const [selectedJob, setSelectedJob] = useState("");
   const [show, setShow] = useState(false);
-  const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
 
-  useEffect(() => {
-    if (jobs !== null) {
-      setLoading(false);
-      return;
-    }
-
-    const retrieveJobs = async () => {
-      const originalJobs = await fetchJobs();
-      const tableJobs = sanitiseDataForTable(originalJobs);
-      setJobs(originalJobs);
-      setJobsForTable(tableJobs);
-      setLoading(false);
-    };
-
-    retrieveJobs();
-  }, [fetchJobs]);
+  const getJobs = async (uid) => {
+    const originalJobs = await fetchJobs(uid);
+    const tableJobs = sanitiseDataForTable(originalJobs);
+    setJobs(originalJobs);
+    setJobsForTable(tableJobs);
+  };
 
   const updateTableJobs = (data) => {
     const newJobs = sanitiseDataForTable(data);
@@ -130,6 +119,12 @@ const JobProvider = ({ children }) => {
     updateSelectedJob(id, newJobs);
   };
 
+  const clearAllJobStates = () => {
+    setJobs(null);
+    setJobsForTable([]);
+    setSelectedJob("");
+  };
+
   const enableEditing = () => {
     setEditing(true);
     setShow(true);
@@ -151,28 +146,29 @@ const JobProvider = ({ children }) => {
   return (
     <JobContext.Provider
       value={{
-        jobs,
-        setJobs,
-        jobsForTable,
-        setJobsForTable,
-        selectedJob,
-        setSelectedJob,
-        updateTableJobs,
-        saveNewJob,
-        removeJob,
-        saveEdit,
-        updateInterviewDate,
-        removeInterview,
-        updateSelectedJob,
-        show,
-        setShow,
-        loading,
-        editing,
-        setEditing,
-        enableEditing,
         cancel,
-        toastSuccess,
+        clearAllJobStates,
+        editing,
+        enableEditing,
+        getJobs,
+        jobs,
+        jobsForTable,
+        saveEdit,
+        saveNewJob,
+        selectedJob,
+        setEditing,
+        setJobs,
+        setJobsForTable,
+        setSelectedJob,
+        setShow,
+        show,
+        removeJob,
+        removeInterview,
         toastError,
+        toastSuccess,
+        updateInterviewDate,
+        updateSelectedJob,
+        updateTableJobs,
       }}
     >
       <Toaster position="bottom-right" />
