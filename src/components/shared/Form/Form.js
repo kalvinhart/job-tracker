@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { JobContext } from "../../../context/jobContext";
 import { AuthContext } from "../../../context/authContext";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import {
   StyledInput,
@@ -199,19 +199,13 @@ const Form = () => {
         {editing && (
           <StyledInputGroup>
             <StyledLabel htmlFor="status">Status:</StyledLabel>
-            <Controller
-              name="status"
-              control={control}
-              render={({ field }) => (
-                <StyledSelect onChange={(e) => field.onChange(e)}>
-                  {statusOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </StyledSelect>
-              )}
-            ></Controller>
+            <StyledSelect {...register("status")}>
+              {statusOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </StyledSelect>
           </StyledInputGroup>
         )}
       </StyledFormGroup>
