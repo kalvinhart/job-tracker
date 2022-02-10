@@ -6,26 +6,20 @@ import {
   useSortBy,
   usePagination,
 } from "react-table";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSort, faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
 
 import GlobalFilter from "./GlobalFilter";
 import DefaultColumnFilter from "./DefaultColumnFilter";
 import Pagination from "./Pagination";
 
-import { statusOptions, centeredColumns } from "../../../tableConfig";
+import { renderCell, renderHeader } from "../../../utilities/table";
 
 import {
   TableWrapper,
   StyledTableBorder,
   StyledTable,
   StyledTH,
-  StyledTHWrapper,
   StyledTR,
-  StyledTD,
-  StyledFilterIconDiv,
 } from "./Table.styled";
-import { StatusSpan } from "../../../styles/fontStyles";
 
 const Table = ({ columns, data, viewJob }) => {
   const defaultColumn = useMemo(
@@ -72,32 +66,7 @@ const Table = ({ columns, data, viewJob }) => {
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <StyledTH hideFirst={true} {...column.getHeaderProps()}>
-                    <StyledTHWrapper>
-                      <div {...column.getSortByToggleProps()}>
-                        {column.render("Header")}
-                        <span>
-                          {column.isSorted ? (
-                            column.isSortedDesc ? (
-                              <FontAwesomeIcon icon={faSortDown} />
-                            ) : (
-                              <FontAwesomeIcon icon={faSortUp} />
-                            )
-                          ) : (
-                            <FontAwesomeIcon icon={faSort} />
-                          )}
-                        </span>
-                      </div>
-                      <StyledFilterIconDiv
-                        isFiltered={column.filterValue ? true : false}
-                        style={{ position: "relative" }}
-                      >
-                        {column.canFilter ? column.render("Filter") : null}
-                      </StyledFilterIconDiv>
-                    </StyledTHWrapper>
-                  </StyledTH>
-                ))}
+                {headerGroup.headers.map(renderHeader)}
               </tr>
             ))}
 
@@ -117,22 +86,7 @@ const Table = ({ columns, data, viewJob }) => {
               prepareRow(row);
               return (
                 <StyledTR {...row.getRowProps()} onClick={() => viewJob(row.original.id)}>
-                  {row.cells.map((cell) => {
-                    const center = centeredColumns.includes(cell.column.Header);
-                    const cellValue = cell.render("Cell").props.value;
-                    const status = statusOptions.includes(cellValue)
-                      ? cellValue
-                      : undefined;
-                    return (
-                      <StyledTD center={center} {...cell.getCellProps()}>
-                        {status ? (
-                          <StatusSpan status={status}>{status}</StatusSpan>
-                        ) : (
-                          cell.render("Cell")
-                        )}
-                      </StyledTD>
-                    );
-                  })}
+                  {row.cells.map(renderCell)}
                 </StyledTR>
               );
             })}

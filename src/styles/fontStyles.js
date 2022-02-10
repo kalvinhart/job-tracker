@@ -24,6 +24,19 @@ export const Span = styled.span`
   ${({ multiline }) => multiline && "white-space: pre-wrap;"}
 `;
 
+export const BenefitSpan = styled.span`
+  padding: 2px 10px;
+  border-radius: var(--border-radius);
+  font-size: 12px;
+  font-weight: bold;
+  background-color: var(--clr-primary-rgba);
+  color: var(--clr-primary);
+
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+`;
+
 export const StatusSpan = styled.span`
   padding: 2px 10px;
   border-radius: var(--border-radius);
