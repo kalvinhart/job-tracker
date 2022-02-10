@@ -56,6 +56,8 @@ export const renderCell = (cell) => {
 };
 
 const renderBenefits = (benefits, amountToShow) => {
+  if (benefits.length === 0) return null;
+
   return benefits.map((benefit, i) => {
     return i <= amountToShow - 1 ? (
       <BenefitSpan key={i}>{benefit.trim()}</BenefitSpan>

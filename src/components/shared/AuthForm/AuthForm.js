@@ -28,8 +28,9 @@ const AuthForm = ({ type, signUp, signIn }) => {
     setLoading(true);
 
     if (type === "LOGIN") {
-      const { user, error } = await signIn(data.email, data.password);
+      const { error } = await signIn(data.email, data.password);
       setLoading(false);
+
       if (error) {
         setErrorMessage(error);
       } else {
@@ -41,11 +42,12 @@ const AuthForm = ({ type, signUp, signIn }) => {
     if (type === "REGISTER") {
       if (data.password !== data.confirmPassword) {
         setErrorMessage("Passwords do not match.");
+        return;
       }
 
-      const { user, error } = await signUp(data.email, data.password);
+      const { error } = await signUp(data.email, data.password);
       setLoading(false);
-      console.log(user);
+
       if (error) {
         setErrorMessage(error);
       } else {

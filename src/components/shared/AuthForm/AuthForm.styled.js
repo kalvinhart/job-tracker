@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { StyledInputGroup } from "../../../styles/formStyles";
-import { H2 } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
 
 export const StyledBackgroundDiv = styled.div`
@@ -24,7 +23,7 @@ export const StyledForm = styled.form`
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 
-  & ${H2} {
+  & h2 {
     margin-bottom: 40px;
   }
 
