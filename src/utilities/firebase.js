@@ -47,11 +47,10 @@ export const saveUpdate = async (data) => {
     ...data,
     date: Timestamp.fromDate(new Date(data.date)),
     interview:
-      typeof data.interview !== "object"
+      typeof data.interview !== "object" && data.interview !== ""
         ? Timestamp.fromDate(new Date(data.interview))
         : data.interview,
   };
-  console.log(newData);
   const docRef = doc(db, "jobs", newData.id);
 
   await updateDoc(docRef, newData);
