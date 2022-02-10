@@ -46,7 +46,6 @@ const Form = () => {
     register,
     handleSubmit,
     formState: { errors },
-    control,
     reset,
   } = useForm({
     defaultValues: {
@@ -56,8 +55,7 @@ const Form = () => {
       contactNumber: editing ? contactNumber : "",
       date: editing ? date.toDate().toISOString().slice(0, 10) : "",
       description: editing ? description : "",
-      interview:
-        interview && editing ? interview.toDate().toISOString().slice(0, 10) : "",
+      interview: interview && editing ? interview.toDate().toISOString() : "",
       location: editing ? location : "",
       salary: editing ? salary : "",
       status,
