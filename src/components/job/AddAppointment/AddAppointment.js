@@ -49,6 +49,7 @@ const AddAppointment = ({ id, show, hide }) => {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledInputGroup>
           <StyledInput
+            long
             type="datetime-local"
             id="interviewDate"
             name="interviewDate"
