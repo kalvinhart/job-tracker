@@ -44,6 +44,7 @@ export const StyledTH = styled.th`
 `;
 
 export const StyledTR = styled.tr`
+  height: 60px;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
   cursor: pointer;
