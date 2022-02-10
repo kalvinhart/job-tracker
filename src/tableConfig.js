@@ -65,4 +65,10 @@ export const columnData = [
 ];
 
 export const statusOptions = ["Pending", "Interview", "Rejected", "Expired"];
-export const centeredColumns = ["Salary", "Contact Number", "Date Applied", "Status"];
+export const centeredColumns = [
+  "Salary",
+  "Contact Number",
+  "Interview Appointment",
+  "Date Applied",
+  "Status",
+];
