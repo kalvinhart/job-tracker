@@ -59,6 +59,11 @@ const renderBenefits = (benefits, amountToShow) => {
   if (benefits.length === 0) return null;
 
   return benefits.map((benefit, i) => {
+    benefit =
+      i <= amountToShow - 1
+        ? benefit.trim().charAt(0).toUpperCase() + benefit.trim().slice(1)
+        : benefit;
+
     return i <= amountToShow - 1 ? (
       <BenefitSpan key={i}>{benefit.trim()}</BenefitSpan>
     ) : i < amountToShow + 1 ? (

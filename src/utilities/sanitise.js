@@ -5,7 +5,14 @@ export const sanitiseDataForTable = (jobs) => {
         ? job.interview.toDate().toDateString()
         : job.interview;
 
-    const benefits = job.benefits !== "" ? job.benefits.split(",") : "";
+    let benefits =
+      job.benefits !== "" && job.benefits.includes(",")
+        ? job.benefits.split(",")
+        : job.benefits;
+
+    if (typeof benefits === "string" && benefits.split("").length > 45) {
+      benefits = `${benefits.slice(0, 45)}...`;
+    }
 
     return {
       ...job,
