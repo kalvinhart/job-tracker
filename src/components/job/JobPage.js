@@ -10,7 +10,7 @@ const JobPage = () => {
 
   useEffect(() => {
     if (jobs === null || jobs.length === 0) navigate("/");
-  }, [jobs]);
+  }, [jobs, navigate]);
 
   const {
     benefits,

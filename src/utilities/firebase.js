@@ -37,7 +37,7 @@ export const saveJob = async (data) => {
     status: "Pending",
   };
 
-  const docRef = await setDoc(doc(db, "jobs", id), newData);
+  await setDoc(doc(db, "jobs", id), newData);
 
   return newData;
 };

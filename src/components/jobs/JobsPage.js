@@ -29,7 +29,7 @@ const JobsPage = () => {
     };
 
     retrieveJobs();
-  }, [userID, getJobs]);
+  }, [jobs, userID, getJobs]);
 
   const viewJob = (id) => {
     setSelectedJob(jobs.filter((job) => job.id === id)[0]);
