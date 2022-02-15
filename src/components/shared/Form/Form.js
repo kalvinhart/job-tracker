@@ -64,7 +64,6 @@ const Form = () => {
   });
 
   const onSubmit = (data, e) => {
-    console.log(data);
     const newData = { ...data, userID };
 
     if (editing) {
