@@ -3,8 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
-  GoogleAuthProvider,
-  signInWithPopup,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 export const createNewUserWithEmail = async (email, password) => {
@@ -34,4 +33,9 @@ export const authStateChange = (updateUser) => {
 export const signUserOut = () => {
   const auth = getAuth();
   auth.signOut();
+};
+
+export const sendResetEmail = async (email) => {
+  const auth = getAuth();
+  await sendPasswordResetEmail(auth, email);
 };

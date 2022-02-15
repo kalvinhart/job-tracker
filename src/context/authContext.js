@@ -4,6 +4,7 @@ import {
   signInWithEmail,
   authStateChange,
   signUserOut,
+  sendResetEmail,
 } from "../utilities/firebaseAuth";
 import { toastSuccess, toastError } from "../utilities/toast";
 
@@ -58,8 +59,17 @@ const AuthProvider = ({ children }) => {
     setUserID(newUserID);
   };
 
+  const resetPassword = async (email) => {
+    try {
+      await sendResetEmail(email);
+      toastSuccess("Please check your emails.");
+    } catch ({ message }) {
+      toastError("An error has occurred, please try again.");
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ userID, signUp, signIn, signOut }}>
+    <AuthContext.Provider value={{ userID, signUp, signIn, signOut, resetPassword }}>
       {children}
     </AuthContext.Provider>
   );
