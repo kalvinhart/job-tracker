@@ -46,13 +46,13 @@ export const StatusSpan = styled.span`
   ${(props) => {
     switch (props.status) {
       case "Pending":
-        return "background-color: rgba(223, 230, 233,0.2); color: #636e72;";
+        return "background-color: rgba(223, 230, 233,0.3); color: #636e72;";
       case "Interview":
-        return "background-color: rgba(255, 234, 167,0.2); color: #fdcb6e;";
+        return "background-color: rgba(255, 234, 167,0.3); color: #fdcb6e;";
       case "Rejected":
-        return "background-color: rgba(255, 118, 117,0.2); color: #d63031;";
+        return "background-color: rgba(255, 118, 117,0.3); color: #d63031;";
       case "Expired":
-        return "background-color: rgba(99, 110, 114,0.2); color: #2d3436;";
+        return "background-color: rgba(99, 110, 114,0.3); color: #2d3436;";
       default:
         return;
     }
