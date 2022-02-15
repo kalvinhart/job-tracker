@@ -65,7 +65,6 @@ const JobProvider = ({ children }) => {
       updateAllJobStates(id, newJobs);
       toastSuccess("Job successfully updated!");
     } catch (e) {
-      console.log(e.message);
       toastError("Something went wrong.");
     }
   };
