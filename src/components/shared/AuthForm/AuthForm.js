@@ -132,7 +132,11 @@ const AuthForm = ({ type, signUp, signIn }) => {
 
         {type === "LOGIN" && (
           <StyledParagraph>
-            <Button transparent onClick={() => navigate("/forgot-password")}>
+            <Button
+              type="button"
+              transparent
+              onClick={() => navigate("/forgot-password")}
+            >
               Forgot your password?
             </Button>
           </StyledParagraph>
