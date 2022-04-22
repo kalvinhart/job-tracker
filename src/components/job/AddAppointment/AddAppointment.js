@@ -2,7 +2,12 @@ import { useContext, useState } from "react";
 import { JobContext } from "../../../context/jobContext";
 import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationCircle, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import {
+  faExclamationCircle,
+  faSpinner,
+  faSave,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 
 import Modal from "../../shared/Modal/Modal";
 import { ErrorSpan, H2, StyledParagraph } from "../../../styles/fontStyles";
@@ -64,9 +69,17 @@ const AddAppointment = ({ id, show, hide }) => {
         </StyledInputGroup>
         <StyledButtonGroup>
           <Button primary type="submit" disabled={loading}>
-            {loading ? <FontAwesomeIcon icon={faSpinner} size="lg" spin /> : "Save"}
+            {loading ? (
+              <FontAwesomeIcon icon={faSpinner} size="lg" spin />
+            ) : (
+              <>
+                <FontAwesomeIcon icon={faSave} size="lg" />
+                {"Save"}
+              </>
+            )}
           </Button>
           <Button type="reset" secondary onClick={cancelForm}>
+            <FontAwesomeIcon icon={faTimes} size="lg" />
             Cancel
           </Button>
         </StyledButtonGroup>

@@ -3,7 +3,12 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationCircle, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import {
+  faExclamationCircle,
+  faSpinner,
+  faArrowCircleRight,
+  faUserPlus,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { StyledBackgroundDiv, StyledForm } from "./AuthForm.styled";
 import { StyledInput, StyledInputGroup, StyledLabel } from "../../../styles/formStyles";
@@ -124,9 +129,15 @@ const AuthForm = ({ type, signUp, signIn }) => {
           {loading ? (
             <FontAwesomeIcon icon={faSpinner} size="lg" spin />
           ) : type === "LOGIN" ? (
-            "Sign In"
+            <>
+              <FontAwesomeIcon icon={faArrowCircleRight} size="lg" />
+              {"Sign In"}
+            </>
           ) : (
-            "Sign Up"
+            <>
+              <FontAwesomeIcon icon={faUserPlus} size="lg" />
+              {"Sign Up"}
+            </>
           )}
         </Button>
 
@@ -143,9 +154,13 @@ const AuthForm = ({ type, signUp, signIn }) => {
         )}
       </StyledForm>
 
-      {type === "LOGIN" && (
+      {type === "LOGIN" ? (
         <StyledParagraph>
           Not registered? <Link to="/register">Sign up here!</Link>
+        </StyledParagraph>
+      ) : (
+        <StyledParagraph>
+          Already registered? <Link to="/signin">Sign in here!</Link>
         </StyledParagraph>
       )}
     </StyledBackgroundDiv>

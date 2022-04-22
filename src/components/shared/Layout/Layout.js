@@ -6,10 +6,8 @@ const Layout = ({ children }) => {
   return (
     <>
       <SidePanel />
-      <Container>
-        <Header />
-        {children}
-      </Container>
+      <Header />
+      <Container>{children}</Container>
     </>
   );
 };

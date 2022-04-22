@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { JobContext } from "../../../context/jobContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faEdit, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { AppointmentViewWrapper } from "./AppointmentView.styled";
 import { StyledBg } from "../../../styles/bgStyles";
@@ -73,6 +73,7 @@ const AppointmentView = ({ id, interview }) => {
               You do not have an interview appointment for this role.
             </StyledParagraph>
             <Button primary onClick={() => setShowAddModal(true)}>
+              <FontAwesomeIcon icon={faPlus} />
               Add Appointment
             </Button>
             <AddAppointment

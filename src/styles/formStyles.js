@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "./buttonStyles";
 
 export const StyledForm = styled.form`
   margin-top: 20px;
@@ -21,7 +22,6 @@ export const StyledInputGroup = styled.div`
 export const StyledLabel = styled.label`
   display: block;
   color: var(--clr-primary);
-  font-weight: bold;
   margin-bottom: 5px;
 `;
 
@@ -73,7 +73,7 @@ export const StyledTextArea = styled.textarea`
 export const StyledButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 200px;
+  width: 230px;
   margin-top: 20px;
   margin-left: auto;
 

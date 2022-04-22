@@ -23,10 +23,10 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <UserInfo signOut={signUserOut} />
       <Link to="/">
         <H1>Job Application Tracker</H1>
       </Link>
+      <UserInfo signOut={signUserOut} />
     </StyledHeader>
   );
 };

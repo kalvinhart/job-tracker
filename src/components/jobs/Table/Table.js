@@ -85,7 +85,11 @@ const Table = ({ columns, data, viewJob }) => {
             {page.map((row) => {
               prepareRow(row);
               return (
-                <StyledTR {...row.getRowProps()} onClick={() => viewJob(row.original.id)}>
+                <StyledTR
+                  tabIndex={0}
+                  {...row.getRowProps()}
+                  onClick={() => viewJob(row.original.id)}
+                >
                   {row.cells.map(renderCell)}
                 </StyledTR>
               );

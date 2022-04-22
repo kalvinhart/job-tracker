@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faEdit, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
 import AppointmentView from "../AppointmentView/AppointmentView";
 import DeleteConfirm from "../../shared/DeleteConfirm/DeleteConfirm";
 
@@ -50,10 +50,12 @@ const JobView = ({
         </StyledJobViewHeadingGroup>
 
         <StyledJobViewHeadingGroup>
-          <Button tertiary onClick={enableEditing}>
+          <Button secondary onClick={enableEditing}>
+            <FontAwesomeIcon icon={faEdit} />
             Edit
           </Button>
-          <Button secondary onClick={() => setShowDeleteModal(true)}>
+          <Button danger onClick={() => setShowDeleteModal(true)}>
+            <FontAwesomeIcon icon={faTrash} />
             Delete
           </Button>
         </StyledJobViewHeadingGroup>

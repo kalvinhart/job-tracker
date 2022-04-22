@@ -8,6 +8,21 @@ const fadeInAnimationDiv = css`
   animation-fill-mode: forwards;
 `;
 
+export const StyledSidePanelOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 499;
+
+  ${(props) => props.show && "visibility: visible; opacity: 1;"}
+`;
+
 export const SidePanelContainer = styled.div`
   position: fixed;
   z-index: 500;
@@ -19,10 +34,11 @@ export const SidePanelContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
+  border-right: var(--clr-outline);
   border-top-right-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
 
-  background-color: var(--clr-secondary);
+  background-color: white;
   box-shadow: var(--box-shadow);
 
   transition: width var(--side-panel-animation-speed) ease-in-out;
