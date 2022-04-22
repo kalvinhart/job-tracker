@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { JobContext } from "../../../context/jobContext";
+import { openSidePanel, closeSidePanel, enableEditing } from "../../../slices/uiSlice";
 
 import { Button } from "../../../styles/buttonStyles";
 import {
@@ -13,18 +12,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import Form from "../../shared/Form/Form";
-import { toggleSidePanel } from "../../../slices/uiSlice";
 
 const SidePanel = () => {
   const dispatch = useDispatch();
-  const { showSidePanel } = useSelector((state) => state.ui);
-
-  const { setEditing, editing } = useContext(JobContext);
-
-  const enableAddNew = () => {
-    setEditing(false);
-    dispatch(toggleSidePanel());
-  };
+  const { showSidePanel, editing } = useSelector((state) => state.ui);
 
   return (
     <>
@@ -34,14 +25,18 @@ const SidePanel = () => {
           <Button
             horizontal
             visible={showSidePanel}
-            onClick={() => dispatch(toggleSidePanel())}
+            onClick={() => dispatch(closeSidePanel())}
           >
             <Span>C l o s e</Span>
             <FontAwesomeIcon icon={faTimes} className="cross-icon" size="lg" />
           </Button>
         )}
         <SidePanelGroup animated show={!showSidePanel}>
-          <Button vertical visible={!showSidePanel} onClick={enableAddNew}>
+          <Button
+            vertical
+            visible={!showSidePanel}
+            onClick={() => dispatch(openSidePanel())}
+          >
             <FontAwesomeIcon icon={faPlus} className="plus-icon" size="lg" />
             <Span>A</Span>
             <Span>D</Span>

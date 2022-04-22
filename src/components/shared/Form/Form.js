@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
+import { closeSidePanel } from "../../../slices/uiSlice";
 import { JobContext } from "../../../context/jobContext";
 import { AuthContext } from "../../../context/authContext";
 import { useForm } from "react-hook-form";
@@ -27,7 +28,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { statusOptions } from "../../../tableConfig";
-import { toggleSidePanel } from "../../../slices/uiSlice";
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -85,12 +85,12 @@ const Form = () => {
 
     e.target.reset();
     setLoading(false);
-    dispatch(toggleSidePanel());
+    dispatch(closeSidePanel());
   };
 
   const cancelForm = () => {
     reset();
-    dispatch(toggleSidePanel());
+    dispatch(closeSidePanel());
   };
 
   return (

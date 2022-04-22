@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import JobView from "./JobView/JobView";
 
 const JobPage = () => {
-  const { jobs, selectedJob, enableEditing, removeJob } = useContext(JobContext);
+  const { jobs, selectedJob, removeJob } = useContext(JobContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,7 +41,6 @@ const JobPage = () => {
       salary={salary}
       status={status}
       title={title}
-      enableEditing={enableEditing}
       removeJob={removeJob}
     />
   );

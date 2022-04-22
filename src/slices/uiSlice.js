@@ -4,14 +4,22 @@ const uiSlice = createSlice({
   name: "ui",
   initialState: {
     showSidePanel: false,
+    editing: false,
   },
   reducers: {
-    toggleSidePanel: (state) => {
-      state.showSidePanel = !state.showSidePanel;
+    openSidePanel: (state) => {
+      state.showSidePanel = true;
+    },
+    closeSidePanel: (state) => {
+      state.showSidePanel = false;
+      state.editing = false;
+    },
+    enableEditing: (state) => {
+      state.editing = true;
     },
   },
 });
 
-export const { toggleSidePanel } = uiSlice.actions;
+export const { openSidePanel, closeSidePanel, enableEditing } = uiSlice.actions;
 
 export default uiSlice.reducer;

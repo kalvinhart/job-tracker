@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+
+import { enableEditing, openSidePanel } from "../../../slices/uiSlice";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faEdit, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -32,9 +35,15 @@ const JobView = ({
   salary,
   status,
   title,
-  enableEditing,
   removeJob,
 }) => {
+  const dispatch = useDispatch();
+
+  const openEdit = () => {
+    dispatch(enableEditing());
+    dispatch(openSidePanel());
+  };
+
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   return (
@@ -50,7 +59,7 @@ const JobView = ({
         </StyledJobViewHeadingGroup>
 
         <StyledJobViewHeadingGroup>
-          <Button secondary onClick={enableEditing}>
+          <Button secondary onClick={openEdit}>
             <FontAwesomeIcon icon={faEdit} />
             Edit
           </Button>
