@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 import { StyledButtonGroup } from "./DeleteConfirm.styled";
 import { H2, StyledParagraph } from "../../../styles/fontStyles";
@@ -36,10 +36,14 @@ const DeleteConfirm = ({ id, show, hide, actionDelete, redirect }) => {
           {loading.current ? (
             <FontAwesomeIcon icon={faSpinner} size="lg" spin />
           ) : (
-            "Confirm"
+            <>
+              <FontAwesomeIcon icon={faCheck} size="lg" />
+              {"Confirm"}
+            </>
           )}
         </Button>
         <Button secondary onClick={cancel}>
+          <FontAwesomeIcon icon={faTimes} size="lg" />
           Cancel
         </Button>
       </StyledButtonGroup>

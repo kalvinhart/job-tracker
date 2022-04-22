@@ -9,40 +9,106 @@ const fadeInAnimationCloseButton = css`
 `;
 
 export const Button = styled.button`
-  padding: 10px 20px;
+  padding: 5px 20px;
   min-width: 95px;
   border: 2px solid transparent;
   border-radius: var(--border-radius);
   font-family: inherit;
   font-size: 14px;
-  font-weight: bold;
   cursor: pointer;
-  transition: border 0.2s ease-in-out;
+  transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
 
-  ${(props) => props.primary && "background-color: var(--clr-primary); color: white;"}
+  ${(props) =>
+    props.primary &&
+    `
+  background-color: var(--clr-primary);
+  color: white;
+  border: 2px solid var(--clr-primary);
+
+  &:hover,
+  &:focus {
+    background-color: white;
+    color: var(--clr-primary);
+  }
+  `}
 
   ${(props) =>
     props.secondary &&
-    "background-color: var(--clr-secondary); color: var(--clr-primary);"}
+    `
+    background-color: white;
+    color: var(--clr-primary);
+    border: 2px solid var(--clr-primary);
+    
+    &:hover,
+    &:focus {
+      background-color: var(--clr-primary);
+      color: white;
+    }
+    `}
   
   ${(props) =>
-    props.tertiary &&
-    "background-color: var(--clr-tertiary); color: var(--clr-tertiary-text);"}
+    props.danger &&
+    `
+    background-color: white;
+    color: var(--clr-danger);
+    border: 2px solid var(--clr-danger);
+
+    
+    &:hover,
+    &:focus {
+      background-color: var(--clr-danger);
+      color: white;
+    }
+    `}
+
+    ${(props) =>
+    (props.primary || props.secondary || props.danger || props.transparent) &&
+    `
+    & svg {
+    margin-right: 10px;
+  }
+    `}
 
     /* styles for side-panel main button */
   ${(props) =>
     props.vertical &&
-    "min-width: 30px; padding: 10px; background-color: transparent; font-size: 14px; font-weight: normal; color: white; white-space: pre-line; text-transform: uppercase;"}
+    `
+    min-width: 30px;
+    padding: 10px;
+    background-color: transparent;
+    font-size: 14px;
+    font-weight: normal;
+    color: var(--clr-grey-dark);
+    white-space: pre-line;
+    text-transform: uppercase;
+    
+    & span {
+      display: block; 
+      margin-bottom: 5px;
+    }
+  `}
   
-  ${(props) => props.vertical && "& span { display: block; margin-bottom: 10px; }"}
-
   /* styles for side-panel close button */
   ${(props) =>
     props.horizontal &&
-    "background-color: transparent; visibility: hidden; z-index: 2; font-size: 14px; font-weight: normal; color: white; text-transform: uppercase; position: absolute; top: 20px; right: 20px;"}
+    `
+    background-color: transparent;
+    visibility: hidden;
+    z-index: 2;
+    font-size: 14px;
+    font-weight: normal;
+    color: var(--clr-grey-dark);
+    text-transform: uppercase;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    
+    
+  `}
   
   ${(props) => props.horizontal && fadeInAnimationCloseButton}
-
+  
   ${(props) =>
     props.visible
       ? "display: block;"
@@ -50,20 +116,18 @@ export const Button = styled.button`
       ? "display: none;"
       : ""}
 
-    /* styles for transparent buttons */
-    ${(props) =>
-    props.transparent && "min-width: unset; padding: 2px; background-color: transparent;"}
+  /* styles for transparent buttons */
+  ${(props) =>
+    props.transparent &&
+    `
+    min-width: unset;
+    padding: 2px;
+    background-color: transparent;
 
-    & svg {
-    ${(props) => props.transparent && "margin-right: 4px;"}
-  }
+    &:hover,
+    &:focus {
+      color: var(--clr-tertiary);
+    }
 
-  &:hover,
-  &:focus {
-    ${(props) => props.primary && "border: 2px solid white;"}
-    ${(props) => props.secondary && "border: 2px solid var(--clr-primary);"}
-    ${(props) => props.tertiary && "border: 2px solid var(--clr-tertiary-text);"}
-
-    ${(props) => props.transparent && "color: var(--clr-tertiary);"}
-  }
+  `}
 `;

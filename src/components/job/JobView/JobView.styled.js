@@ -23,8 +23,8 @@ export const JobViewContainer = styled.div`
 
   & a {
     position: absolute;
-    top: -60px;
-    left: 20px;
+    top: 7px;
+    left: -200px;
   }
 
   & h2 {

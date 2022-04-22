@@ -17,7 +17,12 @@ import { ErrorSpan } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSpinner,
+  faExclamationCircle,
+  faSave,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { statusOptions } from "../../../tableConfig";
 
@@ -266,9 +271,17 @@ const Form = () => {
 
       <StyledButtonGroup>
         <Button type="submit" primary disabled={loading}>
-          {loading ? <FontAwesomeIcon icon={faSpinner} size="lg" spin /> : "Save"}
+          {loading ? (
+            <FontAwesomeIcon icon={faSpinner} size="lg" spin />
+          ) : (
+            <>
+              <FontAwesomeIcon icon={faSave} size="lg" />
+              {"Save"}
+            </>
+          )}
         </Button>
-        <Button type="button" tertiary onClick={cancelForm}>
+        <Button type="button" secondary onClick={cancelForm}>
+          <FontAwesomeIcon icon={faTimes} size="lg" />
           Cancel
         </Button>
       </StyledButtonGroup>

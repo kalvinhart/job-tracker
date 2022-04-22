@@ -10,20 +10,28 @@ const GlobalStyle = createGlobalStyle`
     }
 
     :root {
-        --clr-primary: #f25b86;
+        --clr-primary: #018989;
         --clr-primary-rgba: rgba(242, 91, 134, 0.3);
         --clr-secondary: #2a2a2a;
-        --clr-tertiary: #636e72;
-        --clr-tertiary-text: #00a8ff;
-        --clr-bg: #f1f1f2;
-        --clr-light: #fafafa;
-        --clr-outline: #eae9eb;
+        --clr-danger: #cc0000;
+        --clr-bg: #fafafa;
+        --clr-light: #fcfcfc;
+        --clr-outline: #F0F0F0;
         --clr-dark: #e1dfe3;
+
+        --clr-grey-light: #fcfcfc;
+        --clr-grey-dark: #404040;
+        --clr-error: #cc0000;
+
+        --clr-h1: #18A1E0;
+        --clr-h3: #01CEE0;
+
+        --clr-row-hover: #f7fdff;
         
         --border-radius: 5px;
-        --box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.1);
+        --box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
         
-        --side-panel-width: 50px;
+        --side-panel-width: 80px;
         --side-panel-animation-speed: 0.2s;
         --side-panel-animation-delay: 0.4s;
     }
@@ -33,7 +41,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        font-family: Nunito, sans-serif;
+        font-family: Roboto, sans-serif;
         background-color: var(--clr-bg);
     }
 
