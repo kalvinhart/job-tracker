@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { JobContext } from "../../../context/jobContext";
 
 import { Button } from "../../../styles/buttonStyles";
@@ -12,27 +13,35 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import Form from "../../shared/Form/Form";
+import { toggleSidePanel } from "../../../slices/uiSlice";
 
 const SidePanel = () => {
-  const { show, setShow, setEditing, editing, cancel } = useContext(JobContext);
+  const dispatch = useDispatch();
+  const { showSidePanel } = useSelector((state) => state.ui);
+
+  const { setEditing, editing } = useContext(JobContext);
 
   const enableAddNew = () => {
     setEditing(false);
-    setShow(true);
+    dispatch(toggleSidePanel());
   };
 
   return (
     <>
-      <StyledSidePanelOverlay show={show} />
-      <SidePanelContainer show={show}>
-        {show && (
-          <Button horizontal visible={show} onClick={cancel}>
+      <StyledSidePanelOverlay show={showSidePanel} />
+      <SidePanelContainer show={showSidePanel}>
+        {showSidePanel && (
+          <Button
+            horizontal
+            visible={showSidePanel}
+            onClick={() => dispatch(toggleSidePanel())}
+          >
             <Span>C l o s e</Span>
             <FontAwesomeIcon icon={faTimes} className="cross-icon" size="lg" />
           </Button>
         )}
-        <SidePanelGroup animated show={!show}>
-          <Button vertical visible={!show} onClick={enableAddNew}>
+        <SidePanelGroup animated show={!showSidePanel}>
+          <Button vertical visible={!showSidePanel} onClick={enableAddNew}>
             <FontAwesomeIcon icon={faPlus} className="plus-icon" size="lg" />
             <Span>A</Span>
             <Span>D</Span>
@@ -43,8 +52,8 @@ const SidePanel = () => {
           </Button>
         </SidePanelGroup>
 
-        {show && (
-          <SidePanelGroup animated show={show}>
+        {showSidePanel && (
+          <SidePanelGroup animated show={showSidePanel}>
             {editing ? <H2>Edit Job</H2> : <H2>Add A New Job</H2>}
             <Form />
           </SidePanelGroup>

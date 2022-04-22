@@ -1,4 +1,6 @@
 import { useContext, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { JobContext } from "../../../context/jobContext";
 import { AuthContext } from "../../../context/authContext";
 import { useForm } from "react-hook-form";
@@ -25,8 +27,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { statusOptions } from "../../../tableConfig";
+import { toggleSidePanel } from "../../../slices/uiSlice";
 
 const Form = () => {
+  const dispatch = useDispatch();
   const { editing, selectedJob, saveNewJob, saveEdit, cancel } = useContext(JobContext);
   const { userID } = useContext(AuthContext);
 
@@ -81,12 +85,12 @@ const Form = () => {
 
     e.target.reset();
     setLoading(false);
-    cancel();
+    dispatch(toggleSidePanel());
   };
 
   const cancelForm = () => {
     reset();
-    cancel();
+    dispatch(toggleSidePanel());
   };
 
   return (
