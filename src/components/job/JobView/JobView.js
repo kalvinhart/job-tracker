@@ -6,6 +6,7 @@ import { enableEditing, openSidePanel } from "../../../slices/uiSlice";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faEdit, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
+
 import AppointmentView from "../AppointmentView/AppointmentView";
 import DeleteConfirm from "../../shared/DeleteConfirm/DeleteConfirm";
 
@@ -17,25 +18,27 @@ import {
   StyledJobViewGroup,
   StyledJobViewItem,
 } from "./JobView.styled";
+
 import { StyledBg } from "../../../styles/bgStyles";
 import { StatusSpan } from "../../../styles/fontStyles";
 import { H2, H3, Span } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
 
 const JobView = ({
-  benefits,
-  company,
-  contactName,
-  contactNumber,
-  date,
-  description,
-  id,
-  interview,
-  location,
-  salary,
-  status,
-  title,
-  removeJob,
+  currentJob: {
+    benefits,
+    company,
+    contactName,
+    contactNumber,
+    date,
+    description,
+    id,
+    interview,
+    location,
+    salary,
+    status,
+    title,
+  },
 }) => {
   const dispatch = useDispatch();
 
@@ -52,6 +55,7 @@ const JobView = ({
         <FontAwesomeIcon icon={faArrowLeft} />
         Back
       </Link>
+
       <StyledJobViewHeadingDiv>
         <StyledJobViewHeadingGroup>
           <H2>{title}</H2>
@@ -74,7 +78,7 @@ const JobView = ({
           show={showDeleteModal}
           hide={() => setShowDeleteModal(false)}
           id={id}
-          actionDelete={removeJob}
+          actionDelete={() => {}}
           setShowDeleteModal={setShowDeleteModal}
         />
       </StyledJobViewHeadingDiv>
@@ -111,7 +115,7 @@ const JobView = ({
 
             <StyledJobViewItem>
               <H3>Date Applied:</H3>
-              <Span>{date?.toDate().toDateString()}</Span>
+              <Span>{new Date(date).toDateString()}</Span>
             </StyledJobViewItem>
           </StyledJobViewGroup>
 
@@ -125,6 +129,7 @@ const JobView = ({
           <H3>Job Description:</H3>
           <Span multiline>{description}</Span>
         </StyledBg>
+
         <AppointmentView id={id} interview={interview ? interview : undefined} />
       </JobViewContentWrapper>
     </JobViewContainer>

@@ -1,49 +1,20 @@
-import { useEffect, useContext } from "react";
-import { JobContext } from "../../context/jobContext";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 import JobView from "./JobView/JobView";
 
 const JobPage = () => {
-  const { jobs, selectedJob, removeJob } = useContext(JobContext);
   const navigate = useNavigate();
 
+  const { currentJob } = useSelector((state) => state.job);
+
   useEffect(() => {
-    if (jobs === null || jobs.length === 0) navigate("/");
-  }, [jobs, navigate]);
+    if (!currentJob) {
+      return navigate("/");
+    }
+  }, [currentJob]);
 
-  const {
-    benefits,
-    company,
-    contactName,
-    contactNumber,
-    date,
-    description,
-    id,
-    interview,
-    location,
-    salary,
-    status,
-    title,
-  } = selectedJob;
-
-  return (
-    <JobView
-      benefits={benefits}
-      company={company}
-      contactName={contactName}
-      contactNumber={contactNumber}
-      date={date}
-      description={description}
-      id={id}
-      interview={interview}
-      location={location}
-      salary={salary}
-      status={status}
-      title={title}
-      removeJob={removeJob}
-    />
-  );
+  return currentJob && <JobView currentJob={currentJob} />;
 };
-
 export default JobPage;

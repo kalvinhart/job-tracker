@@ -31,21 +31,6 @@ const JobProvider = ({ children }) => {
     setSelectedJob(newSelectedJob);
   };
 
-  const saveEdit = async (id, data) => {
-    const updatedData = {
-      ...data,
-      id,
-    };
-    try {
-      const newData = await saveUpdate(updatedData);
-      const newJobs = jobs.map((job) => (job.id === id ? newData : job));
-      updateAllJobStates(id, newJobs);
-      toastSuccess("Job successfully updated!");
-    } catch (e) {
-      toastError("Something went wrong.");
-    }
-  };
-
   const removeJob = async (id) => {
     try {
       await deleteJob(id);
@@ -104,7 +89,6 @@ const JobProvider = ({ children }) => {
         clearAllJobStates,
         jobs,
         jobsForTable,
-        saveEdit,
         selectedJob,
         setJobs,
         setJobsForTable,
