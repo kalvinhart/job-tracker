@@ -1,7 +1,5 @@
 import { createContext, useState } from "react";
 import {
-  fetchJobs,
-  saveJob,
   deleteJob,
   saveUpdate,
   updateInterview,
@@ -22,15 +20,6 @@ const JobProvider = ({ children }) => {
   const [jobs, setJobs] = useState(null);
   const [jobsForTable, setJobsForTable] = useState([]);
   const [selectedJob, setSelectedJob] = useState("");
-  const [show, setShow] = useState(false);
-  const [editing, setEditing] = useState(false);
-
-  const getJobs = async (uid) => {
-    const originalJobs = await fetchJobs(uid);
-    const tableJobs = sanitiseDataForTable(originalJobs);
-    setJobs(originalJobs);
-    setJobsForTable(tableJobs);
-  };
 
   const updateTableJobs = (data) => {
     const newJobs = sanitiseDataForTable(data);
@@ -40,18 +29,6 @@ const JobProvider = ({ children }) => {
   const updateSelectedJob = (id, jobs) => {
     const newSelectedJob = jobs.filter((job) => job.id === id)[0];
     setSelectedJob(newSelectedJob);
-  };
-
-  const saveNewJob = async (data) => {
-    try {
-      const newData = await saveJob(data);
-      const newJobs = [...jobs, newData];
-      toastSuccess("Job successfully saved!");
-      setJobs(newJobs);
-      updateTableJobs(newJobs);
-    } catch (e) {
-      toastError("Something went wrong.");
-    }
   };
 
   const saveEdit = async (id, data) => {
@@ -121,35 +98,17 @@ const JobProvider = ({ children }) => {
     setSelectedJob("");
   };
 
-  const enableEditing = () => {
-    setEditing(true);
-    setShow(true);
-  };
-
-  const cancel = () => {
-    setEditing(false);
-    setShow(false);
-  };
-
   return (
     <JobContext.Provider
       value={{
-        cancel,
         clearAllJobStates,
-        editing,
-        enableEditing,
-        getJobs,
         jobs,
         jobsForTable,
         saveEdit,
-        saveNewJob,
         selectedJob,
-        setEditing,
         setJobs,
         setJobsForTable,
         setSelectedJob,
-        setShow,
-        show,
         removeJob,
         removeInterview,
         updateInterviewDate,

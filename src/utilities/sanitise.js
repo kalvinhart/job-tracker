@@ -1,8 +1,8 @@
 export const sanitiseDataForTable = (jobs) => {
   return jobs.map((job) => {
     const interview =
-      typeof job.interview === "object"
-        ? job.interview.toDate().toDateString()
+      typeof job.interview === "number"
+        ? new Date(job.interview).toDateString()
         : job.interview;
 
     let benefits =
@@ -18,7 +18,7 @@ export const sanitiseDataForTable = (jobs) => {
       ...job,
       benefits,
       salary: `£${job.salary}`,
-      date: job.date.toDate().toDateString(),
+      date: new Date(job.date).toDateString(),
       interview,
     };
   });

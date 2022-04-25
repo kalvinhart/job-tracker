@@ -28,10 +28,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { statusOptions } from "../../../tableConfig";
+import { saveNewJob } from "../../../slices/jobSlice";
 
 const Form = () => {
   const dispatch = useDispatch();
-  const { editing, selectedJob, saveNewJob, saveEdit, cancel } = useContext(JobContext);
+  const { editing, selectedJob, saveEdit } = useContext(JobContext);
   const { userID } = useContext(AuthContext);
 
   const [loading, setLoading] = useState(false);
@@ -73,6 +74,7 @@ const Form = () => {
   });
 
   const onSubmit = (data, e) => {
+    console.log(data);
     const newData = { ...data, userID };
 
     if (editing) {
@@ -80,7 +82,7 @@ const Form = () => {
       saveEdit(id, newData);
     } else {
       setLoading(true);
-      saveNewJob(newData);
+      dispatch(saveNewJob(newData));
     }
 
     e.target.reset();
