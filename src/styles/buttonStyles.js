@@ -19,6 +19,15 @@ export const Button = styled.button`
   transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out,
     color 0.2s ease-in-out;
 
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--clr-primary-dark);
+
+    & svg {
+      margin-right: 0;
+    }
+  }
+
   ${(props) =>
     props.primary &&
     `
