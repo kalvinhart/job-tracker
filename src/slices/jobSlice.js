@@ -6,7 +6,7 @@ import { closeSidePanel, setShowAppointmentModal } from "./uiSlice";
 
 import { toast } from "react-hot-toast";
 
-export const loadAllJobs = createAsyncThunk("job/getJobs", async (uid) => {
+export const loadAllJobs = createAsyncThunk("job/loadAllJobs", async (uid) => {
   try {
     const rawJobs = await fetchJobs(uid);
     const sanitsedJobs = sanitiseDataForTable(rawJobs);
@@ -65,22 +65,10 @@ const jobSlice = createSlice({
     error: false,
   },
   reducers: {
-    getJobs: (state, action) => {
-      state.loading = false;
-      state.error = false;
-      state.jobs = action.payload.rawJobs;
-      state.jobsForTable = action.payload.sanitsedJobs;
-    },
     setCurrentJob: (state, action) => {
       state.currentJob = action.payload;
     },
-    saveNewJob: (state, action) => {
-      state.loading = false;
-      state.error = false;
-      state.jobs.push(action.payload);
-      state.jobsForTable.push(sanitiseDataForTable(action.payload));
-    },
-    clearJobState: (state, action) => {
+    clearJobState: (state) => {
       state.loading = true;
       state.error = false;
       state.jobs = null;
