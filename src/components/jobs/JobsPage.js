@@ -13,9 +13,7 @@ import { loadAllJobs, setCurrentJob } from "../../slices/jobSlice";
 
 const JobsPage = () => {
   const dispatch = useDispatch();
-  const { loading, jobs, jobsForTable, currentJob, error } = useSelector(
-    (state) => state.job
-  );
+  const { loading, jobs, jobsForTable } = useSelector((state) => state.job);
 
   const { userID } = useContext(AuthContext);
 
@@ -30,7 +28,7 @@ const JobsPage = () => {
     }
 
     dispatch(loadAllJobs(userID));
-  }, [jobs, userID, loadAllJobs, dispatch]);
+  }, [jobs, userID, dispatch]);
 
   const viewJob = (id) => {
     dispatch(setCurrentJob(jobs.filter((job) => job.id === id)[0]));

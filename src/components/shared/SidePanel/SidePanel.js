@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { openSidePanel, closeSidePanel, enableEditing } from "../../../slices/uiSlice";
+import { openSidePanel, closeSidePanel } from "../../../slices/uiSlice";
 
 import { Button } from "../../../styles/buttonStyles";
 import {

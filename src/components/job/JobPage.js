@@ -13,7 +13,7 @@ const JobPage = () => {
     if (!currentJob) {
       return navigate("/");
     }
-  }, [currentJob]);
+  }, [currentJob, navigate]);
 
   return currentJob && <JobView currentJob={currentJob} />;
 };
