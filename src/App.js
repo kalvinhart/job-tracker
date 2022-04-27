@@ -7,19 +7,16 @@ import store from "./store";
 import GlobalStyles from "./GlobalStyles";
 import Routes from "./Routes";
 
-import JobProvider from "./context/jobContext";
 import AuthProvider from "./context/authContext";
 
 function App() {
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <JobProvider>
-          <AuthProvider>
-            <GlobalStyles />
-            <Routes />
-          </AuthProvider>
-        </JobProvider>
+        <GlobalStyles />
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
       </Provider>
     </BrowserRouter>
   );

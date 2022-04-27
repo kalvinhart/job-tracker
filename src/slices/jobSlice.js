@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchJobs, saveJob, saveUpdate } from "../utilities/firebase";
+import { fetchJobs, saveJob, saveUpdate, deleteJob } from "../utilities/firebase";
 import { sanitiseDataForTable } from "../utilities/sanitise";
+import { closeSidePanel, setShowAppointmentModal } from "./uiSlice";
 
 export const loadAllJobs = createAsyncThunk("job/getJobs", async (uid) => {
   try {
@@ -12,19 +13,37 @@ export const loadAllJobs = createAsyncThunk("job/getJobs", async (uid) => {
   }
 });
 
-export const saveNewJob = createAsyncThunk("job/saveNewJob", async (data) => {
-  try {
-    const newJob = await saveJob(data);
-    return newJob;
-  } catch (err) {
-    console.log(err.message);
+export const saveNewJob = createAsyncThunk(
+  "job/saveNewJob",
+  async (data, { dispatch }) => {
+    try {
+      const newJob = await saveJob(data);
+      dispatch(closeSidePanel());
+      return newJob;
+    } catch (err) {
+      console.log(err.message);
+    }
   }
-});
+);
 
-export const saveEditedJob = createAsyncThunk("job/saveEditedJob", async (data) => {
+export const saveEditedJob = createAsyncThunk(
+  "job/saveEditedJob",
+  async (data, { dispatch }) => {
+    try {
+      const editedJob = await saveUpdate(data);
+      dispatch(setShowAppointmentModal(false));
+      dispatch(closeSidePanel());
+      return editedJob;
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+);
+
+export const deleteJobById = createAsyncThunk("job/deleteJobById", async (id) => {
   try {
-    const editedJob = await saveUpdate(data);
-    return editedJob;
+    await deleteJob(id);
+    return id;
   } catch (err) {
     console.log(err.message);
   }
@@ -54,6 +73,13 @@ const jobSlice = createSlice({
       state.error = false;
       state.jobs.push(action.payload);
       state.jobsForTable.push(sanitiseDataForTable(action.payload));
+    },
+    clearJobState: (state, action) => {
+      state.loading = true;
+      state.error = false;
+      state.jobs = null;
+      state.jobsForTable = null;
+      state.currentJob = null;
     },
   },
   extraReducers(builder) {
@@ -90,16 +116,37 @@ const jobSlice = createSlice({
       })
       .addCase(saveEditedJob.fulfilled, (state, action) => {
         state.loading = false;
-        state.jobs.push(action.payload);
+        state.jobs = state.jobs.map((job) => {
+          if (job.id === action.payload.id) {
+            return action.payload;
+          } else {
+            return job;
+          }
+        });
         state.jobsForTable = sanitiseDataForTable([...state.jobs]);
+        state.currentJob = action.payload;
       })
       .addCase(saveEditedJob.rejected, (state, action) => {
+        state.loading = false;
+        state.error = true;
+      })
+      .addCase(deleteJobById.pending, (state, action) => {
+        state.error = false;
+        state.loading = true;
+      })
+      .addCase(deleteJobById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.jobs = state.jobs.filter((job) => job.id !== action.payload);
+        state.jobsForTable = sanitiseDataForTable([...state.jobs]);
+        state.currentJob = null;
+      })
+      .addCase(deleteJobById.rejected, (state, action) => {
         state.loading = false;
         state.error = true;
       });
   },
 });
 
-export const { setCurrentJob } = jobSlice.actions;
+export const { setCurrentJob, clearJobState } = jobSlice.actions;
 
 export default jobSlice.reducer;

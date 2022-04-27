@@ -4,6 +4,8 @@ const uiSlice = createSlice({
   name: "ui",
   initialState: {
     showSidePanel: false,
+    showAppointmentModal: false,
+    showDeleteWarning: { deleteJob: false, deleteInterview: false },
     editing: false,
   },
   reducers: {
@@ -17,9 +19,24 @@ const uiSlice = createSlice({
     enableEditing: (state) => {
       state.editing = true;
     },
+    setShowAppointmentModal: (state, action) => {
+      state.showAppointmentModal = action.payload;
+    },
+    setShowDeleteWarning: (state, action) => {
+      state.showDeleteWarning = {
+        ...state.showDeleteWarning,
+        ...action.payload,
+      };
+    },
   },
 });
 
-export const { openSidePanel, closeSidePanel, enableEditing } = uiSlice.actions;
+export const {
+  openSidePanel,
+  closeSidePanel,
+  enableEditing,
+  setShowAppointmentModal,
+  setShowDeleteWarning,
+} = uiSlice.actions;
 
 export default uiSlice.reducer;
