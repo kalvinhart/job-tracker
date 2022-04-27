@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Button } from "./buttonStyles";
 
 export const StyledForm = styled.form`
   margin-top: 20px;
@@ -29,27 +28,29 @@ export const StyledInput = styled.input`
   width: 180px;
   padding: 5px 10px;
   border-radius: var(--border-radius);
-  border: 2px solid var(--clr-dark);
+  border: 1px solid var(--clr-dark);
   font-family: inherit;
   outline: none;
   transition: border 0.2s ease-in-out;
   ${(props) => props.long && "width: 290px;"}
 
+  &:hover,
   &:focus {
-    border: 2px solid var(--clr-primary);
+    border: 1px solid var(--clr-primary);
   }
 `;
 
 export const StyledSelect = styled.select`
   padding: 5px 10px;
-  border: 2px solid var(--clr-dark);
+  border: 1px solid var(--clr-dark);
   border-radius: var(--border-radius);
   font-family: inherit;
   outline: none;
   transition: border 0.2s ease-in-out;
 
+  &:hover,
   &:focus {
-    border: 2px solid var(--clr-primary);
+    border: 1px solid var(--clr-primary);
   }
 `;
 
@@ -58,15 +59,16 @@ export const StyledTextArea = styled.textarea`
   height: 100px;
   padding: 5px 10px;
   border-radius: var(--border-radius);
-  border: 2px solid var(--clr-dark);
+  border: 1px solid var(--clr-dark);
   font-family: inherit;
   outline: none;
   resize: vertical;
 
   transition: border 0.2s ease-in-out;
 
+  &:hover,
   &:focus {
-    border: 2px solid var(--clr-primary);
+    border: 1px solid var(--clr-primary);
   }
 `;
 

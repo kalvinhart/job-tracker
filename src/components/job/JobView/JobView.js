@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
+import {
+  enableEditing,
+  openSidePanel,
+  setShowDeleteWarning,
+} from "../../../slices/uiSlice";
+import { deleteJobById } from "../../../slices/jobSlice";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faEdit, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
+
 import AppointmentView from "../AppointmentView/AppointmentView";
 import DeleteConfirm from "../../shared/DeleteConfirm/DeleteConfirm";
 
@@ -14,28 +22,37 @@ import {
   StyledJobViewGroup,
   StyledJobViewItem,
 } from "./JobView.styled";
+
 import { StyledBg } from "../../../styles/bgStyles";
 import { StatusSpan } from "../../../styles/fontStyles";
 import { H2, H3, Span } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
 
-const JobView = ({
-  benefits,
-  company,
-  contactName,
-  contactNumber,
-  date,
-  description,
-  id,
-  interview,
-  location,
-  salary,
-  status,
-  title,
-  enableEditing,
-  removeJob,
-}) => {
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
+const JobView = ({ currentJob }) => {
+  const dispatch = useDispatch();
+  const {
+    showDeleteWarning: { deleteJob },
+  } = useSelector((state) => state.ui);
+
+  const openEdit = () => {
+    dispatch(enableEditing());
+    dispatch(openSidePanel());
+  };
+
+  const {
+    benefits,
+    company,
+    contactName,
+    contactNumber,
+    date,
+    description,
+    id,
+    interview,
+    location,
+    salary,
+    status,
+    title,
+  } = currentJob;
 
   return (
     <JobViewContainer>
@@ -43,6 +60,7 @@ const JobView = ({
         <FontAwesomeIcon icon={faArrowLeft} />
         Back
       </Link>
+
       <StyledJobViewHeadingDiv>
         <StyledJobViewHeadingGroup>
           <H2>{title}</H2>
@@ -50,24 +68,27 @@ const JobView = ({
         </StyledJobViewHeadingGroup>
 
         <StyledJobViewHeadingGroup>
-          <Button secondary onClick={enableEditing}>
+          <Button secondary onClick={openEdit}>
             <FontAwesomeIcon icon={faEdit} />
             Edit
           </Button>
-          <Button danger onClick={() => setShowDeleteModal(true)}>
+          <Button
+            danger
+            onClick={() => dispatch(setShowDeleteWarning({ deleteJob: true }))}
+          >
             <FontAwesomeIcon icon={faTrash} />
             Delete
           </Button>
         </StyledJobViewHeadingGroup>
 
-        <DeleteConfirm
-          redirect={true}
-          show={showDeleteModal}
-          hide={() => setShowDeleteModal(false)}
-          id={id}
-          actionDelete={removeJob}
-          setShowDeleteModal={setShowDeleteModal}
-        />
+        {deleteJob && (
+          <DeleteConfirm
+            redirect={true}
+            hide={() => dispatch(setShowDeleteWarning({ deleteJob: false }))}
+            id={id}
+            actionDelete={() => dispatch(deleteJobById(id))}
+          />
+        )}
       </StyledJobViewHeadingDiv>
 
       <JobViewContentWrapper>
@@ -102,7 +123,7 @@ const JobView = ({
 
             <StyledJobViewItem>
               <H3>Date Applied:</H3>
-              <Span>{date?.toDate().toDateString()}</Span>
+              <Span>{new Date(date).toDateString()}</Span>
             </StyledJobViewItem>
           </StyledJobViewGroup>
 
@@ -116,7 +137,8 @@ const JobView = ({
           <H3>Job Description:</H3>
           <Span multiline>{description}</Span>
         </StyledBg>
-        <AppointmentView id={id} interview={interview ? interview : undefined} />
+
+        <AppointmentView currentJob={currentJob} />
       </JobViewContentWrapper>
     </JobViewContainer>
   );

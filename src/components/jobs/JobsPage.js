@@ -1,5 +1,6 @@
-import { useMemo, useContext, useEffect, useState } from "react";
-import { JobContext } from "../../context/jobContext";
+import { useMemo, useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { AuthContext } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 
@@ -8,31 +9,31 @@ import NoData from "./Table/NoData";
 import Spinner from "../shared/Spinner/Spinner";
 
 import { columnData } from "../../tableConfig";
+import { loadAllJobs, setCurrentJob } from "../../slices/jobSlice";
 
 const JobsPage = () => {
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
-  const { jobs, getJobs, jobsForTable, setSelectedJob } = useContext(JobContext);
+  const dispatch = useDispatch();
+  const { loading, jobs, jobsForTable, currentJob, error } = useSelector(
+    (state) => state.job
+  );
+
   const { userID } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
   const columns = useMemo(() => columnData, []);
   const data = useMemo(() => jobsForTable, [jobsForTable]);
 
   useEffect(() => {
     if (jobs !== null) {
-      setLoading(false);
       return;
     }
 
-    const retrieveJobs = async () => {
-      await getJobs(userID);
-      setLoading(false);
-    };
-
-    retrieveJobs();
-  }, [jobs, userID, getJobs]);
+    dispatch(loadAllJobs(userID));
+  }, [jobs, userID, loadAllJobs, dispatch]);
 
   const viewJob = (id) => {
-    setSelectedJob(jobs.filter((job) => job.id === id)[0]);
+    dispatch(setCurrentJob(jobs.filter((job) => job.id === id)[0]));
     navigate(`/job/${id}`);
   };
 

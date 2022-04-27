@@ -11,7 +11,7 @@ export const TableWrapper = styled.div`
 export const StyledTableBorder = styled.div`
   width: 100%;
   margin-bottom: 20px;
-  border: 1px solid var(--clr-dark);
+  border: 1px solid var(--clr-outline);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   overflow: hidden;
@@ -52,15 +52,15 @@ export const StyledTR = styled.tr`
   transition: background-color 0.15s ease-in-out, border 0.15s ease-in-out;
 
   &:nth-of-type(even) {
-    background-color: var(--clr-light);
+    background-color: var(--clr-grey-light);
   }
 
   &:first-child {
-    border-top: 2px solid var(--clr-outline);
+    border-top: 1px solid var(--clr-outline);
   }
 
   &:not(:last-child) {
-    border-bottom: 2px solid var(--clr-outline);
+    border-bottom: 1px solid var(--clr-outline);
   }
 
   &:hover,
@@ -132,7 +132,7 @@ export const FilterWrapper = styled.div`
   padding: 10px;
   display: flex;
   flex-direction: column;
-  background-color: var(--clr-light);
+  background-color: var(--clr-grey-light);
   border: 1px solid var(--clr-outline);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);

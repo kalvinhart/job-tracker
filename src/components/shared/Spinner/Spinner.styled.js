@@ -21,7 +21,7 @@ export const SpinnerWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: white;
-  border: 2px solid var(--clr-outline);
+  border: 1px solid var(--clr-outline);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 `;

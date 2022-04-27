@@ -6,7 +6,6 @@ import {
   getDocs,
   query,
   setDoc,
-  Timestamp,
   updateDoc,
   where,
 } from "firebase/firestore";
@@ -33,7 +32,7 @@ export const saveJob = async (data) => {
   const newData = {
     ...data,
     id,
-    date: Timestamp.fromDate(new Date(data.date)),
+    date: new Date(data.date).getTime(),
     status: "Pending",
   };
 
@@ -45,11 +44,7 @@ export const saveJob = async (data) => {
 export const saveUpdate = async (data) => {
   const newData = {
     ...data,
-    date: Timestamp.fromDate(new Date(data.date)),
-    interview:
-      typeof data.interview !== "object" && data.interview !== ""
-        ? Timestamp.fromDate(new Date(data.interview))
-        : data.interview,
+    date: new Date(data.date).getTime(),
   };
   const docRef = doc(db, "jobs", newData.id);
 
@@ -60,15 +55,6 @@ export const saveUpdate = async (data) => {
 
 export const deleteJob = async (id) => {
   await deleteDoc(doc(db, "jobs", id));
-};
-
-export const updateInterview = async (id, data) => {
-  const interviewDate = Timestamp.fromDate(new Date(data));
-  const jobRef = doc(db, "jobs", id);
-
-  await updateDoc(jobRef, { interview: interviewDate, status: "Interview" });
-
-  return interviewDate;
 };
 
 export const deleteInterview = async (id) => {

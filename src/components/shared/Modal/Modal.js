@@ -3,10 +3,8 @@ import { createPortal } from "react-dom";
 
 import { StyledOverlay, StyledModalContainer } from "./Modal.styled";
 
-const Modal = ({ show, hide, children }) => {
+const Modal = ({ hide, children }) => {
   const modalRef = useRef();
-
-  if (!show) return null;
 
   const handleOverlayClose = (e) => {
     if (modalRef.current === e.target.closest("div[data-name='modal']")) return;

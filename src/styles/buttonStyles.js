@@ -11,7 +11,7 @@ const fadeInAnimationCloseButton = css`
 export const Button = styled.button`
   padding: 5px 20px;
   min-width: 95px;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   border-radius: var(--border-radius);
   font-family: inherit;
   font-size: 14px;
@@ -19,12 +19,21 @@ export const Button = styled.button`
   transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out,
     color 0.2s ease-in-out;
 
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--clr-primary-dark);
+
+    & svg {
+      margin-right: 0;
+    }
+  }
+
   ${(props) =>
     props.primary &&
     `
   background-color: var(--clr-primary);
   color: white;
-  border: 2px solid var(--clr-primary);
+  border: 1px solid var(--clr-primary);
 
   &:hover,
   &:focus {
@@ -38,7 +47,7 @@ export const Button = styled.button`
     `
     background-color: white;
     color: var(--clr-primary);
-    border: 2px solid var(--clr-primary);
+    border: 1px solid var(--clr-primary);
     
     &:hover,
     &:focus {
@@ -52,7 +61,7 @@ export const Button = styled.button`
     `
     background-color: white;
     color: var(--clr-danger);
-    border: 2px solid var(--clr-danger);
+    border: 1px solid var(--clr-danger);
 
     
     &:hover,
@@ -123,11 +132,5 @@ export const Button = styled.button`
     min-width: unset;
     padding: 2px;
     background-color: transparent;
-
-    &:hover,
-    &:focus {
-      color: var(--clr-tertiary);
-    }
-
   `}
 `;

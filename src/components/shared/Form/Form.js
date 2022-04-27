@@ -1,7 +1,19 @@
-import { useContext, useState } from "react";
-import { JobContext } from "../../../context/jobContext";
-import { AuthContext } from "../../../context/authContext";
+import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
+
+import { closeSidePanel } from "../../../slices/uiSlice";
+import { saveEditedJob, saveNewJob } from "../../../slices/jobSlice";
+
+import { AuthContext } from "../../../context/authContext";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSpinner,
+  faExclamationCircle,
+  faSave,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 
 import {
   StyledInput,
@@ -16,36 +28,15 @@ import {
 import { ErrorSpan } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faSpinner,
-  faExclamationCircle,
-  faSave,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
-
 import { statusOptions } from "../../../tableConfig";
 
 const Form = () => {
-  const { editing, selectedJob, saveNewJob, saveEdit, cancel } = useContext(JobContext);
+  const dispatch = useDispatch();
+
+  const { loading, currentJob } = useSelector((state) => state.job);
+  const { editing } = useSelector((state) => state.ui);
+
   const { userID } = useContext(AuthContext);
-
-  const [loading, setLoading] = useState(false);
-
-  const {
-    benefits,
-    company,
-    contactName,
-    contactNumber,
-    date,
-    description,
-    id,
-    interview,
-    location,
-    salary,
-    status,
-    title,
-  } = selectedJob;
 
   const {
     register,
@@ -54,17 +45,20 @@ const Form = () => {
     reset,
   } = useForm({
     defaultValues: {
-      benefits: editing ? benefits : "",
-      company: editing ? company : "",
-      contactName: editing ? contactName : "",
-      contactNumber: editing ? contactNumber : "",
-      date: editing ? date.toDate().toISOString().slice(0, 10) : "",
-      description: editing ? description : "",
-      interview: interview && editing ? interview.toDate().toISOString() : "",
-      location: editing ? location : "",
-      salary: editing ? salary : "",
-      status,
-      title: editing ? title : "",
+      benefits: editing ? currentJob.benefits : "",
+      company: editing ? currentJob.company : "",
+      contactName: editing ? currentJob.contactName : "",
+      contactNumber: editing ? currentJob.contactNumber : "",
+      date: editing ? new Date(currentJob.date).toISOString().slice(0, 10) : "",
+      description: editing ? currentJob.description : "",
+      interview:
+        currentJob?.interview && editing
+          ? new Date(currentJob.interview).toISOString()
+          : "",
+      location: editing ? currentJob.location : "",
+      salary: editing ? currentJob.salary : "",
+      status: currentJob?.status,
+      title: editing ? currentJob.title : "",
     },
   });
 
@@ -72,21 +66,17 @@ const Form = () => {
     const newData = { ...data, userID };
 
     if (editing) {
-      setLoading(true);
-      saveEdit(id, newData);
+      dispatch(saveEditedJob({ ...newData, id: currentJob.id }));
     } else {
-      setLoading(true);
-      saveNewJob(newData);
+      dispatch(saveNewJob(newData));
     }
 
     e.target.reset();
-    setLoading(false);
-    cancel();
   };
 
   const cancelForm = () => {
     reset();
-    cancel();
+    dispatch(closeSidePanel());
   };
 
   return (

@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { JobContext } from "../../../context/jobContext";
+import { useDispatch, useSelector } from "react-redux";
+import { openSidePanel, closeSidePanel, enableEditing } from "../../../slices/uiSlice";
 
 import { Button } from "../../../styles/buttonStyles";
 import {
@@ -14,25 +14,29 @@ import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Form from "../../shared/Form/Form";
 
 const SidePanel = () => {
-  const { show, setShow, setEditing, editing, cancel } = useContext(JobContext);
-
-  const enableAddNew = () => {
-    setEditing(false);
-    setShow(true);
-  };
+  const dispatch = useDispatch();
+  const { showSidePanel, editing } = useSelector((state) => state.ui);
 
   return (
     <>
-      <StyledSidePanelOverlay show={show} />
-      <SidePanelContainer show={show}>
-        {show && (
-          <Button horizontal visible={show} onClick={cancel}>
+      <StyledSidePanelOverlay show={showSidePanel} />
+      <SidePanelContainer show={showSidePanel}>
+        {showSidePanel && (
+          <Button
+            horizontal
+            visible={showSidePanel}
+            onClick={() => dispatch(closeSidePanel())}
+          >
             <Span>C l o s e</Span>
             <FontAwesomeIcon icon={faTimes} className="cross-icon" size="lg" />
           </Button>
         )}
-        <SidePanelGroup animated show={!show}>
-          <Button vertical visible={!show} onClick={enableAddNew}>
+        <SidePanelGroup animated show={!showSidePanel}>
+          <Button
+            vertical
+            visible={!showSidePanel}
+            onClick={() => dispatch(openSidePanel())}
+          >
             <FontAwesomeIcon icon={faPlus} className="plus-icon" size="lg" />
             <Span>A</Span>
             <Span>D</Span>
@@ -43,8 +47,8 @@ const SidePanel = () => {
           </Button>
         </SidePanelGroup>
 
-        {show && (
-          <SidePanelGroup animated show={show}>
+        {showSidePanel && (
+          <SidePanelGroup animated show={showSidePanel}>
             {editing ? <H2>Edit Job</H2> : <H2>Add A New Job</H2>}
             <Form />
           </SidePanelGroup>

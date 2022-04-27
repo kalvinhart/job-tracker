@@ -13,7 +13,7 @@ export const StyledModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-  border: 2px solid var(--clr-outline);
+  border: 1px solid var(--clr-outline);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 

@@ -1,6 +1,8 @@
-import { useContext, useState } from "react";
-import { JobContext } from "../../../context/jobContext";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
+
+import { saveEditedJob, setCurrentJob } from "../../../slices/jobSlice";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faExclamationCircle,
@@ -18,10 +20,11 @@ import {
   StyledInputGroup,
 } from "../../../styles/formStyles";
 import { Button } from "../../../styles/buttonStyles";
+import { setShowAppointmentModal } from "../../../slices/uiSlice";
 
-const AddAppointment = ({ id, show, hide }) => {
-  const [loading, setLoading] = useState(false);
-  const { updateInterviewDate } = useContext(JobContext);
+const AddAppointment = () => {
+  const dispatch = useDispatch();
+  const { loading, currentJob } = useSelector((state) => state.job);
 
   const {
     register,
@@ -30,25 +33,24 @@ const AddAppointment = ({ id, show, hide }) => {
     reset,
   } = useForm();
 
-  const onSubmit = async (data, e) => {
-    setLoading(true);
-    const { error } = await updateInterviewDate(id, data.interviewDate);
+  const onSubmit = (data) => {
+    const newData = {
+      ...currentJob,
+      interview: new Date(data.interviewDate).getTime(),
+      status: "Interview",
+    };
 
-    if (!error) {
-      e.target.reset();
-      hide();
-    } else {
-      setLoading(false);
-    }
+    dispatch(saveEditedJob(newData));
+    dispatch(setCurrentJob(newData));
   };
 
   const cancelForm = () => {
     reset();
-    hide();
+    dispatch(setShowAppointmentModal(false));
   };
 
   return (
-    <Modal show={show} hide={hide}>
+    <Modal hide={() => dispatch(setShowAppointmentModal(false))}>
       <H2>Add an Interview</H2>
       <StyledParagraph>When is your interview date?</StyledParagraph>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>

@@ -8,7 +8,7 @@ import { H2, StyledParagraph } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
 import Modal from "../Modal/Modal";
 
-const DeleteConfirm = ({ id, show, hide, actionDelete, redirect }) => {
+const DeleteConfirm = ({ id, hide, actionDelete, redirect }) => {
   const loading = useRef();
   const navigate = useNavigate();
 
@@ -28,11 +28,11 @@ const DeleteConfirm = ({ id, show, hide, actionDelete, redirect }) => {
   };
 
   return (
-    <Modal show={show} hide={hide}>
+    <Modal hide={hide}>
       <H2>Are you sure?</H2>
       <StyledParagraph>Are you sure you wish to delete this item?</StyledParagraph>
       <StyledButtonGroup>
-        <Button primary disabled={loading.current} onClick={() => handleDelete(id)}>
+        <Button danger disabled={loading.current} onClick={() => handleDelete(id)}>
           {loading.current ? (
             <FontAwesomeIcon icon={faSpinner} size="lg" spin />
           ) : (

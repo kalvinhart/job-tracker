@@ -39,12 +39,13 @@ const Pagination = ({
         | Go to page:{" "}
         <StyledInput
           type="number"
+          min={0}
           defaultValue={pageIndex + 1}
           onChange={(e) => {
             const page = e.target.value ? Number(e.target.value) - 1 : 0;
             gotoPage(page);
           }}
-          style={{ width: "30px", paddingRight: 0 }}
+          style={{ width: "45px", paddingRight: 0, textAlign: "center" }}
         />
       </span>{" "}
       <StyledSelect
