@@ -37,6 +37,7 @@ const AddAppointment = () => {
     const newData = {
       ...currentJob,
       interview: new Date(data.interviewDate).getTime(),
+      status: "Interview",
     };
 
     dispatch(saveEditedJob(newData));

@@ -32,6 +32,7 @@ const AppointmentView = ({ currentJob }) => {
     const newData = {
       ...currentJob,
       interview: "",
+      status: "Pending",
     };
 
     dispatch(saveEditedJob(newData));
