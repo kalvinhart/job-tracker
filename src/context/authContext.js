@@ -24,7 +24,7 @@ const AuthProvider = ({ children }) => {
       toastSuccess("Account created successfully!");
       return { user: newUser, error: null };
     } catch ({ message }) {
-      if (message.includes("auth/email-already-exists")) {
+      if (message.includes("auth/email-already-in-use")) {
         return { user: null, error: "A user with the email address already exists." };
       } else {
         toastError("Something went wrong, please try again.");

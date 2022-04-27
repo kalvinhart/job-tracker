@@ -9,7 +9,7 @@ import {
 import { deleteJobById } from "../../../slices/jobSlice";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faEdit, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import AppointmentView from "../AppointmentView/AppointmentView";
 import DeleteConfirm from "../../shared/DeleteConfirm/DeleteConfirm";
@@ -47,7 +47,6 @@ const JobView = ({ currentJob }) => {
     date,
     description,
     id,
-    interview,
     location,
     salary,
     status,
