@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
 
     :root {
         --clr-primary: #018989;
+        --clr-primary-dark: #016262;
         --clr-primary-rgba: rgba(1, 137, 137, 0.3);
         --clr-secondary: #2a2a2a;
         --clr-danger: #cc0000;
