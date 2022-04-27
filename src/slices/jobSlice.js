@@ -1,7 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
 import { fetchJobs, saveJob, saveUpdate, deleteJob } from "../utilities/firebase";
 import { sanitiseDataForTable } from "../utilities/sanitise";
 import { closeSidePanel, setShowAppointmentModal } from "./uiSlice";
+
+import { toast } from "react-hot-toast";
 
 export const loadAllJobs = createAsyncThunk("job/getJobs", async (uid) => {
   try {
@@ -18,6 +21,7 @@ export const saveNewJob = createAsyncThunk(
   async (data, { dispatch }) => {
     try {
       const newJob = await saveJob(data);
+      toast.success("Job successfully saved!");
       dispatch(closeSidePanel());
       return newJob;
     } catch (err) {
@@ -31,6 +35,7 @@ export const saveEditedJob = createAsyncThunk(
   async (data, { dispatch }) => {
     try {
       const editedJob = await saveUpdate(data);
+      toast.success("Job successfully updated!");
       dispatch(setShowAppointmentModal(false));
       dispatch(closeSidePanel());
       return editedJob;
@@ -43,6 +48,7 @@ export const saveEditedJob = createAsyncThunk(
 export const deleteJobById = createAsyncThunk("job/deleteJobById", async (id) => {
   try {
     await deleteJob(id);
+    toast.success("Job deleted!");
     return id;
   } catch (err) {
     console.log(err.message);
