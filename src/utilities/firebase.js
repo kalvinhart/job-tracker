@@ -57,15 +57,6 @@ export const deleteJob = async (id) => {
   await deleteDoc(doc(db, "jobs", id));
 };
 
-export const updateInterview = async (id, data) => {
-  const interviewDate = new Date(data).getTime();
-  const jobRef = doc(db, "jobs", id);
-
-  await updateDoc(jobRef, { interview: interviewDate, status: "Interview" });
-
-  return interviewDate;
-};
-
 export const deleteInterview = async (id) => {
   const jobRef = doc(db, "jobs", id);
   await updateDoc(jobRef, { interview: deleteField(), status: "Pending" });
