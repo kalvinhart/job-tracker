@@ -1,9 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
 import { fetchJobs, saveJob, saveUpdate, deleteJob } from "../utilities/firebase";
 import { sanitiseDataForTable } from "../utilities/sanitise";
 import { closeSidePanel, setShowAppointmentModal } from "./uiSlice";
 
-export const loadAllJobs = createAsyncThunk("job/getJobs", async (uid) => {
+import { toast } from "react-hot-toast";
+
+export const loadAllJobs = createAsyncThunk("job/loadAllJobs", async (uid) => {
   try {
     const rawJobs = await fetchJobs(uid);
     const sanitsedJobs = sanitiseDataForTable(rawJobs);
@@ -18,6 +21,7 @@ export const saveNewJob = createAsyncThunk(
   async (data, { dispatch }) => {
     try {
       const newJob = await saveJob(data);
+      toast.success("Job successfully saved!");
       dispatch(closeSidePanel());
       return newJob;
     } catch (err) {
@@ -31,6 +35,7 @@ export const saveEditedJob = createAsyncThunk(
   async (data, { dispatch }) => {
     try {
       const editedJob = await saveUpdate(data);
+      toast.success("Job successfully updated!");
       dispatch(setShowAppointmentModal(false));
       dispatch(closeSidePanel());
       return editedJob;
@@ -43,6 +48,7 @@ export const saveEditedJob = createAsyncThunk(
 export const deleteJobById = createAsyncThunk("job/deleteJobById", async (id) => {
   try {
     await deleteJob(id);
+    toast.success("Job deleted!");
     return id;
   } catch (err) {
     console.log(err.message);
@@ -59,22 +65,10 @@ const jobSlice = createSlice({
     error: false,
   },
   reducers: {
-    getJobs: (state, action) => {
-      state.loading = false;
-      state.error = false;
-      state.jobs = action.payload.rawJobs;
-      state.jobsForTable = action.payload.sanitsedJobs;
-    },
     setCurrentJob: (state, action) => {
       state.currentJob = action.payload;
     },
-    saveNewJob: (state, action) => {
-      state.loading = false;
-      state.error = false;
-      state.jobs.push(action.payload);
-      state.jobsForTable.push(sanitiseDataForTable(action.payload));
-    },
-    clearJobState: (state, action) => {
+    clearJobState: (state) => {
       state.loading = true;
       state.error = false;
       state.jobs = null;

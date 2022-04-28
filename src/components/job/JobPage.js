@@ -15,6 +15,6 @@ const JobPage = () => {
     }
   }, [currentJob, navigate]);
 
-  return currentJob && <JobView currentJob={currentJob} />;
+  return currentJob && <JobView />;
 };
 export default JobPage;

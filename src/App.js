@@ -8,6 +8,7 @@ import GlobalStyles from "./GlobalStyles";
 import Routes from "./Routes";
 
 import AuthProvider from "./context/authContext";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Provider store={store}>
         <GlobalStyles />
         <AuthProvider>
+          <Toaster position="bottom-right" />
           <Routes />
         </AuthProvider>
       </Provider>
