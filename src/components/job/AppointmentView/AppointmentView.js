@@ -16,12 +16,14 @@ import { Button } from "../../../styles/buttonStyles";
 import { H3, StyledParagraph, BoldSpanLarge } from "../../../styles/fontStyles";
 import { StyledButtonGroup } from "../../../styles/formStyles";
 
-const AppointmentView = ({ currentJob }) => {
+const AppointmentView = () => {
   const dispatch = useDispatch();
   const {
     showAppointmentModal,
     showDeleteWarning: { deleteInterview },
   } = useSelector((state) => state.ui);
+
+  const { currentJob } = useSelector((state) => state.job);
 
   const { id, interview } = currentJob;
 

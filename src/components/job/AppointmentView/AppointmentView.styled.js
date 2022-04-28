@@ -4,9 +4,6 @@ import { BoldSpanLarge } from "../../../styles/fontStyles";
 
 export const AppointmentViewWrapper = styled.div`
   width: 350px;
-  position: absolute;
-  top: 0;
-  right: -370px;
 
   & ${StyledBg} {
     min-width: unset;
