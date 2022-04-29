@@ -8,6 +8,8 @@ Jobs can be added and then displayed in a table which is sortable, filterable an
 
 Individual jobs can be viewed and updated or deleted. The user can also add the date and time of an appointment interview and edit/delete this as applicable.
 
+State management is handled with Redux Toolkit and the Context API handles the authentication state.
+
 All data is stored using Firebase Firestore.
 
 Authentication is handled with Firebase Authentication.
