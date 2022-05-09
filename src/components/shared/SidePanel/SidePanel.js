@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
-import { openSidePanel, closeSidePanel } from "../../../slices/uiSlice";
+import { useUi } from "../../../hooks/useUi/useUi";
 
 import { Button } from "../../../styles/buttonStyles";
 import {
@@ -14,29 +13,20 @@ import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Form from "../../shared/Form/Form";
 
 const SidePanel = () => {
-  const dispatch = useDispatch();
-  const { showSidePanel, editing } = useSelector((state) => state.ui);
+  const { showSidePanel, editing, openSidePanel, closeSidePanel } = useUi();
 
   return (
     <>
       <StyledSidePanelOverlay show={showSidePanel} />
       <SidePanelContainer show={showSidePanel}>
         {showSidePanel && (
-          <Button
-            horizontal
-            visible={showSidePanel}
-            onClick={() => dispatch(closeSidePanel())}
-          >
+          <Button horizontal visible={showSidePanel} onClick={closeSidePanel}>
             <Span>C l o s e</Span>
             <FontAwesomeIcon icon={faTimes} className="cross-icon" size="lg" />
           </Button>
         )}
         <SidePanelGroup animated show={!showSidePanel}>
-          <Button
-            vertical
-            visible={!showSidePanel}
-            onClick={() => dispatch(openSidePanel())}
-          >
+          <Button vertical visible={!showSidePanel} onClick={openSidePanel}>
             <FontAwesomeIcon icon={faPlus} className="plus-icon" size="lg" />
             <Span>A</Span>
             <Span>D</Span>
