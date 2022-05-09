@@ -1,6 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { fetchJobs, saveJob, saveUpdate, deleteJob } from "../utilities/firebase";
+import {
+  fetchJobs,
+  fetchJob,
+  saveJob,
+  saveUpdate,
+  deleteJob,
+} from "../utilities/firebase";
 import { sanitiseDataForTable } from "../utilities/sanitise";
 import { closeSidePanel, setShowAppointmentModal } from "./uiSlice";
 
@@ -11,6 +17,19 @@ export const loadAllJobs = createAsyncThunk("job/loadAllJobs", async (uid) => {
     const rawJobs = await fetchJobs(uid);
     const sanitsedJobs = sanitiseDataForTable(rawJobs);
     return { rawJobs, sanitsedJobs };
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
+export const loadJob = createAsyncThunk("job/loadJob", async (id) => {
+  try {
+    const job = await fetchJob(id);
+    if (job) {
+      return job;
+    } else {
+      throw new Error("Job does not exist");
+    }
   } catch (err) {
     console.log(err.message);
   }
@@ -88,6 +107,18 @@ const jobSlice = createSlice({
         state.jobsForTable = action.payload.sanitsedJobs;
       })
       .addCase(loadAllJobs.rejected, (state, action) => {
+        state.loading = false;
+        state.error = true;
+      })
+      .addCase(loadJob.pending, (state, action) => {
+        state.error = false;
+        state.loading = true;
+      })
+      .addCase(loadJob.fulfilled, (state, action) => {
+        state.loading = false;
+        state.currentJob = action.payload;
+      })
+      .addCase(loadJob.rejected, (state, action) => {
         state.loading = false;
         state.error = true;
       })
