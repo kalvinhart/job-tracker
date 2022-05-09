@@ -3,6 +3,7 @@ import {
   deleteDoc,
   deleteField,
   doc,
+  getDoc,
   getDocs,
   query,
   setDoc,
@@ -25,6 +26,18 @@ export const fetchJobs = async (uid) => {
   });
 
   return jobsArray;
+};
+
+export const fetchJob = async (id) => {
+  const docRef = doc(db, "jobs", id);
+
+  const result = await getDoc(docRef);
+
+  if (result.exists()) {
+    return result.data();
+  } else {
+    return false;
+  }
 };
 
 export const saveJob = async (data) => {
