@@ -9,7 +9,7 @@ import {
 } from "../components/jobs/Table/Table.styled";
 import { StatusSpan, BenefitSpan } from "../styles/fontStyles";
 
-import { statusOptions, centeredColumns } from "../tableConfig";
+import { statusOptions, centeredColumns } from "../config/tableConfig";
 
 export const renderHeader = (column) => (
   <StyledTH hideFirst={true} {...column.getHeaderProps()}>
