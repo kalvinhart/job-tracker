@@ -1,45 +1,19 @@
-import { useMemo, useContext, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import { AuthContext } from "../../context/authContext";
-import { useNavigate } from "react-router-dom";
+import { useJobs } from "../../hooks/useJobs/useJobs";
+import { useTableConfig } from "../../hooks/useTableConfig/useTableConfig";
 
 import Table from "./Table/Table";
 import NoData from "./Table/NoData";
 import Spinner from "../shared/Spinner/Spinner";
 
-import { columnData } from "../../tableConfig";
-import { loadAllJobs, setCurrentJob } from "../../slices/jobSlice";
-
 const JobsPage = () => {
-  const dispatch = useDispatch();
-  const { loading, jobs, jobsForTable } = useSelector((state) => state.job);
-
-  const { userID } = useContext(AuthContext);
-
-  const navigate = useNavigate();
-
-  const columns = useMemo(() => columnData, []);
-  const data = useMemo(() => jobsForTable, [jobsForTable]);
-
-  useEffect(() => {
-    if (jobs !== null) {
-      return;
-    }
-
-    dispatch(loadAllJobs(userID));
-  }, [jobs, userID, dispatch]);
-
-  const viewJob = (id) => {
-    dispatch(setCurrentJob(jobs.filter((job) => job.id === id)[0]));
-    navigate(`/job/${id}`);
-  };
+  const { loading, jobs, jobsForTable, viewJob } = useJobs();
+  const { columns, data } = useTableConfig(jobsForTable);
 
   if (loading) return <Spinner />;
 
   return (
     <>
-      {!loading && jobs.length === 0 ? (
+      {!loading && !jobs ? (
         <NoData />
       ) : (
         <Table columns={columns} data={data} viewJob={viewJob} />

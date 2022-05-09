@@ -9,7 +9,7 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import { db } from "../firebase.config";
+import { db } from "../config/firebase.config";
 import { v4 as uuid } from "uuid";
 
 export const fetchJobs = async (uid) => {

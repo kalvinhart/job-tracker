@@ -1,4 +1,4 @@
-import SelectColumnFilter from "./components/jobs/Table/SelectColumnFilter";
+import SelectColumnFilter from "../components/jobs/Table/SelectColumnFilter";
 
 export const columnData = [
   {

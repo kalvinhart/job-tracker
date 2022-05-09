@@ -28,7 +28,7 @@ import {
 import { ErrorSpan } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
 
-import { statusOptions } from "../../../tableConfig";
+import { statusOptions } from "../../../config/tableConfig";
 
 const Form = () => {
   const dispatch = useDispatch();
