@@ -1,11 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
-
-import {
-  setShowDeleteWarning,
-  enableEditing,
-  openSidePanel,
-} from "../../../slices/uiSlice";
-import { deleteJobById } from "../../../slices/jobSlice";
+import { useUi } from "../../../hooks/useUi/useUi";
+import { useJob } from "../../../hooks/useJob/useJob";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -21,21 +15,14 @@ import { StatusSpan } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
 import { H2 } from "../../../styles/fontStyles";
 
-const JobViewHeader = () => {
-  const dispatch = useDispatch();
-
+const JobViewHeader = ({ currentJob: { id, title, status } }) => {
   const {
+    openAndEdit,
     showDeleteWarning: { deleteJob },
-  } = useSelector((state) => state.ui);
+    setShowDeleteWarning,
+  } = useUi();
 
-  const {
-    currentJob: { id, title, status },
-  } = useSelector((state) => state.job);
-
-  const openEdit = () => {
-    dispatch(enableEditing());
-    dispatch(openSidePanel());
-  };
+  const { deleteJobById } = useJob();
 
   return (
     <StyledJobViewHeadingDiv>
@@ -45,14 +32,11 @@ const JobViewHeader = () => {
       </StyledJobViewHeadingGroup>
 
       <StyledJobViewHeadingGroup>
-        <Button secondary onClick={openEdit}>
+        <Button secondary onClick={openAndEdit}>
           <FontAwesomeIcon icon={faEdit} />
           Edit
         </Button>
-        <Button
-          danger
-          onClick={() => dispatch(setShowDeleteWarning({ deleteJob: true }))}
-        >
+        <Button danger onClick={() => setShowDeleteWarning({ deleteJob: true })}>
           <FontAwesomeIcon icon={faTrash} />
           Delete
         </Button>
@@ -61,9 +45,9 @@ const JobViewHeader = () => {
       {deleteJob && (
         <DeleteConfirm
           redirect={true}
-          hide={() => dispatch(setShowDeleteWarning({ deleteJob: false }))}
+          hide={() => setShowDeleteWarning({ deleteJob: false })}
           id={id}
-          actionDelete={() => dispatch(deleteJobById(id))}
+          actionDelete={() => deleteJobById(id)}
         />
       )}
     </StyledJobViewHeadingDiv>

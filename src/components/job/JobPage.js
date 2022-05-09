@@ -1,20 +1,17 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useJob } from "../../hooks/useJob/useJob";
 
+import Spinner from "../shared/Spinner/Spinner";
 import JobView from "./JobView/JobView";
 
 const JobPage = () => {
-  const navigate = useNavigate();
+  const { loading, currentJob, error } = useJob();
 
-  const { currentJob } = useSelector((state) => state.job);
+  if (loading) return <Spinner />;
 
-  useEffect(() => {
-    if (!currentJob) {
-      return navigate("/");
-    }
-  }, [currentJob, navigate]);
-
-  return currentJob && <JobView />;
+  if (currentJob) {
+    return <JobView currentJob={currentJob} />;
+  } else {
+    return null;
+  }
 };
 export default JobPage;
