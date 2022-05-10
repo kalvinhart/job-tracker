@@ -1,4 +1,4 @@
-import { useUi } from "../../../hooks/useUi/useUi";
+import { useUi } from "../../../hooks/shared/useUi/useUi";
 import { useAppointmentView } from "../../../hooks/useAppointmentView/useAppointmentView";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

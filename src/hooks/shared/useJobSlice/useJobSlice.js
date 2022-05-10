@@ -7,7 +7,7 @@ import {
   saveNewJob,
   saveEditedJob,
   deleteJobById,
-} from "../../slices/jobSlice";
+} from "../../../slices/jobSlice";
 
 export const useJobSlice = () => {
   const dispatch = useDispatch();

@@ -1,4 +1,4 @@
-import { useJobSlice } from "../useJobSlice/useJobSlice";
+import { useJobSlice } from "../shared/useJobSlice/useJobSlice";
 
 export const useAppointmentView = () => {
   const { currentJob, saveEditedJob } = useJobSlice();

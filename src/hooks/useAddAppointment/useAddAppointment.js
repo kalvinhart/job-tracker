@@ -1,5 +1,5 @@
-import { useJobSlice } from "../useJobSlice/useJobSlice";
-import { useUi } from "../useUi/useUi";
+import { useJobSlice } from "../shared/useJobSlice/useJobSlice";
+import { useUi } from "../shared/useUi/useUi";
 
 export const useAddAppointment = (reset) => {
   const { setShowAppointmentModal } = useUi();
