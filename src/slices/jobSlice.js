@@ -88,7 +88,7 @@ const jobSlice = createSlice({
       state.currentJob = action.payload;
     },
     clearJobState: (state) => {
-      state.loading = true;
+      state.loading = false;
       state.error = false;
       state.jobs = null;
       state.jobsForTable = null;
