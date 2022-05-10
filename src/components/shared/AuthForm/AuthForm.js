@@ -105,7 +105,7 @@ const AuthForm = ({ type }) => {
 
         {type === "LOGIN" && (
           <StyledParagraph>
-            <Button as={Link} to="/forgot-password" type="button" transparent>
+            <Button as={Link} to="/forgot-password" type="button" transparent="true">
               Forgot your password?
             </Button>
           </StyledParagraph>
