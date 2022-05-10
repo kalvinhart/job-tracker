@@ -17,10 +17,15 @@ export const useAuthActions = () => {
     navigate("/signin");
   };
 
+  const resetUserPassword = (email) => {
+    resetPassword(email);
+    navigate("/signin");
+  };
+
   return {
     signIn: (email, password) => signIn(email, password),
     signUserOut: () => signUserOut(),
     signUp: (email, password) => signUp(email, password),
-    resetPassword: (email) => resetPassword(email),
+    resetPassword: (email) => resetUserPassword(email),
   };
 };
