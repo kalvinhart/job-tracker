@@ -1,5 +1,5 @@
-import { useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
+import { useFilterOptions } from "../../../hooks/useFilterOptions/useFilterOptions";
 
 import { FilterWrapper, FilterOverlay } from "./Table.styled";
 import { StyledSelect } from "../../../styles/formStyles";
@@ -12,20 +12,12 @@ const FilterOptions = ({
   coords: { top, left },
   column: { filterValue, setFilter, preFilteredRows, id },
 }) => {
-  const filterRef = useRef();
-
-  const options = useMemo(() => {
-    const options = new Set();
-    preFilteredRows.forEach((row) => {
-      options.add(row.values[id]);
-    });
-    return [...options.values()];
-  }, [id, preFilteredRows]);
-
-  const handleOverlayClose = (e) => {
-    if (filterRef.current === e.target.closest("div[data-name='filter']")) return;
-    hide();
-  };
+  const { filterRef, options, handleOverlayClose, onSelectChange } = useFilterOptions(
+    preFilteredRows,
+    setFilter,
+    id,
+    hide
+  );
 
   return createPortal(
     <FilterOverlay onClick={handleOverlayClose}>
@@ -34,13 +26,7 @@ const FilterOptions = ({
           Close
           <FontAwesomeIcon icon={faTimes} className="cross-icon" />
         </Button>
-        <StyledSelect
-          value={filterValue}
-          onChange={(e) => {
-            setFilter(e.target.value || undefined);
-            hide();
-          }}
-        >
+        <StyledSelect value={filterValue} onChange={onSelectChange}>
           <option value="">All</option>
           {options.map((option, i) => (
             <option key={i} value={option}>
