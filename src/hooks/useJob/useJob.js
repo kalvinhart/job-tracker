@@ -1,15 +1,15 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useAuth } from "../useAuth/useAuth";
-
-import { loadAllJobs, loadJob, deleteJobById } from "../../slices/jobSlice";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
+import { useAuth } from "../useAuth/useAuth";
+import { useJobSlice } from "../useJobSlice/useJobSlice";
 
 export const useJob = () => {
   const dispatch = useDispatch();
 
   const { user } = useAuth();
-  const { loading, jobs, currentJob, error } = useSelector((state) => state.job);
+  const { loading, jobs, currentJob, error, loadAllJobs, loadJob, deleteJobById } =
+    useJobSlice();
 
   const params = useParams();
 
@@ -17,12 +17,12 @@ export const useJob = () => {
     if (currentJob) return;
 
     if (user) {
-      if (!jobs) {
-        return dispatch(loadAllJobs(user));
+      if (!jobs && !loading) {
+        return loadAllJobs(user);
       }
 
-      if (jobs && !currentJob) {
-        return dispatch(loadJob(params.id));
+      if (jobs && params.id && !currentJob && !error && !loading) {
+        return loadJob(params.id);
       }
     }
   }, [jobs, currentJob, dispatch, loadAllJobs, loadJob, user]);
@@ -31,6 +31,6 @@ export const useJob = () => {
     loading,
     currentJob,
     error,
-    deleteJobById: (id) => dispatch(deleteJobById(id)),
+    deleteJobById: (id) => deleteJobById(id),
   };
 };
