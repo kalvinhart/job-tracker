@@ -1,10 +1,9 @@
-import { AuthContext } from "../../context/authContext";
-import { useContext } from "react";
+import { useAuthActions } from "../../hooks/shared/useAuthActions/useAuthActions";
 
 import AuthForm from "../shared/AuthForm/AuthForm";
 
 const LoginPage = () => {
-  const { signUp } = useContext(AuthContext);
+  const { signUp } = useAuthActions();
 
   return <AuthForm type="REGISTER" signUp={signUp} />;
 };

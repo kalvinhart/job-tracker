@@ -1,15 +1,10 @@
-import { useRef } from "react";
 import { createPortal } from "react-dom";
+import { useModal } from "../../../hooks/useModal/useModal";
 
 import { StyledOverlay, StyledModalContainer } from "./Modal.styled";
 
 const Modal = ({ hide, children }) => {
-  const modalRef = useRef();
-
-  const handleOverlayClose = (e) => {
-    if (modalRef.current === e.target.closest("div[data-name='modal']")) return;
-    hide();
-  };
+  const { modalRef, handleOverlayClose } = useModal(hide);
 
   return createPortal(
     <StyledOverlay onClick={handleOverlayClose}>

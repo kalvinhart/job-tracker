@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-
 import {
   JobViewContentWrapper,
   StyledJobViewGroup,
@@ -9,9 +7,7 @@ import {
 import { StyledBg } from "../../../styles/bgStyles";
 import { H3, Span } from "../../../styles/fontStyles";
 
-const JobViewContent = () => {
-  const { currentJob } = useSelector((state) => state.job);
-
+const JobViewContent = ({ currentJob }) => {
   const {
     benefits,
     company,

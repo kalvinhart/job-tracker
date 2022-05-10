@@ -17,7 +17,7 @@ export const useAuth = () => {
     });
 
     return unsubscribe;
-  }, []);
+  }, [setUser, setLoggedIn, setLoading]);
 
   return { isLoggedIn, user: user?.uid, loading };
 };

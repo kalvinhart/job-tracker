@@ -1,0 +1,28 @@
+import { useJobSlice } from "../useJobSlice/useJobSlice";
+
+export const useAppointmentView = () => {
+  const { currentJob, saveEditedJob } = useJobSlice();
+
+  const { id, interview } = currentJob;
+
+  const interviewDate = new Date(interview).toDateString() ?? null;
+  const interviewTime = new Date(interview).toLocaleTimeString() ?? null;
+
+  const removeInterview = () => {
+    const newData = {
+      ...currentJob,
+      interview: "",
+      status: "Pending",
+    };
+
+    saveEditedJob(newData);
+  };
+
+  return {
+    id,
+    interview,
+    interviewDate,
+    interviewTime,
+    removeInterview: () => removeInterview(),
+  };
+};

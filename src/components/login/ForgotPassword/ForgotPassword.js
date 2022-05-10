@@ -1,16 +1,14 @@
-import { useContext, useState } from "react/cjs/react.development";
-import { AuthContext } from "../../../context/authContext";
+import { useState } from "react/cjs/react.development";
+import { useAuthActions } from "../../../hooks/shared/useAuthActions/useAuthActions";
 
 import { StyledInput, StyledInputGroup, StyledLabel } from "../../../styles/formStyles";
 import { StyledBackgroundDiv, StyledForm } from "../../shared/AuthForm/AuthForm.styled";
 import { H2 } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
-import { useNavigate } from "react-router";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const { resetPassword } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { resetPassword } = useAuthActions();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +16,6 @@ const ForgotPassword = () => {
     if (!email) return;
 
     resetPassword(email);
-    navigate("/signin");
   };
 
   return (

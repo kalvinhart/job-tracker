@@ -3,6 +3,7 @@ import {
   deleteDoc,
   deleteField,
   doc,
+  getDoc,
   getDocs,
   query,
   setDoc,
@@ -15,7 +16,7 @@ import { v4 as uuid } from "uuid";
 export const fetchJobs = async (uid) => {
   let jobsArray = [];
 
-  const q = query(collection(db, "jobs"), where("userID", "==", uid));
+  const q = query(collection(db, "jobs"), where("user", "==", uid));
 
   const querySnapshot = await getDocs(q);
 
@@ -25,6 +26,18 @@ export const fetchJobs = async (uid) => {
   });
 
   return jobsArray;
+};
+
+export const fetchJob = async (id) => {
+  const docRef = doc(db, "jobs", id);
+
+  const result = await getDoc(docRef);
+
+  if (result.exists()) {
+    return result.data();
+  } else {
+    return false;
+  }
 };
 
 export const saveJob = async (data) => {

@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDeleteConfirm } from "../../../hooks/useDeleteConfirm/useDeleteConfirm";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 
@@ -9,23 +9,11 @@ import { Button } from "../../../styles/buttonStyles";
 import Modal from "../Modal/Modal";
 
 const DeleteConfirm = ({ id, hide, actionDelete, redirect }) => {
-  const loading = useRef();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    return (loading.current = false);
-  }, []);
-
-  const handleDelete = async (id) => {
-    loading.current = true;
-    await actionDelete(id);
-    hide();
-    redirect && navigate("/");
-  };
-
-  const cancel = () => {
-    hide();
-  };
+  const { loading, handleDelete, cancel } = useDeleteConfirm(
+    actionDelete,
+    hide,
+    redirect
+  );
 
   return (
     <Modal hide={hide}>

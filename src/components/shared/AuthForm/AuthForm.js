@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useAuthForm } from "../../../hooks/useAuthForm/useAuthForm";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,57 +9,20 @@ import {
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { Link } from "react-router-dom";
 import { StyledBackgroundDiv, StyledForm } from "./AuthForm.styled";
 import { StyledInput, StyledInputGroup, StyledLabel } from "../../../styles/formStyles";
 import { Button } from "../../../styles/buttonStyles";
 import { H2, StyledParagraph, ErrorSpan } from "../../../styles/fontStyles";
-import { Link } from "react-router-dom";
 
-const AuthForm = ({ type, signUp, signIn }) => {
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
+const AuthForm = ({ type }) => {
+  const { loading, errorMessage, onSubmit } = useAuthForm(type);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const navigate = useNavigate();
-
-  const onSubmit = async (data, e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    if (type === "LOGIN") {
-      const { error } = await signIn(data.email, data.password);
-      setLoading(false);
-
-      if (error) {
-        setErrorMessage(error);
-      } else {
-        setErrorMessage(null);
-        navigate("/");
-      }
-    }
-
-    if (type === "REGISTER") {
-      if (data.password !== data.confirmPassword) {
-        setErrorMessage("Passwords do not match.");
-        return;
-      }
-
-      const { error } = await signUp(data.email, data.password);
-      setLoading(false);
-
-      if (error) {
-        setErrorMessage(error);
-      } else {
-        setErrorMessage(null);
-        navigate("/");
-      }
-    }
-  };
 
   return (
     <StyledBackgroundDiv>
@@ -143,11 +105,7 @@ const AuthForm = ({ type, signUp, signIn }) => {
 
         {type === "LOGIN" && (
           <StyledParagraph>
-            <Button
-              type="button"
-              transparent
-              onClick={() => navigate("/forgot-password")}
-            >
+            <Button as={Link} to="/forgot-password" type="button" transparent="true">
               Forgot your password?
             </Button>
           </StyledParagraph>

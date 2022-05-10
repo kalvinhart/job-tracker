@@ -4,13 +4,13 @@ import AppointmentView from "../AppointmentView/AppointmentView";
 
 import { JobViewContainer, JobViewDetailsWrapper } from "./JobView.styled";
 
-const JobView = () => {
+const JobView = ({ currentJob }) => {
   return (
     <JobViewContainer>
-      <JobViewHeader />
+      <JobViewHeader currentJob={currentJob} />
 
       <JobViewDetailsWrapper>
-        <JobViewContent />
+        <JobViewContent currentJob={currentJob} />
 
         <AppointmentView />
       </JobViewDetailsWrapper>
