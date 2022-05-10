@@ -1,11 +1,9 @@
-import { useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-
-import { closeSidePanel } from "../../../slices/uiSlice";
-import { saveEditedJob, saveNewJob } from "../../../slices/jobSlice";
-
-import { AuthContext } from "../../../context/authContext";
+import { useJob } from "../../../hooks/useJob/useJob";
+import { useUi } from "../../../hooks/useUi/useUi";
+import { useAuth } from "../../../hooks/useAuth/useAuth";
+import { useJobSlice } from "../../../hooks/useJobSlice/useJobSlice";
+import { useTableConfig } from "../../../hooks/useTableConfig/useTableConfig";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -28,15 +26,12 @@ import {
 import { ErrorSpan } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
 
-import { statusOptions } from "../../../config/tableConfig";
-
 const Form = () => {
-  const dispatch = useDispatch();
-
-  const { loading, currentJob } = useSelector((state) => state.job);
-  const { editing } = useSelector((state) => state.ui);
-
-  const { userID } = useContext(AuthContext);
+  const { editing, closeSidePanel } = useUi();
+  const { loading, currentJob } = useJob();
+  const { saveEditedJob, saveNewJob } = useJobSlice();
+  const { statusOptions } = useTableConfig();
+  const { user } = useAuth();
 
   const {
     register,
@@ -63,12 +58,12 @@ const Form = () => {
   });
 
   const onSubmit = (data, e) => {
-    const newData = { ...data, userID };
+    const newData = { ...data, user };
 
     if (editing) {
-      dispatch(saveEditedJob({ ...newData, id: currentJob.id }));
+      saveEditedJob({ ...newData, id: currentJob.id });
     } else {
-      dispatch(saveNewJob(newData));
+      saveNewJob(newData);
     }
 
     e.target.reset();
@@ -76,7 +71,7 @@ const Form = () => {
 
   const cancelForm = () => {
     reset();
-    dispatch(closeSidePanel());
+    closeSidePanel();
   };
 
   return (
