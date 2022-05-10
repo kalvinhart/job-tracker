@@ -77,7 +77,7 @@ export const deleteJobById = createAsyncThunk("job/deleteJobById", async (id) =>
 const jobSlice = createSlice({
   name: "job",
   initialState: {
-    loading: true,
+    loading: false,
     jobs: null,
     jobsForTable: null,
     currentJob: null,
