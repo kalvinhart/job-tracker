@@ -1,7 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
-
-import { setShowAppointmentModal, setShowDeleteWarning } from "../../../slices/uiSlice";
-import { saveEditedJob } from "../../../slices/jobSlice";
+import { useUi } from "../../../hooks/useUi/useUi";
+import { useAppointmentView } from "../../../hooks/useAppointmentView/useAppointmentView";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit, faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -17,28 +15,15 @@ import { H3, StyledParagraph, BoldSpanLarge } from "../../../styles/fontStyles";
 import { StyledButtonGroup } from "../../../styles/formStyles";
 
 const AppointmentView = () => {
-  const dispatch = useDispatch();
   const {
     showAppointmentModal,
+    setShowAppointmentModal,
     showDeleteWarning: { deleteInterview },
-  } = useSelector((state) => state.ui);
+    setShowDeleteWarning,
+  } = useUi();
 
-  const { currentJob } = useSelector((state) => state.job);
-
-  const { id, interview } = currentJob;
-
-  const interviewDate = new Date(interview).toDateString() ?? null;
-  const interviewTime = new Date(interview).toLocaleTimeString() ?? null;
-
-  const removeInterview = () => {
-    const newData = {
-      ...currentJob,
-      interview: "",
-      status: "Pending",
-    };
-
-    dispatch(saveEditedJob(newData));
-  };
+  const { id, interview, interviewDate, interviewTime, removeInterview } =
+    useAppointmentView();
 
   return (
     <AppointmentViewWrapper>
@@ -51,13 +36,13 @@ const AppointmentView = () => {
             <StyledParagraph>at:</StyledParagraph>
             <BoldSpanLarge>{interviewTime}</BoldSpanLarge>
             <StyledButtonGroup small>
-              <Button transparent onClick={() => dispatch(setShowAppointmentModal(true))}>
+              <Button transparent onClick={() => setShowAppointmentModal(true)}>
                 <FontAwesomeIcon icon={faEdit} />
                 Edit
               </Button>
               <Button
                 transparent
-                onClick={() => dispatch(setShowDeleteWarning({ deleteInterview: true }))}
+                onClick={() => setShowDeleteWarning({ deleteInterview: true })}
               >
                 <FontAwesomeIcon icon={faTrash} />
                 Delete
@@ -67,7 +52,7 @@ const AppointmentView = () => {
             {deleteInterview && (
               <DeleteConfirm
                 redirect={false}
-                hide={() => dispatch(setShowDeleteWarning({ deleteInterview: false }))}
+                hide={() => setShowDeleteWarning({ deleteInterview: false })}
                 id={id}
                 actionDelete={removeInterview}
               />
@@ -78,7 +63,7 @@ const AppointmentView = () => {
             <StyledParagraph>
               You do not have an interview appointment for this role.
             </StyledParagraph>
-            <Button primary onClick={() => dispatch(setShowAppointmentModal(true))}>
+            <Button primary onClick={() => setShowAppointmentModal(true)}>
               <FontAwesomeIcon icon={faPlus} />
               Add Appointment
             </Button>

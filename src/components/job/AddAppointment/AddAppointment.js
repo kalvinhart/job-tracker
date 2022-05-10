@@ -1,7 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-
-import { saveEditedJob, setCurrentJob } from "../../../slices/jobSlice";
+import { useAddAppointment } from "../../../hooks/useAddAppointment/useAddAppointment";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,12 +18,8 @@ import {
   StyledInputGroup,
 } from "../../../styles/formStyles";
 import { Button } from "../../../styles/buttonStyles";
-import { setShowAppointmentModal } from "../../../slices/uiSlice";
 
 const AddAppointment = () => {
-  const dispatch = useDispatch();
-  const { loading, currentJob } = useSelector((state) => state.job);
-
   const {
     register,
     handleSubmit,
@@ -33,24 +27,11 @@ const AddAppointment = () => {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    const newData = {
-      ...currentJob,
-      interview: new Date(data.interviewDate).getTime(),
-      status: "Interview",
-    };
-
-    dispatch(saveEditedJob(newData));
-    dispatch(setCurrentJob(newData));
-  };
-
-  const cancelForm = () => {
-    reset();
-    dispatch(setShowAppointmentModal(false));
-  };
+  const { loading, onSubmit, cancelForm, setShowAppointmentModal } =
+    useAddAppointment(reset);
 
   return (
-    <Modal hide={() => dispatch(setShowAppointmentModal(false))}>
+    <Modal hide={() => setShowAppointmentModal(false)}>
       <H2>Add an Interview</H2>
       <StyledParagraph>When is your interview date?</StyledParagraph>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
