@@ -13,7 +13,7 @@ const JobsPage = () => {
 
   return (
     <>
-      {!loading && !jobs ? (
+      {(!loading && !jobs) || jobs?.length === 0 ? (
         <NoData />
       ) : (
         <Table columns={columns} data={data} viewJob={viewJob} />
