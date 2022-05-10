@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useAuthActions } from "../../../hooks/useAuthActions/useAuthActions";
+import { useAuthActions } from "../../../hooks/shared/useAuthActions/useAuthActions";
 
 import UserInfo from "../UserInfo/UserInfo";
 

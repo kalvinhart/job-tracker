@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useAuth } from "../useAuth/useAuth";
+import { useAuth } from "../shared/useAuth/useAuth";
 
 import { useJobSlice } from "../useJobSlice/useJobSlice";
 

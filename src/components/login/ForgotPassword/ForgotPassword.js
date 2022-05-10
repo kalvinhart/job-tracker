@@ -1,5 +1,5 @@
 import { useState } from "react/cjs/react.development";
-import { useAuthActions } from "../../../hooks/useAuthActions/useAuthActions";
+import { useAuthActions } from "../../../hooks/shared/useAuthActions/useAuthActions";
 
 import { StyledInput, StyledInputGroup, StyledLabel } from "../../../styles/formStyles";
 import { StyledBackgroundDiv, StyledForm } from "../../shared/AuthForm/AuthForm.styled";

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useJob } from "../../../hooks/useJob/useJob";
 import { useUi } from "../../../hooks/useUi/useUi";
-import { useAuth } from "../../../hooks/useAuth/useAuth";
+import { useAuth } from "../../../hooks/shared/useAuth/useAuth";
 import { useJobSlice } from "../../../hooks/useJobSlice/useJobSlice";
 import { useTableConfig } from "../../../hooks/useTableConfig/useTableConfig";
 

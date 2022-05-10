@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../../context/authContext";
 
-import { clearJobState } from "../../slices/jobSlice";
+import { clearJobState } from "../../../slices/jobSlice";
 
 export const useAuthActions = () => {
   const dispatch = useDispatch();
