@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../shared/useAuth/useAuth";
 
-import { useJobSlice } from "../useJobSlice/useJobSlice";
+import { useJobSlice } from "../shared/useJobSlice/useJobSlice";
 
 export const useJobs = () => {
   const { loading, jobs, jobsForTable, error, loadAllJobs, setCurrentJob } =

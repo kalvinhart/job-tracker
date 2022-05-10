@@ -5,7 +5,7 @@ import {
   enableEditing,
   setShowAppointmentModal,
   setShowDeleteWarning,
-} from "../../slices/uiSlice";
+} from "../../../slices/uiSlice";
 
 export const useUi = () => {
   const dispatch = useDispatch();
