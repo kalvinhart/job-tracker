@@ -16,7 +16,7 @@ import { v4 as uuid } from "uuid";
 export const fetchJobs = async (uid) => {
   let jobsArray = [];
 
-  const q = query(collection(db, "jobs"), where("userID", "==", uid));
+  const q = query(collection(db, "jobs"), where("user", "==", uid));
 
   const querySnapshot = await getDocs(q);
 
