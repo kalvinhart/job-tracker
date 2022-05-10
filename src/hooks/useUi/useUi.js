@@ -26,7 +26,7 @@ export const useUi = () => {
     closeSidePanel: () => dispatch(closeSidePanel()),
     enableEditing: () => dispatch(enableEditing()),
     showAppointmentModal,
-    setShowAppointmentModal: () => dispatch(setShowAppointmentModal()),
+    setShowAppointmentModal: (option) => dispatch(setShowAppointmentModal(option)),
     showDeleteWarning,
     setShowDeleteWarning: (options) => dispatch(setShowDeleteWarning(options)),
     openAndEdit,
