@@ -1,22 +1,11 @@
-import { useState } from "react/cjs/react.development";
-import { useAuthActions } from "../../../hooks/shared/useAuthActions/useAuthActions";
-
 import { StyledInput, StyledInputGroup, StyledLabel } from "../../../styles/formStyles";
 import { StyledBackgroundDiv, StyledForm } from "../../shared/AuthForm/AuthForm.styled";
 import { H2 } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
+import { useForgotPassword } from "../../../hooks/useForgotPassword/useForgotPassword";
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState("");
-  const { resetPassword } = useAuthActions();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (!email) return;
-
-    resetPassword(email);
-  };
+  const { email, handleChange, handleSubmit } = useForgotPassword();
 
   return (
     <StyledBackgroundDiv>
@@ -29,7 +18,7 @@ const ForgotPassword = () => {
             type="email"
             id="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleChange}
           />
         </StyledInputGroup>
         <Button primary type="submit">
