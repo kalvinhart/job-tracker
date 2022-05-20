@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, isAnyOf } from "@reduxjs/toolkit";
 
 import {
   fetchJobs,
@@ -97,47 +97,19 @@ const jobSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(loadAllJobs.pending, (state, action) => {
-        state.error = false;
-        state.loading = true;
-      })
       .addCase(loadAllJobs.fulfilled, (state, action) => {
         state.loading = false;
         state.jobs = action.payload.rawJobs;
         state.jobsForTable = action.payload.sanitsedJobs;
       })
-      .addCase(loadAllJobs.rejected, (state, action) => {
-        state.loading = false;
-        state.error = true;
-      })
-      .addCase(loadJob.pending, (state, action) => {
-        state.error = false;
-        state.loading = true;
-      })
       .addCase(loadJob.fulfilled, (state, action) => {
         state.loading = false;
         state.currentJob = action.payload;
-      })
-      .addCase(loadJob.rejected, (state, action) => {
-        state.loading = false;
-        state.error = true;
-      })
-      .addCase(saveNewJob.pending, (state, action) => {
-        state.error = false;
-        state.loading = true;
       })
       .addCase(saveNewJob.fulfilled, (state, action) => {
         state.loading = false;
         state.jobs.push(action.payload);
         state.jobsForTable = sanitiseDataForTable([...state.jobs]);
-      })
-      .addCase(saveNewJob.rejected, (state, action) => {
-        state.loading = false;
-        state.error = true;
-      })
-      .addCase(saveEditedJob.pending, (state, action) => {
-        state.error = false;
-        state.loading = true;
       })
       .addCase(saveEditedJob.fulfilled, (state, action) => {
         state.loading = false;
@@ -151,24 +123,38 @@ const jobSlice = createSlice({
         state.jobsForTable = sanitiseDataForTable([...state.jobs]);
         state.currentJob = action.payload;
       })
-      .addCase(saveEditedJob.rejected, (state, action) => {
-        state.loading = false;
-        state.error = true;
-      })
-      .addCase(deleteJobById.pending, (state, action) => {
-        state.error = false;
-        state.loading = true;
-      })
       .addCase(deleteJobById.fulfilled, (state, action) => {
         state.loading = false;
         state.jobs = state.jobs.filter((job) => job.id !== action.payload);
         state.jobsForTable = sanitiseDataForTable([...state.jobs]);
         state.currentJob = null;
       })
-      .addCase(deleteJobById.rejected, (state, action) => {
-        state.loading = false;
-        state.error = true;
-      });
+      .addMatcher(
+        isAnyOf(
+          loadAllJobs.pending,
+          loadJob.pending,
+          saveNewJob.pending,
+          saveEditedJob.pending,
+          deleteJobById.pending
+        ),
+        (state, action) => {
+          state.error = false;
+          state.loading = true;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          loadAllJobs.rejected,
+          loadJob.rejected,
+          saveNewJob.rejected,
+          saveEditedJob.rejected,
+          deleteJobById.rejected
+        ),
+        (state, action) => {
+          state.loading = false;
+          state.error = true;
+        }
+      );
   },
 });
 
