@@ -18,7 +18,7 @@ const Routes = () => {
       <Route
         path="/signin"
         element={
-          <Suspense fallback={Spinner}>
+          <Suspense fallback={<Spinner />}>
             <LoginPage />
           </Suspense>
         }
@@ -26,7 +26,7 @@ const Routes = () => {
       <Route
         path="/register"
         element={
-          <Suspense fallback={Spinner}>
+          <Suspense fallback={<Spinner />}>
             <RegisterPage />
           </Suspense>
         }
@@ -34,7 +34,7 @@ const Routes = () => {
       <Route
         path="/forgot-password"
         element={
-          <Suspense fallback={Spinner}>
+          <Suspense fallback={<Spinner />}>
             <ForgotPassword />
           </Suspense>
         }
@@ -44,7 +44,7 @@ const Routes = () => {
         <Route
           path="job-list"
           element={
-            <Suspense fallback={Spinner}>
+            <Suspense fallback={<Spinner />}>
               <JobsPage />
             </Suspense>
           }
@@ -53,7 +53,7 @@ const Routes = () => {
         <Route
           path="/"
           element={
-            <Suspense fallback={Spinner}>
+            <Suspense fallback={<Spinner />}>
               <JobsPage />
             </Suspense>
           }
@@ -62,7 +62,7 @@ const Routes = () => {
         <Route
           path="job/:id"
           element={
-            <Suspense fallback={Spinner}>
+            <Suspense fallback={<Spinner />}>
               <JobPage />
             </Suspense>
           }
