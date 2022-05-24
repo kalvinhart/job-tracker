@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useAuth } from "../shared/useAuth/useAuth";
 import { useJobSlice } from "../shared/useJobSlice/useJobSlice";
 
@@ -12,6 +12,7 @@ export const useJob = () => {
     useJobSlice();
 
   const params = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (currentJob) return;
@@ -27,10 +28,15 @@ export const useJob = () => {
     }
   }, [jobs, currentJob, dispatch, loadAllJobs, loadJob, user]);
 
+  useEffect(() => {
+    if (error) {
+      navigate("/error");
+    }
+  }, [error]);
+
   return {
     loading,
     currentJob,
-    error,
     deleteJobById: (id) => deleteJobById(id),
   };
 };

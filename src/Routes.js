@@ -4,6 +4,7 @@ import { Routes as RoutesList, Route } from "react-router-dom";
 import Spinner from "./components/shared/Spinner/Spinner";
 
 import PrivateRoute from "./components/shared/PrivateRoute/PrivateRoute";
+const ErrorPage = lazy(() => import("./components/error/ErrorPage"));
 const JobPage = lazy(() => import("./components/job/JobPage"));
 const JobsPage = lazy(() => import("./components/jobs/JobsPage"));
 const LoginPage = lazy(() => import("./components/login/LoginPage"));
@@ -36,6 +37,15 @@ const Routes = () => {
         element={
           <Suspense fallback={<Spinner />}>
             <ForgotPassword />
+          </Suspense>
+        }
+      />
+
+      <Route
+        path="/error"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <ErrorPage />
           </Suspense>
         }
       />

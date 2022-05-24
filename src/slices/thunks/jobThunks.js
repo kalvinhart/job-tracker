@@ -22,18 +22,21 @@ export const loadAllJobs = createAsyncThunk("job/loadAllJobs", async (uid) => {
   }
 });
 
-export const loadJob = createAsyncThunk("job/loadJob", async (id) => {
-  try {
-    const job = await fetchJob(id);
-    if (job) {
-      return job;
-    } else {
-      throw new Error("Job does not exist");
+export const loadJob = createAsyncThunk(
+  "job/loadJob",
+  async (id, { rejectWithValue }) => {
+    try {
+      const job = await fetchJob(id);
+      if (job) {
+        return job;
+      } else {
+        return rejectWithValue("Job does not exist");
+      }
+    } catch (err) {
+      console.log(err.message);
     }
-  } catch (err) {
-    console.log(err.message);
   }
-});
+);
 
 export const saveNewJob = createAsyncThunk(
   "job/saveNewJob",
