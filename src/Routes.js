@@ -4,6 +4,7 @@ import { Routes as RoutesList, Route } from "react-router-dom";
 import Spinner from "./components/shared/Spinner/Spinner";
 
 import PrivateRoute from "./components/shared/PrivateRoute/PrivateRoute";
+const ErrorPage = lazy(() => import("./components/error/ErrorPage"));
 const JobPage = lazy(() => import("./components/job/JobPage"));
 const JobsPage = lazy(() => import("./components/jobs/JobsPage"));
 const LoginPage = lazy(() => import("./components/login/LoginPage"));
@@ -18,7 +19,7 @@ const Routes = () => {
       <Route
         path="/signin"
         element={
-          <Suspense fallback={Spinner}>
+          <Suspense fallback={<Spinner />}>
             <LoginPage />
           </Suspense>
         }
@@ -26,7 +27,7 @@ const Routes = () => {
       <Route
         path="/register"
         element={
-          <Suspense fallback={Spinner}>
+          <Suspense fallback={<Spinner />}>
             <RegisterPage />
           </Suspense>
         }
@@ -34,8 +35,17 @@ const Routes = () => {
       <Route
         path="/forgot-password"
         element={
-          <Suspense fallback={Spinner}>
+          <Suspense fallback={<Spinner />}>
             <ForgotPassword />
+          </Suspense>
+        }
+      />
+
+      <Route
+        path="/error"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <ErrorPage />
           </Suspense>
         }
       />
@@ -44,7 +54,7 @@ const Routes = () => {
         <Route
           path="job-list"
           element={
-            <Suspense fallback={Spinner}>
+            <Suspense fallback={<Spinner />}>
               <JobsPage />
             </Suspense>
           }
@@ -53,7 +63,7 @@ const Routes = () => {
         <Route
           path="/"
           element={
-            <Suspense fallback={Spinner}>
+            <Suspense fallback={<Spinner />}>
               <JobsPage />
             </Suspense>
           }
@@ -62,7 +72,7 @@ const Routes = () => {
         <Route
           path="job/:id"
           element={
-            <Suspense fallback={Spinner}>
+            <Suspense fallback={<Spinner />}>
               <JobPage />
             </Suspense>
           }
