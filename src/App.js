@@ -9,15 +9,18 @@ import Routes from "./Routes";
 
 import AuthProvider from "./context/authContext";
 import { Toaster } from "react-hot-toast";
+import Layout from "./components/shared/Layout/Layout";
 
 function App() {
   return (
     <BrowserRouter>
       <Provider store={store}>
         <GlobalStyles />
+        <Toaster position="bottom-right" />
         <AuthProvider>
-          <Toaster position="bottom-right" />
-          <Routes />
+          <Layout>
+            <Routes />
+          </Layout>
         </AuthProvider>
       </Provider>
     </BrowserRouter>
