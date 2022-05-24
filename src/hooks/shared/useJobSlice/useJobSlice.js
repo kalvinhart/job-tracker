@@ -1,13 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
+import { setCurrentJob, clearJobState } from "../../../slices/jobSlice";
 import {
-  setCurrentJob,
-  clearJobState,
   loadAllJobs,
   loadJob,
   saveNewJob,
   saveEditedJob,
   deleteJobById,
-} from "../../../slices/jobSlice";
+} from "../../../slices/thunks/jobThunks";
 
 export const useJobSlice = () => {
   const dispatch = useDispatch();
