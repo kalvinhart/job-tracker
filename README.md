@@ -19,6 +19,7 @@ Authentication is handled with Firebase Authentication.
 During development of this app I used the following technologies/dependencies:
 
 - react
+- react-redux
 - react-router-dom
 - react-table
 - react-hook-form
@@ -33,7 +34,7 @@ The main feature of the application is the table displaying a list of jobs. For 
 
 The main functionality involves the use of a form to add jobs to the table. For this I chose to use `react-hook-form` in order to easily manage the state and error handling of this feature.
 
-For storing data, I chose to use `firebase/firestore` as this was the simplest solution to compliment a front end as I currently do not have much back end knowledge. I also used `firebase/auth` to handle user authentication.
+For storing data, I chose to use `firebase/firestore` as this was the simplest solution to compliment a front end without spending added time writing a custom back end. I also used `firebase/auth` to handle user authentication.
 
 For styling I have again used `styled-components` as I enjoy the flexibility it gives with it's dynamic styles based on props. The design of the app is my own.
 
