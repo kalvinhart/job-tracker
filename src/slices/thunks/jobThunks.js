@@ -12,15 +12,18 @@ import { sanitiseDataForTable } from "../../utilities/sanitise";
 
 import { closeSidePanel, setShowAppointmentModal } from "../uiSlice";
 
-export const loadAllJobs = createAsyncThunk("job/loadAllJobs", async (uid) => {
-  try {
-    const rawJobs = await fetchJobs(uid);
-    const sanitsedJobs = sanitiseDataForTable(rawJobs);
-    return { rawJobs, sanitsedJobs };
-  } catch (err) {
-    console.log(err.message);
+export const loadAllJobs = createAsyncThunk(
+  "job/loadAllJobs",
+  async (uid, { rejectWithValue }) => {
+    try {
+      const rawJobs = await fetchJobs(uid);
+      const sanitsedJobs = sanitiseDataForTable(rawJobs);
+      return { rawJobs, sanitsedJobs };
+    } catch (err) {
+      return rejectWithValue(err.message);
+    }
   }
-});
+);
 
 export const loadJob = createAsyncThunk(
   "job/loadJob",
@@ -40,21 +43,21 @@ export const loadJob = createAsyncThunk(
 
 export const saveNewJob = createAsyncThunk(
   "job/saveNewJob",
-  async (data, { dispatch }) => {
+  async (data, { dispatch, rejectWithValue }) => {
     try {
       const newJob = await saveJob(data);
       toast.success("Job successfully saved!");
       dispatch(closeSidePanel());
       return newJob;
     } catch (err) {
-      console.log(err.message);
+      return rejectWithValue(err.message);
     }
   }
 );
 
 export const saveEditedJob = createAsyncThunk(
   "job/saveEditedJob",
-  async (data, { dispatch }) => {
+  async (data, { dispatch, rejectWithValue }) => {
     try {
       const editedJob = await saveUpdate(data);
       toast.success("Job successfully updated!");
@@ -62,17 +65,20 @@ export const saveEditedJob = createAsyncThunk(
       dispatch(closeSidePanel());
       return editedJob;
     } catch (err) {
-      console.log(err.message);
+      return rejectWithValue(err.message);
     }
   }
 );
 
-export const deleteJobById = createAsyncThunk("job/deleteJobById", async (id) => {
-  try {
-    await deleteJob(id);
-    toast.success("Job deleted!");
-    return id;
-  } catch (err) {
-    console.log(err.message);
+export const deleteJobById = createAsyncThunk(
+  "job/deleteJobById",
+  async (id, { rejectWithValue }) => {
+    try {
+      await deleteJob(id);
+      toast.success("Job deleted!");
+      return id;
+    } catch (err) {
+      return rejectWithValue(err.message);
+    }
   }
-});
+);
