@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
 
   const signUp = async (email, password) => {
     try {
-      const newUser = await createNewUserWithEmail(email, password);
+      const newUser = await createNewUserWithEmail({ email, password });
       toastSuccess("Account created successfully!");
       return { user: newUser, error: null };
     } catch ({ message }) {
@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
 
   const signIn = async (email, password) => {
     try {
-      const user = await signInWithEmail(email, password);
+      const user = await signInWithEmail({ email, password });
       toastSuccess("Signed in successfully!");
       return { user, error: null };
     } catch ({ message }) {
