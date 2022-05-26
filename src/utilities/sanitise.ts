@@ -1,4 +1,6 @@
-export const sanitiseDataForTable = (jobs) => {
+import { Job } from "../types/jobTypes";
+
+export const sanitiseDataForTable = (jobs: Job[]) => {
   return jobs.map((job) => {
     const interview =
       typeof job.interview === "number"
@@ -6,7 +8,7 @@ export const sanitiseDataForTable = (jobs) => {
         : job.interview;
 
     let benefits =
-      job.benefits !== "" && job.benefits.includes(",")
+      job.benefits !== "" && job.benefits?.includes(",")
         ? job.benefits.split(",")
         : job.benefits;
 
