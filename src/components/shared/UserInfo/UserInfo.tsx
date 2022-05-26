@@ -5,7 +5,11 @@ import { Button } from "../../../styles/buttonStyles";
 import { Span } from "../../../styles/fontStyles";
 import { StyledUserInfoWrapper } from "./UserInfo.styled";
 
-const UserInfo = ({ signOut }) => {
+type UserInfoProps = {
+  signOut: () => void;
+};
+
+const UserInfo = ({ signOut }: UserInfoProps) => {
   return (
     <StyledUserInfoWrapper>
       <Span>Welcome!</Span>
