@@ -8,7 +8,17 @@ const fadeInAnimationCloseButton = css`
   animation-fill-mode: forwards;
 `;
 
-export const Button = styled.button`
+type ButtonProps = {
+  primary?: boolean;
+  secondary?: boolean;
+  danger?: boolean;
+  visible?: boolean;
+  transparent?: boolean;
+  vertical?: boolean;
+  horizontal?: boolean;
+};
+
+export const Button = styled.button<ButtonProps>`
   padding: 5px 20px;
   min-width: 95px;
   border: 1px solid transparent;

@@ -20,7 +20,11 @@ export const H3 = styled.h3`
   color: var(--clr-h3);
 `;
 
-export const Span = styled.span`
+type SpanProps = {
+  multiline?: boolean;
+};
+
+export const Span = styled.span<SpanProps>`
   font-size: 16px;
 
   ${({ multiline }) => multiline && "white-space: pre-wrap;"}
@@ -39,7 +43,11 @@ export const BenefitSpan = styled.span`
   }
 `;
 
-export const StatusSpan = styled.span`
+type StatusSpanProps = {
+  status: string;
+};
+
+export const StatusSpan = styled.span<StatusSpanProps>`
   padding: 2px 10px;
   border-radius: var(--border-radius);
   font-size: 12px;
@@ -61,7 +69,11 @@ export const StatusSpan = styled.span`
   }}
 `;
 
-export const ErrorSpan = styled.span`
+type ErrorSpanProps = {
+  inline?: boolean;
+};
+
+export const ErrorSpan = styled.span<ErrorSpanProps>`
   display: flex;
   align-items: center;
   position: absolute;

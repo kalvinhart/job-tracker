@@ -24,7 +24,11 @@ export const StyledLabel = styled.label`
   margin-bottom: 5px;
 `;
 
-export const StyledInput = styled.input`
+type StyledInputProps = {
+  long?: boolean;
+};
+
+export const StyledInput = styled.input<StyledInputProps>`
   width: 180px;
   padding: 5px 10px;
   border-radius: var(--border-radius);
@@ -72,7 +76,11 @@ export const StyledTextArea = styled.textarea`
   }
 `;
 
-export const StyledButtonGroup = styled.div`
+type StyledButtonGroupProps = {
+  small?: boolean;
+};
+
+export const StyledButtonGroup = styled.div<StyledButtonGroupProps>`
   display: flex;
   justify-content: space-between;
   width: 230px;
