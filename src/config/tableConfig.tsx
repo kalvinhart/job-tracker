@@ -1,6 +1,14 @@
 import SelectColumnFilter from "../components/jobs/Table/SelectColumnFilter";
 
-export const columnData = [
+interface IColumnData {
+  Header: string;
+  accessor: string;
+  Filter?: (props: any) => JSX.Element;
+  filter?: string;
+  disableFilters?: boolean;
+}
+
+export const columnData: IColumnData[] = [
   {
     Header: "ID",
     accessor: "id",
