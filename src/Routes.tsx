@@ -1,16 +1,16 @@
 import { lazy, Suspense } from "react";
 import { Routes as RoutesList, Route } from "react-router-dom";
 
-import Spinner from "./components/shared/Spinner/Spinner";
+import Spinner from "./presentation/shared/Spinner/Spinner";
 
-import PrivateRoute from "./components/shared/PrivateRoute/PrivateRoute";
-const ErrorPage = lazy(() => import("./components/error/ErrorPage"));
-const JobPage = lazy(() => import("./components/job/JobPage"));
-const JobsPage = lazy(() => import("./components/jobs/JobsPage"));
-const LoginPage = lazy(() => import("./components/login/LoginPage"));
-const RegisterPage = lazy(() => import("./components/register/RegisterPage"));
-const ForgotPassword = lazy(() =>
-  import("./components/login/ForgotPassword/ForgotPassword")
+import PrivateRoute from "./presentation/shared/PrivateRoute/PrivateRoute";
+const ErrorPage = lazy(() => import("./presentation/pages/error/ErrorPage"));
+const JobPage = lazy(() => import("./presentation/pages/job/JobPage"));
+const JobsPage = lazy(() => import("./presentation/pages/jobs/JobsPage"));
+const LoginPage = lazy(() => import("./presentation/pages/login/LoginPage"));
+const RegisterPage = lazy(() => import("./presentation/pages/register/RegisterPage"));
+const ForgotPassword = lazy(
+  () => import("./presentation/features/sign-in/ForgotPassword/ForgotPassword")
 );
 
 const Routes = () => {
