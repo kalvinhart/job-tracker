@@ -1,5 +1,5 @@
-import { useJobs } from "../../hooks/useJobs/useJobs";
-import { useTableConfig } from "../../hooks/useTableConfig/useTableConfig";
+import { useJobs } from "../../features/list-jobs/hooks/useJobs";
+import { useTableConfig } from "../../features/list-jobs/hooks/useTableConfig";
 
 import Table from "../../features/list-jobs/Table/Table";
 import NoData from "../../features/list-jobs/Table/NoData";

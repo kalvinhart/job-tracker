@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import { useJob } from "../../hooks/useJob/useJob";
-import { useUi } from "../../hooks/shared/useUi/useUi";
-import { useAuth } from "../../hooks/shared/useAuth/useAuth";
-import { useJobSlice } from "../../hooks/shared/useJobSlice/useJobSlice";
-import { useTableConfig } from "../../hooks/useTableConfig/useTableConfig";
+import { useJob } from "../../features/job-details/hooks/useJob";
+import { useUi } from "../../hooks/useUi/useUi";
+import { useAuth } from "../../hooks/useAuth/useAuth";
+import { useJobSlice } from "../../hooks/useJobSlice/useJobSlice";
+import { useTableConfig } from "../../features/list-jobs/hooks/useTableConfig";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

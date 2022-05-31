@@ -1,10 +1,6 @@
 import { useMemo } from "react";
 
-import {
-  columnData,
-  statusOptions,
-  centeredColumns,
-} from "../../features/list-jobs/config/tableConfig";
+import { columnData, statusOptions, centeredColumns } from "../config/tableConfig";
 
 export const useTableConfig = (jobs) => {
   const columns = useMemo(() => columnData, []);

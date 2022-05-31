@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router";
-import { useAuth } from "../shared/useAuth/useAuth";
-import { useJobSlice } from "../shared/useJobSlice/useJobSlice";
+import { useAuth } from "../../../hooks/useAuth/useAuth";
+import { useJobSlice } from "../../../hooks/useJobSlice/useJobSlice";
 
 export const useJob = () => {
   const dispatch = useDispatch();

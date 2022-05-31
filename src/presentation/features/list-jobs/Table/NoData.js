@@ -1,4 +1,4 @@
-import { useUi } from "../../../hooks/shared/useUi/useUi";
+import { useUi } from "../../../hooks/useUi/useUi";
 
 import { StyledBg } from "../../../styles/bgStyles";
 import { StyledNoDataDiv } from "./Table.styled";

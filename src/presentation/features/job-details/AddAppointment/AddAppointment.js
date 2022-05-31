@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useAddAppointment } from "../../../hooks/useAddAppointment/useAddAppointment";
+import { useAddAppointment } from "../hooks/useAddAppointment";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

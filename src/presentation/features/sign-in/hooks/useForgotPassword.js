@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuthActions } from "../shared/useAuthActions/useAuthActions";
+import { useAuthActions } from "../../../hooks/useAuthActions/useAuthActions";
 
 export const useForgotPassword = () => {
   const [email, setEmail] = useState("");

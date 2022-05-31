@@ -1,7 +1,7 @@
 import ForgotPassword from "./ForgotPassword";
 import { render, screen, fireEvent } from "../../../utilities/testUtils";
 
-jest.mock("../../../hooks/shared/useAuthActions/useAuthActions.js", () => ({
+jest.mock("../../../hooks/useAuthActions/useAuthActions.js", () => ({
   useAuthActions: () => ({
     signIn: () => {},
     signUserOut: () => {},

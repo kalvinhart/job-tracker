@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useAuth } from "../shared/useAuth/useAuth";
+import { useAuth } from "../../../hooks/useAuth/useAuth";
 
-import { useJobSlice } from "../shared/useJobSlice/useJobSlice";
+import { useJobSlice } from "../../../hooks/useJobSlice/useJobSlice";
 
 export const useJobs = () => {
   const { loading, jobs, jobsForTable, error, loadAllJobs, setCurrentJob } =

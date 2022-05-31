@@ -1,4 +1,4 @@
-import { useUi } from "../../hooks/shared/useUi/useUi";
+import { useUi } from "../../hooks/useUi/useUi";
 
 import { Button } from "../../styles/buttonStyles";
 import {

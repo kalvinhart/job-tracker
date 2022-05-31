@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { useFilterOptions } from "../../../hooks/useFilterOptions/useFilterOptions";
+import { useFilterOptions } from "../hooks/useFilterOptions";
 
 import { FilterWrapper, FilterOverlay } from "./Table.styled";
 import { StyledSelect } from "../../../styles/formStyles";

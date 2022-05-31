@@ -1,4 +1,4 @@
-import { useJob } from "../../hooks/useJob/useJob";
+import { useJob } from "../../features/job-details/hooks/useJob";
 
 import Spinner from "../../shared/Spinner/Spinner";
 import JobView from "../../features/job-details/JobView/JobView";

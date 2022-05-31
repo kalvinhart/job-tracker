@@ -5,7 +5,7 @@ import {
 } from "../../../shared/AuthForm/AuthForm.styled";
 import { ErrorSpan, H2 } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
-import { useForgotPassword } from "../../../hooks/useForgotPassword/useForgotPassword";
+import { useForgotPassword } from "../hooks/useForgotPassword";
 
 const ForgotPassword = () => {
   const { email, error, handleChange, handleSubmit } = useForgotPassword();

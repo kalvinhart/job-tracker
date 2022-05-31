@@ -1,4 +1,4 @@
-import { useAuthActions } from "../../hooks/shared/useAuthActions/useAuthActions";
+import { useAuthActions } from "../../hooks/useAuthActions/useAuthActions";
 
 import AuthForm from "../../shared/AuthForm/AuthForm";
 

@@ -1,5 +1,5 @@
-import { useUi } from "../../../hooks/shared/useUi/useUi";
-import { useAppointmentView } from "../../../hooks/useAppointmentView/useAppointmentView";
+import { useUi } from "../../../hooks/useUi/useUi";
+import { useAppointmentView } from "../hooks/useAppointmentView";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit, faPlus } from "@fortawesome/free-solid-svg-icons";

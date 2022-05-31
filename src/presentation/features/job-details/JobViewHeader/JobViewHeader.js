@@ -1,5 +1,5 @@
-import { useUi } from "../../../hooks/shared/useUi/useUi";
-import { useJob } from "../../../hooks/useJob/useJob";
+import { useUi } from "../../../hooks/useUi/useUi";
+import { useJob } from "../hooks/useJob";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
