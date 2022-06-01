@@ -7,7 +7,7 @@ import { useJobSlice } from "../../../hooks/useJobSlice/useJobSlice";
 export const useJob = () => {
   const dispatch = useDispatch();
 
-  const { user } = useContext(AuthContext);
+  const { userID: user } = useContext(AuthContext);
   const { loading, jobs, currentJob, error, loadAllJobs, loadJob, deleteJobById } =
     useJobSlice();
 
