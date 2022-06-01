@@ -19,11 +19,11 @@ export const useJob = () => {
 
     if (user) {
       if (!jobs && !loading) {
-        return loadAllJobs(user);
+        loadAllJobs(user);
       }
 
       if (jobs && params.id && !currentJob && !error && !loading) {
-        return loadJob(params.id);
+        loadJob(params.id);
       }
     }
   }, [jobs, currentJob, dispatch, loadAllJobs, loadJob, user]);
@@ -37,6 +37,6 @@ export const useJob = () => {
   return {
     loading,
     currentJob,
-    deleteJobById: (id) => deleteJobById(id),
+    deleteJobById: (id: string) => deleteJobById(id),
   };
 };

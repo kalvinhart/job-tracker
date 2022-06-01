@@ -4,7 +4,7 @@ import Spinner from "../../components/Spinner/Spinner";
 import JobView from "../../features/job-details/JobView/JobView";
 
 const JobPage = () => {
-  const { loading, currentJob, error } = useJob();
+  const { loading, currentJob } = useJob();
 
   if (loading) return <Spinner />;
 
