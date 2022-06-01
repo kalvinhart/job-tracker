@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 import Spinner from "../Spinner/Spinner";
-import { usePrivateRoute } from "../../hooks/usePrivateRoute/usePrivateRoute";
+import { usePrivateRoute } from "./usePrivateRoute";
 
 const PrivateRoute = () => {
   const { isLoggedIn, loading } = usePrivateRoute();

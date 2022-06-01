@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { useAuthActions } from "../useAuthActions/useAuthActions";
+import { useAuthActions } from "../../hooks/useAuthActions/useAuthActions";
 
 export const useAuthForm = (type) => {
   const [loading, setLoading] = useState(false);

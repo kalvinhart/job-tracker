@@ -1,4 +1,4 @@
-import { useDeleteConfirm } from "../../hooks/useDeleteConfirm/useDeleteConfirm";
+import { useDeleteConfirm } from "./useDeleteConfirm";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";

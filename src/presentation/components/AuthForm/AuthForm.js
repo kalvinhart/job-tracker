@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useAuthForm } from "../../hooks/useAuthForm/useAuthForm";
+import { useAuthForm } from "./useAuthForm";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { useModal } from "../../hooks/useModal/useModal";
+import { useModal } from "./useModal";
 
 import { StyledOverlay, StyledModalContainer } from "./Modal.styled";
 
