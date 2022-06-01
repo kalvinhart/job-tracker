@@ -8,7 +8,7 @@ export const useJobs = () => {
   const { loading, jobs, jobsForTable, error, loadAllJobs, setCurrentJob } =
     useJobSlice();
 
-  const { user } = useContext(AuthContext);
+  const { userID: user } = useContext(AuthContext);
 
   const navigate = useNavigate();
 

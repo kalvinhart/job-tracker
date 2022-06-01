@@ -1,10 +1,13 @@
-import { useState } from "react";
-import { useAuthActions } from "../../../hooks/useAuthActions/useAuthActions";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router";
+import { AuthContext } from "../../../../application/context/authContext";
 
 export const useForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const { resetPassword } = useAuthActions();
+  const { resetPassword } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     if (error) {
@@ -22,6 +25,7 @@ export const useForgotPassword = () => {
     }
 
     resetPassword(email);
+    navigate("/signin");
   };
 
   return {

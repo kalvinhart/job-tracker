@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
-import { useAuthActions } from "../../hooks/useAuthActions/useAuthActions";
+import { AuthContext } from "../../../application/context/authContext";
 
 export const useAuthForm = (type) => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const { signIn, signUp } = useAuthActions();
+  const { signIn, signUp } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
