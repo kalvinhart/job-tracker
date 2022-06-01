@@ -1,6 +1,6 @@
 import { useJob } from "../../features/job-details/hooks/useJob";
 
-import Spinner from "../../shared/Spinner/Spinner";
+import Spinner from "../../components/Spinner/Spinner";
 import JobView from "../../features/job-details/JobView/JobView";
 
 const JobPage = () => {

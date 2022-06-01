@@ -1,6 +1,6 @@
 import { useAuthActions } from "../../hooks/useAuthActions/useAuthActions";
 
-import AuthForm from "../../shared/AuthForm/AuthForm";
+import AuthForm from "../../components/AuthForm/AuthForm";
 
 const LoginPage = () => {
   const { signUp } = useAuthActions();

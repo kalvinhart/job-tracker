@@ -3,7 +3,7 @@ import { useTableConfig } from "../../features/list-jobs/hooks/useTableConfig";
 
 import Table from "../../features/list-jobs/Table/Table";
 import NoData from "../../features/list-jobs/Table/NoData";
-import Spinner from "../../shared/Spinner/Spinner";
+import Spinner from "../../components/Spinner/Spinner";
 
 const JobsPage = () => {
   const { loading, jobs, jobsForTable, viewJob } = useJobs();

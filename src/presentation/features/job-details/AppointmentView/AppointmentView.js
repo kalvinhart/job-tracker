@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import AddAppointment from "../AddAppointment/AddAppointment";
-import DeleteConfirm from "../../../shared/DeleteConfirm/DeleteConfirm";
+import DeleteConfirm from "../../../components/DeleteConfirm/DeleteConfirm";
 
 import { AppointmentViewWrapper } from "./AppointmentView.styled";
 

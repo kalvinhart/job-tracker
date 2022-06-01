@@ -9,7 +9,7 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 
-import Modal from "../../../shared/Modal/Modal";
+import Modal from "../../../components/Modal/Modal";
 import { ErrorSpan, H2, StyledParagraph } from "../../../styles/fontStyles";
 import {
   StyledButtonGroup,

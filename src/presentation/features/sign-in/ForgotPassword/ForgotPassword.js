@@ -2,7 +2,7 @@ import { StyledInput, StyledInputGroup, StyledLabel } from "../../../styles/form
 import {
   StyledBackgroundDiv,
   StyledForm,
-} from "../../../shared/AuthForm/AuthForm.styled";
+} from "../../../components/AuthForm/AuthForm.styled";
 import { ErrorSpan, H2 } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
 import { useForgotPassword } from "../hooks/useForgotPassword";
