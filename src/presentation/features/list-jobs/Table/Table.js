@@ -7,11 +7,11 @@ import {
   usePagination,
 } from "react-table";
 
-import GlobalFilter from "./GlobalFilter";
-import DefaultColumnFilter from "./DefaultColumnFilter";
-import Pagination from "./Pagination";
+import GlobalFilter from "../GlobalFilter/GlobalFilter";
+import DefaultColumnFilter from "../DefaultColumnFilter/DefaultColumnFilter";
+import Pagination from "../Pagination/Pagination";
 
-import { renderCell, renderHeader } from "../../../utilities/table";
+import { renderCell, renderHeader } from "../utils/table";
 
 import {
   TableWrapper,

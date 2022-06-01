@@ -6,10 +6,10 @@ import {
   StyledTH,
   StyledTHWrapper,
   StyledFilterIconDiv,
-} from "../features/list-jobs/Table/Table.styled";
-import { StatusSpan, BenefitSpan } from "../styles/fontStyles";
+} from "../Table/Table.styled";
+import { StatusSpan, BenefitSpan } from "../../../styles/fontStyles";
 
-import { statusOptions, centeredColumns } from "../features/list-jobs/config/tableConfig";
+import { statusOptions, centeredColumns } from "../config/tableConfig";
 
 export const renderHeader = (column) => (
   <StyledTH hideFirst={true} {...column.getHeaderProps()}>

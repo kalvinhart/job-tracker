@@ -1,4 +1,4 @@
-import SelectColumnFilter from "../Table/SelectColumnFilter";
+import SelectColumnFilter from "../SelectColumnFilter/SelectColumnFilter";
 
 interface IColumnData {
   Header: string;

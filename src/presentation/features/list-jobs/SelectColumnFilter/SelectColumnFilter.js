@@ -1,10 +1,10 @@
-import { useSelectColumnFilter } from "../../../hooks/useSelectColumnFilter/useSelectColumnFilter";
+import { useSelectColumnFilter } from "./useSelectColumnFilter";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 
 import { Button } from "../../../styles/buttonStyles";
-import FilterOptions from "./FilterOptions";
+import FilterOptions from "../FilterOptions/FilterOptions";
 
 const SelectColumnFilter = (props) => {
   const { coords, showFilter, filterButtonRef, handleFilterClick, setShowFilter } =

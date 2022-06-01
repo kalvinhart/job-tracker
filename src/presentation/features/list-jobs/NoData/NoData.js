@@ -1,7 +1,7 @@
 import { useUi } from "../../../hooks/useUi/useUi";
 
 import { StyledBg } from "../../../styles/bgStyles";
-import { StyledNoDataDiv } from "./Table.styled";
+import { StyledNoDataDiv } from "../Table/Table.styled";
 import { Button } from "../../../styles/buttonStyles";
 import { H2, StyledParagraph } from "../../../styles/fontStyles";
 

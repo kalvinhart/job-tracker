@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
-import { useFilterOptions } from "../hooks/useFilterOptions";
+import { useFilterOptions } from "./useFilterOptions";
 
-import { FilterWrapper, FilterOverlay } from "./Table.styled";
+import { FilterWrapper, FilterOverlay } from "../Table/Table.styled";
 import { StyledSelect } from "../../../styles/formStyles";
 import { Button } from "../../../styles/buttonStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

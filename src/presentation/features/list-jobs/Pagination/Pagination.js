@@ -1,5 +1,5 @@
 import { StyledInput, StyledSelect } from "../../../styles/formStyles";
-import { PaginationButton } from "./Table.styled";
+import { PaginationButton } from "../Table/Table.styled";
 
 const Pagination = ({
   options: {

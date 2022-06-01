@@ -2,7 +2,7 @@ import { useJobs } from "../../features/list-jobs/hooks/useJobs";
 import { useTableConfig } from "../../features/list-jobs/hooks/useTableConfig";
 
 import Table from "../../features/list-jobs/Table/Table";
-import NoData from "../../features/list-jobs/Table/NoData";
+import NoData from "../../features/list-jobs/NoData/NoData";
 import Spinner from "../../components/Spinner/Spinner";
 
 const JobsPage = () => {

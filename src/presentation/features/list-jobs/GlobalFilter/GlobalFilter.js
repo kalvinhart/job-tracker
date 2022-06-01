@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAsyncDebounce } from "react-table";
 
-import { StyledGlobalFilter } from "./Table.styled";
+import { StyledGlobalFilter } from "../Table/Table.styled";
 import { StyledInput } from "../../../styles/formStyles";
 
 const GlobalFilter = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }) => {
