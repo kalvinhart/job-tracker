@@ -13,8 +13,9 @@ import {
 import { db } from "./firebase.config";
 import { v4 as uuid } from "uuid";
 import { Job } from "../../../domain/entities/job";
+import { IJobService } from "../../interfaces/IJobService";
 
-export default class FirebaseService {
+export default class FirebaseService implements IJobService {
   async getJobs(uid: string): Promise<Job[]> {
     let jobsArray: Job[] = [];
 
