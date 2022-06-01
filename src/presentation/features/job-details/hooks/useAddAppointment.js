@@ -1,5 +1,5 @@
 import { useJobSlice } from "../../../hooks/useJobSlice/useJobSlice";
-import { useUi } from "../../../hooks/useUi/useUi";
+import { useUi } from "../../../hooks/useUiSlice/useUiSlice";
 
 export const useAddAppointment = (reset) => {
   const { setShowAppointmentModal } = useUi();

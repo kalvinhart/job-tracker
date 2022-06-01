@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../application/context/authContext";
 import { useTableConfig } from "../../features/list-jobs/hooks/useTableConfig";
 import { useJobSlice } from "../../hooks/useJobSlice/useJobSlice";
-import { useUi } from "../../hooks/useUi/useUi";
+import { useUi } from "../../hooks/useUiSlice/useUiSlice";
 
 export const useForm = () => {
   const { editing, closeSidePanel } = useUi();

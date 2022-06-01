@@ -1,4 +1,4 @@
-import { useUi } from "../../../hooks/useUi/useUi";
+import { useUi } from "../../../hooks/useUiSlice/useUiSlice";
 import { useJob } from "../hooks/useJob";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
