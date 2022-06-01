@@ -1,9 +1,9 @@
 import { lazy, Suspense } from "react";
 import { Routes as RoutesList, Route } from "react-router-dom";
 
-import Spinner from "./presentation/shared/Spinner/Spinner";
+import Spinner from "./presentation/components/Spinner/Spinner";
 
-import PrivateRoute from "./presentation/shared/PrivateRoute/PrivateRoute";
+import PrivateRoute from "./presentation/components/PrivateRoute/PrivateRoute";
 const ErrorPage = lazy(() => import("./presentation/pages/error/ErrorPage"));
 const JobPage = lazy(() => import("./presentation/pages/job/JobPage"));
 const JobsPage = lazy(() => import("./presentation/pages/jobs/JobsPage"));
