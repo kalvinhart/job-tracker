@@ -1,17 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 
-import FirebaseService from "../../../infrastructure/api/FirebaseService/FirebaseService";
 import { sanitiseDataForTable } from "../../../presentation/utilities/sanitise";
 
 import { closeSidePanel, setShowAppointmentModal } from "../uiSlice";
 
 export const loadAllJobs = createAsyncThunk(
   "job/loadAllJobs",
-  async (uid, { rejectWithValue }) => {
+  async (uid, { rejectWithValue, extra: { serviceApi } }) => {
     try {
-      const firebaseService = new FirebaseService();
-      const rawJobs = await firebaseService.getJobs(uid);
+      const rawJobs = await serviceApi.getJobs(uid);
       const sanitsedJobs = sanitiseDataForTable(rawJobs);
       return { rawJobs, sanitsedJobs };
     } catch (err) {
@@ -22,10 +20,9 @@ export const loadAllJobs = createAsyncThunk(
 
 export const loadJob = createAsyncThunk(
   "job/loadJob",
-  async (id, { rejectWithValue }) => {
+  async (id, { rejectWithValue, extra: { serviceApi } }) => {
     try {
-      const firebaseService = new FirebaseService();
-      const job = await firebaseService.getJob(id);
+      const job = await serviceApi.getJob(id);
       if (job) {
         return job;
       } else {
@@ -39,10 +36,9 @@ export const loadJob = createAsyncThunk(
 
 export const saveNewJob = createAsyncThunk(
   "job/saveNewJob",
-  async (data, { dispatch, rejectWithValue }) => {
+  async (data, { dispatch, rejectWithValue, extra: { serviceApi } }) => {
     try {
-      const firebaseService = new FirebaseService();
-      const newJob = await firebaseService.createJob(data);
+      const newJob = await serviceApi.createJob(data);
       toast.success("Job successfully saved!");
       dispatch(closeSidePanel());
       return newJob;
@@ -54,10 +50,9 @@ export const saveNewJob = createAsyncThunk(
 
 export const saveEditedJob = createAsyncThunk(
   "job/saveEditedJob",
-  async (data, { dispatch, rejectWithValue }) => {
+  async (data, { dispatch, rejectWithValue, extra: { serviceApi } }) => {
     try {
-      const firebaseService = new FirebaseService();
-      const editedJob = await firebaseService.updateJob(data);
+      const editedJob = await serviceApi.updateJob(data);
       toast.success("Job successfully updated!");
       dispatch(setShowAppointmentModal(false));
       dispatch(closeSidePanel());
@@ -70,10 +65,9 @@ export const saveEditedJob = createAsyncThunk(
 
 export const deleteJobById = createAsyncThunk(
   "job/deleteJobById",
-  async (id, { rejectWithValue }) => {
+  async (id, { rejectWithValue, extra: { serviceApi } }) => {
     try {
-      const firebaseService = new FirebaseService();
-      await firebaseService.deleteJob(id);
+      await serviceApi.deleteJob(id);
       toast.success("Job deleted!");
       return id;
     } catch (err) {
