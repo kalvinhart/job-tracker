@@ -1,7 +1,6 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { useAuth } from "../../../hooks/useAuth/useAuth";
+import { AuthContext } from "../../../../application/context/authContext";
 
 import { useJobSlice } from "../../../hooks/useJobSlice/useJobSlice";
 
@@ -9,7 +8,7 @@ export const useJobs = () => {
   const { loading, jobs, jobsForTable, error, loadAllJobs, setCurrentJob } =
     useJobSlice();
 
-  const { user } = useAuth();
+  const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
