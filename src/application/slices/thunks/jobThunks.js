@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 
-import FirebaseService from "../../../infrastructure/services/FirebaseService/FirebaseService";
+import FirebaseService from "../../../infrastructure/api/FirebaseService/FirebaseService";
 import { sanitiseDataForTable } from "../../../presentation/utilities/sanitise";
 
 import { closeSidePanel, setShowAppointmentModal } from "../uiSlice";
