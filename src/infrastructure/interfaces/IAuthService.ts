@@ -1,7 +1,5 @@
+import { UpdateUser } from "../types/UpdateUser";
 import { UserCredentials } from "../types/UserCredentials";
-
-type UpdateUser = (newUserId: string | null) => void;
-
 export interface IAuthService {
   registerUser: (userCredentials: UserCredentials) => Promise<string>;
   signIn: (userCredentials: UserCredentials) => Promise<string>;

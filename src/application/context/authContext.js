@@ -1,21 +1,22 @@
 import { createContext, useState, useEffect } from "react";
-import FirebaseAuthService from "../../infrastructure/api/FirebaseAuthService/FirebaseAuthService";
+import { useAuthService } from "../../presentation/hooks/useAuthService/useAuthService";
 import { toastSuccess, toastError } from "../../presentation/utilities/toast";
 
 export const AuthContext = createContext("");
 
 const AuthProvider = ({ children }) => {
   const [userID, setUserID] = useState(null);
-  const firebaseAuthService = new FirebaseAuthService();
+
+  const authService = useAuthService();
 
   useEffect(() => {
-    const unsubscribe = firebaseAuthService.authStateChange(updateUser);
+    const unsubscribe = authService.authStateChange(updateUser);
     return unsubscribe;
   }, []);
 
   const signUp = async (email, password) => {
     try {
-      const newUser = await firebaseAuthService.registerUser({
+      const newUser = await authService.registerUser({
         email,
         password,
       });
@@ -33,7 +34,7 @@ const AuthProvider = ({ children }) => {
 
   const signIn = async (email, password) => {
     try {
-      const user = await firebaseAuthService.signIn({ email, password });
+      const user = await authService.signIn({ email, password });
       toastSuccess("Signed in successfully!");
       return { user, error: null };
     } catch ({ message }) {
@@ -50,7 +51,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const signOut = () => {
-    firebaseAuthService.signOut();
+    authService.signOut();
   };
 
   const updateUser = (newUserID) => {
@@ -59,7 +60,7 @@ const AuthProvider = ({ children }) => {
 
   const resetPassword = async (email) => {
     try {
-      await firebaseAuthService.sendResetEmail(email);
+      await authService.sendResetEmail(email);
       toastSuccess("Please check your emails.");
     } catch ({ message }) {
       toastError("An error has occurred, please try again.");
