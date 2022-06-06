@@ -8,7 +8,12 @@ const fadeInAnimationDiv = css`
   animation-fill-mode: forwards;
 `;
 
-export const StyledSidePanelOverlay = styled.div`
+type Props = {
+  show?: boolean;
+  animated?: boolean;
+};
+
+export const StyledSidePanelOverlay = styled.div<Props>`
   position: fixed;
   top: 0;
   left: 0;
@@ -23,7 +28,7 @@ export const StyledSidePanelOverlay = styled.div`
   ${(props) => props.show && "visibility: visible; opacity: 1;"}
 `;
 
-export const SidePanelContainer = styled.div`
+export const SidePanelContainer = styled.div<Props>`
   position: fixed;
   z-index: 500;
   height: 100vh;
@@ -46,7 +51,7 @@ export const SidePanelContainer = styled.div`
   ${(props) => props.show && "width: 800px; padding: 20px;"}
 `;
 
-export const SidePanelGroup = styled.div`
+export const SidePanelGroup = styled.div<Props>`
   ${(props) => (props.show ? "display: block;" : "display: none;")}
 
   ${(props) => props.animated && "visibility: hidden;"}
