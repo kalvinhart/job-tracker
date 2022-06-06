@@ -15,18 +15,28 @@ import { StyledInput, StyledInputGroup, StyledLabel } from "../../styles/formSty
 import { Button } from "../../styles/buttonStyles";
 import { H2, StyledParagraph, ErrorSpan } from "../../styles/fontStyles";
 
-const AuthForm = ({ type }) => {
-  const { loading, errorMessage, onSubmit } = useAuthForm(type);
+import { UserCredentials } from "../../../domain/entities/auth";
+
+type FormValues = UserCredentials;
+
+type AuthFormProps = {
+  type: string;
+};
+
+const AuthForm = ({ type }: AuthFormProps) => {
+  const { loading, errorMessage, submitForm } = useAuthForm(type);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormValues>();
+
+  const onSubmit = handleSubmit((data) => submitForm(data));
 
   return (
     <StyledBackgroundDiv>
-      <StyledForm onSubmit={handleSubmit(onSubmit)}>
+      <StyledForm onSubmit={onSubmit}>
         <H2>{type === "LOGIN" ? "Log in to Your Account" : "Register an Account"}</H2>
 
         <StyledInputGroup>
@@ -105,7 +115,7 @@ const AuthForm = ({ type }) => {
 
         {type === "LOGIN" && (
           <StyledParagraph>
-            <Button as={Link} to="/forgot-password" type="button" transparent="true">
+            <Button as={Link} to="/forgot-password" type="button" transparent>
               Forgot your password?
             </Button>
           </StyledParagraph>

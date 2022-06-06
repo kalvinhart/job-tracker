@@ -1,21 +1,21 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../../application/context/authContext";
+import { UserCredentials } from "../../../domain/entities/auth";
 
-export const useAuthForm = (type) => {
+export const useAuthForm = (type: string) => {
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const { signIn, signUp } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
-  const onSubmit = async (data, e) => {
-    e.preventDefault();
+  const submitForm = async (data: UserCredentials): Promise<void> => {
     setLoading(true);
 
     if (type === "LOGIN") {
-      const { error } = await signIn(data.email, data.password);
+      const { error } = await signIn!(data.email, data.password);
       setLoading(false);
 
       if (error) {
@@ -32,7 +32,7 @@ export const useAuthForm = (type) => {
         return;
       }
 
-      const { error } = await signUp(data.email, data.password);
+      const { error } = await signUp!(data.email, data.password);
       setLoading(false);
 
       if (error) {
@@ -47,6 +47,6 @@ export const useAuthForm = (type) => {
   return {
     loading,
     errorMessage,
-    onSubmit: (data, e) => onSubmit(data, e),
+    submitForm: (data: UserCredentials) => submitForm(data),
   };
 };

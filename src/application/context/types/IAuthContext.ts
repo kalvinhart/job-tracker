@@ -1,4 +1,4 @@
-type Auth = {
+export type Auth = {
   user: string | null;
   error: string | null;
 };

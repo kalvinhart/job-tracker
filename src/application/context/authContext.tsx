@@ -2,7 +2,7 @@ import { createContext, useState, useEffect, ReactNode } from "react";
 import { IAuthService } from "../../infrastructure/interfaces/IAuthService";
 import { useAuthService } from "../../presentation/hooks/useAuthService/useAuthService";
 import { toastSuccess, toastError } from "../../presentation/utilities/toast";
-import { IAuthContext } from "./types/IAuthContext";
+import { Auth, IAuthContext } from "./types/IAuthContext";
 
 export const AuthContext = createContext<Partial<IAuthContext>>({});
 
@@ -22,7 +22,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     return unsubscribe;
   }, []);
 
-  const signUp = async (email: string, password: string) => {
+  const signUp = async (email: string, password: string): Promise<Auth> => {
     try {
       const newUser = await authService.registerUser({
         email,
@@ -40,7 +40,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
-  const signIn = async (email: string, password: string) => {
+  const signIn = async (email: string, password: string): Promise<Auth> => {
     try {
       const user = await authService.signIn({ email, password });
       toastSuccess("Signed in successfully!");
@@ -62,7 +62,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     authService.signOut();
   };
 
-  const updateUser = (newUserID: string | null) => {
+  const updateUser = (newUserID: string | null): void => {
     setUserID(newUserID);
 
     if (newUserID !== null) setIsLoggedIn(true);
@@ -70,7 +70,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     setLoading(false);
   };
 
-  const resetPassword = async (email: string) => {
+  const resetPassword = async (email: string): Promise<void> => {
     try {
       await authService.sendResetEmail(email);
       toastSuccess("Please check your emails.");
