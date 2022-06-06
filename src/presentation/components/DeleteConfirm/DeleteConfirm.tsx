@@ -8,12 +8,19 @@ import { H2, StyledParagraph } from "../../styles/fontStyles";
 import { Button } from "../../styles/buttonStyles";
 import Modal from "../Modal/Modal";
 
-const DeleteConfirm = ({ id, hide, actionDelete, redirect }) => {
-  const { loading, handleDelete, cancel } = useDeleteConfirm(
+type DeleteConfirmProps = {
+  id: string;
+  hide: () => void;
+  actionDelete: (id: string) => Promise<void>;
+  redirect: boolean;
+};
+
+const DeleteConfirm = ({ id, hide, actionDelete, redirect }: DeleteConfirmProps) => {
+  const { loading, handleDelete, cancel } = useDeleteConfirm({
     actionDelete,
     hide,
-    redirect
-  );
+    redirect,
+  });
 
   return (
     <Modal hide={hide}>
