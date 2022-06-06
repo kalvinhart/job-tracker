@@ -3,7 +3,12 @@ import { useModal } from "./useModal";
 
 import { StyledOverlay, StyledModalContainer } from "./Modal.styled";
 
-const Modal = ({ hide, children }) => {
+type ModalProps = {
+  hide: () => void;
+  children: React.ReactNode;
+};
+
+const Modal = ({ hide, children }: ModalProps) => {
   const { modalRef, handleOverlayClose } = useModal(hide);
 
   return createPortal(
@@ -12,7 +17,7 @@ const Modal = ({ hide, children }) => {
         {children}
       </StyledModalContainer>
     </StyledOverlay>,
-    document.getElementById("modal-root")
+    document.getElementById("modal-root") as HTMLElement
   );
 };
 
