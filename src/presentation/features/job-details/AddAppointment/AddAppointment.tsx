@@ -19,13 +19,17 @@ import {
 } from "../../../styles/formStyles";
 import { Button } from "../../../styles/buttonStyles";
 
+type FormValues = {
+  interviewDate: string;
+};
+
 const AddAppointment = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm<FormValues>();
 
   const { loading, onSubmit, cancelForm, setShowAppointmentModal } =
     useAddAppointment(reset);
@@ -33,14 +37,15 @@ const AddAppointment = () => {
   return (
     <Modal hide={() => setShowAppointmentModal(false)}>
       <H2>Add an Interview</H2>
+
       <StyledParagraph>When is your interview date?</StyledParagraph>
+
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledInputGroup>
           <StyledInput
             long
             type="datetime-local"
             id="interviewDate"
-            name="interviewDate"
             {...register("interviewDate", { required: true })}
           />
           {errors.interviewDate?.type === "required" && (
@@ -50,6 +55,7 @@ const AddAppointment = () => {
             </ErrorSpan>
           )}
         </StyledInputGroup>
+
         <StyledButtonGroup>
           <Button primary type="submit" disabled={loading}>
             {loading ? (
@@ -61,6 +67,7 @@ const AddAppointment = () => {
               </>
             )}
           </Button>
+
           <Button type="reset" secondary onClick={cancelForm}>
             <FontAwesomeIcon icon={faTimes} size="lg" />
             Cancel

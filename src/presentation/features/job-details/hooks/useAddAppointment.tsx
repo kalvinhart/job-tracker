@@ -1,11 +1,13 @@
 import { useJobSlice } from "../../../hooks/useJobSlice/useJobSlice";
 import { useUi } from "../../../hooks/useUiSlice/useUiSlice";
 
-export const useAddAppointment = (reset) => {
+type FormData = { interviewDate: string };
+
+export const useAddAppointment = (reset: () => void) => {
   const { setShowAppointmentModal } = useUi();
   const { loading, currentJob, saveEditedJob, setCurrentJob } = useJobSlice();
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: FormData) => {
     const newData = {
       ...currentJob,
       interview: new Date(data.interviewDate).getTime(),
@@ -23,8 +25,8 @@ export const useAddAppointment = (reset) => {
 
   return {
     loading,
-    onSubmit: (data) => onSubmit(data),
+    onSubmit: (data: FormData) => onSubmit(data),
     cancelForm: () => cancelForm(),
-    setShowAppointmentModal: (option) => setShowAppointmentModal(option),
+    setShowAppointmentModal: (option: boolean) => setShowAppointmentModal(option),
   };
 };
