@@ -1,11 +1,11 @@
 import { useContext, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { AuthContext } from "../../../../application/context/authContext";
+import { useAppDispatch } from "../../../../application/hooks/useAppDispatch";
 import { useJobSlice } from "../../../hooks/useJobSlice/useJobSlice";
 
 export const useJob = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { userID: user } = useContext(AuthContext);
   const { loading, jobs, currentJob, error, loadAllJobs, loadJob, deleteJobById } =
