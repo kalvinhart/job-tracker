@@ -1,6 +1,6 @@
 import { Job } from "../../domain/entities/job";
 
-export const sanitiseDataForTable = (jobs: Job[]) => {
+export const sanitiseDataForTable = (jobs: Job[]): Job[] => {
   return jobs.map((job) => {
     const interview =
       typeof job.interview === "number"
@@ -9,7 +9,7 @@ export const sanitiseDataForTable = (jobs: Job[]) => {
 
     let benefits =
       job.benefits !== "" && job.benefits?.includes(",")
-        ? job.benefits.split(",")
+        ? (job.benefits as string).split(",")
         : job.benefits;
 
     if (typeof benefits === "string" && benefits.split("").length > 45) {
