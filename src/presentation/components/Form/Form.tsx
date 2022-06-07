@@ -43,20 +43,20 @@ const Form = () => {
     reset,
   } = useForm<Job>({
     defaultValues: {
-      benefits: editing ? currentJob.benefits : "",
-      company: editing ? currentJob.company : "",
-      contactName: editing ? currentJob.contactName : "",
-      contactNumber: editing ? currentJob.contactNumber : "",
-      date: editing ? new Date(currentJob.date).toISOString().slice(0, 10) : "",
-      description: editing ? currentJob.description : "",
+      benefits: editing ? currentJob!.benefits : "",
+      company: editing ? currentJob!.company : "",
+      contactName: editing ? currentJob!.contactName : "",
+      contactNumber: editing ? currentJob!.contactNumber : "",
+      date: editing ? new Date(currentJob!.date).toISOString().slice(0, 10) : "",
+      description: editing ? currentJob!.description : "",
       interview:
         currentJob?.interview && editing
           ? new Date(currentJob.interview).toISOString()
           : "",
-      location: editing ? currentJob.location : "",
-      salary: editing ? currentJob.salary : "",
+      location: editing ? currentJob!.location : "",
+      salary: editing ? currentJob!.salary : "",
       status: currentJob?.status,
-      title: editing ? currentJob.title : "",
+      title: editing ? currentJob!.title : "",
     },
   });
 
@@ -64,7 +64,7 @@ const Form = () => {
     const newData = { ...data, user };
 
     if (editing) {
-      saveEditedJob({ ...newData, id: currentJob.id });
+      saveEditedJob({ ...newData, id: currentJob!.id });
     } else {
       saveNewJob(newData);
     }
