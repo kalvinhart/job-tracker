@@ -8,7 +8,7 @@ export const useAppointmentView = () => {
   const interviewDate = new Date(interview).toDateString() ?? null;
   const interviewTime = new Date(interview).toLocaleTimeString() ?? null;
 
-  const removeInterview = () => {
+  const removeInterview = async (): Promise<void> => {
     const newData = {
       ...currentJob,
       interview: "",

@@ -53,7 +53,6 @@ const AppointmentView = () => {
               <DeleteConfirm
                 redirect={false}
                 hide={() => setShowDeleteWarning({ deleteInterview: false })}
-                id={id}
                 actionDelete={removeInterview}
               />
             )}

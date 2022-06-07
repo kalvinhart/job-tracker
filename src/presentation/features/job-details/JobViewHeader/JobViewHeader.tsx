@@ -15,7 +15,13 @@ import { StatusSpan } from "../../../styles/fontStyles";
 import { Button } from "../../../styles/buttonStyles";
 import { H2 } from "../../../styles/fontStyles";
 
-const JobViewHeader = ({ currentJob: { id, title, status } }) => {
+import { Job } from "../../../../domain/entities/job";
+
+type JobViewHeaderProps = {
+  currentJob: Job;
+};
+
+const JobViewHeader = ({ currentJob: { id, title, status } }: JobViewHeaderProps) => {
   const {
     openAndEdit,
     showDeleteWarning: { deleteJob },
@@ -28,7 +34,7 @@ const JobViewHeader = ({ currentJob: { id, title, status } }) => {
     <StyledJobViewHeadingDiv>
       <StyledJobViewHeadingGroup>
         <H2>{title}</H2>
-        <StatusSpan status={status}>{status}</StatusSpan>
+        <StatusSpan status={status!}>{status}</StatusSpan>
       </StyledJobViewHeadingGroup>
 
       <StyledJobViewHeadingGroup>
