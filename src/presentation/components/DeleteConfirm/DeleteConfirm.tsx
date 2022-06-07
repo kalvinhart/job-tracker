@@ -9,13 +9,12 @@ import { Button } from "../../styles/buttonStyles";
 import Modal from "../Modal/Modal";
 
 type DeleteConfirmProps = {
-  id: string;
   hide: () => void;
-  actionDelete: (id: string) => Promise<void>;
+  actionDelete: (id?: string) => Promise<void> | ((id?: string) => void);
   redirect: boolean;
 };
 
-const DeleteConfirm = ({ id, hide, actionDelete, redirect }: DeleteConfirmProps) => {
+const DeleteConfirm = ({ hide, actionDelete, redirect }: DeleteConfirmProps) => {
   const { loading, handleDelete, cancel } = useDeleteConfirm({
     actionDelete,
     hide,
@@ -27,7 +26,7 @@ const DeleteConfirm = ({ id, hide, actionDelete, redirect }: DeleteConfirmProps)
       <H2>Are you sure?</H2>
       <StyledParagraph>Are you sure you wish to delete this item?</StyledParagraph>
       <StyledButtonGroup>
-        <Button danger disabled={loading.current} onClick={() => handleDelete(id)}>
+        <Button danger disabled={loading.current} onClick={handleDelete}>
           {loading.current ? (
             <FontAwesomeIcon icon={faSpinner} size="lg" spin />
           ) : (

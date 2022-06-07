@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 
 interface IUseDeleteConfirm {
-  actionDelete: (id: string) => Promise<void>;
+  actionDelete: () => Promise<void> | (() => void);
   hide: () => void;
   redirect: boolean;
 }
@@ -20,9 +20,11 @@ export const useDeleteConfirm = (options: IUseDeleteConfirm) => {
     []
   );
 
-  const handleDelete = async (id: string): Promise<void> => {
+  const handleDelete = async (): Promise<void> => {
     loading.current = true;
-    await actionDelete(id);
+
+    await actionDelete();
+
     hide();
     redirect && navigate("/");
   };
@@ -33,7 +35,7 @@ export const useDeleteConfirm = (options: IUseDeleteConfirm) => {
 
   return {
     loading,
-    handleDelete: (id: string) => handleDelete(id),
+    handleDelete: () => handleDelete(),
     cancel: () => cancel(),
   };
 };
