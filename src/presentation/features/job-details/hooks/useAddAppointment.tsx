@@ -1,3 +1,4 @@
+import { Job } from "../../../../domain/entities/job";
 import { useJobSlice } from "../../../hooks/useJobSlice/useJobSlice";
 import { useUi } from "../../../hooks/useUiSlice/useUiSlice";
 
@@ -14,8 +15,8 @@ export const useAddAppointment = (reset: () => void) => {
       status: "Interview",
     };
 
-    saveEditedJob(newData);
-    setCurrentJob(newData);
+    saveEditedJob(newData as Job);
+    setCurrentJob(newData as Job);
   };
 
   const cancelForm = () => {
