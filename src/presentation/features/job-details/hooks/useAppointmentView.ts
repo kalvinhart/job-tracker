@@ -1,12 +1,13 @@
+import { Job } from "../../../../domain/entities/job";
 import { useJobSlice } from "../../../hooks/useJobSlice/useJobSlice";
 
 export const useAppointmentView = () => {
   const { currentJob, saveEditedJob } = useJobSlice();
 
-  const { id, interview } = currentJob;
+  const { id, interview } = currentJob as Job;
 
-  const interviewDate = new Date(interview).toDateString() ?? null;
-  const interviewTime = new Date(interview).toLocaleTimeString() ?? null;
+  const interviewDate: string | null = new Date(interview!).toDateString() ?? null;
+  const interviewTime: string | null = new Date(interview!).toLocaleTimeString() ?? null;
 
   const removeInterview = async (): Promise<void> => {
     const newData = {
@@ -15,7 +16,7 @@ export const useAppointmentView = () => {
       status: "Pending",
     };
 
-    saveEditedJob(newData);
+    saveEditedJob(newData as Job);
   };
 
   return {
