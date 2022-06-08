@@ -1,3 +1,4 @@
+import { useNavigate, useParams } from "react-router";
 import { useAppDispatch } from "../../../application/hooks/useAppDispatch";
 import { useAppSelector } from "../../../application/hooks/useAppSelector";
 import { setCurrentJob, clearJobState } from "../../../application/slices/jobSlice";
@@ -16,7 +17,13 @@ export const useJobSlice = () => {
     (state) => state.job
   );
 
-  const deleteJob = (id: string) => dispatch(deleteJobById(id));
+  const navigate = useNavigate();
+  const params = useParams();
+
+  const viewJob = (id: string) => {
+    setCurrentJob(jobs!.filter((job) => job.id === id)[0]);
+    navigate(`/job/${id}`);
+  };
 
   return {
     loading,
@@ -24,12 +31,15 @@ export const useJobSlice = () => {
     jobsForTable,
     currentJob,
     error,
+    viewJob,
+    params,
+    navigate,
     setCurrentJob: (job: Job) => dispatch(setCurrentJob(job)),
     clearJobState: () => dispatch(clearJobState()),
     loadAllJobs: (userId: string) => dispatch(loadAllJobs(userId)),
     loadJob: (id: string) => dispatch(loadJob(id)),
     saveNewJob: (data: Job) => dispatch(saveNewJob(data)),
     saveEditedJob: (data: Job) => dispatch(saveEditedJob(data)),
-    deleteJobById: (id: string) => deleteJob(id),
+    deleteJobById: (id: string) => dispatch(deleteJobById(id)),
   };
 };
