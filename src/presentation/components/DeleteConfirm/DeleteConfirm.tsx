@@ -9,13 +9,15 @@ import { Button } from "../../styles/buttonStyles";
 import Modal from "../Modal/Modal";
 
 type DeleteConfirmProps = {
+  id?: string;
   hide: () => void;
-  actionDelete: (id?: string) => Promise<void> | ((id?: string) => void);
+  actionDelete: (id?: string) => Promise<void>;
   redirect: boolean;
 };
 
-const DeleteConfirm = ({ hide, actionDelete, redirect }: DeleteConfirmProps) => {
+const DeleteConfirm = ({ id, hide, actionDelete, redirect }: DeleteConfirmProps) => {
   const { loading, handleDelete, cancel } = useDeleteConfirm({
+    id,
     actionDelete,
     hide,
     redirect,
