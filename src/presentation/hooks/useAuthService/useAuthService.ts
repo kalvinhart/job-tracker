@@ -1,7 +1,7 @@
+import FirebaseAuthService from "../../../infrastructure/api/FirebaseAuthService/FirebaseAuthService";
 import AuthService from "../../../infrastructure/services/AuthService/AuthService";
-import { useAuthApi } from "../useAuthApi/useAuthApi";
 
 export const useAuthService = () => {
-  const api = useAuthApi();
+  const api = new FirebaseAuthService();
   return new AuthService(api);
 };
