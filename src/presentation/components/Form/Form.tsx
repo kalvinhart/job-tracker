@@ -21,7 +21,6 @@ import {
 } from "../../styles/formStyles";
 import { ErrorSpan } from "../../styles/fontStyles";
 import { Button } from "../../styles/buttonStyles";
-import React from "react";
 import { Job } from "../../../domain/entities/job";
 
 const Form = () => {
