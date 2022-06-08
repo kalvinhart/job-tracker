@@ -71,7 +71,11 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const updateUser = (newUserID: string | null): void => {
     setUserID(newUserID);
 
-    if (newUserID !== null) setIsLoggedIn(true);
+    if (newUserID !== null) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
 
     setLoading(false);
   };
