@@ -1,13 +1,23 @@
-import { useJobs } from "../../features/list-jobs/hooks/useJobs";
+import { useEffect } from "react";
+import { useJobSlice } from "../../hooks/useJobSlice/useJobSlice";
 import { useTableConfig } from "../../features/list-jobs/hooks/useTableConfig";
 
 import Table from "../../features/list-jobs/Table/Table";
 import NoData from "../../features/list-jobs/NoData/NoData";
 import Spinner from "../../components/Spinner/Spinner";
+import { useAuthentication } from "../../hooks/useAuthentication/useAuthentication";
 
 const JobsPage = () => {
-  const { loading, jobs, jobsForTable, viewJob } = useJobs();
+  const { loading, jobs, loadAllJobs, jobsForTable, viewJob } = useJobSlice();
   const { columns, data } = useTableConfig(jobsForTable);
+
+  const { user } = useAuthentication();
+
+  useEffect(() => {
+    if (!jobs && !loading && user) {
+      loadAllJobs(user);
+    }
+  }, [loading, jobs, loadAllJobs, user]);
 
   if (loading) return <Spinner />;
 
