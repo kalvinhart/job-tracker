@@ -115,9 +115,9 @@ const AuthForm = ({ type }: AuthFormProps) => {
 
         {type === "LOGIN" && (
           <StyledParagraph>
-            <Button as={Link} to="/forgot-password" type="button" transparent>
+            <Link to="/forgot-password" type="button">
               Forgot your password?
-            </Button>
+            </Link>
           </StyledParagraph>
         )}
       </StyledForm>
