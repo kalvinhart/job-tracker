@@ -4,7 +4,13 @@ import { useAuthService } from "../../presentation/hooks/useAuthService/useAuthS
 import { toastSuccess, toastError } from "../../presentation/utilities/toast";
 import { Auth, IAuthContext } from "./types/IAuthContext";
 
-export const AuthContext = createContext<Partial<IAuthContext>>({});
+const initalState = {
+  userID: null,
+  isLoggedIn: false,
+  loading: false,
+};
+
+export const AuthContext = createContext<Partial<IAuthContext>>(initalState);
 
 type AuthProviderProps = {
   children: ReactNode;
