@@ -1,12 +1,11 @@
-import { useContext } from "react";
-import { AuthContext } from "../../../application/context/authContext";
+import { useAuthentication } from "../../hooks/useAuthentication/useAuthentication";
 
 export const usePrivateRoute = () => {
-  const { isLoggedIn, userID, loading } = useContext(AuthContext);
+  const { isLoggedIn, user, loading } = useAuthentication();
 
   return {
     isLoggedIn,
-    userID,
+    user,
     loading,
   };
 };
