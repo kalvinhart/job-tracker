@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
 
 import {
   loadAllJobs,
@@ -9,18 +9,29 @@ import {
 } from "./thunks/jobThunks";
 
 import { sanitiseDataForTable } from "../../presentation/utilities/sanitise";
+import { Job } from "../../domain/entities/job";
+
+interface JobState {
+  loading: boolean;
+  jobs: Job[] | null;
+  jobsForTable: Job[] | null;
+  currentJob: Job | null;
+  error: boolean;
+}
+
+const initialState: JobState = {
+  loading: false,
+  jobs: null,
+  jobsForTable: null,
+  currentJob: null,
+  error: false,
+};
 
 const jobSlice = createSlice({
   name: "job",
-  initialState: {
-    loading: false,
-    jobs: null,
-    jobsForTable: null,
-    currentJob: null,
-    error: false,
-  },
+  initialState,
   reducers: {
-    setCurrentJob: (state, action) => {
+    setCurrentJob: (state, action: PayloadAction<Job>) => {
       state.currentJob = action.payload;
     },
     clearJobState: (state) => {
@@ -36,20 +47,22 @@ const jobSlice = createSlice({
       .addCase(loadAllJobs.fulfilled, (state, action) => {
         state.loading = false;
         state.jobs = action.payload.rawJobs;
-        state.jobsForTable = action.payload.sanitsedJobs;
+        state.jobsForTable = action.payload.sanitisedJobs;
       })
-      .addCase(loadJob.fulfilled, (state, action) => {
+      .addCase(loadJob.fulfilled, (state, action: PayloadAction<Job | boolean>) => {
         state.loading = false;
-        state.currentJob = action.payload;
+        if (typeof action.payload !== "boolean") {
+          state.currentJob = action.payload;
+        }
       })
-      .addCase(saveNewJob.fulfilled, (state, action) => {
+      .addCase(saveNewJob.fulfilled, (state, action: PayloadAction<Job>) => {
         state.loading = false;
-        state.jobs.push(action.payload);
-        state.jobsForTable = sanitiseDataForTable([...state.jobs]);
+        state.jobs!.push(action.payload);
+        state.jobsForTable = sanitiseDataForTable([...state.jobs!]);
       })
       .addCase(saveEditedJob.fulfilled, (state, action) => {
         state.loading = false;
-        state.jobs = state.jobs.map((job) => {
+        state.jobs = state.jobs!.map((job) => {
           if (job.id === action.payload.id) {
             return action.payload;
           } else {
@@ -61,7 +74,7 @@ const jobSlice = createSlice({
       })
       .addCase(deleteJobById.fulfilled, (state, action) => {
         state.loading = false;
-        state.jobs = state.jobs.filter((job) => job.id !== action.payload);
+        state.jobs = state.jobs!.filter((job) => job.id !== action.payload);
         state.jobsForTable = sanitiseDataForTable([...state.jobs]);
         state.currentJob = null;
       })
