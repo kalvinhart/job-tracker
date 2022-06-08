@@ -1,5 +1,5 @@
-import { useUi } from "../../../hooks/useUiSlice/useUiSlice";
-import { useJob } from "../hooks/useJob";
+import { useUiSlice } from "../../../hooks/useUiSlice/useUiSlice";
+import { useJobSlice } from "../../../hooks/useJobSlice/useJobSlice";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -26,9 +26,13 @@ const JobViewHeader = ({ currentJob: { id, title, status } }: JobViewHeaderProps
     openAndEdit,
     showDeleteWarning: { deleteJob },
     setShowDeleteWarning,
-  } = useUi();
+  } = useUiSlice();
 
-  const { deleteJobById } = useJob();
+  const { deleteJobById } = useJobSlice();
+
+  const actionDeleteJob = async (): Promise<void> => {
+    await deleteJobById(id!);
+  };
 
   return (
     <StyledJobViewHeadingDiv>
@@ -53,7 +57,7 @@ const JobViewHeader = ({ currentJob: { id, title, status } }: JobViewHeaderProps
           redirect={true}
           hide={() => setShowDeleteWarning({ deleteJob: false })}
           id={id}
-          actionDelete={() => deleteJobById(id)}
+          actionDelete={actionDeleteJob}
         />
       )}
     </StyledJobViewHeadingDiv>

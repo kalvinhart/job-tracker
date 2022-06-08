@@ -1,11 +1,11 @@
 import { Job } from "../../../../domain/entities/job";
 import { useJobSlice } from "../../../hooks/useJobSlice/useJobSlice";
-import { useUi } from "../../../hooks/useUiSlice/useUiSlice";
+import { useUiSlice } from "../../../hooks/useUiSlice/useUiSlice";
 
 type FormData = { interviewDate: string };
 
 export const useAddAppointment = (reset: () => void) => {
-  const { setShowAppointmentModal } = useUi();
+  const { setShowAppointmentModal } = useUiSlice();
   const { loading, currentJob, saveEditedJob, setCurrentJob } = useJobSlice();
 
   const onSubmit = (data: FormData) => {

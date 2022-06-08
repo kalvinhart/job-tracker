@@ -1,4 +1,4 @@
-import { useUi } from "../../../hooks/useUiSlice/useUiSlice";
+import { useUiSlice } from "../../../hooks/useUiSlice/useUiSlice";
 import { useAppointmentView } from "../hooks/useAppointmentView";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,7 +20,7 @@ const AppointmentView = () => {
     setShowAppointmentModal,
     showDeleteWarning: { deleteInterview },
     setShowDeleteWarning,
-  } = useUi();
+  } = useUiSlice();
 
   const { id, interview, interviewDate, interviewTime, removeInterview } =
     useAppointmentView();

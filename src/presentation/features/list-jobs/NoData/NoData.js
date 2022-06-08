@@ -1,4 +1,4 @@
-import { useUi } from "../../../hooks/useUiSlice/useUiSlice";
+import { useUiSlice } from "../../../hooks/useUiSlice/useUiSlice";
 
 import { StyledBg } from "../../../styles/bgStyles";
 import { StyledNoDataDiv } from "../Table/Table.styled";
@@ -6,7 +6,7 @@ import { Button } from "../../../styles/buttonStyles";
 import { H2, StyledParagraph } from "../../../styles/fontStyles";
 
 const NoData = () => {
-  const { openSidePanel } = useUi();
+  const { openSidePanel } = useUiSlice();
 
   return (
     <StyledBg>

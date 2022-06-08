@@ -1,4 +1,4 @@
-import { useUi } from "../../hooks/useUiSlice/useUiSlice";
+import { useUiSlice } from "../../hooks/useUiSlice/useUiSlice";
 
 import { Button } from "../../styles/buttonStyles";
 import {
@@ -13,7 +13,7 @@ import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Form from "../Form/Form";
 
 const SidePanel = () => {
-  const { showSidePanel, editing, openSidePanel, closeSidePanel } = useUi();
+  const { showSidePanel, editing, openSidePanel, closeSidePanel } = useUiSlice();
 
   return (
     <>

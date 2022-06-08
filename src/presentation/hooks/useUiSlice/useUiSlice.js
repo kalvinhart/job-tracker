@@ -7,7 +7,7 @@ import {
   setShowDeleteWarning,
 } from "../../../application/slices/uiSlice";
 
-export const useUi = () => {
+export const useUiSlice = () => {
   const dispatch = useDispatch();
 
   const { editing, showSidePanel, showAppointmentModal, showDeleteWarning } = useSelector(
