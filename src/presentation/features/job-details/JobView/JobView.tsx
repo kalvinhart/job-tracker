@@ -3,8 +3,13 @@ import JobViewContent from "../JobViewContent/JobViewContent";
 import AppointmentView from "../AppointmentView/AppointmentView";
 
 import { JobViewContainer, JobViewDetailsWrapper } from "./JobView.styled";
+import { Job } from "../../../../domain/entities/job";
 
-const JobView = ({ currentJob }) => {
+type JobViewProps = {
+  currentJob: Job;
+};
+
+const JobView = ({ currentJob }: JobViewProps) => {
   return (
     <JobViewContainer>
       <JobViewHeader currentJob={currentJob} />

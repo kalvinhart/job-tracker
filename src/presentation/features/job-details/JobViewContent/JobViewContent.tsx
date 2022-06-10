@@ -6,8 +6,13 @@ import {
 
 import { StyledBg } from "../../../styles/bgStyles";
 import { H3, Span } from "../../../styles/fontStyles";
+import { Job } from "../../../../domain/entities/job";
 
-const JobViewContent = ({ currentJob }) => {
+type JobViewContentProps = {
+  currentJob: Job;
+};
+
+const JobViewContent = ({ currentJob }: JobViewContentProps) => {
   const {
     benefits,
     company,

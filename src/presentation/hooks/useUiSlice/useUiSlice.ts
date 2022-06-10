@@ -1,4 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch } from "../../../application/hooks/useAppDispatch";
+import { useAppSelector } from "../../../application/hooks/useAppSelector";
 import {
   openSidePanel,
   closeSidePanel,
@@ -8,11 +9,10 @@ import {
 } from "../../../application/slices/uiSlice";
 
 export const useUiSlice = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { editing, showSidePanel, showAppointmentModal, showDeleteWarning } = useSelector(
-    (state) => state.ui
-  );
+  const { editing, showSidePanel, showAppointmentModal, showDeleteWarning } =
+    useAppSelector((state) => state.ui);
 
   const openAndEdit = () => {
     dispatch(enableEditing());
@@ -26,9 +26,11 @@ export const useUiSlice = () => {
     closeSidePanel: () => dispatch(closeSidePanel()),
     enableEditing: () => dispatch(enableEditing()),
     showAppointmentModal,
-    setShowAppointmentModal: (option) => dispatch(setShowAppointmentModal(option)),
+    setShowAppointmentModal: (option: boolean) =>
+      dispatch(setShowAppointmentModal(option)),
     showDeleteWarning,
-    setShowDeleteWarning: (options) => dispatch(setShowDeleteWarning(options)),
+    setShowDeleteWarning: (options: { deleteJob?: boolean; deleteInterview?: boolean }) =>
+      dispatch(setShowDeleteWarning(options)),
     openAndEdit,
   };
 };
