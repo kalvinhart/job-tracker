@@ -1,13 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+type UIState = {
+  showSidePanel: boolean;
+  showAppointmentModal: boolean;
+  showDeleteWarning: {
+    deleteJob: boolean;
+    deleteInterview: boolean;
+  };
+  editing: boolean;
+};
+
+const initialState: UIState = {
+  showSidePanel: false,
+  showAppointmentModal: false,
+  showDeleteWarning: { deleteJob: false, deleteInterview: false },
+  editing: false,
+};
+
 const uiSlice = createSlice({
   name: "ui",
-  initialState: {
-    showSidePanel: false,
-    showAppointmentModal: false,
-    showDeleteWarning: { deleteJob: false, deleteInterview: false },
-    editing: false,
-  },
+  initialState,
   reducers: {
     openSidePanel: (state) => {
       state.showSidePanel = true;
