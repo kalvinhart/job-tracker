@@ -86,7 +86,7 @@ const Form = () => {
             type="text"
             id="title"
             placeholder="Job title..."
-            {...register("title", { required: true, maxLength: 30 })}
+            {...register("title", { required: true, maxLength: 40 })}
           />
           {errors.title?.type === "required" && (
             <ErrorSpan>
@@ -156,7 +156,7 @@ const Form = () => {
             type="number"
             id="salary"
             placeholder="Salary..."
-            {...register("salary", { required: true, maxLength: 5 })}
+            {...register("salary", { required: true, maxLength: 6 })}
           />
           {errors.salary?.type === "required" && (
             <ErrorSpan>
