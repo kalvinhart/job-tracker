@@ -21,7 +21,8 @@ export const useJobSlice = () => {
   const params = useParams();
 
   const viewJob = (id: string) => {
-    setCurrentJob(jobs!.filter((job) => job.id === id)[0]);
+    const newCurrentJob = jobs!.filter((job) => job.id === id)[0];
+    dispatch(setCurrentJob(newCurrentJob));
     navigate(`/job/${id}`);
   };
 
