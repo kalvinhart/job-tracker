@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 import { StyledBackgroundDiv, StyledForm } from "./AuthForm.styled";
 import { StyledInput, StyledInputGroup, StyledLabel } from "../../styles/formStyles";
 import { Button } from "../../styles/buttonStyles";
-import { H2, StyledParagraph, ErrorSpan } from "../../styles/fontStyles";
+import { H2, StyledParagraph, ErrorSpan, Span } from "../../styles/fontStyles";
 
 import { UserCredentials } from "../../../domain/entities/auth";
 
@@ -120,6 +120,18 @@ const AuthForm = ({ type }: AuthFormProps) => {
             </Link>
           </StyledParagraph>
         )}
+
+        <Span>Or</Span>
+        <Button
+          type="button"
+          primary
+          onClick={() =>
+            submitForm({ email: "newtest@test.com", password: "testing123" })
+          }
+        >
+          <FontAwesomeIcon icon={faArrowCircleRight} size="lg" />
+          Use the demo account!
+        </Button>
       </StyledForm>
 
       {type === "LOGIN" ? (
