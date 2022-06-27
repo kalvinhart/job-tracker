@@ -189,7 +189,7 @@ const Form = () => {
           <StyledInputGroup>
             <StyledLabel htmlFor="status">Status:</StyledLabel>
             <StyledSelect {...register("status")}>
-              {statusOptions.map((option) => (
+              {statusOptions.map((option: string) => (
                 <option key={option} value={option}>
                   {option}
                 </option>
