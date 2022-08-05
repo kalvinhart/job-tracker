@@ -30,7 +30,7 @@ During development of this app I used the following technologies/dependencies:
 - fontawesome
 - uuid
 
-The main feature of the application is the table displaying a list of jobs. For this I chose to use `react-table` as I wanted something with all the functionality of a table, but without any styling, allowing myself to easily add table styles to my liking.
+The main feature of the application is the table displaying a list of jobs. For this I chose to use `react-table` as I wanted something with all the functionality of a table, but without any styling, allowing myself to easily add table styles to my preference.
 
 The main functionality involves the use of a form to add jobs to the table. For this I chose to use `react-hook-form` in order to easily manage the state and error handling of this feature.
 
