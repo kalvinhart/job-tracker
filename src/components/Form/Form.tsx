@@ -19,7 +19,7 @@ import {
   StyledButtonGroup,
   StyledSelect,
 } from "../../common/styles/formStyles";
-import { ErrorSpan } from "../../common/styles/fontStyles";
+import { SpanError } from "../../common/styles/fontStyles";
 import { Button } from "../../common/styles/buttonStyles";
 import { Job } from "../../common/types/job";
 
@@ -89,16 +89,16 @@ const Form = () => {
             {...register("title", { required: true, maxLength: 40 })}
           />
           {errors.title?.type === "required" && (
-            <ErrorSpan>
+            <SpanError>
               <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Job title is
               required.
-            </ErrorSpan>
+            </SpanError>
           )}
           {errors.title?.type === "maxLength" && (
-            <ErrorSpan>
+            <SpanError>
               <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
               exceeded.
-            </ErrorSpan>
+            </SpanError>
           )}
         </StyledInputGroup>
 
@@ -112,16 +112,16 @@ const Form = () => {
             {...register("company", { required: true, maxLength: 30 })}
           />
           {errors.company?.type === "required" && (
-            <ErrorSpan>
+            <SpanError>
               <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Company name is
               required.
-            </ErrorSpan>
+            </SpanError>
           )}
           {errors.company?.type === "maxLength" && (
-            <ErrorSpan>
+            <SpanError>
               <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
               exceeded.
-            </ErrorSpan>
+            </SpanError>
           )}
         </StyledInputGroup>
       </StyledFormGroup>
@@ -137,16 +137,16 @@ const Form = () => {
             {...register("location", { required: true, maxLength: 20 })}
           />
           {errors.location?.type === "required" && (
-            <ErrorSpan>
+            <SpanError>
               <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Job location is
               required.
-            </ErrorSpan>
+            </SpanError>
           )}
           {errors.location?.type === "maxLength" && (
-            <ErrorSpan>
+            <SpanError>
               <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
               exceeded.
-            </ErrorSpan>
+            </SpanError>
           )}
         </StyledInputGroup>
 
@@ -159,16 +159,16 @@ const Form = () => {
             {...register("salary", { required: true, maxLength: 6 })}
           />
           {errors.salary?.type === "required" && (
-            <ErrorSpan>
+            <SpanError>
               <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Job salary is
               required.
-            </ErrorSpan>
+            </SpanError>
           )}
           {errors.salary?.type === "maxLength" && (
-            <ErrorSpan>
+            <SpanError>
               <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
               exceeded.
-            </ErrorSpan>
+            </SpanError>
           )}
         </StyledInputGroup>
       </StyledFormGroup>
@@ -209,10 +209,10 @@ const Form = () => {
             {...register("contactName", { maxLength: 20 })}
           />
           {errors.contactName?.type === "maxLength" && (
-            <ErrorSpan>
+            <SpanError>
               <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
               exceeded.
-            </ErrorSpan>
+            </SpanError>
           )}
         </StyledInputGroup>
 
@@ -225,10 +225,10 @@ const Form = () => {
             {...register("contactNumber", { maxLength: 11 })}
           />
           {errors.contactNumber?.type === "maxLength" && (
-            <ErrorSpan>
+            <SpanError>
               <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
               exceeded.
-            </ErrorSpan>
+            </SpanError>
           )}
         </StyledInputGroup>
 
@@ -241,10 +241,10 @@ const Form = () => {
             {...register("date", { required: true })}
           />
           {errors.date?.type === "required" && (
-            <ErrorSpan>
+            <SpanError>
               <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Date applied is
               required.
-            </ErrorSpan>
+            </SpanError>
           )}
         </StyledInputGroup>
       </StyledFormGroup>

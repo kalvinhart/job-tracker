@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import Modal from "../../../components/Modal/Modal";
-import { ErrorSpan, H2, StyledParagraph } from "../../../common/styles/fontStyles";
+import { SpanError, H2, Paragraph } from "../../../common/styles/fontStyles";
 import {
   StyledButtonGroup,
   StyledForm,
@@ -38,7 +38,7 @@ const AddAppointment = () => {
     <Modal hide={() => setShowAppointmentModal(false)}>
       <H2>Add an Interview</H2>
 
-      <StyledParagraph>When is your interview date?</StyledParagraph>
+      <Paragraph>When is your interview date?</Paragraph>
 
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledInputGroup>
@@ -49,10 +49,10 @@ const AddAppointment = () => {
             {...register("interviewDate", { required: true })}
           />
           {errors.interviewDate?.type === "required" && (
-            <ErrorSpan>
+            <SpanError>
               <FontAwesomeIcon icon={faExclamationCircle} size="xs" />
               Interview date is required
-            </ErrorSpan>
+            </SpanError>
           )}
         </StyledInputGroup>
 

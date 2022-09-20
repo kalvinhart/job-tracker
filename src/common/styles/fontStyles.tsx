@@ -30,7 +30,7 @@ export const Span = styled.span<SpanProps>`
   ${({ multiline }) => multiline && "white-space: pre-wrap;"}
 `;
 
-export const BenefitSpan = styled.span`
+export const SpanBenefit = styled.span`
   padding: 2px 10px;
   border-radius: var(--border-radius);
   font-size: 12px;
@@ -49,6 +49,7 @@ type StatusSpanProps = {
 
 export const StatusSpan = styled.span<StatusSpanProps>`
   padding: 2px 10px;
+  margin-right: 10px;
   border-radius: var(--border-radius);
   font-size: 12px;
   font-weight: bold;
@@ -69,11 +70,11 @@ export const StatusSpan = styled.span<StatusSpanProps>`
   }}
 `;
 
-type ErrorSpanProps = {
+type SpanErrorProps = {
   inline?: boolean;
 };
 
-export const ErrorSpan = styled.span<ErrorSpanProps>`
+export const SpanError = styled.span<SpanErrorProps>`
   display: flex;
   align-items: center;
   position: absolute;
@@ -89,11 +90,11 @@ export const ErrorSpan = styled.span<ErrorSpanProps>`
   }
 `;
 
-export const BoldSpanLarge = styled.span`
+export const SpanBoldLarge = styled.span`
   font-weight: bold;
   font-size: 22px;
 `;
 
-export const StyledParagraph = styled.p`
+export const Paragraph = styled.p`
   margin-bottom: 15px;
 `;

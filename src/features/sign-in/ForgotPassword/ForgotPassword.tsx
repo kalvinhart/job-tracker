@@ -7,7 +7,7 @@ import {
   StyledBackgroundDiv,
   StyledForm,
 } from "../../../components/AuthForm/AuthForm.styled";
-import { ErrorSpan, H2 } from "../../../common/styles/fontStyles";
+import { SpanError, H2 } from "../../../common/styles/fontStyles";
 import { Button } from "../../../common/styles/buttonStyles";
 import { useForgotPassword } from "../hooks/useForgotPassword";
 
@@ -28,7 +28,7 @@ const ForgotPassword = () => {
             onChange={handleChange}
           />
         </StyledInputGroup>
-        {error && <ErrorSpan inline>{error}</ErrorSpan>}
+        {error && <SpanError inline>{error}</SpanError>}
         <Button variant="primary" type="submit">
           Reset
         </Button>

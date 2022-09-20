@@ -17,7 +17,7 @@ import {
   StyledLabel,
 } from "../../common/styles/formStyles";
 import { Button } from "../../common/styles/buttonStyles";
-import { H2, StyledParagraph, ErrorSpan, Span } from "../../common/styles/fontStyles";
+import { H2, Paragraph, SpanError, Span } from "../../common/styles/fontStyles";
 
 import { UserCredentials } from "../../common/types/auth";
 
@@ -52,10 +52,10 @@ const AuthForm = ({ type }: AuthFormProps) => {
             {...register("email", { required: true })}
           />
           {errors.email?.type === "required" && (
-            <ErrorSpan>
+            <SpanError>
               <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Email address is
               required.
-            </ErrorSpan>
+            </SpanError>
           )}
         </StyledInputGroup>
 
@@ -68,16 +68,16 @@ const AuthForm = ({ type }: AuthFormProps) => {
             {...register("password", { required: true, minLength: 6 })}
           />
           {errors.password?.type === "required" && (
-            <ErrorSpan>
+            <SpanError>
               <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Password is
               required.
-            </ErrorSpan>
+            </SpanError>
           )}
           {errors.password?.type === "minLength" && (
-            <ErrorSpan>
+            <SpanError>
               <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Password must be at
               least 6 characters.
-            </ErrorSpan>
+            </SpanError>
           )}
         </StyledInputGroup>
 
@@ -91,15 +91,15 @@ const AuthForm = ({ type }: AuthFormProps) => {
               {...register("confirmPassword", { required: true, minLength: 6 })}
             />
             {errors.confirmPassword?.type === "required" && (
-              <ErrorSpan>
+              <SpanError>
                 <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Confirm password
                 is required.
-              </ErrorSpan>
+              </SpanError>
             )}
           </StyledInputGroup>
         )}
 
-        {errorMessage && <ErrorSpan inline>{errorMessage}</ErrorSpan>}
+        {errorMessage && <SpanError inline>{errorMessage}</SpanError>}
 
         <Button variant="primary" type="submit">
           {loading ? (
@@ -118,11 +118,11 @@ const AuthForm = ({ type }: AuthFormProps) => {
         </Button>
 
         {type === "LOGIN" && (
-          <StyledParagraph>
+          <Paragraph>
             <Link to="/forgot-password" type="button">
               Forgot your password?
             </Link>
-          </StyledParagraph>
+          </Paragraph>
         )}
 
         <Span>Or</Span>
@@ -139,13 +139,13 @@ const AuthForm = ({ type }: AuthFormProps) => {
       </StyledForm>
 
       {type === "LOGIN" ? (
-        <StyledParagraph>
+        <Paragraph>
           Not registered? <Link to="/register">Sign up here!</Link>
-        </StyledParagraph>
+        </Paragraph>
       ) : (
-        <StyledParagraph>
+        <Paragraph>
           Already registered? <Link to="/signin">Sign in here!</Link>
-        </StyledParagraph>
+        </Paragraph>
       )}
     </StyledBackgroundDiv>
   );

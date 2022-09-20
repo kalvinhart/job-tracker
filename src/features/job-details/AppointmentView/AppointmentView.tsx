@@ -11,7 +11,7 @@ import { AppointmentViewWrapper } from "./AppointmentView.styled";
 
 import { StyledBg } from "../../../common/styles/bgStyles";
 import { Button } from "../../../common/styles/buttonStyles";
-import { H3, StyledParagraph, BoldSpanLarge } from "../../../common/styles/fontStyles";
+import { H3, Paragraph, SpanBoldLarge } from "../../../common/styles/fontStyles";
 import { StyledButtonGroup } from "../../../common/styles/formStyles";
 
 const AppointmentView = () => {
@@ -31,10 +31,10 @@ const AppointmentView = () => {
         <H3>Interview Appointment</H3>
         {interview ? (
           <>
-            <StyledParagraph>You have an interview for this position on:</StyledParagraph>
-            <BoldSpanLarge>{interviewDate}</BoldSpanLarge>
-            <StyledParagraph>at:</StyledParagraph>
-            <BoldSpanLarge>{interviewTime}</BoldSpanLarge>
+            <Paragraph>You have an interview for this position on:</Paragraph>
+            <SpanBoldLarge>{interviewDate}</SpanBoldLarge>
+            <Paragraph>at:</Paragraph>
+            <SpanBoldLarge>{interviewTime}</SpanBoldLarge>
             <StyledButtonGroup small>
               <Button
                 variant="other"
@@ -64,9 +64,7 @@ const AppointmentView = () => {
           </>
         ) : (
           <>
-            <StyledParagraph>
-              You do not have an interview appointment for this role.
-            </StyledParagraph>
+            <Paragraph>You do not have an interview appointment for this role.</Paragraph>
             <Button variant="primary" onClick={() => setShowAppointmentModal(true)}>
               <FontAwesomeIcon icon={faPlus} />
               Add Appointment

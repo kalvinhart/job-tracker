@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { StyledBg } from "../../../common/styles/bgStyles";
-import { BoldSpanLarge } from "../../../common/styles/fontStyles";
+import { SpanBoldLarge } from "../../../common/styles/fontStyles";
 
 export const AppointmentViewWrapper = styled.div`
   width: 350px;
@@ -16,7 +16,7 @@ export const AppointmentViewWrapper = styled.div`
       align-self: flex-start;
     }
 
-    & ${BoldSpanLarge} {
+    & ${SpanBoldLarge} {
       margin-bottom: 15px;
     }
   }

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 import { StyledButtonGroup } from "./DeleteConfirm.styled";
-import { H2, StyledParagraph } from "../../common/styles/fontStyles";
+import { H2, Paragraph } from "../../common/styles/fontStyles";
 import { Button } from "../../common/styles/buttonStyles";
 import Modal from "../Modal/Modal";
 
@@ -26,7 +26,7 @@ const DeleteConfirm = ({ id, hide, actionDelete, redirect }: DeleteConfirmProps)
   return (
     <Modal hide={hide}>
       <H2>Are you sure?</H2>
-      <StyledParagraph>Are you sure you wish to delete this item?</StyledParagraph>
+      <Paragraph>Are you sure you wish to delete this item?</Paragraph>
       <StyledButtonGroup>
         <Button variant="danger" disabled={loading.current} onClick={handleDelete}>
           {loading.current ? (
