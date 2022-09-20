@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import AddAppointment from "../AddAppointment/AddAppointment";
-import DeleteConfirm from "../../../components/DeleteConfirm/DeleteConfirm";
+import DeleteConfirm from "../../../common/components/DeleteConfirm/DeleteConfirm";
 
 import { AppointmentViewWrapper } from "./AppointmentView.styled";
 
@@ -55,11 +55,7 @@ const AppointmentView = () => {
             </StyledButtonGroup>
             {showAppointmentModal && <AddAppointment />}
             {deleteInterview && (
-              <DeleteConfirm
-                redirect={false}
-                hide={() => setShowDeleteWarning({ deleteInterview: false })}
-                actionDelete={removeInterview}
-              />
+              <DeleteConfirm redirect={false} actionDelete={removeInterview} />
             )}
           </>
         ) : (

@@ -4,7 +4,7 @@ import { useJobSlice } from "../../../common/hooks/useJobSlice/useJobSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-import DeleteConfirm from "../../../components/DeleteConfirm/DeleteConfirm";
+import DeleteConfirm from "../../../common/components/DeleteConfirm/DeleteConfirm";
 
 import {
   StyledJobViewHeadingDiv,
@@ -56,12 +56,7 @@ const JobViewHeader = ({ currentJob: { id, title, status } }: JobViewHeaderProps
       </StyledJobViewHeadingGroup>
 
       {deleteJob && (
-        <DeleteConfirm
-          redirect={true}
-          hide={() => setShowDeleteWarning({ deleteJob: false })}
-          id={id}
-          actionDelete={actionDeleteJob}
-        />
+        <DeleteConfirm redirect={true} id={id} actionDelete={actionDeleteJob} />
       )}
     </StyledJobViewHeadingDiv>
   );
