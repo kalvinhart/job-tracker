@@ -1,5 +1,6 @@
 import { Job } from "../../../domain/entities/job";
 import { IJobService } from "../../interfaces/IJobService";
+import { JobResponse } from "../../types/Response";
 
 export default class JobService implements IJobService {
   api: IJobService;
@@ -8,27 +9,27 @@ export default class JobService implements IJobService {
     this.api = api;
   }
 
-  async getJobs(uid: string): Promise<Job[]> {
-    return await this.api.getJobs(uid);
+  async getJobs(token: string): Promise<JobResponse> {
+    return await this.api.getJobs(token);
   }
 
-  async getJob(id: string): Promise<Job | boolean> {
-    return await this.api.getJob(id);
+  async getJob(token: string, id: string): Promise<JobResponse> {
+    return await this.api.getJob(token, id);
   }
 
-  async createJob(data: Job): Promise<Job> {
-    return await this.api.createJob(data);
+  async createJob(token: string, data: Job): Promise<JobResponse> {
+    return await this.api.createJob(token, data);
   }
 
-  async updateJob(data: Job): Promise<Job> {
-    return await this.api.updateJob(data);
+  async updateJob(token: string, data: Job): Promise<JobResponse> {
+    return await this.api.updateJob(token, data);
   }
 
-  async deleteJob(id: string): Promise<void> {
-    return await this.api.deleteJob(id);
+  async deleteJob(token: string, id: string): Promise<JobResponse> {
+    return await this.api.deleteJob(token, id);
   }
 
-  async deleteInterview(id: string): Promise<string> {
-    return await this.api.deleteInterview(id);
+  async deleteInterview(token: string, id: string): Promise<JobResponse> {
+    return await this.api.deleteInterview(token, id);
   }
 }

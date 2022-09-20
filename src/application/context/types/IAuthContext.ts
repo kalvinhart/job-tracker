@@ -5,11 +5,12 @@ export type Auth = {
 
 export interface IAuthContext {
   userID: string | null;
+  token: string | null;
   isLoggedIn: boolean;
   loading: boolean;
 
   signUp: (email: string, password: string) => Promise<Auth>;
   signIn: (email: string, password: string) => Promise<Auth>;
   signOut: () => void;
-  resetPassword: (email: string) => Promise<void>;
+  // resetPassword: (email: string) => Promise<void>;
 }

@@ -17,6 +17,7 @@ interface JobState {
   jobsForTable: Job[] | null;
   currentJob: Job | null;
   error: boolean;
+  errorMsg: string;
 }
 
 const initialState: JobState = {
@@ -25,6 +26,7 @@ const initialState: JobState = {
   jobsForTable: null,
   currentJob: null,
   error: false,
+  errorMsg: "",
 };
 
 const jobSlice = createSlice({
@@ -37,6 +39,7 @@ const jobSlice = createSlice({
     clearJobState: (state) => {
       state.loading = false;
       state.error = false;
+      state.errorMsg = "";
       state.jobs = null;
       state.jobsForTable = null;
       state.currentJob = null;
@@ -88,6 +91,7 @@ const jobSlice = createSlice({
         ),
         (state, action) => {
           state.error = false;
+          state.errorMsg = "";
           state.loading = true;
         }
       )
@@ -101,7 +105,8 @@ const jobSlice = createSlice({
         ),
         (state, action) => {
           state.loading = false;
-          state.error = action.payload;
+          state.error = true;
+          state.errorMsg = action.payload;
         }
       );
   },

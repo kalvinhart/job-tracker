@@ -1,10 +1,17 @@
 import { Job } from "../../domain/entities/job";
+import { JobResponse } from "../types/Response";
 
+export interface JobRequest {
+  token: string;
+  method: string;
+  url: string;
+  data?: Job;
+}
 export interface IJobService {
-  getJobs: (uid: string) => Promise<Job[]>;
-  getJob: (id: string) => Promise<Job | boolean>;
-  createJob: (data: Job) => Promise<Job>;
-  updateJob: (data: Job) => Promise<Job>;
-  deleteJob: (id: string) => Promise<void>;
-  deleteInterview: (id: string) => Promise<string>;
+  getJobs: (token: string) => Promise<JobResponse>;
+  getJob: (token: string, id: string) => Promise<JobResponse>;
+  createJob: (token: string, data: Job) => Promise<JobResponse>;
+  updateJob: (token: string, data: Job) => Promise<JobResponse>;
+  deleteJob: (token: string, id: string) => Promise<JobResponse>;
+  deleteInterview: (token: string, id: string) => Promise<JobResponse>;
 }

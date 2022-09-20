@@ -4,11 +4,12 @@ export interface Job {
   contactName?: string;
   contactNumber?: string;
   date: number | string;
+  updated: number;
   description?: string;
-  id?: string;
+  id?: number;
   interview?: number | string;
   location: string;
-  salary: string;
-  status?: "Pending" | "Interview" | "Rejected" | "Expired";
+  salary: number;
+  status?: string;
   title: string;
 }
