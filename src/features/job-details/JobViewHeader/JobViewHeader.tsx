@@ -42,11 +42,14 @@ const JobViewHeader = ({ currentJob: { id, title, status } }: JobViewHeaderProps
       </StyledJobViewHeadingGroup>
 
       <StyledJobViewHeadingGroup>
-        <Button secondary onClick={openAndEdit}>
+        <Button variant="secondary" onClick={openAndEdit}>
           <FontAwesomeIcon icon={faEdit} />
           Edit
         </Button>
-        <Button danger onClick={() => setShowDeleteWarning({ deleteJob: true })}>
+        <Button
+          variant="danger"
+          onClick={() => setShowDeleteWarning({ deleteJob: true })}
+        >
           <FontAwesomeIcon icon={faTrash} />
           Delete
         </Button>

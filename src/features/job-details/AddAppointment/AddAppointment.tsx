@@ -57,7 +57,7 @@ const AddAppointment = () => {
         </StyledInputGroup>
 
         <StyledButtonGroup>
-          <Button primary type="submit" disabled={loading}>
+          <Button variant="primary" type="submit" disabled={loading}>
             {loading ? (
               <FontAwesomeIcon icon={faSpinner} size="lg" spin />
             ) : (
@@ -68,7 +68,7 @@ const AddAppointment = () => {
             )}
           </Button>
 
-          <Button type="reset" secondary onClick={cancelForm}>
+          <Button type="reset" variant="secondary" onClick={cancelForm}>
             <FontAwesomeIcon icon={faTimes} size="lg" />
             Cancel
           </Button>

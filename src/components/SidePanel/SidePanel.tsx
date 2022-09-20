@@ -20,13 +20,23 @@ const SidePanel = () => {
       <StyledSidePanelOverlay show={showSidePanel} />
       <SidePanelContainer show={showSidePanel}>
         {showSidePanel && (
-          <Button horizontal visible={showSidePanel} onClick={closeSidePanel}>
+          <Button
+            variant="other"
+            horizontal
+            visible={showSidePanel}
+            onClick={closeSidePanel}
+          >
             <Span>C l o s e</Span>
             <FontAwesomeIcon icon={faTimes} className="cross-icon" size="lg" />
           </Button>
         )}
         <SidePanelGroup animated show={!showSidePanel}>
-          <Button vertical visible={!showSidePanel} onClick={openSidePanel}>
+          <Button
+            variant="other"
+            vertical
+            visible={!showSidePanel}
+            onClick={openSidePanel}
+          >
             <FontAwesomeIcon icon={faPlus} className="plus-icon" size="lg" />
             <Span>A</Span>
             <Span>D</Span>

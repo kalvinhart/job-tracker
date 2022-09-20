@@ -28,7 +28,7 @@ const DeleteConfirm = ({ id, hide, actionDelete, redirect }: DeleteConfirmProps)
       <H2>Are you sure?</H2>
       <StyledParagraph>Are you sure you wish to delete this item?</StyledParagraph>
       <StyledButtonGroup>
-        <Button danger disabled={loading.current} onClick={handleDelete}>
+        <Button variant="danger" disabled={loading.current} onClick={handleDelete}>
           {loading.current ? (
             <FontAwesomeIcon icon={faSpinner} size="lg" spin />
           ) : (
@@ -38,7 +38,7 @@ const DeleteConfirm = ({ id, hide, actionDelete, redirect }: DeleteConfirmProps)
             </>
           )}
         </Button>
-        <Button secondary onClick={cancel}>
+        <Button variant="secondary" onClick={cancel}>
           <FontAwesomeIcon icon={faTimes} size="lg" />
           Cancel
         </Button>

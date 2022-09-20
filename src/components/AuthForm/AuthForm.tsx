@@ -101,7 +101,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
 
         {errorMessage && <ErrorSpan inline>{errorMessage}</ErrorSpan>}
 
-        <Button primary type="submit">
+        <Button variant="primary" type="submit">
           {loading ? (
             <FontAwesomeIcon icon={faSpinner} size="lg" spin />
           ) : type === "LOGIN" ? (
@@ -128,7 +128,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
         <Span>Or</Span>
         <Button
           type="button"
-          primary
+          variant="primary"
           onClick={() =>
             submitForm({ email: "newtest@test.com", password: "testing123" })
           }

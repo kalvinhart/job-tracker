@@ -257,7 +257,7 @@ const Form = () => {
       <StyledInput type="hidden" {...register("interview")} />
 
       <StyledButtonGroup>
-        <Button type="submit" primary disabled={loading}>
+        <Button type="submit" variant="primary" disabled={loading}>
           {loading ? (
             <FontAwesomeIcon icon={faSpinner} size="lg" spin />
           ) : (
@@ -267,7 +267,7 @@ const Form = () => {
             </>
           )}
         </Button>
-        <Button type="button" secondary onClick={cancelForm}>
+        <Button type="button" variant="secondary" onClick={cancelForm}>
           <FontAwesomeIcon icon={faTimes} size="lg" />
           Cancel
         </Button>

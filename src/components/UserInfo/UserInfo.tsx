@@ -13,7 +13,7 @@ const UserInfo = ({ signOut }: UserInfoProps) => {
   return (
     <StyledUserInfoWrapper>
       <Span>Welcome!</Span>
-      <Button primary onClick={signOut}>
+      <Button variant="primary" onClick={signOut}>
         <FontAwesomeIcon icon={faArrowRight} size="lg" />
         Sign Out
       </Button>

@@ -36,11 +36,16 @@ const AppointmentView = () => {
             <StyledParagraph>at:</StyledParagraph>
             <BoldSpanLarge>{interviewTime}</BoldSpanLarge>
             <StyledButtonGroup small>
-              <Button transparent onClick={() => setShowAppointmentModal(true)}>
+              <Button
+                variant="other"
+                transparent
+                onClick={() => setShowAppointmentModal(true)}
+              >
                 <FontAwesomeIcon icon={faEdit} />
                 Edit
               </Button>
               <Button
+                variant="other"
                 transparent
                 onClick={() => setShowDeleteWarning({ deleteInterview: true })}
               >
@@ -62,7 +67,7 @@ const AppointmentView = () => {
             <StyledParagraph>
               You do not have an interview appointment for this role.
             </StyledParagraph>
-            <Button primary onClick={() => setShowAppointmentModal(true)}>
+            <Button variant="primary" onClick={() => setShowAppointmentModal(true)}>
               <FontAwesomeIcon icon={faPlus} />
               Add Appointment
             </Button>

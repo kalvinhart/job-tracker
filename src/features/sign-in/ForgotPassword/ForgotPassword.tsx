@@ -29,7 +29,7 @@ const ForgotPassword = () => {
           />
         </StyledInputGroup>
         {error && <ErrorSpan inline>{error}</ErrorSpan>}
-        <Button primary type="submit">
+        <Button variant="primary" type="submit">
           Reset
         </Button>
       </StyledForm>

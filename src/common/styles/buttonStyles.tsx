@@ -9,9 +9,7 @@ const fadeInAnimationCloseButton = css`
 `;
 
 type ButtonProps = {
-  primary?: boolean;
-  secondary?: boolean;
-  danger?: boolean;
+  variant: "primary" | "secondary" | "danger" | "other";
   visible?: boolean;
   transparent?: boolean;
   vertical?: boolean;
@@ -39,7 +37,7 @@ export const Button = styled.button<ButtonProps>`
   }
 
   ${(props) =>
-    props.primary &&
+    props.variant === "primary" &&
     `
   background-color: var(--clr-primary);
   color: white;
@@ -53,7 +51,7 @@ export const Button = styled.button<ButtonProps>`
   `}
 
   ${(props) =>
-    props.secondary &&
+    props.variant === "secondary" &&
     `
     background-color: white;
     color: var(--clr-primary);
@@ -67,7 +65,7 @@ export const Button = styled.button<ButtonProps>`
     `}
   
   ${(props) =>
-    props.danger &&
+    props.variant === "danger" &&
     `
     background-color: white;
     color: var(--clr-danger);
@@ -82,7 +80,10 @@ export const Button = styled.button<ButtonProps>`
     `}
 
     ${(props) =>
-    (props.primary || props.secondary || props.danger || props.transparent) &&
+    (props.variant === "primary" ||
+      props.variant === "secondary" ||
+      props.variant === "danger" ||
+      props.transparent) &&
     `
     & svg {
     margin-right: 10px;
