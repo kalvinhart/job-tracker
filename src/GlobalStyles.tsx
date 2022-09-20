@@ -42,6 +42,7 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         font-family: Roboto, sans-serif;
+        font-size: 14px;
         background-color: var(--clr-bg);
     }
 
