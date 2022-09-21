@@ -24,6 +24,7 @@ const JobList = () => {
     cancelSelection,
     showDeleteWarning,
     handleDeleteMany,
+    openSidePanel,
   } = useJobList();
 
   return (
@@ -69,7 +70,7 @@ const JobList = () => {
             </Button>
           </JobListDeleteButtonsWrapper>
         ) : (
-          <Button variant="primary">
+          <Button variant="primary" onClick={openSidePanel}>
             <FontAwesomeIcon icon={faPlus} size="lg" /> Add Job
           </Button>
         )}
