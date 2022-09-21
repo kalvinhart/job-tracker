@@ -9,21 +9,20 @@ import {
   deleteManyJobs,
 } from "./thunks/jobThunks";
 
-import { sanitiseDataForTable } from "../../common/utilities/sanitise";
 import { Job } from "../../common/types/job";
 
 interface JobState {
   loading: boolean;
-  jobs: Job[] | null;
-  jobsForTable: Job[] | null;
+  loadJobsComplete: boolean;
+  jobs: Job[];
   currentJob: Job | null;
   error: boolean;
 }
 
 const initialState: JobState = {
   loading: false,
-  jobs: null,
-  jobsForTable: null,
+  loadJobsComplete: false,
+  jobs: [],
   currentJob: null,
   error: false,
 };
@@ -37,9 +36,9 @@ const jobSlice = createSlice({
     },
     clearJobState: (state) => {
       state.loading = false;
+      state.loadJobsComplete = false;
       state.error = false;
-      state.jobs = null;
-      state.jobsForTable = null;
+      state.jobs = [];
       state.currentJob = null;
     },
   },
@@ -47,8 +46,8 @@ const jobSlice = createSlice({
     builder
       .addCase(loadAllJobs.fulfilled, (state, action) => {
         state.loading = false;
-        state.jobs = action.payload.rawJobs;
-        state.jobsForTable = action.payload.sanitisedJobs;
+        state.loadJobsComplete = true;
+        state.jobs = action.payload;
       })
       .addCase(loadJob.fulfilled, (state, action: PayloadAction<Job | boolean>) => {
         state.loading = false;
@@ -59,7 +58,6 @@ const jobSlice = createSlice({
       .addCase(saveNewJob.fulfilled, (state, action: PayloadAction<Job>) => {
         state.loading = false;
         state.jobs!.push(action.payload);
-        state.jobsForTable = sanitiseDataForTable([...state.jobs!]);
       })
       .addCase(saveEditedJob.fulfilled, (state, action) => {
         state.loading = false;
@@ -70,13 +68,11 @@ const jobSlice = createSlice({
             return job;
           }
         });
-        state.jobsForTable = sanitiseDataForTable([...state.jobs]);
         state.currentJob = action.payload;
       })
       .addCase(deleteJobById.fulfilled, (state, action) => {
         state.loading = false;
         state.jobs = state.jobs!.filter((job) => job.id !== action.payload);
-        state.jobsForTable = sanitiseDataForTable([...state.jobs]);
         state.currentJob = null;
       })
       .addCase(deleteManyJobs.fulfilled, (state, action) => {

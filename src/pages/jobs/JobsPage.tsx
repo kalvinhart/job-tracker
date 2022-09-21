@@ -8,21 +8,21 @@ import { JobList } from "../../features/list-jobs/components/JobList";
 import JobListProvider from "../../features/list-jobs/context/JobListContext";
 
 const JobsPage = () => {
-  const { loading, jobs, loadAllJobs } = useJobSlice();
+  const { loading, loadJobsComplete, jobs, loadAllJobs } = useJobSlice();
 
   const { user } = useAuthentication();
 
   useEffect(() => {
-    if (!jobs && !loading && user) {
+    if (!loadJobsComplete && !loading && user) {
       loadAllJobs(user);
     }
-  }, [loading, jobs, loadAllJobs, user]);
+  }, [loading, loadJobsComplete, loadAllJobs, user]);
 
   if (loading) return <Spinner />;
 
   return (
     <>
-      {(!loading && !jobs) || jobs?.length === 0 ? (
+      {loadJobsComplete && jobs.length === 0 ? (
         <NoData />
       ) : (
         <JobListProvider>

@@ -2,29 +2,21 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 import { Job } from "../../../common/types/job";
 
-import { sanitiseDataForTable } from "../../../common/utilities/sanitise";
 import { AsyncThunkConfig } from "../../store";
 
 import { closeSidePanel, setShowAppointmentModal } from "../uiSlice";
 
-type LoadAllJobsReturn = {
-  rawJobs: Job[];
-  sanitisedJobs: Job[];
-};
-
-export const loadAllJobs = createAsyncThunk<
-  LoadAllJobsReturn,
-  string,
-  AsyncThunkConfig<any>
->("job/loadAllJobs", async (uid: string, { rejectWithValue, extra: { serviceApi } }) => {
-  try {
-    const rawJobs: Job[] = await serviceApi.getJobs(uid);
-    const sanitisedJobs = sanitiseDataForTable(rawJobs);
-    return { rawJobs, sanitisedJobs };
-  } catch (err: any) {
-    return rejectWithValue(err);
+export const loadAllJobs = createAsyncThunk<Job[], string, AsyncThunkConfig<any>>(
+  "job/loadAllJobs",
+  async (uid: string, { rejectWithValue, extra: { serviceApi } }) => {
+    try {
+      const jobs: Job[] = await serviceApi.getJobs(uid);
+      return jobs;
+    } catch (err: any) {
+      return rejectWithValue(err);
+    }
   }
-});
+);
 
 export const loadJob = createAsyncThunk<Job | boolean, string, AsyncThunkConfig<string>>(
   "job/loadJob",

@@ -8,6 +8,7 @@ export interface Job {
   id?: string;
   interview?: number | string;
   location: string;
+  resource?: string;
   salary: string;
   status: "Pending" | "Interview" | "Rejected" | "Expired";
   title: string;
