@@ -13,14 +13,16 @@ import { Job } from "../../common/types/job";
 
 interface JobState {
   loading: boolean;
-  jobs: Job[] | null;
+  loadJobsComplete: boolean;
+  jobs: Job[];
   currentJob: Job | null;
   error: boolean;
 }
 
 const initialState: JobState = {
   loading: false,
-  jobs: null,
+  loadJobsComplete: false,
+  jobs: [],
   currentJob: null,
   error: false,
 };
@@ -34,8 +36,9 @@ const jobSlice = createSlice({
     },
     clearJobState: (state) => {
       state.loading = false;
+      state.loadJobsComplete = false;
       state.error = false;
-      state.jobs = null;
+      state.jobs = [];
       state.currentJob = null;
     },
   },
@@ -43,6 +46,7 @@ const jobSlice = createSlice({
     builder
       .addCase(loadAllJobs.fulfilled, (state, action) => {
         state.loading = false;
+        state.loadJobsComplete = true;
         state.jobs = action.payload;
       })
       .addCase(loadJob.fulfilled, (state, action: PayloadAction<Job | boolean>) => {

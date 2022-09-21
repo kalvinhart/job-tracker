@@ -20,7 +20,9 @@ export default class FirebaseService implements IJobService {
   async getJobs(uid: string): Promise<Job[]> {
     let jobsArray: Job[] = [];
 
-    const q = query(collection(db, "jobs"), where("user", "==", uid));
+    const jobsRef = collection(db, "jobs");
+
+    const q = query(jobsRef, where("user", "==", uid));
 
     const querySnapshot = await getDocs(q);
 

@@ -14,7 +14,9 @@ import { Job } from "../../types/job";
 
 export const useJobSlice = () => {
   const dispatch = useAppDispatch();
-  const { loading, jobs, currentJob, error } = useAppSelector((state) => state.job);
+  const { loading, loadJobsComplete, jobs, currentJob, error } = useAppSelector(
+    (state) => state.job
+  );
 
   const navigate = useNavigate();
   const params = useParams();
@@ -27,6 +29,7 @@ export const useJobSlice = () => {
 
   return {
     loading,
+    loadJobsComplete,
     jobs,
     currentJob,
     error,
