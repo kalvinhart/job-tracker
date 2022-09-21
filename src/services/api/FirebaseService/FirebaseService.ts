@@ -9,6 +9,7 @@ import {
   setDoc,
   updateDoc,
   where,
+  writeBatch,
 } from "firebase/firestore";
 import { db } from "./firebase.config";
 import { v4 as uuid } from "uuid";
@@ -74,7 +75,17 @@ export default class FirebaseService implements IJobService {
     await deleteDoc(doc(db, "jobs", id));
   }
 
-  async deleteMany(ids: string[]): Promise<void> {}
+  async deleteMany(ids: string[]): Promise<void> {
+    if (!ids || ids.length === 0) throw new Error("No job IDs were passed for deletion.");
+
+    const batch = writeBatch(db);
+
+    ids.forEach((id) => {
+      batch.delete(doc(db, "jobs", id));
+    });
+
+    await batch.commit();
+  }
 
   async deleteInterview(id: string): Promise<string> {
     const jobRef = doc(db, "jobs", id);
