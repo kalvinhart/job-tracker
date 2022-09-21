@@ -21,7 +21,7 @@ type JobViewHeaderProps = {
   currentJob: Job;
 };
 
-const JobViewHeader = ({ currentJob: { id, title, status } }: JobViewHeaderProps) => {
+const JobViewHeader = ({ currentJob }: JobViewHeaderProps) => {
   const {
     openAndEdit,
     showDeleteWarning: { deleteJob },
@@ -31,18 +31,18 @@ const JobViewHeader = ({ currentJob: { id, title, status } }: JobViewHeaderProps
   const { deleteJobById } = useJobSlice();
 
   const actionDeleteJob = async (): Promise<void> => {
-    await deleteJobById(id!);
+    await deleteJobById(currentJob.id!);
   };
 
   return (
     <StyledJobViewHeadingDiv>
       <StyledJobViewHeadingGroup>
-        <H2>{title}</H2>
-        <StatusSpan status={status!}>{status}</StatusSpan>
+        <H2>{currentJob.title}</H2>
+        <StatusSpan status={currentJob.status!}>{currentJob.status}</StatusSpan>
       </StyledJobViewHeadingGroup>
 
       <StyledJobViewHeadingGroup>
-        <Button variant="secondary" onClick={openAndEdit}>
+        <Button variant="secondary" onClick={() => openAndEdit(currentJob)}>
           <FontAwesomeIcon icon={faEdit} />
           Edit
         </Button>
@@ -56,7 +56,11 @@ const JobViewHeader = ({ currentJob: { id, title, status } }: JobViewHeaderProps
       </StyledJobViewHeadingGroup>
 
       {deleteJob && (
-        <DeleteConfirm redirect={true} id={id} actionDelete={actionDeleteJob} />
+        <DeleteConfirm
+          redirect={true}
+          id={currentJob.id}
+          actionDelete={actionDeleteJob}
+        />
       )}
     </StyledJobViewHeadingDiv>
   );

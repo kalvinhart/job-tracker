@@ -7,14 +7,15 @@ import DeleteConfirm from "../../../../common/components/DeleteConfirm/DeleteCon
 
 import { MenuOptionButton } from "../OptionsMenu/OptionsMenu.styles";
 import { MenuContentWrapper, MenuList, MenuListItem } from "./OptionsMenuContent.styles";
+import { Job } from "../../../../common/types/job";
 
 type Props = {
-  jobId: string;
+  job: Job;
   menuRef: RefObject<HTMLDivElement>;
   showMenu: boolean;
   setShowMenu: Dispatch<SetStateAction<boolean>>;
 };
-const OptionsMenuContent = ({ jobId, menuRef, showMenu, setShowMenu }: Props) => {
+const OptionsMenuContent = ({ job, menuRef, showMenu, setShowMenu }: Props) => {
   useClickOutside(menuRef, () => setShowMenu(false));
 
   const {
@@ -30,13 +31,13 @@ const OptionsMenuContent = ({ jobId, menuRef, showMenu, setShowMenu }: Props) =>
     <MenuContentWrapper>
       <MenuList>
         <MenuListItem>
-          <MenuOptionButton onClick={() => handleOptionClick(openAndEdit)}>
+          <MenuOptionButton onClick={() => handleOptionClick(() => openAndEdit(job))}>
             Edit Job
           </MenuOptionButton>
         </MenuListItem>
         <MenuListItem>
           <MenuOptionButton
-            onClick={() => handleOptionClick(() => handleSelectJob(jobId))}
+            onClick={() => handleOptionClick(() => handleSelectJob(job.id!))}
           >
             Mark Selected
           </MenuOptionButton>
@@ -54,9 +55,9 @@ const OptionsMenuContent = ({ jobId, menuRef, showMenu, setShowMenu }: Props) =>
 
       {showDeleteWarning.deleteJob && (
         <DeleteConfirm
-          id={jobId}
+          id={job.id!}
           actionDelete={async (): Promise<void> => {
-            await deleteJobById(jobId);
+            await deleteJobById(job.id!);
           }}
           redirect={false}
         />

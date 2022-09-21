@@ -35,7 +35,7 @@ const JobItem = ({ job, selected }: Props) => {
           Undo Select
         </CancelSelectButton>
       ) : (
-        <OptionsMenu jobId={job.id!} />
+        <OptionsMenu job={job} />
       )}
 
       <MainJobInfo>

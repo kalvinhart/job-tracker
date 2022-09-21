@@ -1,5 +1,6 @@
 import { useAppDispatch } from "../../../store/hooks/useAppDispatch";
 import { useAppSelector } from "../../../store/hooks/useAppSelector";
+import { setCurrentJob } from "../../../store/slices/jobSlice";
 import {
   openSidePanel,
   closeSidePanel,
@@ -7,6 +8,7 @@ import {
   setShowAppointmentModal,
   setShowDeleteWarning,
 } from "../../../store/slices/uiSlice";
+import { Job } from "../../types/job";
 
 export const useUiSlice = () => {
   const dispatch = useAppDispatch();
@@ -14,7 +16,8 @@ export const useUiSlice = () => {
   const { editing, showSidePanel, showAppointmentModal, showDeleteWarning } =
     useAppSelector((state) => state.ui);
 
-  const openAndEdit = () => {
+  const openAndEdit = (job: Job) => {
+    dispatch(setCurrentJob(job));
     dispatch(enableEditing());
     dispatch(openSidePanel());
   };

@@ -4,11 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MenuButton, MenuWrapper } from "./OptionsMenu.styles";
 import { OptionsMenuContent } from "../OptionsMenuContent";
 import { useOptionsMenu } from "../../hooks/useOptionsMenu";
+import { Job } from "../../../../common/types/job";
 
 type Props = {
-  jobId: string;
+  job: Job;
 };
-const OptionsMenu = ({ jobId }: Props) => {
+const OptionsMenu = ({ job }: Props) => {
   const { menuRef, showMenu, setShowMenu, handleToggleMenu } = useOptionsMenu();
 
   return (
@@ -19,7 +20,7 @@ const OptionsMenu = ({ jobId }: Props) => {
 
       {showMenu && (
         <OptionsMenuContent
-          jobId={jobId}
+          job={job}
           menuRef={menuRef}
           showMenu={showMenu}
           setShowMenu={setShowMenu}
