@@ -74,6 +74,8 @@ export default class FirebaseService implements IJobService {
     await deleteDoc(doc(db, "jobs", id));
   }
 
+  async deleteMany(ids: string[]): Promise<void> {}
+
   async deleteInterview(id: string): Promise<string> {
     const jobRef = doc(db, "jobs", id);
     await updateDoc(jobRef, { interview: deleteField(), status: "Pending" });

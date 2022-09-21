@@ -6,6 +6,7 @@ import {
   saveNewJob,
   saveEditedJob,
   deleteJobById,
+  deleteManyJobs,
 } from "./thunks/jobThunks";
 
 import { sanitiseDataForTable } from "../../common/utilities/sanitise";
@@ -78,13 +79,18 @@ const jobSlice = createSlice({
         state.jobsForTable = sanitiseDataForTable([...state.jobs]);
         state.currentJob = null;
       })
+      .addCase(deleteManyJobs.fulfilled, (state, action) => {
+        state.loading = false;
+        state.jobs = state.jobs!.filter((job) => !action.payload.includes(job.id!));
+      })
       .addMatcher(
         isAnyOf(
           loadAllJobs.pending,
           loadJob.pending,
           saveNewJob.pending,
           saveEditedJob.pending,
-          deleteJobById.pending
+          deleteJobById.pending,
+          deleteManyJobs.pending
         ),
         (state, action) => {
           state.error = false;
@@ -97,7 +103,8 @@ const jobSlice = createSlice({
           loadJob.rejected,
           saveNewJob.rejected,
           saveEditedJob.rejected,
-          deleteJobById.rejected
+          deleteJobById.rejected,
+          deleteManyJobs.rejected
         ),
         (state, action) => {
           state.loading = false;

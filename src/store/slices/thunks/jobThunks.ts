@@ -84,4 +84,21 @@ export const deleteJobById = createAsyncThunk<string, string, AsyncThunkConfig<s
   }
 );
 
+export const deleteManyJobs = createAsyncThunk<
+  string[],
+  string[],
+  AsyncThunkConfig<string>
+>(
+  "job/deleteJobById",
+  async (ids: string[], { rejectWithValue, extra: { serviceApi } }) => {
+    try {
+      await serviceApi.deleteMany(ids);
+      toast.success("Jobs deleted!");
+      return ids;
+    } catch (err: any) {
+      return rejectWithValue(err.message);
+    }
+  }
+);
+
 export type DeleteJobType = ReturnType<typeof deleteJobById>;

@@ -28,6 +28,10 @@ export default class JobService implements IJobService {
     return await this.api.deleteJob(id);
   }
 
+  async deleteMany(ids: string[]): Promise<void> {
+    return await this.api.deleteMany(ids);
+  }
+
   async deleteInterview(id: string): Promise<string> {
     return await this.api.deleteInterview(id);
   }

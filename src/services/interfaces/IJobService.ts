@@ -6,5 +6,6 @@ export interface IJobService {
   createJob: (data: Job) => Promise<Job>;
   updateJob: (data: Job) => Promise<Job>;
   deleteJob: (id: string) => Promise<void>;
+  deleteMany: (ids: string[]) => Promise<void>;
   deleteInterview: (id: string) => Promise<string>;
 }
