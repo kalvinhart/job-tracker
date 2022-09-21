@@ -1,27 +1,67 @@
 # Job Application Tracker
 
-## About This App
-
 This app was created to allow users to keep a track of the jobs that they have applied to.
 
-Jobs can be added and then displayed in a table which is sortable, filterable and searchable.
+Jobs can be added and then displayed in a list.
 
 Individual jobs can be viewed and updated or deleted. The user can also add the date and time of an appointment interview and edit/delete this as applicable.
 
-State management is handled with Redux Toolkit and the Context API handles the authentication state.
+State management is handled with Redux Toolkit and the Context API.
 
-All data is stored using Firebase Firestore.
+All data is persisted using Firebase Firestore.
 
 Authentication is handled with Firebase Authentication.
 
-## Development
+## Running Locally
 
-During development of this app I used the following technologies/dependencies:
+#### Prerequisites
+
+- A free account with Google Firebase.
+
+#### 1. Clone the repo and install dependencies
+
+```bash
+git clone
+npm i
+```
+
+#### 2. Create a .ENV file in the root folder
+
+This should include the following firebase variables:
+
+- `REACT_APP_API_KEY`
+- `REACT_APP_AUTH_DOMAIN`
+- `REACT_APP_PROJECT_ID`
+- `REACT_APP_STORAGE_BUCKET`
+- `REACT_APP_MESSAGING_SENDER_ID`
+- `REACT_APP_APP_ID`
+
+These can all be obtained from your firebase console.
+
+#### 3. Start the application
+
+```bash
+npm start
+```
+
+## Features
+
+- Add new jobs via a form.
+- Display all added jobs in a list.
+- Filter jobs by current status.
+- View more details on individual jobs.
+- Edit jobs.
+- Delete jobs.
+- Mark jobs as selected and then batch delete them.
+- Add an interview date.
+
+## Technologies/Packages
+
+The packages used in creating this application are:
 
 - react
 - react-redux
 - react-router-dom
-- react-table
 - react-hook-form
 - react-hot-toast
 - firebase/firestore
@@ -29,13 +69,3 @@ During development of this app I used the following technologies/dependencies:
 - styled-components
 - fontawesome
 - uuid
-
-The main feature of the application is the table displaying a list of jobs. For this I chose to use `react-table` as I wanted something with all the functionality of a table, but without any styling, allowing myself to easily add table styles to my preference.
-
-The main functionality involves the use of a form to add jobs to the table. For this I chose to use `react-hook-form` in order to easily manage the state and error handling of this feature.
-
-For storing data, I chose to use `firebase/firestore` as this was the simplest solution to compliment a front end without spending added time writing a custom back end. I also used `firebase/auth` to handle user authentication.
-
-For styling I have again used `styled-components` as I enjoy the flexibility it gives with it's dynamic styles based on props. The design of the app is my own.
-
-Finally, I chose to use `react-hot-toast` in order to give visual feedback to the user that an action has completed, or that an error has occurred. This library is very easy to set up and allows for a lot of customisation.

@@ -1,14 +1,14 @@
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
-import store from "./application/store";
+import store from "./store/store";
 
 import GlobalStyles from "./GlobalStyles";
 import Routes from "./Routes";
 
-import AuthProvider from "./application/context/authContext";
+import AuthProvider from "./context/authContext";
 import { Toaster } from "react-hot-toast";
-import Layout from "./presentation/components/Layout/Layout";
+import Layout from "./components/Layout/Layout";
 
 function App() {
   return (
