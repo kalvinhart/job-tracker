@@ -21,6 +21,11 @@ export const useOptionsMenuContent = ({ showMenu, setShowMenu }: Props) => {
     [setShowMenu]
   );
 
+  const handleOptionClick = (callback: Function) => {
+    callback();
+    setShowMenu(false);
+  };
+
   useEffect(() => {
     if (showMenu) {
       window.addEventListener("keydown", handleEscKeypress);
@@ -35,5 +40,6 @@ export const useOptionsMenuContent = ({ showMenu, setShowMenu }: Props) => {
     showDeleteWarning,
     setShowDeleteWarning,
     handleSelectJob,
+    handleOptionClick,
   };
 };

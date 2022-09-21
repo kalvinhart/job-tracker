@@ -23,21 +23,30 @@ const OptionsMenuContent = ({ jobId, menuRef, showMenu, setShowMenu }: Props) =>
     setShowDeleteWarning,
     deleteJobById,
     handleSelectJob,
+    handleOptionClick,
   } = useOptionsMenuContent({ showMenu, setShowMenu });
 
   return (
     <MenuContentWrapper>
       <MenuList>
         <MenuListItem>
-          <MenuOptionButton onClick={openAndEdit}>Edit Job</MenuOptionButton>
+          <MenuOptionButton onClick={() => handleOptionClick(openAndEdit)}>
+            Edit Job
+          </MenuOptionButton>
         </MenuListItem>
         <MenuListItem>
-          <MenuOptionButton onClick={() => handleSelectJob(jobId)}>
+          <MenuOptionButton
+            onClick={() => handleOptionClick(() => handleSelectJob(jobId))}
+          >
             Mark Selected
           </MenuOptionButton>
         </MenuListItem>
         <MenuListItem>
-          <MenuOptionButton onClick={() => setShowDeleteWarning({ deleteJob: true })}>
+          <MenuOptionButton
+            onClick={() =>
+              handleOptionClick(() => setShowDeleteWarning({ deleteJob: true }))
+            }
+          >
             Delete Job
           </MenuOptionButton>
         </MenuListItem>
