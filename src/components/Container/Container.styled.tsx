@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledContainer = styled.main`
-  padding-left: calc(var(--side-panel-width) + 40px);
-  padding-top: 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
 `;

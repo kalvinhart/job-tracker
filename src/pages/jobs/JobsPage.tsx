@@ -1,15 +1,14 @@
 import { useEffect } from "react";
 import { useJobSlice } from "../../common/hooks/useJobSlice/useJobSlice";
-import { useTableConfig } from "../../features/list-jobs/hooks/useTableConfig";
 
-import Table from "../../features/list-jobs/Table/Table";
-import NoData from "../../features/list-jobs/NoData/NoData";
+import NoData from "../../features/list-jobs/components/NoData/NoData";
 import Spinner from "../../components/Spinner/Spinner";
 import { useAuthentication } from "../../common/hooks/useAuthentication/useAuthentication";
+import { JobList } from "../../features/list-jobs/components/JobList";
+import JobListProvider from "../../features/list-jobs/context/JobListContext";
 
 const JobsPage = () => {
-  const { loading, jobs, loadAllJobs, jobsForTable, viewJob } = useJobSlice();
-  const { columns, data } = useTableConfig(jobsForTable);
+  const { loading, jobs, loadAllJobs } = useJobSlice();
 
   const { user } = useAuthentication();
 
@@ -26,7 +25,9 @@ const JobsPage = () => {
       {(!loading && !jobs) || jobs?.length === 0 ? (
         <NoData />
       ) : (
-        <Table columns={columns} data={data} viewJob={viewJob} />
+        <JobListProvider>
+          <JobList />
+        </JobListProvider>
       )}
     </>
   );

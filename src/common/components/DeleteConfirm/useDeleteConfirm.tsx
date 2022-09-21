@@ -39,7 +39,7 @@ export const useDeleteConfirm = (options: IUseDeleteConfirm) => {
   };
 
   return {
-    loading,
+    loading: loading.current,
     handleDelete: () => handleDelete(),
     cancel: () => cancel(),
   };

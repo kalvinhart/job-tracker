@@ -25,8 +25,6 @@ type SpanProps = {
 };
 
 export const Span = styled.span<SpanProps>`
-  font-size: 16px;
-
   ${({ multiline }) => multiline && "white-space: pre-wrap;"}
 `;
 
@@ -90,9 +88,17 @@ export const SpanError = styled.span<SpanErrorProps>`
   }
 `;
 
+export const SpanBold = styled.span`
+  font-weight: bold;
+`;
+
 export const SpanBoldLarge = styled.span`
   font-weight: bold;
   font-size: 22px;
+`;
+
+export const SpanSmall = styled.span`
+  font-size: 12px;
 `;
 
 export const Paragraph = styled.p`

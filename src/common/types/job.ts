@@ -9,6 +9,6 @@ export interface Job {
   interview?: number | string;
   location: string;
   salary: string;
-  status?: "Pending" | "Interview" | "Rejected" | "Expired";
+  status: "Pending" | "Interview" | "Rejected" | "Expired";
   title: string;
 }

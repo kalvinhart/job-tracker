@@ -8,6 +8,7 @@ import {
   saveNewJob,
   saveEditedJob,
   deleteJobById,
+  deleteManyJobs,
 } from "../../../store/slices/thunks/jobThunks";
 import { Job } from "../../types/job";
 
@@ -42,5 +43,6 @@ export const useJobSlice = () => {
     saveNewJob: (data: Job) => dispatch(saveNewJob(data)),
     saveEditedJob: (data: Job) => dispatch(saveEditedJob(data)),
     deleteJobById: (id: string) => dispatch(deleteJobById(id)),
+    deleteManyJobs: (ids: string[]) => dispatch(deleteManyJobs(ids)),
   };
 };
