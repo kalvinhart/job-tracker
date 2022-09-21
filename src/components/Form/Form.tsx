@@ -31,7 +31,6 @@ const Form = () => {
     saveNewJob,
     editing,
     closeSidePanel,
-    statusOptions,
     userID: user,
   } = useMyForm();
 
@@ -58,6 +57,8 @@ const Form = () => {
       title: editing ? currentJob!.title : "",
     },
   });
+
+  const statusOptions = ["Pending", "Interview", "Rejected", "Expired"];
 
   const onSubmit: SubmitHandler<Job> = (data: Job) => {
     const newData = { ...data, user };
