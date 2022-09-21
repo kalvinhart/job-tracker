@@ -89,7 +89,7 @@ export const deleteManyJobs = createAsyncThunk<
   string[],
   AsyncThunkConfig<string>
 >(
-  "job/deleteJobById",
+  "job/deleteManyJobs",
   async (ids: string[], { rejectWithValue, extra: { serviceApi } }) => {
     try {
       await serviceApi.deleteMany(ids);
