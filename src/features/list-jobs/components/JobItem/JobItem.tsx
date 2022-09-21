@@ -4,6 +4,7 @@ import { Button } from "../../../../common/styles/buttonStyles";
 import { Span, SpanSmall, StatusSpan } from "../../../../common/styles/fontStyles";
 import { Job } from "../../../../common/types/job";
 import {
+  CancelSelectButton,
   InfoGroup,
   JobItemTitle,
   JobItemWrapper,
@@ -13,6 +14,9 @@ import {
 } from "./JobItem.styles";
 import { OptionsMenu } from "../OptionsMenu";
 import { toDateString } from "../../../../common/utilities/formatDate";
+import { useJobListContext } from "../../hooks/useJobListContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   job: Job;
@@ -21,9 +25,18 @@ type Props = {
 const JobItem = ({ job, selected }: Props) => {
   const navigate = useNavigate();
 
+  const { handleJobDeselect } = useJobListContext();
+
   return (
     <JobItemWrapper selected={selected}>
-      <OptionsMenu jobId={job.id!} />
+      {selected ? (
+        <CancelSelectButton onClick={() => handleJobDeselect(job.id!)}>
+          <FontAwesomeIcon icon={faTimes} />
+          Undo Select
+        </CancelSelectButton>
+      ) : (
+        <OptionsMenu jobId={job.id!} />
+      )}
 
       <MainJobInfo>
         <JobTitleWrapper>

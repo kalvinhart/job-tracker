@@ -3,12 +3,14 @@ import { createContext, ReactNode, useState } from "react";
 interface IJobListContext {
   selectedJobs: string[];
   handleSelectJob: (id: string) => void;
+  handleJobDeselect: (id: string) => void;
   cancelSelection: () => void;
 }
 
 const initialState: IJobListContext = {
   selectedJobs: [],
   handleSelectJob: () => {},
+  handleJobDeselect: () => {},
   cancelSelection: () => {},
 };
 
@@ -24,12 +26,18 @@ const JobListProvider = ({ children }: Props) => {
     setSelectedJobs((prev) => [...prev, id]);
   };
 
+  const handleJobDeselect = (id: string) => {
+    setSelectedJobs((prev) => prev.filter((job) => job !== id));
+  };
+
   const cancelSelection = () => {
     setSelectedJobs([]);
   };
 
   return (
-    <JobListContext.Provider value={{ selectedJobs, handleSelectJob, cancelSelection }}>
+    <JobListContext.Provider
+      value={{ selectedJobs, handleSelectJob, handleJobDeselect, cancelSelection }}
+    >
       {children}
     </JobListContext.Provider>
   );

@@ -31,6 +31,27 @@ export const JobItemWrapper = styled.div<WrapperProps>`
     `}
 `;
 
+export const CancelSelectButton = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  font: inherit;
+  color: var(--clr-grey-dark);
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+
+  &:hover,
+  &:focus {
+    color: var(--clr-primary);
+  }
+
+  & svg {
+    margin-right: 5px;
+  }
+`;
+
 export const MainJobInfo = styled.div`
   display: flex;
   flex-direction: column;
