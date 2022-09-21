@@ -1,4 +1,4 @@
-import { SyntheticEvent, useCallback, useMemo, useState } from "react";
+import { SyntheticEvent, useState } from "react";
 
 import { useJobSlice } from "../../../common/hooks/useJobSlice/useJobSlice";
 import { useJobListContext } from "./useJobListContext";
@@ -21,16 +21,8 @@ export const useJobList = () => {
     await deleteManyJobs(selectedJobs);
   };
 
-  const renderJobs = useCallback(() => {
-    if (selectedTab === "All") return jobs;
-
-    return jobs!
-      .filter((job) => job.status === selectedTab)
-      .sort((a, b) => +a.date - +b.date);
-  }, [jobs, selectedTab]);
-
-  let jobsToDisplay: Job[] = useMemo(() => renderJobs(), [renderJobs]);
-  console.log(jobsToDisplay);
+  const jobsToDisplay: Job[] =
+    selectedTab === "All" ? jobs : jobs.filter((job) => job.status === selectedTab);
 
   return {
     jobsToDisplay,
