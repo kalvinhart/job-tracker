@@ -23,7 +23,6 @@ const JobList = () => {
     selectedJobs,
     cancelSelection,
     showDeleteWarning,
-    setShowDeleteWarning,
     handleDeleteMany,
   } = useJobList();
 

@@ -10,7 +10,7 @@ export const useJobList = () => {
   const [selectedTab, setSelectedTab] = useState("All");
 
   const { jobs, deleteManyJobs } = useJobSlice();
-  const { showDeleteWarning, setShowDeleteWarning } = useUiSlice();
+  const { showDeleteWarning } = useUiSlice();
   const { selectedJobs, cancelSelection } = useJobListContext();
 
   const handleTabChange = (e: SyntheticEvent) => {
@@ -31,7 +31,6 @@ export const useJobList = () => {
     selectedJobs,
     cancelSelection,
     showDeleteWarning,
-    setShowDeleteWarning,
     handleDeleteMany,
   };
 };
