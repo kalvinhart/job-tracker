@@ -63,7 +63,9 @@ const JobItem = ({ job, selected }: Props) => {
           <SpanSalary>£{job.salary}</SpanSalary>
         </InfoGroup>
 
-        <SpanSmall>Applied on {toDateString(+job.date)} &#8226; via Indeed</SpanSmall>
+        <SpanSmall>
+          Applied on {toDateString(+job.date)} {job.resource && `• via ${job.resource}`}
+        </SpanSmall>
       </MainJobInfo>
 
       <Button variant="primary" onClick={() => navigate(`/job/${job.id}`)}>
