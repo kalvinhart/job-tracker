@@ -1,6 +1,6 @@
 import { useUiSlice } from "../../../../common/hooks/useUiSlice/useUiSlice";
 
-import { StyledBg } from "../../../../common/styles/bgStyles";
+import { Background } from "../../../../common/styles/bgStyles";
 import { Button } from "../../../../common/styles/buttonStyles";
 import { H2, Paragraph } from "../../../../common/styles/fontStyles";
 import { NoDataWrapper } from "./NoData.styles";
@@ -9,7 +9,7 @@ const NoData = () => {
   const { openSidePanel } = useUiSlice();
 
   return (
-    <StyledBg>
+    <Background>
       <NoDataWrapper>
         <H2>No data found</H2>
         <Paragraph>You currently have no saved jobs.</Paragraph>
@@ -17,7 +17,7 @@ const NoData = () => {
           Add a job
         </Button>
       </NoDataWrapper>
-    </StyledBg>
+    </Background>
   );
 };
 
