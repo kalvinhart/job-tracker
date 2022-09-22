@@ -4,7 +4,7 @@ import { SpanBoldLarge } from "../../../common/styles/fontStyles";
 
 export const JobViewContentWrapper = styled.div`
   & ${Background} {
-    width: 800px;
+    max-width: 800px;
     margin-right: 20px;
   }
 `;

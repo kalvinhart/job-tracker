@@ -3,7 +3,7 @@ import { Background } from "../../../common/styles/bgStyles";
 import { SpanBoldLarge } from "../../../common/styles/fontStyles";
 
 export const AppointmentViewWrapper = styled.div`
-  width: 350px;
+  max-width: 320px;
 
   & ${Background} {
     display: flex;
