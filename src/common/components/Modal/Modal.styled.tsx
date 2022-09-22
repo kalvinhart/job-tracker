@@ -7,7 +7,23 @@ const fadeInAnimationModal = css`
   animation-fill-mode: forwards;
 `;
 
-export const StyledModalContainer = styled.div`
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+
+  ${fadeInAnimationModal}
+`;
+
+export const ModalContainer = styled.div`
+  position: relative;
   width: 600px;
   padding: 20px;
   display: flex;
@@ -22,17 +38,31 @@ export const StyledModalContainer = styled.div`
   }
 `;
 
-export const StyledOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1000;
+export const ModalCloseButton = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 5px;
+  background-color: transparent;
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  color: var(--clr-grey-dark);
+  transition: color 0.2s ease-in-out, border 0.2s ease-in-out;
 
-  ${fadeInAnimationModal}
+  &:hover,
+  &:focus {
+    color: var(--clr-primary);
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid var(--clr-primary);
+  }
+`;
+
+export const ModalHiddenButton = styled.button`
+  background-color: transparent;
+  border: none;
 `;

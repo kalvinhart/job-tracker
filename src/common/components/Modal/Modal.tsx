@@ -1,7 +1,15 @@
 import { createPortal } from "react-dom";
 import { useModal } from "./useModal";
 
-import { StyledOverlay, StyledModalContainer } from "./Modal.styled";
+import {
+  Overlay,
+  ModalContainer,
+  ModalCloseButton,
+  ModalHiddenButton,
+} from "./Modal.styled";
+import { useClickOutside } from "../../hooks/useClickOutside/useClickOutside";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 type ModalProps = {
   hide: () => void;
@@ -9,14 +17,20 @@ type ModalProps = {
 };
 
 const Modal = ({ hide, children }: ModalProps) => {
-  const { modalRef, handleOverlayClose } = useModal(hide);
+  const { modalRef, closeButtonRef, hiddenButtonRef, handleOverlayClose } =
+    useModal(hide);
+  useClickOutside(modalRef, hide);
 
   return createPortal(
-    <StyledOverlay onClick={handleOverlayClose}>
-      <StyledModalContainer data-name="modal" ref={modalRef}>
+    <Overlay onClick={handleOverlayClose}>
+      <ModalContainer data-name="modal" ref={modalRef}>
+        <ModalCloseButton ref={closeButtonRef} onClick={() => hide()}>
+          <FontAwesomeIcon icon={faTimes} size="lg" />
+        </ModalCloseButton>
         {children}
-      </StyledModalContainer>
-    </StyledOverlay>,
+        <ModalHiddenButton aria-hidden="true" ref={hiddenButtonRef} />
+      </ModalContainer>
+    </Overlay>,
     document.getElementById("modal-root") as HTMLElement
   );
 };
