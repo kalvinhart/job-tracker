@@ -1,4 +1,4 @@
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useForm as useMyForm } from "../hooks/useForm";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,8 +29,6 @@ type Props = {
   close: () => void;
 };
 const Form = ({ editing, close, job }: Props) => {
-  const { loading, saveEditedJob, saveNewJob, user } = useMyForm();
-
   const {
     register,
     handleSubmit,
@@ -38,38 +36,26 @@ const Form = ({ editing, close, job }: Props) => {
     reset,
   } = useForm<Job>({
     defaultValues: {
-      benefits: editing ? job!.benefits : "",
-      company: editing ? job!.company : "",
-      contactName: editing ? job!.contactName : "",
-      contactNumber: editing ? job!.contactNumber : "",
-      date: editing ? new Date(job!.date).toISOString().slice(0, 10) : "",
-      description: editing ? job!.description : "",
-      interview: job?.interview && editing ? new Date(job.interview).toISOString() : "",
-      location: editing ? job!.location : "",
-      salary: editing ? job!.salary : "",
-      status: job?.status,
-      title: editing ? job!.title : "",
+      benefits: job?.benefits ?? "",
+      company: job?.company ?? "",
+      contactName: job?.contactName ?? "",
+      contactNumber: job?.contactNumber ?? "",
+      date: job?.date && new Date(job.date).toISOString().slice(0, 10),
+      description: job?.description ?? "",
+      interview: job?.interview ?? undefined,
+      location: job?.location ?? "",
+      salary: job?.salary ?? "",
+      status: job?.status ?? undefined,
+      title: job?.title ?? "",
     },
   });
 
-  const statusOptions = ["Pending", "Interview", "Rejected", "Expired"];
-
-  const onSubmit: SubmitHandler<Job> = (data: Job) => {
-    const newData = { ...data, user };
-
-    if (editing) {
-      saveEditedJob({ ...newData, id: job!.id });
-    } else {
-      saveNewJob(newData);
-    }
-
-    reset();
-  };
-
-  const cancelForm = () => {
-    reset();
-    close();
-  };
+  const { loading, onSubmit, cancelForm, statusOptions } = useMyForm({
+    reset,
+    close,
+    job,
+    editing,
+  });
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>

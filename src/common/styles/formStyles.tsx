@@ -5,6 +5,7 @@ export const Form = styled.form`
 `;
 
 export const FormGroup = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,7 +37,7 @@ export const Input = styled.input<InputProps>`
   font-family: inherit;
   outline: none;
   transition: border 0.2s ease-in-out;
-  ${(props) => props.long && "width: 290px;"}
+  ${(props) => props.long && "width: 250px;"}
 
   &:hover,
   &:focus {
@@ -59,7 +60,7 @@ export const Select = styled.select`
 `;
 
 export const TextArea = styled.textarea`
-  width: 600px;
+  width: 100%;
   height: 100px;
   padding: 5px 10px;
   border-radius: var(--border-radius);
