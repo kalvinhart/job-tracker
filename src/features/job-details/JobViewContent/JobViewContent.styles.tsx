@@ -3,7 +3,11 @@ import { Background } from "../../../common/styles/bgStyles";
 import { SpanBoldLarge } from "../../../common/styles/fontStyles";
 
 export const JobViewContentWrapper = styled.div`
+  width: 100%;
+  margin-right: 20px;
+
   & ${Background} {
+    width: 100%;
     max-width: 800px;
     margin-right: 20px;
   }
