@@ -5,12 +5,20 @@ import { MenuButton, MenuWrapper } from "./OptionsMenu.styles";
 import { OptionsMenuContent } from "../OptionsMenuContent";
 import { useOptionsMenu } from "../../hooks/useOptionsMenu";
 import { Job } from "../../../../common/types/job";
+import { JobForm } from "../../../job-form/JobForm";
 
 type Props = {
   job: Job;
 };
 const OptionsMenu = ({ job }: Props) => {
-  const { menuRef, showMenu, setShowMenu, handleToggleMenu } = useOptionsMenu();
+  const {
+    menuRef,
+    showMenu,
+    setShowMenu,
+    handleToggleMenu,
+    showJobForm,
+    setShowJobForm,
+  } = useOptionsMenu();
 
   return (
     <MenuWrapper ref={menuRef}>
@@ -24,7 +32,12 @@ const OptionsMenu = ({ job }: Props) => {
           menuRef={menuRef}
           showMenu={showMenu}
           setShowMenu={setShowMenu}
+          setShowJobForm={setShowJobForm}
         />
+      )}
+
+      {showJobForm && (
+        <JobForm close={() => setShowJobForm(false)} editing={true} job={job} />
       )}
     </MenuWrapper>
   );

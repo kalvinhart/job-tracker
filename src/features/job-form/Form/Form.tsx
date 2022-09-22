@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useForm as useMyForm } from "./useForm";
+import { useForm as useMyForm } from "../hooks/useForm";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,29 +10,26 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
-  StyledInput,
-  StyledForm,
-  StyledInputGroup,
-  StyledLabel,
-  StyledTextArea,
-  StyledFormGroup,
-  StyledButtonGroup,
-  StyledSelect,
-} from "../../common/styles/formStyles";
-import { SpanError } from "../../common/styles/fontStyles";
-import { Button } from "../../common/styles/buttonStyles";
-import { Job } from "../../common/types/job";
+  Input,
+  Form as StyledForm,
+  InputGroup,
+  Label,
+  TextArea,
+  FormGroup,
+  ButtonGroup,
+  Select,
+} from "../../../common/styles/formStyles";
+import { SpanError } from "../../../common/styles/fontStyles";
+import { Button } from "../../../common/styles/buttonStyles";
+import { Job } from "../../../common/types/job";
 
-const Form = () => {
-  const {
-    loading,
-    currentJob,
-    saveEditedJob,
-    saveNewJob,
-    editing,
-    closeSidePanel,
-    userID: user,
-  } = useMyForm();
+type Props = {
+  editing?: boolean;
+  job?: Job;
+  close: () => void;
+};
+const Form = ({ editing, close, job }: Props) => {
+  const { loading, saveEditedJob, saveNewJob, user } = useMyForm();
 
   const {
     register,
@@ -41,20 +38,17 @@ const Form = () => {
     reset,
   } = useForm<Job>({
     defaultValues: {
-      benefits: editing ? currentJob!.benefits : "",
-      company: editing ? currentJob!.company : "",
-      contactName: editing ? currentJob!.contactName : "",
-      contactNumber: editing ? currentJob!.contactNumber : "",
-      date: editing ? new Date(currentJob!.date).toISOString().slice(0, 10) : "",
-      description: editing ? currentJob!.description : "",
-      interview:
-        currentJob?.interview && editing
-          ? new Date(currentJob.interview).toISOString()
-          : "",
-      location: editing ? currentJob!.location : "",
-      salary: editing ? currentJob!.salary : "",
-      status: currentJob?.status,
-      title: editing ? currentJob!.title : "",
+      benefits: editing ? job!.benefits : "",
+      company: editing ? job!.company : "",
+      contactName: editing ? job!.contactName : "",
+      contactNumber: editing ? job!.contactNumber : "",
+      date: editing ? new Date(job!.date).toISOString().slice(0, 10) : "",
+      description: editing ? job!.description : "",
+      interview: job?.interview && editing ? new Date(job.interview).toISOString() : "",
+      location: editing ? job!.location : "",
+      salary: editing ? job!.salary : "",
+      status: job?.status,
+      title: editing ? job!.title : "",
     },
   });
 
@@ -64,7 +58,7 @@ const Form = () => {
     const newData = { ...data, user };
 
     if (editing) {
-      saveEditedJob({ ...newData, id: currentJob!.id });
+      saveEditedJob({ ...newData, id: job!.id });
     } else {
       saveNewJob(newData);
     }
@@ -74,15 +68,15 @@ const Form = () => {
 
   const cancelForm = () => {
     reset();
-    closeSidePanel();
+    close();
   };
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
-      <StyledFormGroup>
-        <StyledInputGroup>
-          <StyledLabel htmlFor="title">Job Title:</StyledLabel>
-          <StyledInput
+      <FormGroup>
+        <InputGroup>
+          <Label htmlFor="title">Job Title:</Label>
+          <Input
             long
             type="text"
             id="title"
@@ -101,11 +95,11 @@ const Form = () => {
               exceeded.
             </SpanError>
           )}
-        </StyledInputGroup>
+        </InputGroup>
 
-        <StyledInputGroup>
-          <StyledLabel htmlFor="company">Company:</StyledLabel>
-          <StyledInput
+        <InputGroup>
+          <Label htmlFor="company">Company:</Label>
+          <Input
             long
             type="text"
             id="company"
@@ -124,13 +118,13 @@ const Form = () => {
               exceeded.
             </SpanError>
           )}
-        </StyledInputGroup>
-      </StyledFormGroup>
+        </InputGroup>
+      </FormGroup>
 
-      <StyledFormGroup>
-        <StyledInputGroup>
-          <StyledLabel htmlFor="location">Location:</StyledLabel>
-          <StyledInput
+      <FormGroup>
+        <InputGroup>
+          <Label htmlFor="location">Location:</Label>
+          <Input
             long
             type="text"
             id="location"
@@ -149,11 +143,11 @@ const Form = () => {
               exceeded.
             </SpanError>
           )}
-        </StyledInputGroup>
+        </InputGroup>
 
-        <StyledInputGroup>
-          <StyledLabel htmlFor="salary">Salary:</StyledLabel>
-          <StyledInput
+        <InputGroup>
+          <Label htmlFor="salary">Salary:</Label>
+          <Input
             type="number"
             id="salary"
             placeholder="Salary..."
@@ -171,39 +165,39 @@ const Form = () => {
               exceeded.
             </SpanError>
           )}
-        </StyledInputGroup>
-      </StyledFormGroup>
+        </InputGroup>
+      </FormGroup>
 
-      <StyledFormGroup>
-        <StyledInputGroup>
-          <StyledLabel htmlFor="benefits">Benefits:</StyledLabel>
-          <StyledInput
+      <FormGroup>
+        <InputGroup>
+          <Label htmlFor="benefits">Benefits:</Label>
+          <Input
             long
             type="text"
             id="benefits"
             placeholder="Benefits (Comma separated list)..."
             {...register("benefits")}
           />
-        </StyledInputGroup>
+        </InputGroup>
 
         {editing && (
-          <StyledInputGroup>
-            <StyledLabel htmlFor="status">Status:</StyledLabel>
-            <StyledSelect {...register("status")}>
+          <InputGroup>
+            <Label htmlFor="status">Status:</Label>
+            <Select {...register("status")}>
               {statusOptions.map((option: string) => (
                 <option key={option} value={option}>
                   {option}
                 </option>
               ))}
-            </StyledSelect>
-          </StyledInputGroup>
+            </Select>
+          </InputGroup>
         )}
-      </StyledFormGroup>
+      </FormGroup>
 
-      <StyledFormGroup>
-        <StyledInputGroup>
-          <StyledLabel htmlFor="contactName">Contact Name:</StyledLabel>
-          <StyledInput
+      <FormGroup>
+        <InputGroup>
+          <Label htmlFor="contactName">Contact Name:</Label>
+          <Input
             type="text"
             id="contactName"
             placeholder="Contact name..."
@@ -215,11 +209,11 @@ const Form = () => {
               exceeded.
             </SpanError>
           )}
-        </StyledInputGroup>
+        </InputGroup>
 
-        <StyledInputGroup>
-          <StyledLabel htmlFor="contactNumber">Contact Number:</StyledLabel>
-          <StyledInput
+        <InputGroup>
+          <Label htmlFor="contactNumber">Contact Number:</Label>
+          <Input
             type="number"
             id="contactNumber"
             placeholder="Contact number..."
@@ -231,11 +225,11 @@ const Form = () => {
               exceeded.
             </SpanError>
           )}
-        </StyledInputGroup>
+        </InputGroup>
 
-        <StyledInputGroup>
-          <StyledLabel htmlFor="date">Date Applied:</StyledLabel>
-          <StyledInput
+        <InputGroup>
+          <Label htmlFor="date">Date Applied:</Label>
+          <Input
             type="date"
             id="date"
             placeholder="Date applied..."
@@ -247,17 +241,17 @@ const Form = () => {
               required.
             </SpanError>
           )}
-        </StyledInputGroup>
-      </StyledFormGroup>
+        </InputGroup>
+      </FormGroup>
 
-      <StyledInputGroup>
-        <StyledLabel htmlFor="description">Job Description:</StyledLabel>
-        <StyledTextArea id="description" {...register("description")} />
-      </StyledInputGroup>
+      <InputGroup>
+        <Label htmlFor="description">Job Description:</Label>
+        <TextArea id="description" {...register("description")} />
+      </InputGroup>
 
-      <StyledInput type="hidden" {...register("interview")} />
+      <Input type="hidden" {...register("interview")} />
 
-      <StyledButtonGroup>
+      <ButtonGroup>
         <Button type="submit" variant="primary" disabled={loading}>
           {loading ? (
             <FontAwesomeIcon icon={faSpinner} size="lg" spin />
@@ -272,7 +266,7 @@ const Form = () => {
           <FontAwesomeIcon icon={faTimes} size="lg" />
           Cancel
         </Button>
-      </StyledButtonGroup>
+      </ButtonGroup>
     </StyledForm>
   );
 };

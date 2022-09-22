@@ -14,12 +14,18 @@ type Props = {
   menuRef: RefObject<HTMLDivElement>;
   showMenu: boolean;
   setShowMenu: Dispatch<SetStateAction<boolean>>;
+  setShowJobForm: Dispatch<SetStateAction<boolean>>;
 };
-const OptionsMenuContent = ({ job, menuRef, showMenu, setShowMenu }: Props) => {
+const OptionsMenuContent = ({
+  job,
+  menuRef,
+  showMenu,
+  setShowMenu,
+  setShowJobForm,
+}: Props) => {
   useClickOutside(menuRef, () => setShowMenu(false));
 
   const {
-    openAndEdit,
     showDeleteWarning,
     setShowDeleteWarning,
     deleteJobById,
@@ -31,7 +37,7 @@ const OptionsMenuContent = ({ job, menuRef, showMenu, setShowMenu }: Props) => {
     <MenuContentWrapper>
       <MenuList>
         <MenuListItem>
-          <MenuOptionButton onClick={() => handleOptionClick(() => openAndEdit(job))}>
+          <MenuOptionButton onClick={() => handleOptionClick(() => setShowJobForm(true))}>
             Edit Job
           </MenuOptionButton>
         </MenuListItem>

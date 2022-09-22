@@ -14,6 +14,7 @@ import {
 } from "./JobList.styles";
 import { Button } from "../../../../common/styles/buttonStyles";
 import DeleteConfirm from "../../../../common/components/DeleteConfirm/DeleteConfirm";
+import { JobForm } from "../../../job-form/JobForm";
 
 const JobList = () => {
   const {
@@ -25,7 +26,9 @@ const JobList = () => {
     showDeleteWarning,
     setShowDeleteWarning,
     handleDeleteMany,
-    openSidePanel,
+    showJobForm,
+    handleOpenJobForm,
+    handleCloseJobForm,
   } = useJobList();
 
   return (
@@ -74,7 +77,7 @@ const JobList = () => {
             </Button>
           </JobListDeleteButtonsWrapper>
         ) : (
-          <Button variant="primary" onClick={openSidePanel}>
+          <Button variant="primary" onClick={() => handleOpenJobForm()}>
             <FontAwesomeIcon icon={faPlus} size="lg" /> Add Job
           </Button>
         )}
@@ -90,6 +93,8 @@ const JobList = () => {
             <JobItem key={job.id} job={job} selected={selectedJobs.includes(job.id!)} />
           ))}
       </JobListContent>
+
+      {showJobForm && <JobForm close={() => handleCloseJobForm()} />}
     </JobListWrapper>
   );
 };

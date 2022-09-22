@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { fadeInAnimation } from "../../common/styles/animations";
+import { fadeInAnimation } from "../../styles/animations";
 
 const fadeInAnimationModal = css`
   animation-name: ${fadeInAnimation};
