@@ -13,8 +13,6 @@ export const useAppointmentView = () => {
 
   const { id, interview } = currentJob as Job;
 
-  const interviewDate: string | null = new Date(interview!).toDateString() ?? null;
-
   const removeInterview = async (): Promise<void> => {
     const newData = {
       ...currentJob,
@@ -28,7 +26,6 @@ export const useAppointmentView = () => {
   return {
     id,
     interview,
-    interviewDate,
     showAppointmentModal,
     setShowAppointmentModal,
     showDeleteInterview: deleteInterview,

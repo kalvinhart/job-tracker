@@ -13,12 +13,11 @@ import { Button } from "../../../common/styles/buttonStyles";
 import { H3, Paragraph, SpanBoldLarge } from "../../../common/styles/fontStyles";
 import { StyledButtonGroup } from "../../../common/styles/formStyles";
 
-import { formatTime } from "../../../common/utilities/formatDate";
+import { formatTime, toDateString } from "../../../common/utilities/formatDate";
 
 const AppointmentView = () => {
   const {
     interview,
-    interviewDate,
     removeInterview,
     setShowAppointmentModal,
     setShowDeleteWarning,
@@ -33,7 +32,7 @@ const AppointmentView = () => {
         {interview ? (
           <>
             <Paragraph>You have an interview for this position on:</Paragraph>
-            <SpanBoldLarge>{interviewDate}</SpanBoldLarge>
+            <SpanBoldLarge>{toDateString(+interview)}</SpanBoldLarge>
             <Paragraph>at:</Paragraph>
             <SpanBoldLarge>{formatTime(+interview)}</SpanBoldLarge>
             <StyledButtonGroup small>
