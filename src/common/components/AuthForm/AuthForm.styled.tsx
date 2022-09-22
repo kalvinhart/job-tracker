@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { InputGroup } from "../../common/styles/formStyles";
-import { Button } from "../../common/styles/buttonStyles";
+import { InputGroup } from "../../styles/formStyles";
+import { Button } from "../../styles/buttonStyles";
 
 export const StyledBackgroundDiv = styled.div`
   width: 100%;

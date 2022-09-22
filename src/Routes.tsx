@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes as RoutesList, Route } from "react-router-dom";
 
-import Spinner from "./components/Spinner/Spinner";
+import Spinner from "./common/components/Spinner/Spinner";
 
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 const ErrorPage = lazy(() => import("./pages/error/ErrorPage"));

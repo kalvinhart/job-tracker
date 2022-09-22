@@ -11,11 +11,11 @@ import {
 
 import { Link } from "react-router-dom";
 import { StyledBackgroundDiv, StyledForm } from "./AuthForm.styled";
-import { Input, InputGroup, Label } from "../../common/styles/formStyles";
-import { Button } from "../../common/styles/buttonStyles";
-import { H2, Paragraph, SpanError, Span } from "../../common/styles/fontStyles";
+import { Input, InputGroup, Label } from "../../styles/formStyles";
+import { Button } from "../../styles/buttonStyles";
+import { H2, Paragraph, SpanError, Span } from "../../styles/fontStyles";
 
-import { UserCredentials } from "../../common/types/auth";
+import { UserCredentials } from "../../types/auth";
 
 type FormValues = UserCredentials;
 

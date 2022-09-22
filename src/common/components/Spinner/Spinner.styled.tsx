@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { loading1, loading2, loading3 } from "../../common/styles/animations";
+import { loading1, loading2, loading3 } from "../../styles/animations";
 
 const loading1Animation = css`
   animation: ${loading1} 0.6s infinite;

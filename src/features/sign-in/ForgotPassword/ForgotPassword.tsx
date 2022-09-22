@@ -2,7 +2,7 @@ import { Input, InputGroup, Label } from "../../../common/styles/formStyles";
 import {
   StyledBackgroundDiv,
   StyledForm,
-} from "../../../components/AuthForm/AuthForm.styled";
+} from "../../../common/components/AuthForm/AuthForm.styled";
 import { SpanError, H2 } from "../../../common/styles/fontStyles";
 import { Button } from "../../../common/styles/buttonStyles";
 import { useForgotPassword } from "../hooks/useForgotPassword";
