@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyledBg } from "../../common/styles/bgStyles";
+import { Background } from "../../common/styles/bgStyles";
 import { H2 } from "../../common/styles/fontStyles";
 
 export const StyledErrorPageWrapper = styled.div`
@@ -8,7 +8,7 @@ export const StyledErrorPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  & ${StyledBg} {
+  & ${Background} {
     & ${H2} {
       margin-bottom: 20px;
     }

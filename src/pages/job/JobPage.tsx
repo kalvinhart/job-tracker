@@ -1,29 +1,10 @@
-import { useEffect } from "react";
-import { useAuthentication } from "../../common/hooks/useAuthentication/useAuthentication";
-import { useJobSlice } from "../../common/hooks/useJobSlice/useJobSlice";
+import { useJobPage } from "./useJobPage";
 
 import Spinner from "../../components/Spinner/Spinner";
 import JobView from "../../features/job-details/JobView/JobView";
 
 const JobPage = () => {
-  const { jobs, loading, loadAllJobs, loadJob, currentJob, navigate, params, error } =
-    useJobSlice();
-
-  const { user } = useAuthentication();
-
-  useEffect(() => {
-    if (currentJob) return;
-
-    if (user) {
-      if (!jobs && !loading) {
-        loadAllJobs(user);
-      }
-
-      if (jobs && params.id && !currentJob && !error && !loading) {
-        loadJob(params.id);
-      }
-    }
-  }, [jobs, currentJob, loadAllJobs, loadJob, user]);
+  const { loading, currentJob, error, navigate } = useJobPage();
 
   if (error) navigate("/error");
 

@@ -1,4 +1,3 @@
-import { useNavigate, useParams } from "react-router";
 import { useAppDispatch } from "../../../store/hooks/useAppDispatch";
 import { useAppSelector } from "../../../store/hooks/useAppSelector";
 import { setCurrentJob, clearJobState } from "../../../store/slices/jobSlice";
@@ -18,24 +17,12 @@ export const useJobSlice = () => {
     (state) => state.job
   );
 
-  const navigate = useNavigate();
-  const params = useParams();
-
-  const viewJob = (id: string) => {
-    const newCurrentJob = jobs!.filter((job) => job.id === id)[0];
-    dispatch(setCurrentJob(newCurrentJob));
-    navigate(`/job/${id}`);
-  };
-
   return {
     loading,
     loadJobsComplete,
     jobs,
     currentJob,
     error,
-    viewJob,
-    params,
-    navigate,
     setCurrentJob: (job: Job) => dispatch(setCurrentJob(job)),
     clearJobState: () => dispatch(clearJobState()),
     loadAllJobs: (userId: string) => dispatch(loadAllJobs(userId)),

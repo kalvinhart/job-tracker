@@ -47,7 +47,7 @@ const jobSlice = createSlice({
       .addCase(loadAllJobs.fulfilled, (state, action) => {
         state.loading = false;
         state.loadJobsComplete = true;
-        state.jobs = action.payload;
+        state.jobs = action.payload.sort((a, b) => +a.date - +b.date);
       })
       .addCase(loadJob.fulfilled, (state, action: PayloadAction<Job | boolean>) => {
         state.loading = false;

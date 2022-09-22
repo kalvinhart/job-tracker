@@ -1,4 +1,3 @@
-import { useUiSlice } from "../../../common/hooks/useUiSlice/useUiSlice";
 import { useAppointmentView } from "../hooks/useAppointmentView";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,32 +8,33 @@ import DeleteConfirm from "../../../common/components/DeleteConfirm/DeleteConfir
 
 import { AppointmentViewWrapper } from "./AppointmentView.styled";
 
-import { StyledBg } from "../../../common/styles/bgStyles";
+import { Background } from "../../../common/styles/bgStyles";
 import { Button } from "../../../common/styles/buttonStyles";
 import { H3, Paragraph, SpanBoldLarge } from "../../../common/styles/fontStyles";
 import { StyledButtonGroup } from "../../../common/styles/formStyles";
 
+import { formatTime, toDateString } from "../../../common/utilities/formatDate";
+
 const AppointmentView = () => {
   const {
-    showAppointmentModal,
+    interview,
+    removeInterview,
     setShowAppointmentModal,
-    showDeleteWarning: { deleteInterview },
     setShowDeleteWarning,
-  } = useUiSlice();
-
-  const { id, interview, interviewDate, interviewTime, removeInterview } =
-    useAppointmentView();
+    showAppointmentModal,
+    showDeleteInterview,
+  } = useAppointmentView();
 
   return (
     <AppointmentViewWrapper>
-      <StyledBg>
+      <Background>
         <H3>Interview Appointment</H3>
         {interview ? (
           <>
             <Paragraph>You have an interview for this position on:</Paragraph>
-            <SpanBoldLarge>{interviewDate}</SpanBoldLarge>
+            <SpanBoldLarge>{toDateString(+interview)}</SpanBoldLarge>
             <Paragraph>at:</Paragraph>
-            <SpanBoldLarge>{interviewTime}</SpanBoldLarge>
+            <SpanBoldLarge>{formatTime(+interview)}</SpanBoldLarge>
             <StyledButtonGroup small>
               <Button
                 variant="other"
@@ -54,7 +54,7 @@ const AppointmentView = () => {
               </Button>
             </StyledButtonGroup>
             {showAppointmentModal && <AddAppointment />}
-            {deleteInterview && (
+            {showDeleteInterview && (
               <DeleteConfirm redirect={false} actionDelete={removeInterview} />
             )}
           </>
@@ -68,7 +68,7 @@ const AppointmentView = () => {
             {showAppointmentModal && <AddAppointment />}
           </>
         )}
-      </StyledBg>
+      </Background>
     </AppointmentViewWrapper>
   );
 };

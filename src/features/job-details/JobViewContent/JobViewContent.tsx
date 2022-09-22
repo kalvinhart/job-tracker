@@ -1,11 +1,32 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faAddressBook,
+  faGlobe,
+  faMapMarkerAlt,
+  faPoundSign,
+} from "@fortawesome/free-solid-svg-icons";
+
+import {
+  BenefitsGroup,
+  IconsGroup,
+  JobSpecificsGroup,
+  JobSpecificsWrapper,
   JobViewContentWrapper,
-  StyledJobViewGroup,
-  StyledJobViewItem,
+  JobViewGroup,
+  JobViewTitleWrapper,
 } from "./JobViewContent.styles";
 
-import { StyledBg } from "../../../common/styles/bgStyles";
-import { H3, Span } from "../../../common/styles/fontStyles";
+import { Background } from "../../../common/styles/bgStyles";
+import {
+  Span,
+  SpanBenefit,
+  SpanBoldLarge,
+  SpanSmall,
+  StatusSpan,
+} from "../../../common/styles/fontStyles";
+
+import { toDateString } from "../../../common/utilities/formatDate";
+
 import { Job } from "../../../common/types/job";
 
 type JobViewContentProps = {
@@ -21,56 +42,66 @@ const JobViewContent = ({ currentJob }: JobViewContentProps) => {
     date,
     description,
     location,
+    resource,
     salary,
+    status,
+    title,
   } = currentJob;
 
   return (
     <JobViewContentWrapper>
-      <StyledBg>
-        <StyledJobViewGroup>
-          <StyledJobViewItem>
-            <H3>Company:</H3>
-            <Span>{company}</Span>
-          </StyledJobViewItem>
+      <Background>
+        <JobViewGroup>
+          <JobViewTitleWrapper>
+            <SpanBoldLarge>{title}</SpanBoldLarge>
+            <StatusSpan status={status}>{status}</StatusSpan>
+          </JobViewTitleWrapper>
+          <Span>{company}</Span>
+          <SpanSmall>Applied on {toDateString(+date)}</SpanSmall>
+        </JobViewGroup>
 
-          <StyledJobViewItem>
-            <H3>Location:</H3>
-            <Span>{location}</Span>
-          </StyledJobViewItem>
+        <JobSpecificsWrapper>
+          <JobSpecificsGroup>
+            <IconsGroup>
+              <FontAwesomeIcon icon={faMapMarkerAlt} size="lg" />
+              <Span>{location}</Span>
+            </IconsGroup>
 
-          <StyledJobViewItem>
-            <H3>Salary:</H3>
-            <Span>{`£${salary}`}</Span>
-          </StyledJobViewItem>
-        </StyledJobViewGroup>
+            <IconsGroup>
+              <FontAwesomeIcon icon={faPoundSign} size="lg" />
+              <Span>£{salary}</Span>
+            </IconsGroup>
+          </JobSpecificsGroup>
 
-        <StyledJobViewGroup>
-          <StyledJobViewItem>
-            <H3>Contact Name:</H3>
-            <Span>{contactName}</Span>
-          </StyledJobViewItem>
+          <JobSpecificsGroup>
+            <IconsGroup>
+              <FontAwesomeIcon icon={faAddressBook} size="lg" />
+              <Span>
+                {contactName && contactNumber
+                  ? `${contactName} (${contactNumber})`
+                  : "n/a"}
+              </Span>
+            </IconsGroup>
 
-          <StyledJobViewItem>
-            <H3>Contact Number:</H3>
-            <Span>{contactNumber}</Span>
-          </StyledJobViewItem>
+            <IconsGroup>
+              <FontAwesomeIcon icon={faGlobe} size="lg" />
+              <Span>{resource ? `via ${resource}` : "Not specified"}</Span>
+            </IconsGroup>
+          </JobSpecificsGroup>
+        </JobSpecificsWrapper>
 
-          <StyledJobViewItem>
-            <H3>Date Applied:</H3>
-            <Span>{new Date(date).toDateString()}</Span>
-          </StyledJobViewItem>
-        </StyledJobViewGroup>
+        {benefits && (
+          <BenefitsGroup>
+            {benefits.split(",").map((b) => (
+              <SpanBenefit key={b}>{b}</SpanBenefit>
+            ))}
+          </BenefitsGroup>
+        )}
 
-        <StyledJobViewGroup>
-          <StyledJobViewItem>
-            <H3>Benefits:</H3>
-            <Span>{benefits}</Span>
-          </StyledJobViewItem>
-        </StyledJobViewGroup>
-
-        <H3>Job Description:</H3>
-        <Span multiline>{description}</Span>
-      </StyledBg>
+        <JobViewGroup>
+          <Span multiline>{description}</Span>
+        </JobViewGroup>
+      </Background>
     </JobViewContentWrapper>
   );
 };

@@ -1,5 +1,5 @@
 export interface Job {
-  benefits?: string | string[];
+  benefits?: string;
   company: string;
   contactName?: string;
   contactNumber?: string;

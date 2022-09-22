@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { StyledBg } from "../../../common/styles/bgStyles";
+import { Background } from "../../../common/styles/bgStyles";
 import { SpanBoldLarge } from "../../../common/styles/fontStyles";
 
 export const AppointmentViewWrapper = styled.div`
-  width: 350px;
+  max-width: 320px;
 
-  & ${StyledBg} {
-    min-width: unset;
+  & ${Background} {
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,19 +1,13 @@
-import { useUiSlice } from "../../../common/hooks/useUiSlice/useUiSlice";
-import { useJobSlice } from "../../../common/hooks/useJobSlice/useJobSlice";
+import { useJobViewHeader } from "../hooks/useJobViewHeader";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import DeleteConfirm from "../../../common/components/DeleteConfirm/DeleteConfirm";
 
-import {
-  StyledJobViewHeadingDiv,
-  StyledJobViewHeadingGroup,
-} from "./JobViewHeader.styles";
+import { JobViewHeaderWrapper, JobViewHeaderGroup } from "./JobViewHeader.styles";
 
-import { StatusSpan } from "../../../common/styles/fontStyles";
 import { Button } from "../../../common/styles/buttonStyles";
-import { H2 } from "../../../common/styles/fontStyles";
 
 import { Job } from "../../../common/types/job";
 
@@ -22,26 +16,12 @@ type JobViewHeaderProps = {
 };
 
 const JobViewHeader = ({ currentJob }: JobViewHeaderProps) => {
-  const {
-    openAndEdit,
-    showDeleteWarning: { deleteJob },
-    setShowDeleteWarning,
-  } = useUiSlice();
-
-  const { deleteJobById } = useJobSlice();
-
-  const actionDeleteJob = async (): Promise<void> => {
-    await deleteJobById(currentJob.id!);
-  };
+  const { openAndEdit, deleteJob, setShowDeleteWarning, actionDeleteJob } =
+    useJobViewHeader(currentJob);
 
   return (
-    <StyledJobViewHeadingDiv>
-      <StyledJobViewHeadingGroup>
-        <H2>{currentJob.title}</H2>
-        <StatusSpan status={currentJob.status!}>{currentJob.status}</StatusSpan>
-      </StyledJobViewHeadingGroup>
-
-      <StyledJobViewHeadingGroup>
+    <JobViewHeaderWrapper>
+      <JobViewHeaderGroup>
         <Button variant="secondary" onClick={() => openAndEdit(currentJob)}>
           <FontAwesomeIcon icon={faEdit} />
           Edit
@@ -53,7 +33,7 @@ const JobViewHeader = ({ currentJob }: JobViewHeaderProps) => {
           <FontAwesomeIcon icon={faTrash} />
           Delete
         </Button>
-      </StyledJobViewHeadingGroup>
+      </JobViewHeaderGroup>
 
       {deleteJob && (
         <DeleteConfirm
@@ -62,7 +42,7 @@ const JobViewHeader = ({ currentJob }: JobViewHeaderProps) => {
           actionDelete={actionDeleteJob}
         />
       )}
-    </StyledJobViewHeadingDiv>
+    </JobViewHeaderWrapper>
   );
 };
 
