@@ -1,4 +1,3 @@
-import { useUiSlice } from "../../../common/hooks/useUiSlice/useUiSlice";
 import { useAppointmentView } from "../hooks/useAppointmentView";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,16 +13,18 @@ import { Button } from "../../../common/styles/buttonStyles";
 import { H3, Paragraph, SpanBoldLarge } from "../../../common/styles/fontStyles";
 import { StyledButtonGroup } from "../../../common/styles/formStyles";
 
+import { formatTime } from "../../../common/utilities/formatDate";
+
 const AppointmentView = () => {
   const {
-    showAppointmentModal,
+    interview,
+    interviewDate,
+    removeInterview,
     setShowAppointmentModal,
-    showDeleteWarning: { deleteInterview },
     setShowDeleteWarning,
-  } = useUiSlice();
-
-  const { interview, interviewDate, interviewTime, removeInterview } =
-    useAppointmentView();
+    showAppointmentModal,
+    showDeleteInterview,
+  } = useAppointmentView();
 
   return (
     <AppointmentViewWrapper>
@@ -34,7 +35,7 @@ const AppointmentView = () => {
             <Paragraph>You have an interview for this position on:</Paragraph>
             <SpanBoldLarge>{interviewDate}</SpanBoldLarge>
             <Paragraph>at:</Paragraph>
-            <SpanBoldLarge>{interviewTime}</SpanBoldLarge>
+            <SpanBoldLarge>{formatTime(+interview)}</SpanBoldLarge>
             <StyledButtonGroup small>
               <Button
                 variant="other"
@@ -54,7 +55,7 @@ const AppointmentView = () => {
               </Button>
             </StyledButtonGroup>
             {showAppointmentModal && <AddAppointment />}
-            {deleteInterview && (
+            {showDeleteInterview && (
               <DeleteConfirm redirect={false} actionDelete={removeInterview} />
             )}
           </>
