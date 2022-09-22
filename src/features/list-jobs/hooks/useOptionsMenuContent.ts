@@ -9,7 +9,7 @@ type Props = {
 };
 export const useOptionsMenuContent = ({ showMenu, setShowMenu }: Props) => {
   const { deleteJobById } = useJobSlice();
-  const { openAndEdit, showDeleteWarning, setShowDeleteWarning } = useUiSlice();
+  const { showDeleteWarning, setShowDeleteWarning } = useUiSlice();
   const { handleSelectJob } = useJobListContext();
 
   const handleEscKeypress = useCallback(
@@ -36,7 +36,6 @@ export const useOptionsMenuContent = ({ showMenu, setShowMenu }: Props) => {
 
   return {
     deleteJobById,
-    openAndEdit,
     showDeleteWarning,
     setShowDeleteWarning,
     handleSelectJob,

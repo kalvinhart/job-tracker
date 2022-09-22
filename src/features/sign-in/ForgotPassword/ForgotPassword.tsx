@@ -1,12 +1,8 @@
-import {
-  StyledInput,
-  StyledInputGroup,
-  StyledLabel,
-} from "../../../common/styles/formStyles";
+import { Input, InputGroup, Label } from "../../../common/styles/formStyles";
 import {
   StyledBackgroundDiv,
   StyledForm,
-} from "../../../components/AuthForm/AuthForm.styled";
+} from "../../../common/components/AuthForm/AuthForm.styled";
 import { SpanError, H2 } from "../../../common/styles/fontStyles";
 import { Button } from "../../../common/styles/buttonStyles";
 import { useForgotPassword } from "../hooks/useForgotPassword";
@@ -18,16 +14,10 @@ const ForgotPassword = () => {
     <StyledBackgroundDiv>
       <StyledForm onSubmit={handleSubmit} aria-label="Reset your Password">
         <H2>Reset your Password</H2>
-        <StyledInputGroup>
-          <StyledLabel htmlFor="email">Email Address:</StyledLabel>
-          <StyledInput
-            long
-            type="email"
-            id="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </StyledInputGroup>
+        <InputGroup>
+          <Label htmlFor="email">Email Address:</Label>
+          <Input long type="email" id="email" value={email} onChange={handleChange} />
+        </InputGroup>
         {error && <SpanError inline>{error}</SpanError>}
         <Button variant="primary" type="submit">
           Reset

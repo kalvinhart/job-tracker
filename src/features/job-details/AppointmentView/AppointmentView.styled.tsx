@@ -3,6 +3,7 @@ import { Background } from "../../../common/styles/bgStyles";
 import { SpanBoldLarge } from "../../../common/styles/fontStyles";
 
 export const AppointmentViewWrapper = styled.div`
+  min-width: 300px;
   max-width: 320px;
 
   & ${Background} {

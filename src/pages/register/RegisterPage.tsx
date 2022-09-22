@@ -1,4 +1,4 @@
-import AuthForm from "../../components/AuthForm/AuthForm";
+import AuthForm from "../../common/components/AuthForm/AuthForm";
 
 const LoginPage = () => {
   return <AuthForm type="REGISTER" />;

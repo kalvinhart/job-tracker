@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
-import { AuthContext } from "../../context/authContext";
-import { UserCredentials } from "../../common/types/auth";
+import { AuthContext } from "../../../context/authContext";
+import { UserCredentials } from "../../types/auth";
 
 export const useAuthForm = (type: string) => {
   const [loading, setLoading] = useState(false);

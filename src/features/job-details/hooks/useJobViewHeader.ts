@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { useJobSlice } from "../../../common/hooks/useJobSlice/useJobSlice";
 import { useUiSlice } from "../../../common/hooks/useUiSlice/useUiSlice";
 import { Job } from "../../../common/types/job";
 
 export const useJobViewHeader = (currentJob: Job) => {
+  const [showJobForm, setShowJobForm] = useState(false);
+
   const {
-    openAndEdit,
     showDeleteWarning: { deleteJob },
     setShowDeleteWarning,
   } = useUiSlice();
@@ -16,9 +18,10 @@ export const useJobViewHeader = (currentJob: Job) => {
   };
 
   return {
-    openAndEdit,
     deleteJob,
     setShowDeleteWarning,
     actionDeleteJob,
+    showJobForm,
+    setShowJobForm,
   };
 };

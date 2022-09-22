@@ -6,7 +6,7 @@ import { faSpinner, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { StyledButtonGroup } from "./DeleteConfirm.styled";
 import { H2, Paragraph } from "../../styles/fontStyles";
 import { Button } from "../../styles/buttonStyles";
-import Modal from "../../../components/Modal/Modal";
+import Modal from "../Modal/Modal";
 import { useUiSlice } from "../../hooks/useUiSlice/useUiSlice";
 
 type DeleteConfirmProps = {

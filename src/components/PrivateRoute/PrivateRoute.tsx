@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 
-import Spinner from "../Spinner/Spinner";
+import Spinner from "../../common/components/Spinner/Spinner";
 import { usePrivateRoute } from "./usePrivateRoute";
 
 const PrivateRoute = () => {
