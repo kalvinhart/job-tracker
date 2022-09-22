@@ -9,7 +9,7 @@ import DeleteConfirm from "../../../common/components/DeleteConfirm/DeleteConfir
 
 import { AppointmentViewWrapper } from "./AppointmentView.styled";
 
-import { StyledBg } from "../../../common/styles/bgStyles";
+import { Background } from "../../../common/styles/bgStyles";
 import { Button } from "../../../common/styles/buttonStyles";
 import { H3, Paragraph, SpanBoldLarge } from "../../../common/styles/fontStyles";
 import { StyledButtonGroup } from "../../../common/styles/formStyles";
@@ -22,12 +22,12 @@ const AppointmentView = () => {
     setShowDeleteWarning,
   } = useUiSlice();
 
-  const { id, interview, interviewDate, interviewTime, removeInterview } =
+  const { interview, interviewDate, interviewTime, removeInterview } =
     useAppointmentView();
 
   return (
     <AppointmentViewWrapper>
-      <StyledBg>
+      <Background>
         <H3>Interview Appointment</H3>
         {interview ? (
           <>
@@ -68,7 +68,7 @@ const AppointmentView = () => {
             {showAppointmentModal && <AddAppointment />}
           </>
         )}
-      </StyledBg>
+      </Background>
     </AppointmentViewWrapper>
   );
 };

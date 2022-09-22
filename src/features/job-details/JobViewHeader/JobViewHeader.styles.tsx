@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
-export const StyledJobViewHeadingDiv = styled.div`
+export const JobViewHeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 `;
 
-export const StyledJobViewHeadingGroup = styled.div`
+export const JobViewHeaderGroup = styled.div`
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
 
   & *:not(:last-child) {

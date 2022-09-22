@@ -5,14 +5,6 @@ export const JobViewContainer = styled.div`
   margin: 0 auto 60px;
   display: flex;
   flex-direction: column;
-
-  & h2 {
-    margin-left: 20px;
-  }
-
-  & button:last-child {
-    margin-right: 20px;
-  }
 `;
 
 export const JobViewDetailsWrapper = styled.div`
