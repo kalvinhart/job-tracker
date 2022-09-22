@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyledInputGroup } from "../../common/styles/formStyles";
+import { InputGroup } from "../../common/styles/formStyles";
 import { Button } from "../../common/styles/buttonStyles";
 
 export const StyledBackgroundDiv = styled.div`
@@ -26,7 +26,7 @@ export const StyledForm = styled.form`
     margin-bottom: 40px;
   }
 
-  & ${StyledInputGroup}, & ${Button} {
+  & ${InputGroup}, & ${Button} {
     margin-bottom: 20px;
   }
 

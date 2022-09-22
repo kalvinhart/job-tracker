@@ -11,7 +11,7 @@ import { AppointmentViewWrapper } from "./AppointmentView.styled";
 import { Background } from "../../../common/styles/bgStyles";
 import { Button } from "../../../common/styles/buttonStyles";
 import { H3, Paragraph, SpanBoldLarge } from "../../../common/styles/fontStyles";
-import { StyledButtonGroup } from "../../../common/styles/formStyles";
+import { ButtonGroup } from "../../../common/styles/formStyles";
 
 import { formatTime, toDateString } from "../../../common/utilities/formatDate";
 
@@ -35,7 +35,7 @@ const AppointmentView = () => {
             <SpanBoldLarge>{toDateString(+interview)}</SpanBoldLarge>
             <Paragraph>at:</Paragraph>
             <SpanBoldLarge>{formatTime(+interview)}</SpanBoldLarge>
-            <StyledButtonGroup small>
+            <ButtonGroup small>
               <Button
                 variant="other"
                 transparent
@@ -52,7 +52,7 @@ const AppointmentView = () => {
                 <FontAwesomeIcon icon={faTrash} />
                 Delete
               </Button>
-            </StyledButtonGroup>
+            </ButtonGroup>
             {showAppointmentModal && <AddAppointment />}
             {showDeleteInterview && (
               <DeleteConfirm redirect={false} actionDelete={removeInterview} />

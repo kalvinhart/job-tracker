@@ -11,11 +11,7 @@ import {
 
 import { Link } from "react-router-dom";
 import { StyledBackgroundDiv, StyledForm } from "./AuthForm.styled";
-import {
-  StyledInput,
-  StyledInputGroup,
-  StyledLabel,
-} from "../../common/styles/formStyles";
+import { Input, InputGroup, Label } from "../../common/styles/formStyles";
 import { Button } from "../../common/styles/buttonStyles";
 import { H2, Paragraph, SpanError, Span } from "../../common/styles/fontStyles";
 
@@ -43,9 +39,9 @@ const AuthForm = ({ type }: AuthFormProps) => {
       <StyledForm onSubmit={onSubmit}>
         <H2>{type === "LOGIN" ? "Log in to Your Account" : "Register an Account"}</H2>
 
-        <StyledInputGroup>
-          <StyledLabel htmlFor="email">Email Address:</StyledLabel>
-          <StyledInput
+        <InputGroup>
+          <Label htmlFor="email">Email Address:</Label>
+          <Input
             long
             type="email"
             id="email"
@@ -57,11 +53,11 @@ const AuthForm = ({ type }: AuthFormProps) => {
               required.
             </SpanError>
           )}
-        </StyledInputGroup>
+        </InputGroup>
 
-        <StyledInputGroup>
-          <StyledLabel htmlFor="password">Password:</StyledLabel>
-          <StyledInput
+        <InputGroup>
+          <Label htmlFor="password">Password:</Label>
+          <Input
             long
             type="password"
             id="password"
@@ -79,12 +75,12 @@ const AuthForm = ({ type }: AuthFormProps) => {
               least 6 characters.
             </SpanError>
           )}
-        </StyledInputGroup>
+        </InputGroup>
 
         {type === "REGISTER" && (
-          <StyledInputGroup>
-            <StyledLabel htmlFor="confirmPassword">Confirm Password:</StyledLabel>
-            <StyledInput
+          <InputGroup>
+            <Label htmlFor="confirmPassword">Confirm Password:</Label>
+            <Input
               long
               type="password"
               id="confirmPassword"
@@ -96,7 +92,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
                 is required.
               </SpanError>
             )}
-          </StyledInputGroup>
+          </InputGroup>
         )}
 
         {errorMessage && <SpanError inline>{errorMessage}</SpanError>}

@@ -11,12 +11,7 @@ import {
 
 import Modal from "../../../components/Modal/Modal";
 import { SpanError, H2, Paragraph } from "../../../common/styles/fontStyles";
-import {
-  StyledButtonGroup,
-  StyledForm,
-  StyledInput,
-  StyledInputGroup,
-} from "../../../common/styles/formStyles";
+import { ButtonGroup, Form, Input, InputGroup } from "../../../common/styles/formStyles";
 import { Button } from "../../../common/styles/buttonStyles";
 
 type FormValues = {
@@ -40,9 +35,9 @@ const AddAppointment = () => {
 
       <Paragraph>When is your interview date?</Paragraph>
 
-      <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <StyledInputGroup>
-          <StyledInput
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <InputGroup>
+          <Input
             long
             type="datetime-local"
             id="interviewDate"
@@ -54,9 +49,9 @@ const AddAppointment = () => {
               Interview date is required
             </SpanError>
           )}
-        </StyledInputGroup>
+        </InputGroup>
 
-        <StyledButtonGroup>
+        <ButtonGroup>
           <Button variant="primary" type="submit" disabled={loading}>
             {loading ? (
               <FontAwesomeIcon icon={faSpinner} size="lg" spin />
@@ -72,8 +67,8 @@ const AddAppointment = () => {
             <FontAwesomeIcon icon={faTimes} size="lg" />
             Cancel
           </Button>
-        </StyledButtonGroup>
-      </StyledForm>
+        </ButtonGroup>
+      </Form>
     </Modal>
   );
 };

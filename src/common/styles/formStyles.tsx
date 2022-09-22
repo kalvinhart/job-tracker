@@ -1,34 +1,34 @@
 import styled from "styled-components";
 
-export const StyledForm = styled.form`
+export const Form = styled.form`
   margin-top: 20px;
 `;
 
-export const StyledFormGroup = styled.div`
+export const FormGroup = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
 `;
 
-export const StyledInputGroup = styled.div`
+export const InputGroup = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
 
-export const StyledLabel = styled.label`
+export const Label = styled.label`
   display: block;
   color: var(--clr-primary);
   margin-bottom: 5px;
 `;
 
-type StyledInputProps = {
+type InputProps = {
   long?: boolean;
 };
 
-export const StyledInput = styled.input<StyledInputProps>`
+export const Input = styled.input<InputProps>`
   width: 180px;
   padding: 5px 10px;
   border-radius: var(--border-radius);
@@ -44,7 +44,7 @@ export const StyledInput = styled.input<StyledInputProps>`
   }
 `;
 
-export const StyledSelect = styled.select`
+export const Select = styled.select`
   padding: 5px 10px;
   border: 1px solid var(--clr-dark);
   border-radius: var(--border-radius);
@@ -58,7 +58,7 @@ export const StyledSelect = styled.select`
   }
 `;
 
-export const StyledTextArea = styled.textarea`
+export const TextArea = styled.textarea`
   width: 600px;
   height: 100px;
   padding: 5px 10px;
@@ -76,11 +76,11 @@ export const StyledTextArea = styled.textarea`
   }
 `;
 
-type StyledButtonGroupProps = {
+type ButtonGroupProps = {
   small?: boolean;
 };
 
-export const StyledButtonGroup = styled.div<StyledButtonGroupProps>`
+export const ButtonGroup = styled.div<ButtonGroupProps>`
   display: flex;
   justify-content: space-between;
   width: 230px;
