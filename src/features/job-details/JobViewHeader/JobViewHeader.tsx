@@ -1,5 +1,4 @@
-import { useUiSlice } from "../../../common/hooks/useUiSlice/useUiSlice";
-import { useJobSlice } from "../../../common/hooks/useJobSlice/useJobSlice";
+import { useJobViewHeader } from "../hooks/useJobViewHeader";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -17,17 +16,8 @@ type JobViewHeaderProps = {
 };
 
 const JobViewHeader = ({ currentJob }: JobViewHeaderProps) => {
-  const {
-    openAndEdit,
-    showDeleteWarning: { deleteJob },
-    setShowDeleteWarning,
-  } = useUiSlice();
-
-  const { deleteJobById } = useJobSlice();
-
-  const actionDeleteJob = async (): Promise<void> => {
-    await deleteJobById(currentJob.id!);
-  };
+  const { openAndEdit, deleteJob, setShowDeleteWarning, actionDeleteJob } =
+    useJobViewHeader(currentJob);
 
   return (
     <JobViewHeaderWrapper>
