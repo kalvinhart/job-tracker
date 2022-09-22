@@ -23,6 +23,7 @@ const JobList = () => {
     selectedJobs,
     cancelSelection,
     showDeleteWarning,
+    setShowDeleteWarning,
     handleDeleteMany,
     openSidePanel,
   } = useJobList();
@@ -62,7 +63,10 @@ const JobList = () => {
 
         {selectedJobs.length > 0 ? (
           <JobListDeleteButtonsWrapper>
-            <Button variant="danger" onClick={handleDeleteMany}>
+            <Button
+              variant="danger"
+              onClick={() => setShowDeleteWarning({ deleteJob: true })}
+            >
               <FontAwesomeIcon icon={faTrash} size="lg" /> Delete
             </Button>
             <Button variant="secondary" onClick={cancelSelection}>
