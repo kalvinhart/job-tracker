@@ -8,7 +8,7 @@ import Routes from "./Routes";
 
 import AuthProvider from "./context/authContext";
 import { Toaster } from "react-hot-toast";
-import Layout from "./components/Layout/Layout";
+import Layout from "./layout/Layout/Layout";
 
 function App() {
   return (

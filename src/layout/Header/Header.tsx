@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useHeader } from "./useHeader";
 
-import UserInfo from "../UserInfo/UserInfo";
+import UserInfo from "../../components/UserInfo/UserInfo";
 
 import { StyledHeader } from "./Header.styled";
 import { H1 } from "../../common/styles/fontStyles";
