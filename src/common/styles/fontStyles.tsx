@@ -10,14 +10,14 @@ export const H2 = styled.h2`
   display: inline-block;
   font-size: 24px;
   font-weight: 400;
-  color: var(--clr-primary);
+  color: var(--clr-grey-dark);
 `;
 
 export const H3 = styled.h3`
   margin-bottom: 10px;
   font-size: 20px;
   font-weight: 400;
-  color: var(--clr-h3);
+  color: var(--clr-primary);
 `;
 
 type SpanProps = {
@@ -90,17 +90,21 @@ export const SpanError = styled.span<SpanErrorProps>`
 
 export const SpanBold = styled.span`
   font-weight: bold;
+  color: var(--clr-grey-dark);
 `;
 
 export const SpanBoldLarge = styled.span`
   font-weight: bold;
   font-size: 22px;
+  color: var(--clr-grey-dark);
 `;
 
 export const SpanSmall = styled.span`
   font-size: 12px;
+  color: var(--clr-grey-dark);
 `;
 
 export const Paragraph = styled.p`
   margin-bottom: 15px;
+  color: var(--clr-grey-dark);
 `;
