@@ -34,7 +34,7 @@ export default class FirebaseService implements IJobService {
     return jobsArray;
   }
 
-  async getJob(id: string): Promise<Job | boolean> {
+  async getJob(id: string): Promise<Job> {
     const docRef = doc(db, "jobs", id);
 
     const result = await getDoc(docRef);
@@ -42,7 +42,7 @@ export default class FirebaseService implements IJobService {
     if (result.exists()) {
       return result.data() as Job;
     } else {
-      return false;
+      throw new Error("Job does not exist");
     }
   }
 
@@ -60,13 +60,13 @@ export default class FirebaseService implements IJobService {
     return newData;
   }
 
-  async updateJob(data: Job): Promise<Job> {
+  async updateJob(id: string, data: Job): Promise<Job> {
     const newData = {
       ...data,
       date: new Date(data.date).getTime(),
     };
 
-    const docRef = doc(db, "jobs", newData.id!);
+    const docRef = doc(db, "jobs", id);
 
     await updateDoc(docRef, newData);
 

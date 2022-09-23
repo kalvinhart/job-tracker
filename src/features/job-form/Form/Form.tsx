@@ -44,6 +44,7 @@ const Form = ({ editing, close, job }: Props) => {
       description: job?.description ?? "",
       interview: job?.interview ?? undefined,
       location: job?.location ?? "",
+      resource: job?.resource ?? "",
       salary: job?.salary ?? "",
       status: job?.status ?? undefined,
       title: job?.title ?? "",

@@ -4,20 +4,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MenuButton, MenuWrapper } from "./OptionsMenu.styles";
 import { OptionsMenuContent } from "../OptionsMenuContent";
 import { useOptionsMenu } from "../../hooks/useOptionsMenu";
-import { Job } from "../../../../common/types/job";
+import { DeleteConfirm } from "../../../../common/components/DeleteConfirm";
 import { JobForm } from "../../../job-form/JobForm";
+
+import { Job } from "../../../../common/types/job";
 
 type Props = {
   job: Job;
 };
 const OptionsMenu = ({ job }: Props) => {
   const {
-    menuRef,
-    showMenu,
-    setShowMenu,
+    handleDelete,
     handleToggleMenu,
-    showJobForm,
+    menuRef,
+    setShowDeleteWarning,
     setShowJobForm,
+    setShowMenu,
+    showDeleteWarning,
+    showJobForm,
+    showMenu,
   } = useOptionsMenu();
 
   return (
@@ -31,6 +36,7 @@ const OptionsMenu = ({ job }: Props) => {
           job={job}
           menuRef={menuRef}
           showMenu={showMenu}
+          setShowDeleteWarning={setShowDeleteWarning}
           setShowMenu={setShowMenu}
           setShowJobForm={setShowJobForm}
         />
@@ -38,6 +44,15 @@ const OptionsMenu = ({ job }: Props) => {
 
       {showJobForm && (
         <JobForm close={() => setShowJobForm(false)} editing={true} job={job} />
+      )}
+
+      {showDeleteWarning && (
+        <DeleteConfirm
+          id={job.id!}
+          actionDelete={async () => await handleDelete(job.id!)}
+          redirect={false}
+          hide={() => setShowDeleteWarning(false)}
+        />
       )}
     </MenuWrapper>
   );

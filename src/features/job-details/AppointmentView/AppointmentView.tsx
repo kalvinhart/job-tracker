@@ -14,27 +14,30 @@ import { H3, Paragraph, SpanBoldLarge } from "../../../common/styles/fontStyles"
 import { ButtonGroup } from "../../../common/styles/formStyles";
 
 import { formatTime, toDateString } from "../../../common/utilities/formatDate";
+import { Job } from "../../../common/types/job";
 
-const AppointmentView = () => {
+type Props = {
+  job: Job;
+};
+const AppointmentView = ({ job }: Props) => {
   const {
-    interview,
     removeInterview,
     setShowAppointmentModal,
-    setShowDeleteWarning,
+    setShowDeleteInterviewWarning,
     showAppointmentModal,
-    showDeleteInterview,
-  } = useAppointmentView();
+    showDeleteInterviewWarning,
+  } = useAppointmentView(job);
 
   return (
     <AppointmentViewWrapper>
       <Background>
         <H3>Interview Appointment</H3>
-        {interview ? (
+        {job.interview ? (
           <>
             <Paragraph>You have an interview for this position on:</Paragraph>
-            <SpanBoldLarge>{toDateString(+interview)}</SpanBoldLarge>
+            <SpanBoldLarge>{toDateString(+job.interview)}</SpanBoldLarge>
             <Paragraph>at:</Paragraph>
-            <SpanBoldLarge>{formatTime(+interview)}</SpanBoldLarge>
+            <SpanBoldLarge>{formatTime(+job.interview)}</SpanBoldLarge>
             <ButtonGroup small>
               <Button variant="transparent" onClick={() => setShowAppointmentModal(true)}>
                 <FontAwesomeIcon icon={faEdit} />
@@ -42,15 +45,21 @@ const AppointmentView = () => {
               </Button>
               <Button
                 variant="transparent"
-                onClick={() => setShowDeleteWarning({ deleteInterview: true })}
+                onClick={() => setShowDeleteInterviewWarning(true)}
               >
                 <FontAwesomeIcon icon={faTrash} />
                 Delete
               </Button>
             </ButtonGroup>
-            {showAppointmentModal && <AddAppointment />}
-            {showDeleteInterview && (
-              <DeleteConfirm redirect={false} actionDelete={removeInterview} />
+            {showAppointmentModal && (
+              <AddAppointment job={job} close={() => setShowAppointmentModal(false)} />
+            )}
+            {showDeleteInterviewWarning && (
+              <DeleteConfirm
+                redirect={false}
+                actionDelete={removeInterview}
+                hide={() => setShowDeleteInterviewWarning(false)}
+              />
             )}
           </>
         ) : (
@@ -60,7 +69,9 @@ const AppointmentView = () => {
               <FontAwesomeIcon icon={faPlus} />
               Add Appointment
             </Button>
-            {showAppointmentModal && <AddAppointment />}
+            {showAppointmentModal && (
+              <AddAppointment job={job} close={() => setShowAppointmentModal(false)} />
+            )}
           </>
         )}
       </Background>

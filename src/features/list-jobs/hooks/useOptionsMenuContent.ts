@@ -1,6 +1,4 @@
 import { Dispatch, SetStateAction, useCallback, useEffect } from "react";
-import { useJobSlice } from "../../../common/hooks/useJobSlice/useJobSlice";
-import { useUiSlice } from "../../../common/hooks/useUiSlice/useUiSlice";
 import { useJobListContext } from "./useJobListContext";
 
 type Props = {
@@ -8,8 +6,6 @@ type Props = {
   setShowMenu: Dispatch<SetStateAction<boolean>>;
 };
 export const useOptionsMenuContent = ({ showMenu, setShowMenu }: Props) => {
-  const { deleteJobById } = useJobSlice();
-  const { showDeleteWarning, setShowDeleteWarning } = useUiSlice();
   const { handleSelectJob } = useJobListContext();
 
   const handleEscKeypress = useCallback(
@@ -35,9 +31,6 @@ export const useOptionsMenuContent = ({ showMenu, setShowMenu }: Props) => {
   }, [showMenu, handleEscKeypress]);
 
   return {
-    deleteJobById,
-    showDeleteWarning,
-    setShowDeleteWarning,
     handleSelectJob,
     handleOptionClick,
   };

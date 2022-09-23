@@ -1,42 +1,31 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useAuthentication } from "../../common/hooks/useAuthentication/useAuthentication";
-import { useJobSlice } from "../../common/hooks/useJobSlice/useJobSlice";
+import { useJobContext } from "../../common/hooks/useJobContext/useJobContext";
+import { Job } from "../../common/types/job";
 
 export const useJobPage = () => {
   const params = useParams();
   const navigate = useNavigate();
-  const { loading, loadJobsComplete, loadAllJobs, loadJob, currentJob, error } =
-    useJobSlice();
+  const { loading, jobs, loadJobsComplete, error } = useJobContext();
 
-  const { user } = useAuthentication();
+  const [jobToView, setJobToView] = useState<Job>(null!);
 
   useEffect(() => {
-    if (currentJob?.id === params.id) return;
+    if (!loadJobsComplete) return;
 
-    if (user) {
-      if (!loadJobsComplete && !loading) {
-        loadAllJobs(user);
-      }
+    const foundJob =
+      jobs.length > 0 ? jobs.filter((job) => job.id === params.id)[0] : null;
 
-      if (loadJobsComplete && params.id && !error && !loading) {
-        loadJob(params.id);
-      }
+    if (foundJob) {
+      setJobToView(foundJob);
+    } else {
+      navigate("/error");
     }
-  }, [
-    loadJobsComplete,
-    currentJob,
-    loading,
-    loadAllJobs,
-    loadJob,
-    user,
-    error,
-    params.id,
-  ]);
+  }, [loadJobsComplete, jobs, params.id, navigate]);
 
   return {
     loading,
-    currentJob,
+    jobToView,
     error,
     navigate,
   };

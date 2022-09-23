@@ -13,12 +13,17 @@ import Modal from "../../../common/components/Modal/Modal";
 import { SpanError, H2, Paragraph } from "../../../common/styles/fontStyles";
 import { ButtonGroup, Form, Input, InputGroup } from "../../../common/styles/formStyles";
 import { Button } from "../../../common/styles/buttonStyles";
+import { Job } from "../../../common/types/job";
 
 type FormValues = {
   interviewDate: string;
 };
 
-const AddAppointment = () => {
+type Props = {
+  job: Job;
+  close: () => void;
+};
+const AddAppointment = ({ job, close }: Props) => {
   const {
     register,
     handleSubmit,
@@ -26,11 +31,14 @@ const AddAppointment = () => {
     reset,
   } = useForm<FormValues>();
 
-  const { loading, onSubmit, cancelForm, setShowAppointmentModal } =
-    useAddAppointment(reset);
+  const { loading, onSubmit, cancelForm } = useAddAppointment({
+    job,
+    reset,
+    close,
+  });
 
   return (
-    <Modal hide={() => setShowAppointmentModal(false)}>
+    <Modal hide={() => close()}>
       <H2>Add an Interview</H2>
 
       <Paragraph>When is your interview date?</Paragraph>

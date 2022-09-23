@@ -1,5 +1,5 @@
-import { useJobSlice } from "../../../common/hooks/useJobSlice/useJobSlice";
 import { useAuthentication } from "../../../common/hooks/useAuthentication/useAuthentication";
+import { useJobContext } from "../../../common/hooks/useJobContext/useJobContext";
 
 import { SubmitHandler } from "react-hook-form";
 import { Job } from "../../../common/types/job";
@@ -11,7 +11,7 @@ type Props = {
   job: Job | undefined;
 };
 export const useForm = ({ reset, close, editing, job }: Props) => {
-  const { loading, currentJob, saveEditedJob, saveNewJob } = useJobSlice();
+  const { loading, saveEditedJob, saveNewJob } = useJobContext();
   const { user } = useAuthentication();
 
   const statusOptions = ["Pending", "Interview", "Rejected", "Expired"];
@@ -33,12 +33,13 @@ export const useForm = ({ reset, close, editing, job }: Props) => {
     const newData = { ...data, user };
 
     if (editing) {
-      saveEditedJob({ ...newData, id: job!.id });
+      saveEditedJob(job!.id!, { ...newData, id: job!.id });
     } else {
       saveNewJob(newData);
     }
 
     reset();
+    close();
   };
 
   const cancelForm = () => {
@@ -48,7 +49,6 @@ export const useForm = ({ reset, close, editing, job }: Props) => {
 
   return {
     loading,
-    currentJob,
     saveEditedJob,
     saveNewJob,
     user,

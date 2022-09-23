@@ -3,8 +3,6 @@ import { Dispatch, RefObject, SetStateAction } from "react";
 import { useClickOutside } from "../../../../common/hooks/useClickOutside/useClickOutside";
 import { useOptionsMenuContent } from "../../hooks/useOptionsMenuContent";
 
-import DeleteConfirm from "../../../../common/components/DeleteConfirm/DeleteConfirm";
-
 import { MenuOptionButton } from "../OptionsMenu/OptionsMenu.styles";
 import { MenuContentWrapper, MenuList, MenuListItem } from "./OptionsMenuContent.styles";
 import { Job } from "../../../../common/types/job";
@@ -15,6 +13,7 @@ type Props = {
   showMenu: boolean;
   setShowMenu: Dispatch<SetStateAction<boolean>>;
   setShowJobForm: Dispatch<SetStateAction<boolean>>;
+  setShowDeleteWarning: Dispatch<SetStateAction<boolean>>;
 };
 const OptionsMenuContent = ({
   job,
@@ -22,16 +21,14 @@ const OptionsMenuContent = ({
   showMenu,
   setShowMenu,
   setShowJobForm,
+  setShowDeleteWarning,
 }: Props) => {
   useClickOutside(menuRef, () => setShowMenu(false));
 
-  const {
-    showDeleteWarning,
-    setShowDeleteWarning,
-    deleteJobById,
-    handleSelectJob,
-    handleOptionClick,
-  } = useOptionsMenuContent({ showMenu, setShowMenu });
+  const { handleSelectJob, handleOptionClick } = useOptionsMenuContent({
+    showMenu,
+    setShowMenu,
+  });
 
   return (
     <MenuContentWrapper>
@@ -50,24 +47,12 @@ const OptionsMenuContent = ({
         </MenuListItem>
         <MenuListItem>
           <MenuOptionButton
-            onClick={() =>
-              handleOptionClick(() => setShowDeleteWarning({ deleteJob: true }))
-            }
+            onClick={() => handleOptionClick(() => setShowDeleteWarning(true))}
           >
             Delete Job
           </MenuOptionButton>
         </MenuListItem>
       </MenuList>
-
-      {showDeleteWarning.deleteJob && (
-        <DeleteConfirm
-          id={job.id!}
-          actionDelete={async (): Promise<void> => {
-            await deleteJobById(job.id!);
-          }}
-          redirect={false}
-        />
-      )}
     </MenuContentWrapper>
   );
 };

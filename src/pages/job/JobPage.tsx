@@ -4,14 +4,14 @@ import Spinner from "../../common/components/Spinner/Spinner";
 import JobView from "../../features/job-details/JobView/JobView";
 
 const JobPage = () => {
-  const { loading, currentJob, error, navigate } = useJobPage();
+  const { loading, jobToView, error, navigate } = useJobPage();
 
   if (error) navigate("/error");
 
   if (loading) return <Spinner />;
 
-  if (currentJob) {
-    return <JobView currentJob={currentJob} />;
+  if (jobToView) {
+    return <JobView job={jobToView} />;
   } else {
     return null;
   }

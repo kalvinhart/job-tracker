@@ -30,10 +30,10 @@ import { toDateString } from "../../../common/utilities/formatDate";
 import { Job } from "../../../common/types/job";
 
 type JobViewContentProps = {
-  currentJob: Job;
+  job: Job;
 };
 
-const JobViewContent = ({ currentJob }: JobViewContentProps) => {
+const JobViewContent = ({ job }: JobViewContentProps) => {
   const {
     benefits,
     company,
@@ -46,7 +46,7 @@ const JobViewContent = ({ currentJob }: JobViewContentProps) => {
     salary,
     status,
     title,
-  } = currentJob;
+  } = job;
 
   return (
     <JobViewContentWrapper>
