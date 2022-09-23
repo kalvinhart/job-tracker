@@ -90,3 +90,21 @@ export const JobListContent = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const NoContent = styled.div`
+  padding: 20px;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const NoContentSpan = styled.span`
+  font-size: 20px;
+  color: var(--clr-grey-dark);
+
+  @media screen and (min-width: ${mediaSizes.med}) {
+    font-size: 28px;
+  }
+`;
