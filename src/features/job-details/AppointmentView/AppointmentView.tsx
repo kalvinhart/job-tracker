@@ -36,17 +36,12 @@ const AppointmentView = () => {
             <Paragraph>at:</Paragraph>
             <SpanBoldLarge>{formatTime(+interview)}</SpanBoldLarge>
             <ButtonGroup small>
-              <Button
-                variant="other"
-                transparent
-                onClick={() => setShowAppointmentModal(true)}
-              >
+              <Button variant="transparent" onClick={() => setShowAppointmentModal(true)}>
                 <FontAwesomeIcon icon={faEdit} />
                 Edit
               </Button>
               <Button
-                variant="other"
-                transparent
+                variant="transparent"
                 onClick={() => setShowDeleteWarning({ deleteInterview: true })}
               >
                 <FontAwesomeIcon icon={faTrash} />
