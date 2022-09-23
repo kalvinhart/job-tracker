@@ -3,11 +3,15 @@ import styled, { css } from "styled-components";
 type ButtonProps = {
   variant: "primary" | "secondary" | "danger" | "transparent" | "icon";
   visible?: boolean;
+  loading?: boolean;
 };
 
 export const Button = styled.button<ButtonProps>`
   padding: 5px 20px;
   min-width: 95px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid transparent;
   border-radius: var(--border-radius);
   font-family: inherit;
@@ -85,6 +89,14 @@ export const Button = styled.button<ButtonProps>`
       background-color: transparent;
       color: var(--clr-primary);
 
+      & svg {
+        margin-right: 0;
+      }
+    `} 
+    
+    ${({ loading }) =>
+    loading &&
+    css`
       & svg {
         margin-right: 0;
       }

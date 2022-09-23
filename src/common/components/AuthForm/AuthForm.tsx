@@ -90,7 +90,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
 
         {errorMessage && <SpanError inline>{errorMessage}</SpanError>}
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" loading={loading}>
           {loading ? (
             <FontAwesomeIcon icon={faSpinner} size="lg" spin />
           ) : type === "LOGIN" ? (
