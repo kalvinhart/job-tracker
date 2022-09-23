@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Background } from "../../../common/styles/bgStyles";
 import { SpanBoldLarge } from "../../../common/styles/fontStyles";
+import { mediaSizes } from "../../../common/styles/media";
 
 export const JobViewContentWrapper = styled.div`
   width: 100%;
@@ -33,8 +34,13 @@ export const JobSpecificsWrapper = styled.div`
   padding: 20px;
   margin-bottom: 20px;
   display: flex;
+  flex-direction: column;
   background-color: var(--clr-bg);
   border-radius: var(--border-radius);
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    flex-direction: row;
+  }
 `;
 
 export const JobSpecificsGroup = styled.div`
@@ -42,7 +48,14 @@ export const JobSpecificsGroup = styled.div`
   flex-direction: column;
 
   &:not(:last-child) {
-    margin-right: 100px;
+    margin-bottom: 10px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    &:not(:last-child) {
+      margin-right: 100px;
+      margin-bottom: 0;
+    }
   }
 `;
 
