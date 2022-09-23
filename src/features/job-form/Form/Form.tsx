@@ -18,6 +18,7 @@ import {
   FormGroup,
   ButtonGroup,
   Select,
+  FormContentWrapper,
 } from "../../../common/styles/formStyles";
 import { SpanError } from "../../../common/styles/fontStyles";
 import { Button } from "../../../common/styles/buttonStyles";
@@ -59,183 +60,185 @@ const Form = ({ editing, close, job }: Props) => {
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
-      <FormGroup>
-        <InputGroup>
-          <Label htmlFor="title">Job Title:</Label>
-          <Input
-            long
-            type="text"
-            id="title"
-            placeholder="Job title..."
-            {...register("title", { required: true, maxLength: 40 })}
-          />
-          {errors.title?.type === "required" && (
-            <SpanError>
-              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Job title is
-              required.
-            </SpanError>
-          )}
-          {errors.title?.type === "maxLength" && (
-            <SpanError>
-              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
-              exceeded.
-            </SpanError>
-          )}
-        </InputGroup>
-
-        <InputGroup>
-          <Label htmlFor="company">Company:</Label>
-          <Input
-            long
-            type="text"
-            id="company"
-            placeholder="Company..."
-            {...register("company", { required: true, maxLength: 30 })}
-          />
-          {errors.company?.type === "required" && (
-            <SpanError>
-              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Company name is
-              required.
-            </SpanError>
-          )}
-          {errors.company?.type === "maxLength" && (
-            <SpanError>
-              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
-              exceeded.
-            </SpanError>
-          )}
-        </InputGroup>
-      </FormGroup>
-
-      <FormGroup>
-        <InputGroup>
-          <Label htmlFor="location">Location:</Label>
-          <Input
-            long
-            type="text"
-            id="location"
-            placeholder="Location..."
-            {...register("location", { required: true, maxLength: 20 })}
-          />
-          {errors.location?.type === "required" && (
-            <SpanError>
-              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Job location is
-              required.
-            </SpanError>
-          )}
-          {errors.location?.type === "maxLength" && (
-            <SpanError>
-              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
-              exceeded.
-            </SpanError>
-          )}
-        </InputGroup>
-
-        <InputGroup>
-          <Label htmlFor="salary">Salary:</Label>
-          <Input
-            type="number"
-            id="salary"
-            placeholder="Salary..."
-            {...register("salary", { required: true, maxLength: 6 })}
-          />
-          {errors.salary?.type === "required" && (
-            <SpanError>
-              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Job salary is
-              required.
-            </SpanError>
-          )}
-          {errors.salary?.type === "maxLength" && (
-            <SpanError>
-              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
-              exceeded.
-            </SpanError>
-          )}
-        </InputGroup>
-      </FormGroup>
-
-      <FormGroup>
-        <InputGroup>
-          <Label htmlFor="benefits">Benefits:</Label>
-          <Input
-            long
-            type="text"
-            id="benefits"
-            placeholder="Benefits (Comma separated list)..."
-            {...register("benefits")}
-          />
-        </InputGroup>
-
-        {editing && (
+      <FormContentWrapper>
+        <FormGroup>
           <InputGroup>
-            <Label htmlFor="status">Status:</Label>
-            <Select {...register("status")}>
-              {statusOptions.map((option: string) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </Select>
+            <Label htmlFor="title">Job Title:</Label>
+            <Input
+              long
+              type="text"
+              id="title"
+              placeholder="Job title..."
+              {...register("title", { required: true, maxLength: 40 })}
+            />
+            {errors.title?.type === "required" && (
+              <SpanError>
+                <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Job title is
+                required.
+              </SpanError>
+            )}
+            {errors.title?.type === "maxLength" && (
+              <SpanError>
+                <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
+                exceeded.
+              </SpanError>
+            )}
           </InputGroup>
-        )}
-      </FormGroup>
 
-      <FormGroup>
-        <InputGroup>
-          <Label htmlFor="contactName">Contact Name:</Label>
-          <Input
-            type="text"
-            id="contactName"
-            placeholder="Contact name..."
-            {...register("contactName", { maxLength: 20 })}
-          />
-          {errors.contactName?.type === "maxLength" && (
-            <SpanError>
-              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
-              exceeded.
-            </SpanError>
+          <InputGroup>
+            <Label htmlFor="company">Company:</Label>
+            <Input
+              long
+              type="text"
+              id="company"
+              placeholder="Company..."
+              {...register("company", { required: true, maxLength: 30 })}
+            />
+            {errors.company?.type === "required" && (
+              <SpanError>
+                <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Company name is
+                required.
+              </SpanError>
+            )}
+            {errors.company?.type === "maxLength" && (
+              <SpanError>
+                <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
+                exceeded.
+              </SpanError>
+            )}
+          </InputGroup>
+        </FormGroup>
+
+        <FormGroup>
+          <InputGroup>
+            <Label htmlFor="location">Location:</Label>
+            <Input
+              long
+              type="text"
+              id="location"
+              placeholder="Location..."
+              {...register("location", { required: true, maxLength: 20 })}
+            />
+            {errors.location?.type === "required" && (
+              <SpanError>
+                <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Job location is
+                required.
+              </SpanError>
+            )}
+            {errors.location?.type === "maxLength" && (
+              <SpanError>
+                <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
+                exceeded.
+              </SpanError>
+            )}
+          </InputGroup>
+
+          <InputGroup>
+            <Label htmlFor="salary">Salary:</Label>
+            <Input
+              type="number"
+              id="salary"
+              placeholder="Salary..."
+              {...register("salary", { required: true, maxLength: 6 })}
+            />
+            {errors.salary?.type === "required" && (
+              <SpanError>
+                <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Job salary is
+                required.
+              </SpanError>
+            )}
+            {errors.salary?.type === "maxLength" && (
+              <SpanError>
+                <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
+                exceeded.
+              </SpanError>
+            )}
+          </InputGroup>
+        </FormGroup>
+
+        <FormGroup>
+          <InputGroup>
+            <Label htmlFor="benefits">Benefits:</Label>
+            <Input
+              long
+              type="text"
+              id="benefits"
+              placeholder="Benefits (Comma separated list)..."
+              {...register("benefits")}
+            />
+          </InputGroup>
+
+          {editing && (
+            <InputGroup>
+              <Label htmlFor="status">Status:</Label>
+              <Select {...register("status")}>
+                {statusOptions.map((option: string) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </Select>
+            </InputGroup>
           )}
+        </FormGroup>
+
+        <FormGroup>
+          <InputGroup>
+            <Label htmlFor="contactName">Contact Name:</Label>
+            <Input
+              type="text"
+              id="contactName"
+              placeholder="Contact name..."
+              {...register("contactName", { maxLength: 20 })}
+            />
+            {errors.contactName?.type === "maxLength" && (
+              <SpanError>
+                <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
+                exceeded.
+              </SpanError>
+            )}
+          </InputGroup>
+
+          <InputGroup>
+            <Label htmlFor="contactNumber">Contact Number:</Label>
+            <Input
+              type="number"
+              id="contactNumber"
+              placeholder="Contact number..."
+              {...register("contactNumber", { maxLength: 11 })}
+            />
+            {errors.contactNumber?.type === "maxLength" && (
+              <SpanError>
+                <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
+                exceeded.
+              </SpanError>
+            )}
+          </InputGroup>
+
+          <InputGroup>
+            <Label htmlFor="date">Date Applied:</Label>
+            <Input
+              type="date"
+              id="date"
+              placeholder="Date applied..."
+              {...register("date", { required: true })}
+            />
+            {errors.date?.type === "required" && (
+              <SpanError>
+                <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Date applied is
+                required.
+              </SpanError>
+            )}
+          </InputGroup>
+        </FormGroup>
+
+        <InputGroup>
+          <Label htmlFor="description">Job Description:</Label>
+          <TextArea id="description" {...register("description")} />
         </InputGroup>
 
-        <InputGroup>
-          <Label htmlFor="contactNumber">Contact Number:</Label>
-          <Input
-            type="number"
-            id="contactNumber"
-            placeholder="Contact number..."
-            {...register("contactNumber", { maxLength: 11 })}
-          />
-          {errors.contactNumber?.type === "maxLength" && (
-            <SpanError>
-              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Maximum length
-              exceeded.
-            </SpanError>
-          )}
-        </InputGroup>
-
-        <InputGroup>
-          <Label htmlFor="date">Date Applied:</Label>
-          <Input
-            type="date"
-            id="date"
-            placeholder="Date applied..."
-            {...register("date", { required: true })}
-          />
-          {errors.date?.type === "required" && (
-            <SpanError>
-              <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Date applied is
-              required.
-            </SpanError>
-          )}
-        </InputGroup>
-      </FormGroup>
-
-      <InputGroup>
-        <Label htmlFor="description">Job Description:</Label>
-        <TextArea id="description" {...register("description")} />
-      </InputGroup>
-
-      <Input type="hidden" {...register("interview")} />
+        <Input type="hidden" {...register("interview")} />
+      </FormContentWrapper>
 
       <ButtonGroup>
         <Button type="submit" variant="primary" disabled={loading}>

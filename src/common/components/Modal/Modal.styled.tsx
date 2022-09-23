@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { fadeInAnimation } from "../../styles/animations";
+import { mediaSizes } from "../../styles/media";
 
 const fadeInAnimationModal = css`
   animation-name: ${fadeInAnimation};
@@ -23,8 +24,8 @@ export const Overlay = styled.div`
 `;
 
 export const ModalContainer = styled.div`
+  width: 90%;
   position: relative;
-  width: 600px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -35,6 +36,10 @@ export const ModalContainer = styled.div`
 
   & h2 {
     margin-bottom: 20px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    width: 600px;
   }
 `;
 
