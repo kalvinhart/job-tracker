@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
+
 import { useHeader } from "./useHeader";
+import { useMediaQuery } from "../../common/hooks/useMediaQuery/useMediaQuery";
 
 import { HeaderContainer, StyledHeader } from "./Header.styled";
 import { H1 } from "../../common/styles/fontStyles";
 import { Button } from "../../common/styles/buttonStyles";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { mediaSizes } from "../../common/styles/media";
 
 const Header = () => {
   const { signOut } = useHeader();
+  const notMobile = useMediaQuery(`(min-width: ${mediaSizes.small})`);
 
   return (
     <StyledHeader>
@@ -16,9 +20,9 @@ const Header = () => {
         <Link to="/">
           <H1>Job Application Tracker</H1>
         </Link>
-        <Button variant="primary" onClick={signOut}>
-          <FontAwesomeIcon icon={faArrowRight} size="lg" />
-          Sign Out
+        <Button variant={notMobile ? "primary" : "icon"} onClick={signOut}>
+          <FontAwesomeIcon icon={faArrowAltCircleRight} size="lg" />
+          {notMobile ? "Sign Out" : ""}
         </Button>
       </HeaderContainer>
     </StyledHeader>
