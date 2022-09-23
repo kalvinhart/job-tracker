@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mediaSizes } from "../../common/styles/media";
 
 export const StyledHeader = styled.header`
   padding: 20px;
@@ -19,4 +20,14 @@ export const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  & button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media screen and (min-width: ${mediaSizes.med}) {
+      flex-direction: row;
+    }
+  }
 `;

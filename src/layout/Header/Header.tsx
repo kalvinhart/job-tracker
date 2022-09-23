@@ -22,7 +22,7 @@ const Header = () => {
         </Link>
         <Button variant={notMobile ? "primary" : "icon"} onClick={signOut}>
           <FontAwesomeIcon icon={faArrowAltCircleRight} size="lg" />
-          {notMobile ? "Sign Out" : ""}
+          Sign Out
         </Button>
       </HeaderContainer>
     </StyledHeader>
