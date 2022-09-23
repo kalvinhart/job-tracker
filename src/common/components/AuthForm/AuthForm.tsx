@@ -41,12 +41,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
 
         <InputGroup>
           <Label htmlFor="email">Email Address:</Label>
-          <Input
-            long
-            type="email"
-            id="email"
-            {...register("email", { required: true })}
-          />
+          <Input type="email" id="email" {...register("email", { required: true })} />
           {errors.email?.type === "required" && (
             <SpanError>
               <FontAwesomeIcon icon={faExclamationCircle} size="xs" /> Email address is
@@ -58,7 +53,6 @@ const AuthForm = ({ type }: AuthFormProps) => {
         <InputGroup>
           <Label htmlFor="password">Password:</Label>
           <Input
-            long
             type="password"
             id="password"
             {...register("password", { required: true, minLength: 6 })}
@@ -81,7 +75,6 @@ const AuthForm = ({ type }: AuthFormProps) => {
           <InputGroup>
             <Label htmlFor="confirmPassword">Confirm Password:</Label>
             <Input
-              long
               type="password"
               id="confirmPassword"
               {...register("confirmPassword", { required: true, minLength: 6 })}

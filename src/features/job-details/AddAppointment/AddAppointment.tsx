@@ -38,7 +38,6 @@ const AddAppointment = () => {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <InputGroup>
           <Input
-            long
             type="datetime-local"
             id="interviewDate"
             {...register("interviewDate", { required: true })}
