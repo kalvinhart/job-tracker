@@ -1,27 +1,26 @@
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
+import { Toaster } from "react-hot-toast";
 
-import store from "./store/store";
+import JobContextProvider from "./context/JobContext";
+import AuthProvider from "./context/authContext";
 
 import GlobalStyles from "./GlobalStyles";
 import Routes from "./Routes";
 
-import AuthProvider from "./context/authContext";
-import { Toaster } from "react-hot-toast";
-import Layout from "./layout/Layout/Layout";
+import { Layout } from "./layout/Layout";
 
 function App() {
   return (
     <BrowserRouter>
-      <Provider store={store}>
-        <GlobalStyles />
-        <Toaster position="bottom-right" />
-        <AuthProvider>
-          <Layout>
+      <GlobalStyles />
+      <Toaster position="bottom-right" />
+      <AuthProvider>
+        <Layout>
+          <JobContextProvider>
             <Routes />
-          </Layout>
-        </AuthProvider>
-      </Provider>
+          </JobContextProvider>
+        </Layout>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

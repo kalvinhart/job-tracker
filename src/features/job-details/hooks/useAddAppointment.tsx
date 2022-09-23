@@ -1,33 +1,35 @@
 import { Job } from "../../../common/types/job";
-import { useJobSlice } from "../../../common/hooks/useJobSlice/useJobSlice";
-import { useUiSlice } from "../../../common/hooks/useUiSlice/useUiSlice";
+import { useJobContext } from "../../../common/hooks/useJobContext/useJobContext";
 
 type FormData = { interviewDate: string };
 
-export const useAddAppointment = (reset: () => void) => {
-  const { setShowAppointmentModal } = useUiSlice();
-  const { loading, currentJob, saveEditedJob, setCurrentJob } = useJobSlice();
+type Props = {
+  job: Job;
+  reset: () => void;
+  close: () => void;
+};
+export const useAddAppointment = ({ job, reset, close }: Props) => {
+  const { loading, saveEditedJob } = useJobContext();
 
   const onSubmit = (data: FormData) => {
     const newData = {
-      ...currentJob,
+      ...job,
       interview: new Date(data.interviewDate).getTime(),
       status: "Interview",
     };
 
-    saveEditedJob(newData as Job);
-    setCurrentJob(newData as Job);
+    saveEditedJob(job.id!, newData as Job);
+    close();
   };
 
   const cancelForm = () => {
     reset();
-    setShowAppointmentModal(false);
+    close();
   };
 
   return {
     loading,
     onSubmit: (data: FormData) => onSubmit(data),
     cancelForm: () => cancelForm(),
-    setShowAppointmentModal: (option: boolean) => setShowAppointmentModal(option),
   };
 };

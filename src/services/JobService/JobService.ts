@@ -12,7 +12,7 @@ export default class JobService implements IJobService {
     return await this.api.getJobs(uid);
   }
 
-  async getJob(id: string): Promise<Job | boolean> {
+  async getJob(id: string): Promise<Job> {
     return await this.api.getJob(id);
   }
 
@@ -20,8 +20,8 @@ export default class JobService implements IJobService {
     return await this.api.createJob(data);
   }
 
-  async updateJob(data: Job): Promise<Job> {
-    return await this.api.updateJob(data);
+  async updateJob(id: string, data: Job): Promise<Job> {
+    return await this.api.updateJob(id, data);
   }
 
   async deleteJob(id: string): Promise<void> {

@@ -1,35 +1,30 @@
+import { useState } from "react";
+
+import { useJobContext } from "../../../common/hooks/useJobContext/useJobContext";
+
 import { Job } from "../../../common/types/job";
-import { useJobSlice } from "../../../common/hooks/useJobSlice/useJobSlice";
-import { useUiSlice } from "../../../common/hooks/useUiSlice/useUiSlice";
 
-export const useAppointmentView = () => {
-  const { currentJob, saveEditedJob } = useJobSlice();
-  const {
-    showAppointmentModal,
-    setShowAppointmentModal,
-    showDeleteWarning: { deleteInterview },
-    setShowDeleteWarning,
-  } = useUiSlice();
+export const useAppointmentView = (job: Job) => {
+  const { saveEditedJob } = useJobContext();
+  const [showAppointmentModal, setShowAppointmentModal] = useState(false);
 
-  const { id, interview } = currentJob as Job;
+  const [showDeleteInterviewWarning, setShowDeleteInterviewWarning] = useState(false);
 
   const removeInterview = async (): Promise<void> => {
     const newData = {
-      ...currentJob,
+      ...job,
       interview: "",
       status: "Pending",
     };
 
-    saveEditedJob(newData as Job);
+    saveEditedJob(job.id!, newData as Job);
   };
 
   return {
-    id,
-    interview,
     showAppointmentModal,
     setShowAppointmentModal,
-    showDeleteInterview: deleteInterview,
-    setShowDeleteWarning,
-    removeInterview: () => removeInterview(),
+    showDeleteInterviewWarning,
+    setShowDeleteInterviewWarning,
+    removeInterview,
   };
 };

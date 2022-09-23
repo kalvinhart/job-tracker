@@ -20,17 +20,17 @@ import { JobForm } from "../../../job-form/JobForm";
 
 const JobList = () => {
   const {
-    jobsToDisplay,
-    selectedTab,
-    handleTabChange,
-    selectedJobs,
     cancelSelection,
-    showDeleteWarning,
-    setShowDeleteWarning,
-    handleDeleteMany,
-    showJobForm,
-    handleOpenJobForm,
     handleCloseJobForm,
+    handleDeleteMany,
+    handleTabChange,
+    handleOpenJobForm,
+    jobsToDisplay,
+    selectedJobs,
+    selectedTab,
+    setShowDeleteWarning,
+    showDeleteWarning,
+    showJobForm,
   } = useJobList();
 
   return (
@@ -68,10 +68,7 @@ const JobList = () => {
 
         {selectedJobs.length > 0 ? (
           <JobListDeleteButtonsWrapper>
-            <Button
-              variant="danger"
-              onClick={() => setShowDeleteWarning({ deleteJob: true })}
-            >
+            <Button variant="danger" onClick={() => setShowDeleteWarning(true)}>
               <FontAwesomeIcon icon={faTrash} size="lg" /> Delete
             </Button>
             <Button variant="secondary" onClick={cancelSelection}>
@@ -85,8 +82,12 @@ const JobList = () => {
         )}
       </JobListHeader>
 
-      {showDeleteWarning.deleteJob && (
-        <DeleteConfirm actionDelete={handleDeleteMany} redirect={false} />
+      {showDeleteWarning && (
+        <DeleteConfirm
+          actionDelete={handleDeleteMany}
+          redirect={false}
+          hide={() => setShowDeleteWarning(false)}
+        />
       )}
 
       <JobListContent>

@@ -6,18 +6,18 @@ import { JobViewContainer, JobViewDetailsWrapper } from "./JobView.styled";
 import { Job } from "../../../common/types/job";
 
 type JobViewProps = {
-  currentJob: Job;
+  job: Job;
 };
 
-const JobView = ({ currentJob }: JobViewProps) => {
+const JobView = ({ job }: JobViewProps) => {
   return (
     <JobViewContainer>
-      <JobViewHeader currentJob={currentJob} />
+      <JobViewHeader job={job} />
 
       <JobViewDetailsWrapper>
-        <JobViewContent currentJob={currentJob} />
+        <JobViewContent job={job} />
 
-        <AppointmentView />
+        <AppointmentView job={job} />
       </JobViewDetailsWrapper>
     </JobViewContainer>
   );

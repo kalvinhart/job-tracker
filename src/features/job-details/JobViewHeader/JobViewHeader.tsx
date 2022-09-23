@@ -13,17 +13,17 @@ import { Job } from "../../../common/types/job";
 import { JobForm } from "../../job-form/JobForm";
 
 type JobViewHeaderProps = {
-  currentJob: Job;
+  job: Job;
 };
 
-const JobViewHeader = ({ currentJob }: JobViewHeaderProps) => {
+const JobViewHeader = ({ job }: JobViewHeaderProps) => {
   const {
-    deleteJob,
-    setShowDeleteWarning,
     actionDeleteJob,
-    showJobForm,
+    setShowDeleteWarning,
     setShowJobForm,
-  } = useJobViewHeader(currentJob);
+    showDeleteWarning,
+    showJobForm,
+  } = useJobViewHeader(job);
 
   return (
     <JobViewHeaderWrapper>
@@ -32,25 +32,23 @@ const JobViewHeader = ({ currentJob }: JobViewHeaderProps) => {
           <FontAwesomeIcon icon={faEdit} />
           Edit
         </Button>
-        <Button
-          variant="danger"
-          onClick={() => setShowDeleteWarning({ deleteJob: true })}
-        >
+        <Button variant="danger" onClick={() => setShowDeleteWarning(true)}>
           <FontAwesomeIcon icon={faTrash} />
           Delete
         </Button>
       </JobViewHeaderGroup>
 
-      {deleteJob && (
+      {showDeleteWarning && (
         <DeleteConfirm
           redirect={true}
-          id={currentJob.id}
+          id={job.id}
           actionDelete={actionDeleteJob}
+          hide={() => setShowDeleteWarning(false)}
         />
       )}
 
       {showJobForm && (
-        <JobForm close={() => setShowJobForm(false)} editing={true} job={currentJob} />
+        <JobForm close={() => setShowJobForm(false)} editing={true} job={job} />
       )}
     </JobViewHeaderWrapper>
   );

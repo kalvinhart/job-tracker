@@ -1,16 +1,15 @@
 import { SyntheticEvent, useState } from "react";
 
-import { useJobSlice } from "../../../common/hooks/useJobSlice/useJobSlice";
 import { useJobListContext } from "./useJobListContext";
+import { useJobContext } from "../../../common/hooks/useJobContext/useJobContext";
 
 import { Job } from "../../../common/types/job";
-import { useUiSlice } from "../../../common/hooks/useUiSlice/useUiSlice";
 
 export const useJobList = () => {
   const [selectedTab, setSelectedTab] = useState("All");
+  const [showDeleteWarning, setShowDeleteWarning] = useState(false);
 
-  const { jobs, deleteManyJobs } = useJobSlice();
-  const { showDeleteWarning, setShowDeleteWarning } = useUiSlice();
+  const { jobs, deleteManyJobs } = useJobContext();
   const {
     selectedJobs,
     cancelSelection,

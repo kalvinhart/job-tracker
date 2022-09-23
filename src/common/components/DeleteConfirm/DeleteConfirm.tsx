@@ -7,19 +7,15 @@ import { StyledButtonGroup } from "./DeleteConfirm.styled";
 import { H2, Paragraph } from "../../styles/fontStyles";
 import { Button } from "../../styles/buttonStyles";
 import Modal from "../Modal/Modal";
-import { useUiSlice } from "../../hooks/useUiSlice/useUiSlice";
 
 type DeleteConfirmProps = {
   id?: string;
   actionDelete: (id?: string) => Promise<void>;
   redirect: boolean;
+  hide: () => void;
 };
 
-const DeleteConfirm = ({ id, actionDelete, redirect }: DeleteConfirmProps) => {
-  const { setShowDeleteWarning } = useUiSlice();
-
-  const hide = () => setShowDeleteWarning({ deleteInterview: false, deleteJob: false });
-
+const DeleteConfirm = ({ id, actionDelete, redirect, hide }: DeleteConfirmProps) => {
   const { loading, handleDelete, cancel } = useDeleteConfirm({
     id,
     actionDelete,
