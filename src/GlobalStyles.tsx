@@ -25,15 +25,9 @@ const GlobalStyle = createGlobalStyle`
 
         --clr-h1: #18A1E0;
         --clr-h3: #01CEE0;
-
-        --clr-row-hover: #f7fdff;
         
         --border-radius: 5px;
         --box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
-        
-        --side-panel-width: 80px;
-        --side-panel-animation-speed: 0.2s;
-        --side-panel-animation-delay: 0.4s;
     }
 
     html {
@@ -63,19 +57,6 @@ const GlobalStyle = createGlobalStyle`
 
     a:visited {
         color: black;
-    }
-
-    .plus-icon,
-    .cross-icon {
-        color: var(--clr-primary);
-    }
-
-    .plus-icon {
-        margin-bottom: 10px;
-    }
-
-    .cross-icon {
-        margin-left: 10px;
     }
 `;
 
