@@ -20,11 +20,11 @@ export const AppointmentViewWrapper = styled.div`
     & ${SpanBoldLarge} {
       margin-bottom: 15px;
     }
+  }
 
-    @media screen and (min-width: ${mediaSizes.large}) {
-      min-width: 300px;
-      max-width: 320px;
-      margin-bottom: 0;
-    }
+  @media screen and (min-width: ${mediaSizes.large}) {
+    min-width: 300px;
+    max-width: 320px;
+    margin-bottom: 0;
   }
 `;

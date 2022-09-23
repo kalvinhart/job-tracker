@@ -63,6 +63,10 @@ export const MainJobInfo = styled.div`
   display: flex;
   flex-direction: column;
 
+  @media screen and (min-width: ${mediaSizes.med}) {
+    max-width: 400px;
+  }
+
   @media screen and (min-width: ${mediaSizes.large}) {
     max-width: unset;
   }

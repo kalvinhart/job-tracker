@@ -5,12 +5,19 @@ import { mediaSizes } from "../../../common/styles/media";
 
 export const JobViewContentWrapper = styled.div`
   width: 100%;
-  margin-right: 20px;
 
   & ${Background} {
     width: 100%;
-    max-width: 800px;
-    margin-right: 20px;
+    margin: 0 auto;
+
+    @media screen and (min-width: ${mediaSizes.large}) {
+      width: 100%;
+      max-width: 800px;
+    }
+  }
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    margin: 0 20px 0 0;
   }
 `;
 

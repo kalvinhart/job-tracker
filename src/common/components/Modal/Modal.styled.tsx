@@ -38,8 +38,8 @@ export const ModalContainer = styled.div`
     margin-bottom: 20px;
   }
 
-  @media screen and (min-width: ${mediaSizes.large}) {
-    width: 600px;
+  @media screen and (min-width: ${mediaSizes.med}) {
+    width: 400px;
   }
 `;
 
