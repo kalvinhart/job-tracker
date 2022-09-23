@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { mediaSizes } from "./media";
 
 export const Form = styled.form`
   margin-top: 20px;
@@ -7,24 +6,26 @@ export const Form = styled.form`
 
 export const FormContentWrapper = styled.div`
   max-height: 500px;
-  overflow-y: scroll;
-
-  @media screen and (min-width: ${mediaSizes.large}) {
-    overflow-y: unset;
-  }
-`;
-
-export const FormGroup = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
-  @media screen and (min-width: ${mediaSizes.large}) {
-    margin-bottom: 40px;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #ccc;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
   }
 `;
 
@@ -34,10 +35,6 @@ export const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  @media screen and (min-width: ${mediaSizes.large}) {
-    margin-bottom: 0;
-  }
 `;
 
 export const Label = styled.label`
@@ -46,11 +43,7 @@ export const Label = styled.label`
   margin-bottom: 5px;
 `;
 
-type InputProps = {
-  long?: boolean;
-};
-
-export const Input = styled.input<InputProps>`
+export const Input = styled.input`
   width: 100%;
   padding: 5px 10px;
   border-radius: var(--border-radius);
@@ -62,11 +55,6 @@ export const Input = styled.input<InputProps>`
   &:hover,
   &:focus {
     border: 1px solid var(--clr-primary);
-  }
-
-  @media screen and (min-width: ${mediaSizes.large}) {
-    width: 180px;
-    ${(props) => props.long && "width: 250px;"}
   }
 `;
 
@@ -99,10 +87,6 @@ export const TextArea = styled.textarea`
   &:hover,
   &:focus {
     border: 1px solid var(--clr-primary);
-  }
-
-  @media screen and (min-width: ${mediaSizes.large}) {
-    height: 100px;
   }
 `;
 

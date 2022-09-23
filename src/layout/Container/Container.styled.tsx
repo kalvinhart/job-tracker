@@ -10,6 +10,10 @@ export const StyledContainer = styled.main`
   }
 
   @media screen and (min-width: ${mediaSizes.large}) {
+    max-width: 900px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.xl}) {
     max-width: 1000px;
   }
 `;
