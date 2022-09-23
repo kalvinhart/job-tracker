@@ -10,8 +10,6 @@ export const useMediaQuery = (query: string): boolean => {
 
   const [matches, setMatches] = useState<boolean>(getMatches(query));
 
-  console.log(query, matches);
-
   const handleChange = useCallback(() => {
     setMatches(getMatches(query));
   }, [query]);
