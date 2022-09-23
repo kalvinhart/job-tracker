@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { Button } from "../../../../common/styles/buttonStyles";
+import { mediaSizes } from "../../../../common/styles/media";
 
 export const JobListWrapper = styled.div`
   margin-bottom: 60px;
@@ -9,9 +10,15 @@ export const JobListWrapper = styled.div`
 
 export const JobListHeader = styled.div`
   width: 100%;
+  padding: 0 20px;
   margin-bottom: 20px;
   display: flex;
-  align-items: center;
+  flex-direction: column-reverse;
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    flex-direction: row;
+    align-items: center;
+  }
 
   & ${Button} {
     display: flex;
@@ -24,7 +31,16 @@ export const JobListHeader = styled.div`
 
 export const JobListButtonWrapper = styled.div`
   width: 100%;
+  margin-top: 10px;
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    margin-top: 0;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
 `;
 
 type ButtonProps = {
@@ -59,9 +75,14 @@ export const JobListTabButton = styled.button<ButtonProps>`
 
 export const JobListDeleteButtonsWrapper = styled.div`
   display: flex;
+  align-self: center;
 
   & button:first-of-type {
     margin-right: 10px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    align-self: flex-start;
   }
 `;
 

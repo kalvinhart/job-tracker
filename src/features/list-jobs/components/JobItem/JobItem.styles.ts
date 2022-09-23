@@ -1,4 +1,6 @@
 import styled, { css } from "styled-components";
+import { StatusSpan } from "../../../../common/styles/fontStyles";
+import { mediaSizes } from "../../../../common/styles/media";
 
 type WrapperProps = {
   selected: boolean;
@@ -29,6 +31,10 @@ export const JobItemWrapper = styled.div<WrapperProps>`
       border-left: 4px solid var(--clr-primary);
       background-color: var(--clr-dark);
     `}
+
+  & button {
+    min-width: unset;
+  }
 `;
 
 export const CancelSelectButton = styled.button`
@@ -53,8 +59,13 @@ export const CancelSelectButton = styled.button`
 `;
 
 export const MainJobInfo = styled.div`
+  max-width: 200px;
   display: flex;
   flex-direction: column;
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    max-width: unset;
+  }
 `;
 
 export const InfoGroup = styled.div`
@@ -69,16 +80,44 @@ export const InfoGroup = styled.div`
 export const JobTitleWrapper = styled.div`
   margin-bottom: 5px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+
+  & a {
+    margin-bottom: 10px;
+  }
+
+  & ${StatusSpan} {
+    margin-bottom: 10px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    flex-direction: row;
+    align-items: center;
+
+    & a {
+      margin-bottom: 0;
+    }
+
+    & ${StatusSpan} {
+      margin-bottom: 0;
+    }
+  }
 `;
 
 export const JobItemTitle = styled.span`
-  margin-right: 10px;
   font-size: 18px;
   font-weight: bold;
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    margin-right: 10px;
+  }
 `;
 
 export const SpanSalary = styled.span`
-  margin-right: 5px;
   font-size: 18px;
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    margin-right: 5px;
+  }
 `;
