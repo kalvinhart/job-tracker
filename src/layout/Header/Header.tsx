@@ -11,7 +11,7 @@ import { Button } from "../../common/styles/buttonStyles";
 import { mediaSizes } from "../../common/styles/media";
 
 const Header = () => {
-  const { signOut } = useHeader();
+  const { userID, signOut } = useHeader();
   const notMobile = useMediaQuery(`(min-width: ${mediaSizes.small})`);
 
   return (
@@ -20,10 +20,12 @@ const Header = () => {
         <Link to="/">
           <H1>Job Application Tracker</H1>
         </Link>
-        <Button variant={notMobile ? "primary" : "icon"} onClick={signOut}>
-          <FontAwesomeIcon icon={faArrowAltCircleRight} size="lg" />
-          Sign Out
-        </Button>
+        {userID && (
+          <Button variant={notMobile ? "primary" : "icon"} onClick={signOut}>
+            <FontAwesomeIcon icon={faArrowAltCircleRight} size="lg" />
+            Sign Out
+          </Button>
+        )}
       </HeaderContainer>
     </StyledHeader>
   );
