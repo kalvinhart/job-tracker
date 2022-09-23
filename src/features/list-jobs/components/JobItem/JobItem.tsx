@@ -67,7 +67,8 @@ const JobItem = ({ job, selected }: Props) => {
         </InfoGroup>
 
         <SpanSmall>
-          Applied on {toDateString(+job.date)} {job.resource && `• via ${job.resource}`}
+          Applied on {toDateString(+job.date)}{" "}
+          {job.resource && job.resource !== "Other" && `• via ${job.resource}`}
         </SpanSmall>
       </MainJobInfo>
 

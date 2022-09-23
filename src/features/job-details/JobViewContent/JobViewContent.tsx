@@ -85,7 +85,9 @@ const JobViewContent = ({ currentJob }: JobViewContentProps) => {
 
             <IconsGroup>
               <FontAwesomeIcon icon={faGlobe} size="lg" />
-              <Span>{resource ? `via ${resource}` : "Not specified"}</Span>
+              <Span>
+                {resource && resource !== "Other" ? `via ${resource}` : "Not specified"}
+              </Span>
             </IconsGroup>
           </JobSpecificsGroup>
         </JobSpecificsWrapper>
