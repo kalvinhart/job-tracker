@@ -4,7 +4,7 @@ import { Job } from "../../../common/types/job";
 
 import { AsyncThunkConfig } from "../../store";
 
-import { closeSidePanel, setShowAppointmentModal } from "../uiSlice";
+import { setShowAppointmentModal } from "../uiSlice";
 
 export const loadAllJobs = createAsyncThunk<Job[], string, AsyncThunkConfig<any>>(
   "job/loadAllJobs",
@@ -40,7 +40,6 @@ export const saveNewJob = createAsyncThunk<Job, Job, AsyncThunkConfig<string>>(
     try {
       const newJob = await serviceApi.createJob(data);
       toast.success("Job successfully saved!");
-      dispatch(closeSidePanel());
       return newJob;
     } catch (error: any) {
       return rejectWithValue(error);
@@ -55,7 +54,6 @@ export const saveEditedJob = createAsyncThunk<Job, Job, AsyncThunkConfig<string>
       const editedJob = await serviceApi.updateJob(data);
       toast.success("Job successfully updated!");
       dispatch(setShowAppointmentModal(false));
-      dispatch(closeSidePanel());
       return editedJob;
     } catch (err: any) {
       return rejectWithValue(err.message);

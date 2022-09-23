@@ -1,9 +1,4 @@
-import {
-  AnyAction,
-  configureStore,
-  getDefaultMiddleware,
-  ThunkAction,
-} from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 
 import uiReducer from "./slices/uiSlice";
 import jobReducer from "./slices/jobSlice";

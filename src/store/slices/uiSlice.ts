@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type UIState = {
-  showSidePanel: boolean;
   showAppointmentModal: boolean;
   showDeleteWarning: {
     deleteJob: boolean;
@@ -11,7 +10,6 @@ type UIState = {
 };
 
 const initialState: UIState = {
-  showSidePanel: false,
   showAppointmentModal: false,
   showDeleteWarning: { deleteJob: false, deleteInterview: false },
   editing: false,
@@ -21,13 +19,6 @@ const uiSlice = createSlice({
   name: "ui",
   initialState,
   reducers: {
-    openSidePanel: (state) => {
-      state.showSidePanel = true;
-    },
-    closeSidePanel: (state) => {
-      state.showSidePanel = false;
-      state.editing = false;
-    },
     enableEditing: (state) => {
       state.editing = true;
     },
@@ -43,12 +34,7 @@ const uiSlice = createSlice({
   },
 });
 
-export const {
-  openSidePanel,
-  closeSidePanel,
-  enableEditing,
-  setShowAppointmentModal,
-  setShowDeleteWarning,
-} = uiSlice.actions;
+export const { enableEditing, setShowAppointmentModal, setShowDeleteWarning } =
+  uiSlice.actions;
 
 export default uiSlice.reducer;
