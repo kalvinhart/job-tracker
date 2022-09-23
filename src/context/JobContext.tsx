@@ -72,6 +72,10 @@ const JobContextProvider = ({ children }: Props) => {
   const api = useMemo(() => new FirebaseService(), []);
   const jobService = useMemo(() => new JobService(api), [api]);
 
+  const sortJobs = (jobs: Job[]): Job[] => {
+    return jobs.sort((a, b) => +b.date - +a.date);
+  };
+
   const handleUpdateJobList = (newJob: Job) => {
     setJobs((prev) => [
       ...prev.map((oldJob) => {
@@ -103,6 +107,7 @@ const JobContextProvider = ({ children }: Props) => {
       try {
         setLoading(true);
         const jobs: Job[] = await jobService.getJobs(uid);
+        sortJobs(jobs);
         setJobs(jobs);
         setLoadJobsComplete(true);
         setLoading(false);
@@ -129,7 +134,7 @@ const JobContextProvider = ({ children }: Props) => {
     async (data: Job) => {
       try {
         const newJob = await jobService.createJob(data);
-        setJobs((prev) => [...prev, newJob]);
+        setJobs((prev) => [newJob, ...prev]);
         toastSuccess("Job successfully saved!");
         return newJob;
       } catch (err: any) {
