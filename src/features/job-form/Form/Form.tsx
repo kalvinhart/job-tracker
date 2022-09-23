@@ -65,7 +65,6 @@ const Form = ({ editing, close, job }: Props) => {
           <InputGroup>
             <Label htmlFor="title">Job Title:</Label>
             <Input
-              long
               type="text"
               id="title"
               placeholder="Job title..."
@@ -88,7 +87,6 @@ const Form = ({ editing, close, job }: Props) => {
           <InputGroup>
             <Label htmlFor="company">Company:</Label>
             <Input
-              long
               type="text"
               id="company"
               placeholder="Company..."
@@ -113,7 +111,6 @@ const Form = ({ editing, close, job }: Props) => {
           <InputGroup>
             <Label htmlFor="location">Location:</Label>
             <Input
-              long
               type="text"
               id="location"
               placeholder="Location..."
@@ -160,7 +157,6 @@ const Form = ({ editing, close, job }: Props) => {
           <InputGroup>
             <Label htmlFor="benefits">Benefits:</Label>
             <Input
-              long
               type="text"
               id="benefits"
               placeholder="Benefits (Comma separated list)..."
