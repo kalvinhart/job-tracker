@@ -15,9 +15,9 @@ import {
   InputGroup,
   Label,
   TextArea,
-  FormGroup,
   ButtonGroup,
   Select,
+  FormContentWrapper,
 } from "../../../common/styles/formStyles";
 import { SpanError } from "../../../common/styles/fontStyles";
 import { Button } from "../../../common/styles/buttonStyles";
@@ -50,7 +50,7 @@ const Form = ({ editing, close, job }: Props) => {
     },
   });
 
-  const { loading, onSubmit, cancelForm, statusOptions } = useMyForm({
+  const { loading, onSubmit, cancelForm, resourceOptions, statusOptions } = useMyForm({
     reset,
     close,
     job,
@@ -59,11 +59,10 @@ const Form = ({ editing, close, job }: Props) => {
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
-      <FormGroup>
+      <FormContentWrapper>
         <InputGroup>
           <Label htmlFor="title">Job Title:</Label>
           <Input
-            long
             type="text"
             id="title"
             placeholder="Job title..."
@@ -86,7 +85,6 @@ const Form = ({ editing, close, job }: Props) => {
         <InputGroup>
           <Label htmlFor="company">Company:</Label>
           <Input
-            long
             type="text"
             id="company"
             placeholder="Company..."
@@ -105,13 +103,10 @@ const Form = ({ editing, close, job }: Props) => {
             </SpanError>
           )}
         </InputGroup>
-      </FormGroup>
 
-      <FormGroup>
         <InputGroup>
           <Label htmlFor="location">Location:</Label>
           <Input
-            long
             type="text"
             id="location"
             placeholder="Location..."
@@ -152,13 +147,10 @@ const Form = ({ editing, close, job }: Props) => {
             </SpanError>
           )}
         </InputGroup>
-      </FormGroup>
 
-      <FormGroup>
         <InputGroup>
           <Label htmlFor="benefits">Benefits:</Label>
           <Input
-            long
             type="text"
             id="benefits"
             placeholder="Benefits (Comma separated list)..."
@@ -178,9 +170,7 @@ const Form = ({ editing, close, job }: Props) => {
             </Select>
           </InputGroup>
         )}
-      </FormGroup>
 
-      <FormGroup>
         <InputGroup>
           <Label htmlFor="contactName">Contact Name:</Label>
           <Input
@@ -228,14 +218,25 @@ const Form = ({ editing, close, job }: Props) => {
             </SpanError>
           )}
         </InputGroup>
-      </FormGroup>
 
-      <InputGroup>
-        <Label htmlFor="description">Job Description:</Label>
-        <TextArea id="description" {...register("description")} />
-      </InputGroup>
+        <InputGroup>
+          <Label htmlFor="status">Applied on:</Label>
+          <Select {...register("resource")}>
+            {resourceOptions.map((option: string) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </Select>
+        </InputGroup>
 
-      <Input type="hidden" {...register("interview")} />
+        <InputGroup>
+          <Label htmlFor="description">Job Description:</Label>
+          <TextArea id="description" {...register("description")} />
+        </InputGroup>
+
+        <Input type="hidden" {...register("interview")} />
+      </FormContentWrapper>
 
       <ButtonGroup>
         <Button type="submit" variant="primary" disabled={loading}>

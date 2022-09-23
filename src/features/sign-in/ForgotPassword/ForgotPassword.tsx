@@ -16,7 +16,7 @@ const ForgotPassword = () => {
         <H2>Reset your Password</H2>
         <InputGroup>
           <Label htmlFor="email">Email Address:</Label>
-          <Input long type="email" id="email" value={email} onChange={handleChange} />
+          <Input type="email" id="email" value={email} onChange={handleChange} />
         </InputGroup>
         {error && <SpanError inline>{error}</SpanError>}
         <Button variant="primary" type="submit">

@@ -1,7 +1,19 @@
 import styled from "styled-components";
+import { mediaSizes } from "../../common/styles/media";
 
 export const StyledContainer = styled.main`
   width: 100%;
-  max-width: 1000px;
   margin: 0 auto;
+
+  @media screen and (min-width: ${mediaSizes.med}) {
+    max-width: 600px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    max-width: 900px;
+  }
+
+  @media screen and (min-width: ${mediaSizes.xl}) {
+    max-width: 1000px;
+  }
 `;

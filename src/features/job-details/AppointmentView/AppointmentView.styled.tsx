@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { Background } from "../../../common/styles/bgStyles";
 import { SpanBoldLarge } from "../../../common/styles/fontStyles";
+import { mediaSizes } from "../../../common/styles/media";
 
 export const AppointmentViewWrapper = styled.div`
-  min-width: 300px;
-  max-width: 320px;
+  width: 100%;
+  margin-bottom: 20px;
 
   & ${Background} {
     display: flex;
@@ -19,5 +20,11 @@ export const AppointmentViewWrapper = styled.div`
     & ${SpanBoldLarge} {
       margin-bottom: 15px;
     }
+  }
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    min-width: 300px;
+    max-width: 320px;
+    margin-bottom: 0;
   }
 `;

@@ -1,9 +1,14 @@
 import styled from "styled-components";
+import { mediaSizes } from "./media";
 
 export const H1 = styled.h1`
-  font-size: 36px;
+  font-size: 20px;
   font-weight: 400;
   color: var(--clr-primary);
+
+  @media screen and (min-width: ${mediaSizes.med}) {
+    font-size: 36px;
+  }
 `;
 
 export const H2 = styled.h2`

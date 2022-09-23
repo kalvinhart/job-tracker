@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mediaSizes } from "../../../common/styles/media";
 
 export const JobViewContainer = styled.div`
   max-width: 1200px;
@@ -10,5 +11,10 @@ export const JobViewContainer = styled.div`
 export const JobViewDetailsWrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column-reverse;
+
+  @media screen and (min-width: ${mediaSizes.large}) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;

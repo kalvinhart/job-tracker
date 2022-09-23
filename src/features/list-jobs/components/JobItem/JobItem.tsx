@@ -17,6 +17,8 @@ import { toDateString } from "../../../../common/utilities/formatDate";
 import { useJobListContext } from "../../hooks/useJobListContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { useMediaQuery } from "../../../../common/hooks/useMediaQuery/useMediaQuery";
+import { mediaSizes } from "../../../../common/styles/media";
 
 type Props = {
   job: Job;
@@ -24,6 +26,7 @@ type Props = {
 };
 const JobItem = ({ job, selected }: Props) => {
   const navigate = useNavigate();
+  const isNotMobile = useMediaQuery(`(min-width: ${mediaSizes.small})`);
 
   const { handleJobDeselect } = useJobListContext();
 
@@ -64,12 +67,13 @@ const JobItem = ({ job, selected }: Props) => {
         </InfoGroup>
 
         <SpanSmall>
-          Applied on {toDateString(+job.date)} {job.resource && `• via ${job.resource}`}
+          Applied on {toDateString(+job.date)}{" "}
+          {job.resource && job.resource !== "Other" && `• via ${job.resource}`}
         </SpanSmall>
       </MainJobInfo>
 
       <Button variant="primary" onClick={() => navigate(`/job/${job.id}`)}>
-        View Details
+        {isNotMobile ? "View Details" : "View"}
       </Button>
     </JobItemWrapper>
   );

@@ -1,24 +1,17 @@
 import styled, { css } from "styled-components";
-import { fadeInAnimation } from "./animations";
-
-const fadeInAnimationCloseButton = css`
-  animation-name: ${fadeInAnimation};
-  animation-duration: 0.5s;
-  animation-delay: var(--side-panel-animation-delay);
-  animation-fill-mode: forwards;
-`;
 
 type ButtonProps = {
-  variant: "primary" | "secondary" | "danger" | "other";
+  variant: "primary" | "secondary" | "danger" | "transparent" | "icon";
   visible?: boolean;
-  transparent?: boolean;
-  vertical?: boolean;
-  horizontal?: boolean;
+  loading?: boolean;
 };
 
 export const Button = styled.button<ButtonProps>`
   padding: 5px 20px;
   min-width: 95px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid transparent;
   border-radius: var(--border-radius);
   font-family: inherit;
@@ -30,10 +23,10 @@ export const Button = styled.button<ButtonProps>`
   &:disabled {
     cursor: not-allowed;
     background-color: var(--clr-primary-dark);
+  }
 
-    & svg {
-      margin-right: 0;
-    }
+  & svg {
+    margin-right: 5px;
   }
 
   ${(props) =>
@@ -80,67 +73,32 @@ export const Button = styled.button<ButtonProps>`
       }
     `}
 
-    ${(props) =>
-    (props.variant === "primary" ||
-      props.variant === "secondary" ||
-      props.variant === "danger" ||
-      props.transparent) &&
-    css`
-      & svg {
-        margin-right: 10px;
-      }
-    `}
-
-    /* styles for side-panel main button */
   ${(props) =>
-    props.vertical &&
-    css`
-      min-width: 30px;
-      padding: 10px;
-      background-color: transparent;
-      font-size: 14px;
-      font-weight: normal;
-      color: var(--clr-grey-dark);
-      white-space: pre-line;
-      text-transform: uppercase;
-
-      & span {
-        display: block;
-        margin-bottom: 5px;
-      }
-    `}
-  
-  /* styles for side-panel close button */
-  ${(props) =>
-    props.horizontal &&
-    css`
-      background-color: transparent;
-      visibility: hidden;
-      z-index: 2;
-      font-size: 14px;
-      font-weight: normal;
-      color: var(--clr-grey-dark);
-      text-transform: uppercase;
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    `}
-  
-  ${(props) => props.horizontal && fadeInAnimationCloseButton}
-  
-  ${(props) =>
-    props.visible
-      ? "display: block;"
-      : props.vertical || props.horizontal
-      ? "display: none;"
-      : ""}
-
-  /* styles for transparent buttons */
-  ${(props) =>
-    props.transparent &&
+    props.variant === "transparent" &&
     css`
       min-width: unset;
       padding: 2px;
       background-color: transparent;
+    `}
+
+    ${(props) =>
+    props.variant === "icon" &&
+    css`
+      min-width: unset;
+      padding: 2px;
+      background-color: transparent;
+      color: var(--clr-primary);
+
+      & svg {
+        margin-right: 0;
+      }
+    `} 
+    
+    ${({ loading }) =>
+    loading &&
+    css`
+      & svg {
+        margin-right: 0;
+      }
     `}
 `;

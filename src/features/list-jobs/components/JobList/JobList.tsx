@@ -11,6 +11,8 @@ import {
   JobListHeader,
   JobListTabButton,
   JobListWrapper,
+  NoContent,
+  NoContentSpan,
 } from "./JobList.styles";
 import { Button } from "../../../../common/styles/buttonStyles";
 import DeleteConfirm from "../../../../common/components/DeleteConfirm/DeleteConfirm";
@@ -88,10 +90,15 @@ const JobList = () => {
       )}
 
       <JobListContent>
-        {jobsToDisplay &&
+        {jobsToDisplay.length > 0 ? (
           jobsToDisplay.map((job) => (
             <JobItem key={job.id} job={job} selected={selectedJobs.includes(job.id!)} />
-          ))}
+          ))
+        ) : (
+          <NoContent>
+            <NoContentSpan>There are no jobs in this category.</NoContentSpan>
+          </NoContent>
+        )}
       </JobListContent>
 
       {showJobForm && <JobForm close={() => handleCloseJobForm()} />}

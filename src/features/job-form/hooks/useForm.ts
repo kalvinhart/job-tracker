@@ -15,6 +15,19 @@ export const useForm = ({ reset, close, editing, job }: Props) => {
   const { user } = useAuthentication();
 
   const statusOptions = ["Pending", "Interview", "Rejected", "Expired"];
+  const resourceOptions = [
+    "",
+    "LinkedIn",
+    "Indeed",
+    "Reed",
+    "Monster",
+    "Glassdoor",
+    "Adzuna",
+    "CV-Library",
+    "Totaljobs",
+    "Guardian Jobs",
+    "Other",
+  ];
 
   const onSubmit: SubmitHandler<Job> = (data: Job) => {
     const newData = { ...data, user };
@@ -40,6 +53,7 @@ export const useForm = ({ reset, close, editing, job }: Props) => {
     saveNewJob,
     user,
     statusOptions,
+    resourceOptions,
     onSubmit,
     cancelForm,
   };
