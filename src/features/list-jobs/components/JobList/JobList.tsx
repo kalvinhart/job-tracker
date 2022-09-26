@@ -38,29 +38,34 @@ const JobList = () => {
       <JobListHeader>
         <JobListButtonWrapper>
           <JobListTabButton onClick={handleTabChange} selected={selectedTab === "All"}>
+            data-testid={`selected-tab-${selectedTab === "All"}`}
             All
           </JobListTabButton>
           <JobListTabButton
             onClick={handleTabChange}
             selected={selectedTab === "Pending"}
+            data-testid={`selected-tab-${selectedTab === "Pending"}`}
           >
             Pending
           </JobListTabButton>
           <JobListTabButton
             onClick={handleTabChange}
             selected={selectedTab === "Interview"}
+            data-testid={`selected-tab-${selectedTab === "Interview"}`}
           >
             Interview
           </JobListTabButton>
           <JobListTabButton
             onClick={handleTabChange}
             selected={selectedTab === "Rejected"}
+            data-testid={`selected-tab-${selectedTab === "Rejected"}`}
           >
             Rejected
           </JobListTabButton>
           <JobListTabButton
             onClick={handleTabChange}
             selected={selectedTab === "Expired"}
+            data-testid={`selected-tab-${selectedTab === "Expired"}`}
           >
             Expired
           </JobListTabButton>

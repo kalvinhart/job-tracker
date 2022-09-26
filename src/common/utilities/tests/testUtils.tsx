@@ -26,6 +26,10 @@ type Props = {
   children: ReactNode;
 };
 const TestWrapper = ({ children }: Props) => {
+  return <MemoryRouter>{children}</MemoryRouter>;
+};
+
+const TestWrapperWithAuth = ({ children }: Props) => {
   return (
     <MemoryRouter>
       <AuthContext.Provider value={authContextValues}>{children}</AuthContext.Provider>
@@ -43,12 +47,19 @@ const TestWrapperWithJobs = ({ children }: Props) => {
   );
 };
 
-const customRenderWithAuth = (ui: ReactElement, options?: RenderOptions) =>
+const customRender = (ui: ReactElement, options?: RenderOptions) =>
   render(ui, { wrapper: TestWrapper, ...options });
+
+const customRenderWithAuth = (ui: ReactElement, options?: RenderOptions) =>
+  render(ui, { wrapper: TestWrapperWithAuth, ...options });
 
 const customRenderWithJobs = (ui: ReactElement, options?: RenderOptions) =>
   render(ui, { wrapper: TestWrapperWithJobs, ...options });
 
 export * from "@testing-library/react";
 
-export { customRenderWithAuth as authRender, customRenderWithJobs as jobsRender };
+export {
+  customRender as render,
+  customRenderWithAuth as authRender,
+  customRenderWithJobs as jobsRender,
+};
