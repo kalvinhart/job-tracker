@@ -8,7 +8,7 @@ type Auth = {
   error: string | null;
 };
 
-interface IAuthContext {
+export interface IAuthContext {
   userID: string | null;
   isLoggedIn: boolean;
   loading: boolean;
