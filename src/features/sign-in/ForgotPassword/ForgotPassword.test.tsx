@@ -1,16 +1,7 @@
 import ForgotPassword from "./ForgotPassword";
-import { render, screen, fireEvent } from "../../../common/utilities/testUtils";
+import { authRender, screen, fireEvent } from "../../../common/utilities/tests/testUtils";
 
 const mockHandleSubmitFn = jest.fn();
-
-// jest.mock("../../../common/hooks/useAuthentication/useAuthentication.ts", () => ({
-//   useAuthentication: () => ({
-//     signIn: () => {},
-//     signUserOut: () => {},
-//     signUp: () => {},
-//     resetPassword: () => {},
-//   }),
-// }));
 
 jest.mock("../hooks/useForgotPassword.ts", () => {
   const originalHook = jest.requireActual("../hooks/useForgotPassword.ts");
@@ -24,14 +15,14 @@ jest.mock("../hooks/useForgotPassword.ts", () => {
 
 describe("ForgotPassword", () => {
   test("renders with blank input", () => {
-    render(<ForgotPassword />);
+    authRender(<ForgotPassword />);
 
     const emailInput = screen.getByRole("textbox");
     expect((emailInput as HTMLInputElement).value).toBe("");
   });
 
   test("can have text entered in input", () => {
-    render(<ForgotPassword />);
+    authRender(<ForgotPassword />);
 
     const emailInput = screen.getByRole("textbox");
 
@@ -41,7 +32,7 @@ describe("ForgotPassword", () => {
   });
 
   test("displays error if no value is entered", () => {
-    render(<ForgotPassword />);
+    authRender(<ForgotPassword />);
 
     const submitButton = screen.getByRole("button");
 
