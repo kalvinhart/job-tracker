@@ -1,7 +1,8 @@
 import { render, RenderOptions } from "@testing-library/react";
 import { ReactElement, ReactNode } from "react";
 import { MemoryRouter } from "react-router-dom";
-import { AuthContext, IAuthContext } from "../../context/AuthContext";
+import { AuthContext, IAuthContext } from "../../../context/AuthContext";
+import JobContextProvider from "../../../context/JobContext";
 
 const authContextValues: IAuthContext = {
   userID: "test",
@@ -32,9 +33,22 @@ const TestWrapper = ({ children }: Props) => {
   );
 };
 
-const customRender = (ui: ReactElement, options?: RenderOptions) =>
+const TestWrapperWithJobs = ({ children }: Props) => {
+  return (
+    <MemoryRouter>
+      <AuthContext.Provider value={authContextValues}>
+        <JobContextProvider>{children}</JobContextProvider>
+      </AuthContext.Provider>
+    </MemoryRouter>
+  );
+};
+
+const customRenderWithAuth = (ui: ReactElement, options?: RenderOptions) =>
   render(ui, { wrapper: TestWrapper, ...options });
+
+const customRenderWithJobs = (ui: ReactElement, options?: RenderOptions) =>
+  render(ui, { wrapper: TestWrapperWithJobs, ...options });
 
 export * from "@testing-library/react";
 
-export { customRender as render };
+export { customRenderWithAuth as authRender, customRenderWithJobs as jobsRender };
