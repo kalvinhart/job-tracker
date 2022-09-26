@@ -56,7 +56,7 @@ const JobItem = ({ job, selected }: Props) => {
 
         {job.interview && (
           <InfoGroup>
-            <Span>
+            <Span data-testid="job-item-interview-date">
               You have an interview for this job on {toDateString(+job.interview)}.
             </Span>
           </InfoGroup>
@@ -66,9 +66,9 @@ const JobItem = ({ job, selected }: Props) => {
           <SpanSalary>£{job.salary}</SpanSalary>
         </InfoGroup>
 
-        <SpanSmall>
-          Applied on {toDateString(+job.date)}{" "}
-          {job.resource && job.resource !== "Other" && `• via ${job.resource}`}
+        <SpanSmall data-testid="job-item-applied-date">
+          Applied on {toDateString(+job.date)}
+          {job.resource && job.resource !== "Other" && ` • via ${job.resource}`}
         </SpanSmall>
       </MainJobInfo>
 
