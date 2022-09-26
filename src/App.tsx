@@ -5,7 +5,7 @@ import JobContextProvider from "./context/JobContext";
 import AuthProvider from "./context/AuthContext";
 
 import GlobalStyles from "./GlobalStyles";
-import Routes from "./Routes";
+import Routes from "./routing/Routes";
 
 import { Layout } from "./layout/Layout";
 
