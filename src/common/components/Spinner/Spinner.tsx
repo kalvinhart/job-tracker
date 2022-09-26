@@ -2,7 +2,7 @@ import { SpinnerWrapper, SpinnerMain } from "./Spinner.styled";
 
 const Spinner = () => {
   return (
-    <SpinnerWrapper>
+    <SpinnerWrapper data-testid="spinner">
       <SpinnerMain>
         <div></div>
         <div></div>
