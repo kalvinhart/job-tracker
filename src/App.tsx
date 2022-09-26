@@ -2,7 +2,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import JobContextProvider from "./context/JobContext";
-import AuthProvider from "./context/authContext";
+import AuthProvider from "./context/AuthContext";
 
 import GlobalStyles from "./GlobalStyles";
 import Routes from "./Routes";

@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const authContextValues = {
   userID: "test",

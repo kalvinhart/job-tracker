@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../context/AuthContext";
 import { useJobContext } from "../../common/hooks/useJobContext/useJobContext";
 
 export const useHeader = () => {
