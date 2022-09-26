@@ -37,8 +37,11 @@ const JobList = () => {
     <JobListWrapper>
       <JobListHeader>
         <JobListButtonWrapper>
-          <JobListTabButton onClick={handleTabChange} selected={selectedTab === "All"}>
+          <JobListTabButton
+            onClick={handleTabChange}
+            selected={selectedTab === "All"}
             data-testid={`selected-tab-${selectedTab === "All"}`}
+          >
             All
           </JobListTabButton>
           <JobListTabButton
