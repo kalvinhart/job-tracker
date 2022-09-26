@@ -1,6 +1,4 @@
-import { IAuthService } from "../interfaces/IAuthService";
-import { UpdateUser } from "../types/UpdateUser";
-import { UserCredentials } from "../types/UserCredentials";
+import { IAuthService, UpdateUser, UserCredentials } from "../interfaces/IAuthService";
 
 export default class AuthService implements IAuthService {
   api: IAuthService;
