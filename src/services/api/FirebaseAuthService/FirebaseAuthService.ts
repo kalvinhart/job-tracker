@@ -5,8 +5,7 @@ import {
   onAuthStateChanged,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { IAuthService } from "../../interfaces/IAuthService";
-import { UserCredentials } from "../../types/UserCredentials";
+import { IAuthService, UserCredentials } from "../../interfaces/IAuthService";
 
 export default class FirebaseAuthService implements IAuthService {
   async registerUser(userCredentials: UserCredentials): Promise<string> {

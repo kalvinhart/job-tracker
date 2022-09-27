@@ -2,7 +2,22 @@ import { createContext, useState, useEffect, ReactNode } from "react";
 import { IAuthService } from "../services/interfaces/IAuthService";
 import { useAuthService } from "../common/hooks/useAuthService/useAuthService";
 import { toastSuccess, toastError } from "../common/utilities/toast";
-import { Auth, IAuthContext } from "./types/IAuthContext";
+
+type Auth = {
+  user: string | null;
+  error: string | null;
+};
+
+export interface IAuthContext {
+  userID: string | null;
+  isLoggedIn: boolean;
+  loading: boolean;
+
+  signUp: (email: string, password: string) => Promise<Auth>;
+  signIn: (email: string, password: string) => Promise<Auth>;
+  signOut: () => void;
+  resetPassword: (email: string) => Promise<void>;
+}
 
 const initalState = {
   userID: null,
@@ -26,7 +41,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   useEffect(() => {
     const unsubscribe = authService.authStateChange(updateUser);
     return unsubscribe;
-  }, []);
+  }, [authService]);
 
   const signUp = async (email: string, password: string): Promise<Auth> => {
     try {
