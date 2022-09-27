@@ -7,6 +7,7 @@ export const Form = styled.form`
 export const FormContentWrapper = styled.div`
   max-height: 500px;
   display: flex;
+  padding-right: 10px;
   flex-direction: column;
   overflow-y: scroll;
   overflow-x: hidden;
