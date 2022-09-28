@@ -3,6 +3,7 @@ import { useJobContext } from "../../../common/hooks/useJobContext/useJobContext
 
 export const useOptionsMenu = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [showUpdateStatus, setShowUpdateStatus] = useState(false);
   const [showJobForm, setShowJobForm] = useState(false);
   const [showDeleteWarning, setShowDeleteWarning] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -24,8 +25,10 @@ export const useOptionsMenu = () => {
     setShowDeleteWarning,
     setShowJobForm,
     setShowMenu,
+    setShowUpdateStatus,
     showDeleteWarning,
     showJobForm,
     showMenu,
+    showUpdateStatus,
   };
 };

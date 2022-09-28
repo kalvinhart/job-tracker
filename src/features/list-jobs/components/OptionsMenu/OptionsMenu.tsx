@@ -8,6 +8,7 @@ import { DeleteConfirm } from "../../../../common/components/DeleteConfirm";
 import { JobForm } from "../../../job-form/JobForm";
 
 import { Job } from "../../../../common/types/job";
+import { UpdateStatusModal } from "../UpdateStatusModal";
 
 type Props = {
   job: Job;
@@ -20,9 +21,11 @@ const OptionsMenu = ({ job }: Props) => {
     setShowDeleteWarning,
     setShowJobForm,
     setShowMenu,
+    setShowUpdateStatus,
     showDeleteWarning,
     showJobForm,
     showMenu,
+    showUpdateStatus,
   } = useOptionsMenu();
 
   return (
@@ -35,10 +38,19 @@ const OptionsMenu = ({ job }: Props) => {
         <OptionsMenuContent
           job={job}
           menuRef={menuRef}
-          showMenu={showMenu}
           setShowDeleteWarning={setShowDeleteWarning}
           setShowMenu={setShowMenu}
           setShowJobForm={setShowJobForm}
+          setShowUpdateStatus={setShowUpdateStatus}
+          showMenu={showMenu}
+        />
+      )}
+
+      {showUpdateStatus && (
+        <UpdateStatusModal
+          jobId={job.id!}
+          close={() => setShowUpdateStatus(false)}
+          currentStatus={job.status}
         />
       )}
 

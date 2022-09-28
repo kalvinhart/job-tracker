@@ -73,6 +73,13 @@ export default class FirebaseService implements IJobService {
     return newData;
   }
 
+  async updateField(field: string, id: string, data: string | number) {
+    const docRef = doc(db, "jobs", id);
+    await updateDoc(docRef, { [field]: data });
+
+    return (await getDoc(docRef)).data() as Job;
+  }
+
   async deleteJob(id: string): Promise<void> {
     await deleteDoc(doc(db, "jobs", id));
   }

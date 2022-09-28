@@ -31,6 +31,7 @@ type JobContextType = {
   loadJob: (uid: string) => void;
   saveNewJob: (job: Job) => void;
   saveEditedJob: (id: string, job: Job) => void;
+  updateStatus: (id: string, data: string) => void;
   deleteJobById: (id: string) => void;
   deleteManyJobs: (ids: string[]) => void;
   clearJobState: () => void;
@@ -50,6 +51,7 @@ const initialState: JobContextType = {
   loadJob: async (uid: string) => {},
   saveNewJob: (job: Job) => {},
   saveEditedJob: (id: string, job: Job) => {},
+  updateStatus: (id: string, data: string) => {},
   deleteJobById: (id: string) => {},
   deleteManyJobs: (ids: string[]) => {},
   clearJobState: () => {},
@@ -159,6 +161,20 @@ const JobContextProvider = ({ children }: Props) => {
     [jobService]
   );
 
+  const updateStatus = useCallback(
+    async (id: string, status: string) => {
+      try {
+        const updatedJob = await jobService.updateField("status", id, status);
+        handleUpdateJobList(updatedJob);
+        toastSuccess("Job successfully updated!");
+      } catch (err) {
+        toastError("Unable to save.");
+        console.log(err);
+      }
+    },
+    [jobService]
+  );
+
   const deleteJobById = useCallback(
     async (id: string) => {
       try {
@@ -212,6 +228,7 @@ const JobContextProvider = ({ children }: Props) => {
         setLoading,
         setJobs,
         setLoadJobsComplete,
+        updateStatus,
       }}
     >
       {children}

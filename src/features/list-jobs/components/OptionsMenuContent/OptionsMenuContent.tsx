@@ -14,14 +14,16 @@ type Props = {
   setShowMenu: Dispatch<SetStateAction<boolean>>;
   setShowJobForm: Dispatch<SetStateAction<boolean>>;
   setShowDeleteWarning: Dispatch<SetStateAction<boolean>>;
+  setShowUpdateStatus: Dispatch<SetStateAction<boolean>>;
 };
 const OptionsMenuContent = ({
   job,
   menuRef,
-  showMenu,
   setShowMenu,
   setShowJobForm,
   setShowDeleteWarning,
+  setShowUpdateStatus,
+  showMenu,
 }: Props) => {
   useClickOutside(menuRef, () => setShowMenu(false));
 
@@ -33,6 +35,13 @@ const OptionsMenuContent = ({
   return (
     <MenuContentWrapper>
       <MenuList>
+        <MenuListItem>
+          <MenuOptionButton
+            onClick={() => handleOptionClick(() => setShowUpdateStatus(true))}
+          >
+            Update Status
+          </MenuOptionButton>
+        </MenuListItem>
         <MenuListItem>
           <MenuOptionButton onClick={() => handleOptionClick(() => setShowJobForm(true))}>
             Edit Job
