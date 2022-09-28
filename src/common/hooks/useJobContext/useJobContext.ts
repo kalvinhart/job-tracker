@@ -19,6 +19,7 @@ export const useJobContext = () => {
     setJobs,
     setLoadJobsComplete,
     setLoading,
+    updateStatus,
   } = useContext(JobContext);
 
   return {
@@ -38,5 +39,6 @@ export const useJobContext = () => {
     setJobs,
     setLoadJobsComplete,
     setLoading,
+    updateStatus,
   };
 };

@@ -24,6 +24,10 @@ export default class JobService implements IJobService {
     return await this.api.updateJob(id, data);
   }
 
+  async updateField(field: string, id: string, data: string | number): Promise<Job> {
+    return await this.api.updateField(field, id, data);
+  }
+
   async deleteJob(id: string): Promise<void> {
     return await this.api.deleteJob(id);
   }
