@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useMemo, useState } from "react";
 
 import { useJobListContext } from "./useJobListContext";
 import { useJobContext } from "../../../common/hooks/useJobContext/useJobContext";
@@ -19,7 +19,7 @@ export const useJobList = () => {
   } = useJobListContext();
 
   const handleTabChange = (e: SyntheticEvent) => {
-    setSelectedTab((e.target as HTMLButtonElement).textContent!);
+    setSelectedTab((e.target as HTMLButtonElement).firstChild!.textContent!);
   };
 
   const handleDeleteMany = async () => {
@@ -29,10 +29,33 @@ export const useJobList = () => {
   const jobsToDisplay: Job[] =
     selectedTab === "All" ? jobs : jobs.filter((job) => job.status === selectedTab);
 
+  const jobCount = jobs.length;
+  const pendingJobsCount = useMemo(
+    () => jobs.filter((job) => job.status === "Pending").length,
+    [jobs]
+  );
+  const interviewJobsCount = useMemo(
+    () => jobs.filter((job) => job.status === "Interview").length,
+    [jobs]
+  );
+  const rejectedJobsCount = useMemo(
+    () => jobs.filter((job) => job.status === "Rejected").length,
+    [jobs]
+  );
+  const expiredJobsCount = useMemo(
+    () => jobs.filter((job) => job.status === "Expired").length,
+    [jobs]
+  );
+
   return {
+    expiredJobsCount,
+    interviewJobsCount,
+    jobCount,
     jobsToDisplay,
     selectedTab,
     handleTabChange,
+    pendingJobsCount,
+    rejectedJobsCount,
     selectedJobs,
     cancelSelection,
     showDeleteWarning,

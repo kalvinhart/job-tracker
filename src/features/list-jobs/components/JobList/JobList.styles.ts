@@ -48,6 +48,8 @@ type ButtonProps = {
 };
 export const JobListTabButton = styled.button<ButtonProps>`
   padding: 10px 15px;
+  display: flex;
+  align-items: center;
   background-color: transparent;
   border: none;
   border-bottom: 2px solid transparent;
@@ -71,6 +73,19 @@ export const JobListTabButton = styled.button<ButtonProps>`
   &:not(:last-child) {
     margin-right: 10px;
   }
+`;
+
+export const JobListButtonSpan = styled.span`
+  margin-left: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: var(--clr-primary);
+  border-radius: 50%;
 `;
 
 export const JobListDeleteButtonsWrapper = styled.div`
