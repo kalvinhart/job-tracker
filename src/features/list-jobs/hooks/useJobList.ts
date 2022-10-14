@@ -6,7 +6,7 @@ import { useJobContext } from "../../../common/hooks/useJobContext/useJobContext
 import { Job } from "../../../common/types/job";
 
 export const useJobList = () => {
-  const [selectedTab, setSelectedTab] = useState("All");
+  const [selectedTab, setSelectedTab] = useState("Pending");
   const [showDeleteWarning, setShowDeleteWarning] = useState(false);
 
   const { jobs, deleteManyJobs } = useJobContext();
