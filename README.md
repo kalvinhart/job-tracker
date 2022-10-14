@@ -6,7 +6,7 @@ Jobs can be added and then displayed in a list.
 
 Individual jobs can be viewed and updated or deleted. The user can also add the date and time of an appointment interview and edit/delete this as applicable.
 
-State management is handled with Redux Toolkit and the Context API.
+State management is handled with the Context API.
 
 All data is persisted using Firebase Firestore.
 
@@ -60,7 +60,6 @@ npm start
 The packages used in creating this application are:
 
 - react
-- react-redux
 - react-router-dom
 - react-hook-form
 - react-hot-toast
