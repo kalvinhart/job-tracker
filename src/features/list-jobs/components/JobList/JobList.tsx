@@ -5,6 +5,7 @@ import { useJobList } from "../../hooks/useJobList";
 
 import { JobItem } from "../JobItem";
 import {
+  JobListButtonSpan,
   JobListButtonWrapper,
   JobListContent,
   JobListDeleteButtonsWrapper,
@@ -21,11 +22,16 @@ import { JobForm } from "../../../job-form/JobForm";
 const JobList = () => {
   const {
     cancelSelection,
+    expiredJobsCount,
     handleCloseJobForm,
     handleDeleteMany,
     handleTabChange,
     handleOpenJobForm,
+    interviewJobsCount,
+    jobCount,
     jobsToDisplay,
+    pendingJobsCount,
+    rejectedJobsCount,
     selectedJobs,
     selectedTab,
     setShowDeleteWarning,
@@ -43,6 +49,7 @@ const JobList = () => {
             data-testid={`selected-tab-${selectedTab === "All"}`}
           >
             All
+            <JobListButtonSpan>{jobCount}</JobListButtonSpan>
           </JobListTabButton>
           <JobListTabButton
             onClick={handleTabChange}
@@ -50,6 +57,7 @@ const JobList = () => {
             data-testid={`selected-tab-${selectedTab === "Pending"}`}
           >
             Pending
+            <JobListButtonSpan>{pendingJobsCount}</JobListButtonSpan>
           </JobListTabButton>
           <JobListTabButton
             onClick={handleTabChange}
@@ -57,6 +65,7 @@ const JobList = () => {
             data-testid={`selected-tab-${selectedTab === "Interview"}`}
           >
             Interview
+            <JobListButtonSpan>{interviewJobsCount}</JobListButtonSpan>
           </JobListTabButton>
           <JobListTabButton
             onClick={handleTabChange}
@@ -64,6 +73,7 @@ const JobList = () => {
             data-testid={`selected-tab-${selectedTab === "Rejected"}`}
           >
             Rejected
+            <JobListButtonSpan>{rejectedJobsCount}</JobListButtonSpan>
           </JobListTabButton>
           <JobListTabButton
             onClick={handleTabChange}
@@ -71,6 +81,7 @@ const JobList = () => {
             data-testid={`selected-tab-${selectedTab === "Expired"}`}
           >
             Expired
+            <JobListButtonSpan>{expiredJobsCount}</JobListButtonSpan>
           </JobListTabButton>
         </JobListButtonWrapper>
 
