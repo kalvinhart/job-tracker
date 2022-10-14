@@ -46,7 +46,7 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   width: 100%;
-  padding: 5px 10px;
+  padding: 8px 15px;
   border-radius: var(--border-radius);
   border: 1px solid var(--clr-dark);
   font-family: inherit;
@@ -60,7 +60,7 @@ export const Input = styled.input`
 `;
 
 export const Select = styled.select`
-  padding: 5px 10px;
+  padding: 8px 15px;
   border: 1px solid var(--clr-dark);
   border-radius: var(--border-radius);
   font-family: inherit;

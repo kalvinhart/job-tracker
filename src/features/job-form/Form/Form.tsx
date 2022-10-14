@@ -223,6 +223,9 @@ const Form = ({ editing, close, job }: Props) => {
         <InputGroup>
           <Label htmlFor="status">Applied on:</Label>
           <Select {...register("resource")}>
+            <option value="" selected={!editing} disabled>
+              Please select...
+            </option>
             {resourceOptions.map((option: string) => (
               <option key={option} value={option}>
                 {option}
