@@ -24,6 +24,7 @@ export const useJobList = () => {
 
   const handleDeleteMany = async () => {
     await deleteManyJobs(selectedJobs);
+    cancelSelection();
   };
 
   const jobsToDisplay: Job[] =
