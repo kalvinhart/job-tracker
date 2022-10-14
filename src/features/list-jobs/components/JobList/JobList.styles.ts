@@ -80,9 +80,9 @@ export const JobListButtonSpan = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 12px;
-  width: 18px;
-  height: 18px;
+  font-size: 11px;
+  width: 20px;
+  height: 20px;
   background-color: rgba(0, 0, 0, 0.1);
   color: var(--clr-primary);
   border-radius: 50%;
