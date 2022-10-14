@@ -16,7 +16,6 @@ export const useForm = ({ reset, close, editing, job }: Props) => {
 
   const statusOptions = ["Pending", "Interview", "Rejected", "Expired"];
   const resourceOptions = [
-    "",
     "LinkedIn",
     "Indeed",
     "Reed",
